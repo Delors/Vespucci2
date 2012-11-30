@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.opalproject.vespucci.datamodel/src" modelPluginID="de.opalproject.vespucci.datamodel"
+    modelName="Datamodel" importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0"
+    copyrightFields="false" language="">
+  <foreignModel>datamodel.ecore</foreignModel>
+  <genPackages prefix="Datamodel" basePackage="de.opalproject.vespucci" resource="XML"
+      disposableProviderFactory="true" ecorePackage="datamodel.ecore#/">
+    <genDataTypes ecoreDataType="datamodel.ecore#//EnsembleData"/>
+    <genClasses ecoreClass="datamodel.ecore#//Ensemble">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datamodel.ecore#//Ensemble/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datamodel.ecore#//Ensemble/derived"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datamodel.ecore#//Ensemble/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datamodel.ecore#//Ensemble/query"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/de.opalproject.vespucci_1.0.0.qualifier.jar" id="de.opalproject.vespucci" version="1.0.0.qualifier">
+      <category name="vespucci"/>
+   </feature>
+   <category-def name="vespucci" label="Vespucci"/>
+</site>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="de.opalproject.vespucci.editor.EnsembleEditor"
+            default="false"
+            id="de.opalproject.vespucci.editor.editor"
+            name="Ensemble Editor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="de.opalproject.vespucci.editor.CallEditor"
+            id="de.opalproject.vespucci.editor.openEditor"
+            name="open">
+      </command>
+      <command
+            defaultHandler="de.opalproject.vespucci.editor.CloseEditor"
+            id="de.opalproject.vespucci.editor.closeEditor"
+            name="close">
+      </command>
+   </extension>
+
+</plugin>

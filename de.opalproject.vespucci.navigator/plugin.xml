@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="de.opalproject.vespucci.navigator.category"
+            name="Vespucci Global Repository">
+      </category>
+      <view
+            allowMultiple="false"
+            category="de.opalproject.vespucci.navigator.category"
+            class="de.opalproject.vespucci.navigator.Navigator"
+            id="de.opalproject.vespucci.navigator.view"
+            name="Vespucci"
+            restorable="true">
+      </view>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <navigatorContent
+            activeByDefault="true"
+            contentProvider="de.opalproject.vespucci.navigator.providers.VespucciContentProvider"
+            id="de.opalproject.vespucci.navigator.VirtualContent"
+            labelProvider="de.opalproject.vespucci.navigator.providers.VespucciLabelProvider"
+            name="Virtual content"
+            priority="normal">
+         <triggerPoints>
+            <or>
+               <instanceof value="de.opalproject.vespucci.navigator.model.Root" />
+               <instanceof value="de.opalproject.vespucci.datamodel.Ensemble" />
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <or>
+               <instanceof value="de.opalproject.vespucci.datamodel.Ensemble" />
+            </or>
+         </possibleChildren>
+      </navigatorContent>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewer
+            viewerId="de.opalproject.vespucci.navigator.view">
+      </viewer>
+      <viewerContentBinding
+            viewerId="de.opalproject.vespucci.navigator.view">
+         <includes>
+            <contentExtension
+                  isRoot="true"
+                  pattern="de.opalproject.vespucci.navigator.VirtualContent">
+            </contentExtension>
+         </includes>
+      </viewerContentBinding>
+   </extension>
+   
+      <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewer
+            viewerId="de.opalproject.vespucci.navigator.view">
+         <popupMenu
+               allowsPlatformContributions="true"
+               id="de.opalproject.vespucci.navigator.popup">
+            <insertionPoint
+                  name="group.new"
+                  separator="false">
+            </insertionPoint>
+            <insertionPoint
+                  name="group.open"
+                  separator="false">
+            </insertionPoint>
+            <insertionPoint
+                  name="group.edit"
+                  separator="true">
+            </insertionPoint>
+         </popupMenu>
+      </viewer>
+    </extension>
+    
+    <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:de.opalproject.vespucci.navigator.popup?after=group.edit">
+         <command
+               commandId="org.eclipse.ui.edit.delete"
+               id="cnf.popupmenu.delete"
+               label="Delete"
+               mnemonic="D"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipse.ui.edit.rename"
+               id="cnf.popupmenu.rename"
+               label="Rename"
+               mnemonic="R"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipse.ui.edit.NewEnsemble"
+               id="cnf.popupmenu.newEnsemble"
+               label="New Ensemble"
+               mnemonic="N"
+               style="push">
+         </command>
+      </menuContribution>
+    </extension>
+    
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="de.opalproject.vespucci.navigator.handlers.RenameHandler"
+            commandId="org.eclipse.ui.edit.rename">
+         <activeWhen>
+            <reference definitionId="de.opalproject.vespucci.navigator.elementSelected" />
+         </activeWhen>
+         <enabledWhen>
+            <reference definitionId="de.opalproject.vespucci.navigator.elementSelected" />
+         </enabledWhen>
+      </handler>
+      <handler
+            class="de.opalproject.vespucci.navigator.handlers.DeleteHandler"
+            commandId="org.eclipse.ui.edit.delete">
+         <activeWhen>
+            <reference
+                  definitionId="de.opalproject.vespucci.navigator.elementSelected">
+            </reference>
+         </activeWhen>
+         <enabledWhen>
+            <reference
+                  definitionId="de.opalproject.vespucci.navigator.elementSelected">
+            </reference>
+         </enabledWhen>
+      </handler>
+      <handler
+            class="de.opalproject.vespucci.navigator.handlers.NewEnsembleHandler"
+            commandId="org.eclipse.ui.edit.NewEnsemble">
+         <activeWhen>
+            <reference
+                  definitionId="de.opalproject.vespucci.navigator.elementSelected">
+            </reference>
+         </activeWhen>
+         <enabledWhen>
+            <reference
+                  definitionId="de.opalproject.vespucci.navigator.elementSelected">
+            </reference>
+         </enabledWhen>
+      </handler>
+   </extension>
+
+   <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition id="de.opalproject.vespucci.navigator.elementSelected">
+         <with variable="selection">
+            <iterate ifEmpty="false" operator="or">
+               <instanceof value="de.opalproject.vespucci.datamodel.Ensemble" />
+            </iterate>
+         </with>
+      </definition>
+   </extension>
+
+</plugin>
