@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/de.opalproject.vespucci_1.0.0.qualifier.jar" id="de.opalproject.vespucci" version="1.0.0.qualifier">
+   <feature url="features/de.opalproject.vespucci_2.0.0.qualifier.jar" id="de.opalproject.vespucci" version="2.0.0.qualifier">
       <category name="vespucci"/>
    </feature>
    <category-def name="vespucci" label="Vespucci"/>
