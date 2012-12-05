@@ -33,15 +33,14 @@
  */
 package de.opalproject.vespucci.datamodel.tests;
 
+import junit.framework.TestCase;
+import junit.textui.TestRunner;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import de.opalproject.vespucci.datamodel.DatamodelFactory;
 import de.opalproject.vespucci.datamodel.Ensemble;
-
-import junit.framework.TestCase;
-
-import junit.textui.TestRunner;
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '
@@ -204,6 +203,33 @@ public class EnsembleTest extends TestCase {
 		Ensemble child = DatamodelFactory.eINSTANCE.createEnsemble();
 		child.getChildren().add(getFixture());
 		Assert.assertEquals(child, getFixture().getParent());
+	}
+
+	@Test
+	public void testClearParentReference() {
+		Ensemble child = DatamodelFactory.eINSTANCE.createEnsemble();
+		child.getChildren().add(getFixture());
+		child.getChildren().remove(getFixture());
+
+		Assert.assertFalse(child.getChildren().contains(getFixture()));
+	}
+
+	@Test
+	public void testSetParent() {
+		Ensemble child = DatamodelFactory.eINSTANCE.createEnsemble();
+		child.setParent(getFixture());
+		Assert.assertEquals(child.getParent(), getFixture());
+		Assert.assertTrue(getFixture().getChildren().contains(child));
+	}
+
+	@Test
+	public void testClearParent() {
+		Ensemble child = DatamodelFactory.eINSTANCE.createEnsemble();
+		child.setParent(getFixture());
+		child.setParent(null);
+
+		Assert.assertEquals(child.getParent(), null);
+		Assert.assertFalse(getFixture().getChildren().contains(child));
 	}
 
 } // EnsembleTest
