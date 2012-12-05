@@ -73,7 +73,7 @@ public class NewEnsembleHandler extends AbstractHandler {
 
 			selectetDomainObject.getChildren().add(ens);
 			ens.setName(wiz.name);
-			ens.setDescription("nothing here");
+			ens.setDescription(wiz.description);
 			ens.setDerived(false);
 			ens.setQuery("");
 		}
