@@ -338,25 +338,6 @@ public class EnsembleImpl extends EObjectImpl implements Ensemble {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
-	 */
-	public void addChildren(Ensemble ensemble) {
-		getChildren().add(ensemble);
-		ensemble.setParent(this);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	public void removeChildren(Ensemble ensemble) {
-		getChildren().remove(ensemble);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
