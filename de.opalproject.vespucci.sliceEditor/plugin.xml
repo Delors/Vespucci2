@@ -21,6 +21,19 @@
       <diagramType
         id="de.opalproject.vespucci.sliceEditor.sliceEditorDiagramType">
       </diagramType>
-    </diagramTypeProvider>
+      <imageProvider
+            id="de.opalproject.vespucci.sliceEditor.ImageProvider">
+      </imageProvider>
+   </diagramTypeProvider>
+ </extension>
+
+<extension
+      point="org.eclipse.graphiti.ui.imageProviders">
+   <imageProvider
+         class="de.opalproject.vespucci.sliceEditor.ImageProvider"
+         id="de.opalproject.vespucci.sliceEditor.ImageProvider">
+   </imageProvider>
+    
+
   </extension>
  </plugin>

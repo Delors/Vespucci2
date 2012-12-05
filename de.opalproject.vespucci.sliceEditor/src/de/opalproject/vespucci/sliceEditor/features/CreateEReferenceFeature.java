@@ -57,7 +57,12 @@ public class CreateEReferenceFeature extends AbstractCreateConnectionFeature {
 	 */
 	public CreateEReferenceFeature(IFeatureProvider fp) {
 		// provide name and description for the UI, e.g. the palette
-		super(fp, "EReference", "Create EReference");
+		super(fp, "Connection", "Create EReference");
+	}
+	
+	@Override
+	public String getCreateImageId() {
+		return "de.opalproject.vespucci.sliceEditor.ereference";
 	}
 
 	/*
