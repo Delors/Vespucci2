@@ -122,88 +122,88 @@ public class EnsembleTest extends TestCase {
 
 	@Test
 	public void testExistance() {
-		Assert.assertNotNull(fixture);
+		Assert.assertNotNull(getFixture());
 	}
 
 	@Test
 	public void testIfEnsemble() {
-		Assert.assertTrue(fixture instanceof Ensemble);
+		Assert.assertTrue(getFixture() instanceof Ensemble);
 	}
 
 	@Test
 	public void testDefaultName() {
-		Assert.assertEquals(null, fixture.getName());
+		Assert.assertEquals(null, getFixture().getName());
 
 	}
 
 	@Test
 	public void testDefaultDescription() {
-		Assert.assertEquals(null, fixture.getDescription());
+		Assert.assertEquals(null, getFixture().getDescription());
 
 	}
 
 	@Test
 	public void testDefaultQuery() {
-		Assert.assertEquals(null, fixture.getQuery());
+		Assert.assertEquals(null, getFixture().getQuery());
 
 	}
 
 	@Test
 	public void testDefaultDerived() {
-		Assert.assertEquals(false, fixture.isDerived());
+		Assert.assertEquals(false, getFixture().isDerived());
 
 	}
 
 	@Test
 	public void testDefaultParent() {
-		Assert.assertEquals(null, fixture.getParent());
+		Assert.assertEquals(null, getFixture().getParent());
 
 	}
 
 	@Test
 	public void testDefaultChildren() {
-		Assert.assertNotNull(fixture.getChildren());
-		Assert.assertEquals(0, fixture.getChildren().size());
+		Assert.assertNotNull(getFixture().getChildren());
+		Assert.assertEquals(0, getFixture().getChildren().size());
 
 	}
 
 	@Test
 	public void testSetName() {
-		fixture.setName("test");
-		Assert.assertEquals("test", fixture.getName());
+		getFixture().setName("test");
+		Assert.assertEquals("test", getFixture().getName());
 	}
 
 	@Test
 	public void testSetDescription() {
-		fixture.setDescription("test");
-		Assert.assertEquals("test", fixture.getDescription());
+		getFixture().setDescription("test");
+		Assert.assertEquals("test", getFixture().getDescription());
 	}
 
 	@Test
 	public void testSetQuery() {
-		fixture.setQuery("test");
-		Assert.assertEquals("test", fixture.getQuery());
+		getFixture().setQuery("test");
+		Assert.assertEquals("test", getFixture().getQuery());
 	}
 
 	@Test
 	public void testSetDerived() {
-		fixture.setDerived(true);
-		Assert.assertEquals(true, fixture.isDerived());
+		getFixture().setDerived(true);
+		Assert.assertEquals(true, getFixture().isDerived());
 	}
 
 	@Test
 	public void testAddChildren() {
 		Ensemble child = DatamodelFactory.eINSTANCE.createEnsemble();
-		fixture.getChildren().add(child);
-		Assert.assertEquals(1, fixture.getChildren().size());
-		Assert.assertEquals(child, fixture.getChildren().get(0));
+		getFixture().getChildren().add(child);
+		Assert.assertEquals(1, getFixture().getChildren().size());
+		Assert.assertEquals(child, getFixture().getChildren().get(0));
 	}
 
 	@Test
 	public void testParentReference() {
 		Ensemble child = DatamodelFactory.eINSTANCE.createEnsemble();
-		child.getChildren().add(fixture);
-		Assert.assertEquals(child, fixture.getParent());
+		child.getChildren().add(getFixture());
+		Assert.assertEquals(child, getFixture().getParent());
 	}
 
 } // EnsembleTest
