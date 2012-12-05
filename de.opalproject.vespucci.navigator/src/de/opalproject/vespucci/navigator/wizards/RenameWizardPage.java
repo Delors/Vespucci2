@@ -43,6 +43,12 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+/**
+ * Page for the RenameWizard.
+ * 
+ * @author Marius-d
+ * 
+ */
 public class RenameWizardPage extends WizardPage {
 	private Text text1;
 	private Composite container;

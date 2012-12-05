@@ -35,6 +35,12 @@ package de.opalproject.vespucci.navigator.wizards;
 
 import org.eclipse.jface.wizard.Wizard;
 
+/**
+ * Wizard for renaming existing ensembles
+ * 
+ * @author Marius-d
+ * 
+ */
 public class EnsembleWizardRename extends Wizard {
 
 	/**

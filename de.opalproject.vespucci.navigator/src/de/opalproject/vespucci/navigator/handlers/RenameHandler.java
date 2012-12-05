@@ -43,6 +43,12 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.navigator.wizards.EnsembleWizardRename;
 
+/**
+ * Used by EnsembleRenameWizard to rename an existing ensemble.
+ * 
+ * @author Marius-d
+ * 
+ */
 public class RenameHandler extends AbstractHandler {
 
 	/*
