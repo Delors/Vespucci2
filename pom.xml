@@ -20,8 +20,13 @@
 	</modules>
 
 	<properties>
-		<tycho-version>0.16.0</tycho-version>
+		<tycho.version>0.16.0</tycho.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
+		<!-- Sonar Config -->
+		<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+		<sonar.jacoco.reportPath>../target/jacoco.exec</sonar.jacoco.reportPath>
 	</properties>
 
 	<repositories>
@@ -34,12 +39,49 @@
 
 	<build>
 		<sourceDirectory>src</sourceDirectory>
+
+		<pluginManagement>
+			<plugins>
+				<!-- Testing -->
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-surefire-plugin</artifactId>
+					<version>${tycho.version}</version>
+					<configuration>
+						<useUIHarness>false</useUIHarness>
+						<includes>
+							<include>**/*Test.java</include>
+						</includes>
+						<!-- Kill test JVM if tests take more than 10 minutes (600 seconds) 
+							to finish -->
+						<forkedProcessTimeoutInSeconds>600</forkedProcessTimeoutInSeconds>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
 		<plugins>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>tycho-maven-plugin</artifactId>
-				<version>${tycho-version}</version>
+				<version>${tycho.version}</version>
 				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.6.0.201210061924</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+						<configuration>
+							<!-- Where to put jacoco coverage report -->
+							<destFile>${sonar.jacoco.reportPath}</destFile>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
