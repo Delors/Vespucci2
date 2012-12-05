@@ -38,19 +38,13 @@ import org.eclipse.graphiti.tb.IToolBehaviorProvider;
 
 public class SliceEditorDiagramTypeProvider extends AbstractDiagramTypeProvider {
 
-	private IToolBehaviorProvider[] toolBehaviorProviders;
+	
 	
 	public SliceEditorDiagramTypeProvider() {
 		super();
 		setFeatureProvider(new SliceEditorFeatureProvider(this));
 	}
 
-	@Override
-    public IToolBehaviorProvider[] getAvailableToolBehaviorProviders() {
-        if (toolBehaviorProviders == null) {
-            toolBehaviorProviders = new IToolBehaviorProvider[] { new ToolBehaviorProvider(this) };
-        }
-        return toolBehaviorProviders;
-    }
+	
 	
 }
