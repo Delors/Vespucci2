@@ -33,14 +33,19 @@
  */
 package de.opalproject.vespucci.datamodel.tests;
 
+import java.util.ArrayList;
+
 import junit.framework.TestCase;
 import junit.textui.TestRunner;
 
 import org.junit.Assert;
 import org.junit.Test;
 
+import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.DatamodelFactory;
+import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.datamodel.impl.EnsembleImpl;
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '
@@ -132,7 +137,6 @@ public class EnsembleTest extends TestCase {
 	@Test
 	public void testDefaultName() {
 		Assert.assertEquals(null, getFixture().getName());
-
 	}
 
 	@Test
@@ -232,4 +236,180 @@ public class EnsembleTest extends TestCase {
 		Assert.assertFalse(getFixture().getChildren().contains(child));
 	}
 
+	/**
+	 * @Test(expected=IllegalArgumentException.class) won't work.
+	 */
+	@Test
+	public void testRecursiveParent() {
+		try {
+			getFixture().setParent(getFixture());
+			Assert.fail();
+		} catch (Exception e) {
+		}
+	}
+
+	@Test
+	public void testConstraintsNotNull() {
+		Assert.assertNotNull(getFixture().getConstraints());
+	}
+
+	@Test
+	public void testConstraintsEmpty() {
+		Assert.assertEquals(0, getFixture().getConstraints().size());
+	}
+
+	@Test
+	public void testConstraintsSameAfterInit() {
+		Assert.assertSame(getFixture().getConstraints(), getFixture()
+				.getConstraints());
+	}
+
+	@Test
+	public void testReflectionsGet() {
+		String name = "name";
+		String description = "description";
+		String query = "query";
+		boolean derived = true;
+
+		getFixture().setDerived(derived);
+		getFixture().setName(name);
+		getFixture().setDescription(description);
+		getFixture().setQuery(query);
+
+		EnsembleImpl localFixture = (EnsembleImpl) getFixture();
+
+		Assert.assertEquals(name, localFixture.eGet(
+				DatamodelPackage.ENSEMBLE__NAME, false, false));
+		Assert.assertEquals(description, localFixture.eGet(
+				DatamodelPackage.ENSEMBLE__DESCRIPTION, false, false));
+		Assert.assertEquals(derived, localFixture.eGet(
+				DatamodelPackage.ENSEMBLE__DERIVED, false, false));
+		Assert.assertEquals(query, localFixture.eGet(
+				DatamodelPackage.ENSEMBLE__QUERY, false, false));
+		Assert.assertNotNull(localFixture.eGet(
+				DatamodelPackage.ENSEMBLE__CHILDREN, false, false));
+		Assert.assertNull(localFixture.eGet(DatamodelPackage.ENSEMBLE__PARENT,
+				false, false));
+		Assert.assertNotNull(localFixture.eGet(
+				DatamodelPackage.ENSEMBLE__CONSTRAINTS, false, false));
+	}
+
+	@Test
+	public void testReflectionsSet() {
+		String name = "name";
+		String description = "description";
+		String query = "query";
+		boolean derived = true;
+
+		Ensemble parent = DatamodelFactory.eINSTANCE.createEnsemble();
+
+		Ensemble child = DatamodelFactory.eINSTANCE.createEnsemble();
+		ArrayList<Ensemble> children = new ArrayList<Ensemble>();
+		children.add(child);
+
+		Constraint constraint = DatamodelFactory.eINSTANCE.createConstraint();
+		ArrayList<Constraint> constraints = new ArrayList<Constraint>();
+		constraints.add(constraint);
+
+		EnsembleImpl localFixture = (EnsembleImpl) getFixture();
+
+		localFixture.eSet(DatamodelPackage.ENSEMBLE__NAME, name);
+		localFixture.eSet(DatamodelPackage.ENSEMBLE__DESCRIPTION, description);
+		localFixture.eSet(DatamodelPackage.ENSEMBLE__DERIVED, derived);
+		localFixture.eSet(DatamodelPackage.ENSEMBLE__QUERY, query);
+		localFixture.eSet(DatamodelPackage.ENSEMBLE__CHILDREN, children);
+		localFixture.eSet(DatamodelPackage.ENSEMBLE__CONSTRAINTS, constraints);
+		localFixture.eSet(DatamodelPackage.ENSEMBLE__PARENT, parent);
+
+		getFixture().setDerived(derived);
+		getFixture().setName(name);
+		getFixture().setDescription(description);
+		getFixture().setQuery(query);
+
+		Assert.assertEquals(name, getFixture().getName());
+		Assert.assertEquals(description, getFixture().getDescription());
+		Assert.assertEquals(derived, getFixture().isDerived());
+		Assert.assertEquals(query, getFixture().getQuery());
+		Assert.assertEquals(parent, getFixture().getParent());
+		Assert.assertTrue(getFixture().getChildren().contains(child));
+		Assert.assertTrue(getFixture().getConstraints().contains(constraint));
+
+	}
+
+	@Test
+	public void testReflectionsUnSet() {
+
+		EnsembleImpl localFixture = (EnsembleImpl) getFixture();
+
+		localFixture.eUnset(DatamodelPackage.ENSEMBLE__NAME);
+		localFixture.eUnset(DatamodelPackage.ENSEMBLE__DESCRIPTION);
+		localFixture.eUnset(DatamodelPackage.ENSEMBLE__DERIVED);
+		localFixture.eUnset(DatamodelPackage.ENSEMBLE__QUERY);
+		localFixture.eUnset(DatamodelPackage.ENSEMBLE__CHILDREN);
+		localFixture.eUnset(DatamodelPackage.ENSEMBLE__CONSTRAINTS);
+		localFixture.eUnset(DatamodelPackage.ENSEMBLE__PARENT);
+
+		Assert.assertNull(getFixture().getName());
+		Assert.assertNull(getFixture().getDescription());
+		Assert.assertFalse(getFixture().isDerived());
+		Assert.assertNull(getFixture().getQuery());
+		Assert.assertNull(getFixture().getParent());
+		Assert.assertNotNull(getFixture().getChildren());
+		Assert.assertNotNull(getFixture().getConstraints());
+
+	}
+
+	@Test
+	public void testReflectionsIsSet() {
+		EnsembleImpl localFixture = (EnsembleImpl) getFixture();
+
+		Assert.assertFalse(localFixture.eIsSet(DatamodelPackage.ENSEMBLE__NAME));
+		getFixture().setName("test");
+		Assert.assertTrue(localFixture.eIsSet(DatamodelPackage.ENSEMBLE__NAME));
+
+		Assert.assertFalse(localFixture
+				.eIsSet(DatamodelPackage.ENSEMBLE__DERIVED));
+		getFixture().setDerived(true);
+		Assert.assertTrue(localFixture
+				.eIsSet(DatamodelPackage.ENSEMBLE__DERIVED));
+
+		Assert.assertFalse(localFixture
+				.eIsSet(DatamodelPackage.ENSEMBLE__DESCRIPTION));
+		getFixture().setDescription("description");
+		Assert.assertTrue(localFixture
+				.eIsSet(DatamodelPackage.ENSEMBLE__DESCRIPTION));
+
+		Assert.assertFalse(localFixture
+				.eIsSet(DatamodelPackage.ENSEMBLE__QUERY));
+		getFixture().setQuery("query");
+		Assert.assertTrue(localFixture.eIsSet(DatamodelPackage.ENSEMBLE__QUERY));
+
+		Ensemble child = DatamodelFactory.eINSTANCE.createEnsemble();
+		Assert.assertFalse(localFixture
+				.eIsSet(DatamodelPackage.ENSEMBLE__CHILDREN));
+		getFixture().getChildren();
+		Assert.assertFalse(localFixture
+				.eIsSet(DatamodelPackage.ENSEMBLE__CHILDREN));
+		getFixture().getChildren().add(child);
+		Assert.assertTrue(localFixture
+				.eIsSet(DatamodelPackage.ENSEMBLE__CHILDREN));
+
+		Constraint constraint = DatamodelFactory.eINSTANCE.createConstraint();
+		Assert.assertFalse(localFixture
+				.eIsSet(DatamodelPackage.ENSEMBLE__CONSTRAINTS));
+		getFixture().getConstraints();
+		Assert.assertFalse(localFixture
+				.eIsSet(DatamodelPackage.ENSEMBLE__CONSTRAINTS));
+		getFixture().getConstraints().add(constraint);
+		Assert.assertTrue(localFixture
+				.eIsSet(DatamodelPackage.ENSEMBLE__CONSTRAINTS));
+
+		Ensemble parent = DatamodelFactory.eINSTANCE.createEnsemble();
+		Assert.assertFalse(localFixture
+				.eIsSet(DatamodelPackage.ENSEMBLE__PARENT));
+		getFixture().setParent(parent);
+		Assert.assertTrue(localFixture
+				.eIsSet(DatamodelPackage.ENSEMBLE__PARENT));
+
+	}
 } // EnsembleTest
