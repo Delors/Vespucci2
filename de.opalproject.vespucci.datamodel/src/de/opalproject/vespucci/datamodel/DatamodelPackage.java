@@ -35,6 +35,7 @@ package de.opalproject.vespucci.datamodel;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -67,14 +68,14 @@ public interface DatamodelPackage extends EPackage {
 	 * 
 	 * @generated
 	 */
-	String eNS_URI = "http://datamodel/1.0";
+	String eNS_URI = "http://de/opalproject/vespucci/datamodel/1.0";
 
 	/**
 	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	String eNS_PREFIX = "datamodel";
+	String eNS_PREFIX = "de.opalproject.vespucci.datamodel";
 
 	/**
 	 * The singleton instance of the package. <!-- begin-user-doc --> <!--
@@ -151,13 +152,85 @@ public interface DatamodelPackage extends EPackage {
 	int ENSEMBLE__PARENT = 5;
 
 	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' containment
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENSEMBLE__CONSTRAINTS = 6;
+
+	/**
 	 * The number of structural features of the '<em>Ensemble</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ENSEMBLE_FEATURE_COUNT = 6;
+	int ENSEMBLE_FEATURE_COUNT = 7;
+
+	/**
+	 * The meta object id for the '
+	 * {@link de.opalproject.vespucci.datamodel.impl.ConstraintImpl
+	 * <em>Constraint</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @see de.opalproject.vespucci.datamodel.impl.ConstraintImpl
+	 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getConstraint()
+	 * @generated
+	 */
+	int CONSTRAINT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Constraint Type</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__CONSTRAINT_TYPE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Dependency Kind</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__DEPENDENCY_KIND = 1;
+
+	/**
+	 * The number of structural features of the '<em>Constraint</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '
+	 * {@link de.opalproject.vespucci.datamodel.ConstraintType
+	 * <em>Constraint Type</em>}' enum. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see de.opalproject.vespucci.datamodel.ConstraintType
+	 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getConstraintType()
+	 * @generated
+	 */
+	int CONSTRAINT_TYPE = 2;
+
+	/**
+	 * The meta object id for the '
+	 * {@link de.opalproject.vespucci.datamodel.DependencyKind
+	 * <em>Dependency Kind</em>}' enum. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see de.opalproject.vespucci.datamodel.DependencyKind
+	 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getDependencyKind()
+	 * @generated
+	 */
+	int DEPENDENCY_KIND = 3;
 
 	/**
 	 * Returns the meta object for class '
@@ -244,6 +317,76 @@ public interface DatamodelPackage extends EPackage {
 	EReference getEnsemble_Parent();
 
 	/**
+	 * Returns the meta object for the containment reference list '
+	 * {@link de.opalproject.vespucci.datamodel.Ensemble#getConstraints
+	 * <em>Constraints</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '
+	 *         <em>Constraints</em>'.
+	 * @see de.opalproject.vespucci.datamodel.Ensemble#getConstraints()
+	 * @see #getEnsemble()
+	 * @generated
+	 */
+	EReference getEnsemble_Constraints();
+
+	/**
+	 * Returns the meta object for class '
+	 * {@link de.opalproject.vespucci.datamodel.Constraint <em>Constraint</em>}
+	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Constraint</em>'.
+	 * @see de.opalproject.vespucci.datamodel.Constraint
+	 * @generated
+	 */
+	EClass getConstraint();
+
+	/**
+	 * Returns the meta object for the attribute '
+	 * {@link de.opalproject.vespucci.datamodel.Constraint#getConstraintType
+	 * <em>Constraint Type</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Constraint Type</em>'.
+	 * @see de.opalproject.vespucci.datamodel.Constraint#getConstraintType()
+	 * @see #getConstraint()
+	 * @generated
+	 */
+	EAttribute getConstraint_ConstraintType();
+
+	/**
+	 * Returns the meta object for the attribute '
+	 * {@link de.opalproject.vespucci.datamodel.Constraint#getDependencyKind
+	 * <em>Dependency Kind</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Dependency Kind</em>'.
+	 * @see de.opalproject.vespucci.datamodel.Constraint#getDependencyKind()
+	 * @see #getConstraint()
+	 * @generated
+	 */
+	EAttribute getConstraint_DependencyKind();
+
+	/**
+	 * Returns the meta object for enum '
+	 * {@link de.opalproject.vespucci.datamodel.ConstraintType
+	 * <em>Constraint Type</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for enum '<em>Constraint Type</em>'.
+	 * @see de.opalproject.vespucci.datamodel.ConstraintType
+	 * @generated
+	 */
+	EEnum getConstraintType();
+
+	/**
+	 * Returns the meta object for enum '
+	 * {@link de.opalproject.vespucci.datamodel.DependencyKind
+	 * <em>Dependency Kind</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for enum '<em>Dependency Kind</em>'.
+	 * @see de.opalproject.vespucci.datamodel.DependencyKind
+	 * @generated
+	 */
+	EEnum getDependencyKind();
+
+	/**
 	 * Returns the factory that creates the instances of the model. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -326,6 +469,69 @@ public interface DatamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ENSEMBLE__PARENT = eINSTANCE.getEnsemble_Parent();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraints</b></em>'
+		 * containment reference list feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference ENSEMBLE__CONSTRAINTS = eINSTANCE.getEnsemble_Constraints();
+
+		/**
+		 * The meta object literal for the '
+		 * {@link de.opalproject.vespucci.datamodel.impl.ConstraintImpl
+		 * <em>Constraint</em>}' class. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @see de.opalproject.vespucci.datamodel.impl.ConstraintImpl
+		 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getConstraint()
+		 * @generated
+		 */
+		EClass CONSTRAINT = eINSTANCE.getConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraint Type</b></em>'
+		 * attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute CONSTRAINT__CONSTRAINT_TYPE = eINSTANCE
+				.getConstraint_ConstraintType();
+
+		/**
+		 * The meta object literal for the '<em><b>Dependency Kind</b></em>'
+		 * attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute CONSTRAINT__DEPENDENCY_KIND = eINSTANCE
+				.getConstraint_DependencyKind();
+
+		/**
+		 * The meta object literal for the '
+		 * {@link de.opalproject.vespucci.datamodel.ConstraintType
+		 * <em>Constraint Type</em>}' enum. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @see de.opalproject.vespucci.datamodel.ConstraintType
+		 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getConstraintType()
+		 * @generated
+		 */
+		EEnum CONSTRAINT_TYPE = eINSTANCE.getConstraintType();
+
+		/**
+		 * The meta object literal for the '
+		 * {@link de.opalproject.vespucci.datamodel.DependencyKind
+		 * <em>Dependency Kind</em>}' enum. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @see de.opalproject.vespucci.datamodel.DependencyKind
+		 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getDependencyKind()
+		 * @generated
+		 */
+		EEnum DEPENDENCY_KIND = eINSTANCE.getDependencyKind();
 
 	}
 

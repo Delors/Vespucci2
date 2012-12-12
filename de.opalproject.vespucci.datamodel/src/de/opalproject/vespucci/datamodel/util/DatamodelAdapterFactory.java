@@ -103,6 +103,11 @@ public class DatamodelAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseConstraint(Constraint object) {
+			return createConstraintAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -134,6 +139,21 @@ public class DatamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEnsembleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '
+	 * {@link de.opalproject.vespucci.datamodel.Constraint <em>Constraint</em>}
+	 * '. <!-- begin-user-doc --> This default implementation returns null so
+	 * that we can easily ignore cases; it's useful to ignore a case when
+	 * inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see de.opalproject.vespucci.datamodel.Constraint
+	 * @generated
+	 */
+	public Adapter createConstraintAdapter() {
 		return null;
 	}
 

@@ -33,8 +33,11 @@
  */
 package de.opalproject.vespucci.datamodel.impl;
 
+import de.opalproject.vespucci.datamodel.Constraint;
+import de.opalproject.vespucci.datamodel.ConstraintType;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -42,6 +45,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import de.opalproject.vespucci.datamodel.DatamodelFactory;
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
+import de.opalproject.vespucci.datamodel.DependencyKind;
 import de.opalproject.vespucci.datamodel.Ensemble;
 
 /**
@@ -58,6 +62,25 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	private EClass ensembleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass constraintEClass = null;
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EEnum constraintTypeEEnum = null;
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EEnum dependencyKindEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -195,6 +218,60 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * 
 	 * @generated
 	 */
+	public EReference getEnsemble_Constraints() {
+		return (EReference) ensembleEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getConstraint() {
+		return constraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getConstraint_ConstraintType() {
+		return (EAttribute) constraintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getConstraint_DependencyKind() {
+		return (EAttribute) constraintEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EEnum getConstraintType() {
+		return constraintTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EEnum getDependencyKind() {
+		return dependencyKindEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public DatamodelFactory getDatamodelFactory() {
 		return (DatamodelFactory) getEFactoryInstance();
 	}
@@ -226,6 +303,15 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 		createEAttribute(ensembleEClass, ENSEMBLE__QUERY);
 		createEReference(ensembleEClass, ENSEMBLE__CHILDREN);
 		createEReference(ensembleEClass, ENSEMBLE__PARENT);
+		createEReference(ensembleEClass, ENSEMBLE__CONSTRAINTS);
+
+		constraintEClass = createEClass(CONSTRAINT);
+		createEAttribute(constraintEClass, CONSTRAINT__CONSTRAINT_TYPE);
+		createEAttribute(constraintEClass, CONSTRAINT__DEPENDENCY_KIND);
+
+		// Create enums
+		constraintTypeEEnum = createEEnum(CONSTRAINT_TYPE);
+		dependencyKindEEnum = createEEnum(DEPENDENCY_KIND);
 	}
 
 	/**
@@ -287,6 +373,53 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 				Ensemble.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		initEReference(getEnsemble_Constraints(), this.getConstraint(), null,
+				"constraints", null, 0, -1, Ensemble.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(constraintEClass, Constraint.class, "Constraint",
+				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getConstraint_ConstraintType(),
+				this.getConstraintType(), "constraintType", null, 0, 1,
+				Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConstraint_DependencyKind(),
+				this.getDependencyKind(), "dependencyKind", "0", 0, 1,
+				Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(constraintTypeEEnum, ConstraintType.class, "ConstraintType");
+		addEEnumLiteral(constraintTypeEEnum, ConstraintType.NOT_ALLOWED);
+		addEEnumLiteral(constraintTypeEEnum, ConstraintType.GLOBAL_INCOMING);
+		addEEnumLiteral(constraintTypeEEnum, ConstraintType.LOCAL_INCOMING);
+		addEEnumLiteral(constraintTypeEEnum, ConstraintType.GLOBAL_OUTGOING);
+		addEEnumLiteral(constraintTypeEEnum, ConstraintType.LOCAL_OUTGOING);
+		addEEnumLiteral(constraintTypeEEnum, ConstraintType.EXPECTED);
+
+		initEEnum(dependencyKindEEnum, DependencyKind.class, "DependencyKind");
+		addEEnumLiteral(dependencyKindEEnum, DependencyKind.ALL);
+		addEEnumLiteral(dependencyKindEEnum, DependencyKind.SUBTYPE);
+		addEEnumLiteral(dependencyKindEEnum, DependencyKind.EXTEND);
+		addEEnumLiteral(dependencyKindEEnum, DependencyKind.IMPLEMENT);
+		addEEnumLiteral(dependencyKindEEnum, DependencyKind.CALLS);
+		addEEnumLiteral(dependencyKindEEnum, DependencyKind.INVOKE_VIRTUAL);
+		addEEnumLiteral(dependencyKindEEnum, DependencyKind.INVOKE_SPECIAL);
+		addEEnumLiteral(dependencyKindEEnum, DependencyKind.INVOKE_INTERFACE);
+		addEEnumLiteral(dependencyKindEEnum, DependencyKind.INVOKE_STATIC);
+		addEEnumLiteral(dependencyKindEEnum, DependencyKind.ACCESS);
+		addEEnumLiteral(dependencyKindEEnum, DependencyKind.WRITE_FIELD);
+		addEEnumLiteral(dependencyKindEEnum, DependencyKind.WRITE_STATIC_FIELD);
+		addEEnumLiteral(dependencyKindEEnum, DependencyKind.READ_FIELD);
+		addEEnumLiteral(dependencyKindEEnum, DependencyKind.READ_STATIC_FIELD);
+		addEEnumLiteral(dependencyKindEEnum, DependencyKind.SIGNATURE);
+		addEEnumLiteral(dependencyKindEEnum, DependencyKind.PARAMETER);
+		addEEnumLiteral(dependencyKindEEnum, DependencyKind.RETURN_TYPE);
+		addEEnumLiteral(dependencyKindEEnum, DependencyKind.CLASS_CAST);
+		addEEnumLiteral(dependencyKindEEnum, DependencyKind.CREATE);
+		addEEnumLiteral(dependencyKindEEnum, DependencyKind.FIELD_TYPE);
+		addEEnumLiteral(dependencyKindEEnum, DependencyKind.THROWS);
 
 		// Create resource
 		createResource(eNS_URI);
