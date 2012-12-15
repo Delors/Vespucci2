@@ -216,4 +216,18 @@
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_11ftMC8nEeK9ovAiKX9NZQ" id="(0.5,0.5)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_11ftMS8nEeK9ovAiKX9NZQ" id="(0.5,0.5)"/>
   </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_JmuTgEa3EeKNdeD4CBgQpw" type="3002" source="_pYaosC47EeKQPtyIDnxSkw" target="_P2Rz8ERwEeKn4c0TrgZCLA">
+    <children xmi:type="notation:Node" xmi:id="_JmxW0Ea3EeKNdeD4CBgQpw" type="4011">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Jmx94Ea3EeKNdeD4CBgQpw" x="-10" y="-10"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_Jmyk8Ea3EeKNdeD4CBgQpw" type="4012">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Jmyk8Ua3EeKNdeD4CBgQpw" x="10" y="10"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_JmuTgUa3EeKNdeD4CBgQpw" lineColor="4210752"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_JmuTgka3EeKNdeD4CBgQpw" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
+    <element xmi:type="ecore:EReference" href="datamodel.ecore#//Ensemble/constraints"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_JmuTg0a3EeKNdeD4CBgQpw" points="[0, 0, 0, 388]$[0, -388, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_LbEmAEa3EeKNdeD4CBgQpw" id="(0.5,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_LbFNEEa3EeKNdeD4CBgQpw" id="(0.4978902953586498,1.0)"/>
+  </edges>
 </notation:Diagram>
