@@ -33,14 +33,14 @@
  */
 package de.opalproject.vespucci.navigator.providers;
 
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.navigator.IDescriptionProvider;
-
-import de.opalproject.vespucci.navigator.model.Project;
 
 /**
  * Provides the label including icon and description for each object of the
@@ -49,16 +49,20 @@ import de.opalproject.vespucci.navigator.model.Project;
  * @author Marco Jacobasch
  * 
  */
-public class VespucciLabelProvider extends AdapterFactoryLabelProvider
-		implements ILabelProvider, IDescriptionProvider {
+public class VespucciLabelProvider extends
+		TransactionalAdapterFactoryLabelProvider implements ILabelProvider,
+		IDescriptionProvider {
+
+	private static TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+			.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
 
 	public VespucciLabelProvider() {
-		super(ProjectAdapterFactoryProvider.getAdapterFactory());
+		super(domain, ProjectAdapterFactoryProvider.getAdapterFactory());
 	}
 
 	@Override
 	public Image getImage(Object object) {
-		if (object instanceof Project)
+		if (object instanceof IFile)
 			return PlatformUI.getWorkbench().getSharedImages()
 					.getImage(ISharedImages.IMG_OBJ_FOLDER);
 		return super.getImage(object);
@@ -66,8 +70,6 @@ public class VespucciLabelProvider extends AdapterFactoryLabelProvider
 
 	@Override
 	public String getText(Object object) {
-		if (object instanceof Project)
-			return ((Project) object).getName();
 		return super.getText(object);
 	}
 

@@ -36,8 +36,8 @@ package de.opalproject.vespucci.editor;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
@@ -49,13 +49,13 @@ public class CallEditor extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		System.out.println("called");
+		ISelection se = HandlerUtil.getCurrentSelection(event);
+
 		// Get the view
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
 		IWorkbenchPage page = window.getActivePage();
 
-		Event de = (Event) event.getTrigger();
-		TreeSelection sel = (TreeSelection) de.data;
+		TreeSelection sel = (TreeSelection) se;
 		Ensemble ens = (Ensemble) sel.getFirstElement();
 
 		EditorInput input = new EditorInput(ens);

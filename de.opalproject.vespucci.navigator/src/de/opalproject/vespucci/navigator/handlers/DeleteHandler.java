@@ -33,15 +33,18 @@
  */
 package de.opalproject.vespucci.navigator.handlers;
 
+import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.eclipse.ui.handlers.IHandlerService;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
 
@@ -64,40 +67,34 @@ public class DeleteHandler extends AbstractHandler {
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		// Get selected Elements
 		IStructuredSelection currentSelection = (IStructuredSelection) HandlerUtil
 				.getCurrentSelection(event);
-		
-		System.out.println("Current Selection : "  + currentSelection.toString());
-		
-		// Initiate handler to close open editors of the ensemble to be deleted
-		IHandlerService handlerService = (IHandlerService) HandlerUtil
-				.getActiveWorkbenchWindow(event).getWorkbench()
-				.getService(IHandlerService.class);
 
-		// Cast selection to ensembles
-		@SuppressWarnings("unchecked")
-		List<Ensemble> ensembleList = currentSelection.toList();
+		final TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
 
-		Event e = new Event();
-		e.data = currentSelection;
+		// Get first element of the current selection to rename
+		final Ensemble selectetDomainObject = (Ensemble) currentSelection
+				.getFirstElement();
 
+		final Resource r = selectetDomainObject.eResource();
 
-		try {
-			handlerService.executeCommand(
-					"de.opalproject.vespucci.editor.closeEditor", null);
-		} catch (Exception ex) {
-			throw new RuntimeException(
-					"de.opalproject.vespucci.editor.closeEditor not found");
-		}
+		final List<Ensemble> ensembleList = currentSelection.toList();
 
-		// Get first selected element and delete it with all its children
-		Ensemble current = ensembleList.get(0);
-		// for (Ensemble current : ensembleList) {
-		if (current != null) {
-			current.getParent().getChildren().remove(current);
-		}
-		// }
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			protected void doExecute() {
+
+				for (Ensemble ensemble : ensembleList) {
+					ensemble.setParent(null);
+				}
+
+				try {
+					r.save(Collections.EMPTY_MAP);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		});
 
 		return null;
 	}

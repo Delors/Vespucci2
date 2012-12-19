@@ -33,11 +33,22 @@
  */
 package de.opalproject.vespucci.navigator.providers;
 
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.eclipse.jface.viewers.ITreeContentProvider;
+import java.io.IOException;
 
-import de.opalproject.vespucci.navigator.model.Project;
-import de.opalproject.vespucci.navigator.model.Root;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IResourceChangeEvent;
+import org.eclipse.core.resources.IResourceChangeListener;
+import org.eclipse.core.resources.IResourceDelta;
+import org.eclipse.core.resources.IResourceDeltaVisitor;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
+import org.eclipse.jface.viewers.ITreeContentProvider;
 
 /**
  * Provides the datamodel content for the navigator
@@ -45,37 +56,42 @@ import de.opalproject.vespucci.navigator.model.Root;
  * @author Marco Jacobasch
  * 
  */
-public class VespucciContentProvider extends AdapterFactoryContentProvider
-		implements ITreeContentProvider {
+public class VespucciContentProvider extends
+		TransactionalAdapterFactoryContentProvider implements
+		ITreeContentProvider, IResourceChangeListener, IResourceDeltaVisitor {
+
+	private static TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+			.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
+	private static ResourceSet resourceSet = domain.getResourceSet();
 
 	public VespucciContentProvider() {
-		super(ProjectAdapterFactoryProvider.getAdapterFactory());
+		super(domain, ProjectAdapterFactoryProvider.getAdapterFactory());
+		ResourcesPlugin.getWorkspace().addResourceChangeListener(this,
+				IResourceChangeEvent.POST_CHANGE);
+
 	}
 
 	@Override
 	public boolean hasChildren(Object object) {
-		if (object instanceof Root)
-			return true;
-		if (object instanceof Project)
+		if (object instanceof IFile)
 			return true;
 		return super.hasChildren(object);
 	}
 
 	@Override
 	public Object[] getChildren(Object object) {
-		if (object instanceof Root)
-			return ((Root) object).getChildren();
-		if (object instanceof Project)
-			return ((Project) object).getChildren();
+		if (object instanceof IFile) {
+			String path = ((IFile) object).getFullPath().toString();
+			URI uri = URI.createPlatformResourceURI(path, true);
+			object = resourceSet.getResource(uri, true);
+		}
 		return super.getChildren(object);
 	}
 
 	@Override
 	public Object getParent(Object object) {
-		if (object instanceof Root)
-			return null;
-		if (object instanceof Project)
-			return ((Project) object).getParent();
+		if (object instanceof IFile)
+			return ((IResource) object).getParent();
 		return super.getParent(object);
 	}
 
@@ -86,6 +102,38 @@ public class VespucciContentProvider extends AdapterFactoryContentProvider
 
 	@Override
 	public void dispose() {
+		ResourcesPlugin.getWorkspace().removeResourceChangeListener(this);
+	}
+
+	@Override
+	public void resourceChanged(IResourceChangeEvent event) {
+		try {
+			IResourceDelta delta = event.getDelta();
+			delta.accept(this);
+		} catch (CoreException e) {
+			System.out.println("Resource Changed Fail - " + e.toString());
+		}
+	}
+
+	@Override
+	public boolean visit(IResourceDelta delta) throws CoreException {
+		IResource changedResource = delta.getResource();
+		if (changedResource.getType() == IResource.FILE
+				&& changedResource.getFileExtension().equals("ecore")) {
+			try {
+				String path = ((IFile) changedResource).getFullPath()
+						.toString();
+				URI uri = URI.createPlatformResourceURI(path, true);
+				Resource res = resourceSet.getResource(uri, true);
+				res.unload();
+				res.load(resourceSet.getLoadOptions());
+			} catch (IOException ie) {
+				System.out.println("Error reloading resource - "
+						+ ie.toString());
+			}
+			return false;
+		}
+		return true;
 	}
 
 }
