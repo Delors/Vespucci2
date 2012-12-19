@@ -203,12 +203,12 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="de.opalproject.vespucci.ui.editor.CallEditor"
+            defaultHandler="de.opalproject.vespucci.ui.handlers.CallEditor"
             id="de.opalproject.vespucci.editor.openEditor"
             name="open">
       </command>
       <command
-            defaultHandler="de.opalproject.vespucci.ui.editor.CloseEditor"
+            defaultHandler="de.opalproject.vespucci.ui.handlers.CloseEditor"
             id="de.opalproject.vespucci.editor.closeEditor"
             name="close">
       </command>

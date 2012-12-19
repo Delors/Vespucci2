@@ -31,7 +31,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package de.opalproject.vespucci.ui.editor;
+package de.opalproject.vespucci.ui.handlers;
 
 import java.util.List;
 
@@ -45,6 +45,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.ui.editor.EnsembleEditorInput;
 
 public class CloseEditor extends AbstractHandler {
 
