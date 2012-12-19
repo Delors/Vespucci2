@@ -67,7 +67,7 @@ public class EnsembleEditor extends EditorPart {
 
 	public static final String ID = "de.opalproject.vespucci.editor.editor";
 	private Ensemble ensemble;
-	private EditorInput input;
+	private EnsembleEditorInput input;
 	private Text nameTextField;
 	private Text descriptionTextField;
 	private Text queryTextField;
@@ -79,13 +79,13 @@ public class EnsembleEditor extends EditorPart {
 	public void init(IEditorSite site, IEditorInput input)
 			throws PartInitException {
 
-		if (!(input instanceof EditorInput)) {
+		if (!(input instanceof EnsembleEditorInput)) {
 			throw new RuntimeException("Wrong input for Ensemble Editor");
 		}
 
 		// TODO use EditorInput for persistence
-		EditorInput new_name = (EditorInput) input;
-		this.input = (EditorInput) input;
+		EnsembleEditorInput new_name = (EnsembleEditorInput) input;
+		this.input = (EnsembleEditorInput) input;
 
 		setSite(site);
 		setInput(input);

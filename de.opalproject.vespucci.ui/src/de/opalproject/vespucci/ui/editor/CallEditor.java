@@ -58,7 +58,7 @@ public class CallEditor extends AbstractHandler {
 		TreeSelection sel = (TreeSelection) se;
 		Ensemble ens = (Ensemble) sel.getFirstElement();
 
-		EditorInput input = new EditorInput(ens);
+		EnsembleEditorInput input = new EnsembleEditorInput(ens);
 
 		try {
 			page.openEditor(input, EnsembleEditor.ID);

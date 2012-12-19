@@ -29,7 +29,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
-import de.opalproject.vespucci.ui.editor.EditorInput;
+import de.opalproject.vespucci.ui.editor.EnsembleEditorInput;
 import de.opalproject.vespucci.ui.editor.EnsembleEditor;
 
 /**
@@ -70,7 +70,7 @@ public class EnsembleRemoveListener extends DemultiplexingListener {
 
 						if (page != null) {
 							IEditorReference[] editors = page.findEditors(
-									new EditorInput(ens), EnsembleEditor.ID, //$NON-NLS-1$
+									new EnsembleEditorInput(ens), EnsembleEditor.ID, //$NON-NLS-1$
 									IWorkbenchPage.MATCH_ID
 											| IWorkbenchPage.MATCH_INPUT);
 
