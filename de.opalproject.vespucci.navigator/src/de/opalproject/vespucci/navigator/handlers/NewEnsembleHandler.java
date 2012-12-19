@@ -75,7 +75,7 @@ public class NewEnsembleHandler extends AbstractHandler {
 			ens.setName(wiz.name);
 			ens.setDescription(wiz.description);
 			ens.setDerived(false);
-			ens.setQuery("");
+			ens.setQuery(wiz.query);
 		}
 		return null;
 

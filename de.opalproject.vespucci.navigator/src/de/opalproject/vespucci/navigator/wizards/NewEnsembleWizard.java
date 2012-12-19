@@ -44,9 +44,11 @@ import org.eclipse.jface.wizard.Wizard;
 public class NewEnsembleWizard extends Wizard {
 
 	protected NewEnsembleWizardPage page;
+	protected NewEnsembleWizardQueryPage page2;
 
 	public String name;
 	public String description;
+	public String query;
 
 	public NewEnsembleWizard() {
 		super();
@@ -57,6 +59,8 @@ public class NewEnsembleWizard extends Wizard {
 	public void addPages() {
 		page = new NewEnsembleWizardPage();
 		addPage(page);
+		page2 = new NewEnsembleWizardQueryPage();
+		addPage(page2);
 	}
 
 	@Override
@@ -66,6 +70,7 @@ public class NewEnsembleWizard extends Wizard {
 
 		name = page.getEnsembleName();
 		description = page.getEnsembleDescription();
+		query = page2.getEnsembleQuery();
 		
 		return true;
 	}

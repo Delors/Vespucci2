@@ -50,7 +50,6 @@ import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
-
 import de.opalproject.vespucci.datamodel.Ensemble;
 
 /**
@@ -181,7 +180,8 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 			description.setVerticalAlignment(Orientation.ALIGNMENT_TOP);
 			description.setFont(gaService.manageDefaultFont(getDiagram(),
 					false, true));
-			gaService.setLocationAndSize(description, 2, 20, width, 20);
+			gaService
+					.setLocationAndSize(description, 2, 20, width, height - 20);
 			// create link and wire it
 			link(nameShape, addedEnsemble);
 			link(descriptionShape, addedEnsemble);
