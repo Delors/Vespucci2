@@ -67,7 +67,6 @@ public class EnsembleEditor extends EditorPart {
 
 	public static final String ID = "de.opalproject.vespucci.editor.editor";
 	private Ensemble ensemble;
-	private EnsembleEditorInput input;
 	private Text nameTextField;
 	private Text descriptionTextField;
 	private Text queryTextField;
@@ -80,23 +79,18 @@ public class EnsembleEditor extends EditorPart {
 			throws PartInitException {
 
 		if (!(input instanceof EnsembleEditorInput)) {
-			throw new RuntimeException("Wrong input for Ensemble Editor");
+			throw new PartInitException("Wrong input for Ensemble Editor");
 		}
-
-		// TODO use EditorInput for persistence
-		EnsembleEditorInput new_name = (EnsembleEditorInput) input;
-		this.input = (EnsembleEditorInput) input;
 
 		setSite(site);
 		setInput(input);
-		ensemble = new_name.getEnsemble();
+		ensemble = ((EnsembleEditorInput) input).getEnsemble();
 
 		setPartName("Ensemble ID: " + ensemble.getName());
 	}
 
 	@Override
 	public void createPartControl(Composite parent) {
-
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 1;
 		parent.setLayout(layout);
@@ -208,13 +202,12 @@ public class EnsembleEditor extends EditorPart {
 
 	@Override
 	public boolean isSaveAsAllowed() {
-		// TODO disable once real saving is possible
-		// enabled for debugging purposes, see doSave()
 		return true;
 	}
 
 	@Override
 	public void setFocus() {
+		nameTextField.setFocus();
 	}
 
 }
