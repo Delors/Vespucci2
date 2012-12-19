@@ -31,7 +31,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package de.opalproject.vespucci.navigator.handlers;
+package de.opalproject.vespucci.ui.navigator.handlers;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -48,7 +48,7 @@ import org.eclipse.ui.handlers.HandlerUtil;
 
 import de.opalproject.vespucci.datamodel.DatamodelFactory;
 import de.opalproject.vespucci.datamodel.Ensemble;
-import de.opalproject.vespucci.navigator.wizards.NewEnsembleWizard;
+import de.opalproject.vespucci.ui.wizards.NewEnsembleWizard;
 
 /**
  * Used by NewEnsembleWizard to create a new ensemble

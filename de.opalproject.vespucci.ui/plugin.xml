@@ -40,9 +40,9 @@
          point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
             activeByDefault="true"
-            contentProvider="de.opalproject.vespucci.navigator.providers.VespucciContentProvider"
+            contentProvider="de.opalproject.vespucci.ui.navigator.providers.VespucciContentProvider"
             id="de.opalproject.vespucci.navigator.VirtualContent"
-            labelProvider="de.opalproject.vespucci.navigator.providers.VespucciLabelProvider"
+            labelProvider="de.opalproject.vespucci.ui.navigator.providers.VespucciLabelProvider"
             name="Virtual content"
             priority="normal">
          <triggerPoints>
@@ -70,7 +70,7 @@
   <extension
         point="org.eclipse.ui.commands">
      <command
-           defaultHandler="de.opalproject.vespucci.navigator.handlers.NewEnsembleHandler"
+           defaultHandler="de.opalproject.vespucci.ui.navigator.handlers.NewEnsembleHandler"
            id="de.opalproject.vespucci.navigator.edit.new"
            name="new"/>
   </extension>  
@@ -113,7 +113,7 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="de.opalproject.vespucci.navigator.handlers.RenameHandler"
+            class="de.opalproject.vespucci.ui.navigator.handlers.RenameHandler"
             commandId="org.eclipse.ui.edit.rename">
          <activeWhen>
             <reference definitionId="de.opalproject.vespucci.navigator.elementSelected" />
@@ -123,7 +123,7 @@
          </enabledWhen>
       </handler>
       <handler
-            class="de.opalproject.vespucci.navigator.handlers.DeleteHandler"
+            class="de.opalproject.vespucci.ui.navigator.handlers.DeleteHandler"
             commandId="org.eclipse.ui.edit.delete">
          <activeWhen>
             <reference
@@ -137,7 +137,7 @@
          </enabledWhen>
       </handler>
       <handler
-            class="de.opalproject.vespucci.navigator.handlers.NewEnsembleHandler"
+            class="de.opalproject.vespucci.ui.navigator.handlers.NewEnsembleHandler"
             commandId="de.opalproject.vespucci.navigator.edit.new">
          <activeWhen>
             <reference
@@ -180,12 +180,12 @@
   <extension
         point="org.eclipse.emf.transaction.editingDomains">
      <editingDomain
-           factory="de.opalproject.vespucci.navigator.domain.DatamodelEditingDomainFactory"
+           factory="de.opalproject.vespucci.ui.domain.DatamodelEditingDomainFactory"
            id="de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain"/>
   </extension>
   <extension
         point="org.eclipse.emf.transaction.listeners">
-     <listener class="de.opalproject.vespucci.navigator.listeners.EnsembleRemoveListener">
+     <listener class="de.opalproject.vespucci.ui.navigator.listeners.EnsembleRemoveListener">
         <editingDomain id="de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain"/>
      </listener>
   </extension>
@@ -194,7 +194,7 @@
   <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="de.opalproject.vespucci.editor.EnsembleEditor"
+            class="de.opalproject.vespucci.ui.editor.EnsembleEditor"
             default="false"
             id="de.opalproject.vespucci.editor.editor"
             name="Ensemble Editor">
@@ -203,12 +203,12 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="de.opalproject.vespucci.editor.CallEditor"
+            defaultHandler="de.opalproject.vespucci.ui.editor.CallEditor"
             id="de.opalproject.vespucci.editor.openEditor"
             name="open">
       </command>
       <command
-            defaultHandler="de.opalproject.vespucci.editor.CloseEditor"
+            defaultHandler="de.opalproject.vespucci.ui.editor.CloseEditor"
             id="de.opalproject.vespucci.editor.closeEditor"
             name="close">
       </command>

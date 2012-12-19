@@ -31,61 +31,43 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package de.opalproject.vespucci.navigator;
+package de.opalproject.vespucci.ui.editor;
 
-import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.osgi.framework.BundleContext;
+import org.eclipse.core.commands.AbstractHandler;
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.TreeSelection;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.handlers.HandlerUtil;
 
-/**
- * The activator class controls the plug-in life cycle
- */
-public class Activator extends AbstractUIPlugin {
+import de.opalproject.vespucci.datamodel.Ensemble;
 
-	// The plug-in ID
-	public static final String PLUGIN_ID = "de.opalproject.vespucci.navigator"; //$NON-NLS-1$
+public class CallEditor extends AbstractHandler {
 
-	// The shared instance
-	private static Activator plugin;
-
-	/**
-	 * The constructor
-	 */
-	public Activator() {
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
-	 * )
-	 */
 	@Override
-	public void start(BundleContext context) throws Exception {
-		super.start(context);
-		plugin = this;
-	}
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+		ISelection se = HandlerUtil.getCurrentSelection(event);
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
-	 * )
-	 */
-	@Override
-	public void stop(BundleContext context) throws Exception {
-		plugin = null;
-		super.stop(context);
-	}
+		// Get the view
+		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
+		IWorkbenchPage page = window.getActivePage();
 
-	/**
-	 * Returns the shared instance
-	 * 
-	 * @return the shared instance
-	 */
-	public static Activator getDefault() {
-		return plugin;
+		TreeSelection sel = (TreeSelection) se;
+		Ensemble ens = (Ensemble) sel.getFirstElement();
+
+		EditorInput input = new EditorInput(ens);
+
+		try {
+			page.openEditor(input, EnsembleEditor.ID);
+
+		} catch (PartInitException e) {
+			throw new RuntimeException(e);
+		}
+
+		return null;
 	}
 
 }

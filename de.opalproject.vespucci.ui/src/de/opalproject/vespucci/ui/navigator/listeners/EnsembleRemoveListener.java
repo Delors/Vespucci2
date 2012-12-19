@@ -15,7 +15,7 @@
  * $Id: ResourceLoadedListener.java,v 1.4 2007/11/14 18:13:57 cdamus Exp $
  */
 
-package de.opalproject.vespucci.navigator.listeners;
+package de.opalproject.vespucci.ui.navigator.listeners;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -29,8 +29,8 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
-import de.opalproject.vespucci.editor.EditorInput;
-import de.opalproject.vespucci.editor.EnsembleEditor;
+import de.opalproject.vespucci.ui.editor.EditorInput;
+import de.opalproject.vespucci.ui.editor.EnsembleEditor;
 
 /**
  * 

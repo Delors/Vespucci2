@@ -31,42 +31,50 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package de.opalproject.vespucci.editor;
+package de.opalproject.vespucci.ui.navigator.providers;
 
-import org.eclipse.core.commands.AbstractHandler;
-import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.TreeSelection;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.handlers.HandlerUtil;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.ISharedImages;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.navigator.IDescriptionProvider;
 
-import de.opalproject.vespucci.datamodel.Ensemble;
+/**
+ * Provides the label including icon and description for each object of the
+ * vespucci datamodel
+ * 
+ * @author Marco Jacobasch
+ * 
+ */
+public class VespucciLabelProvider extends
+		TransactionalAdapterFactoryLabelProvider implements ILabelProvider,
+		IDescriptionProvider {
 
-public class CallEditor extends AbstractHandler {
+	private static TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+			.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
+
+	public VespucciLabelProvider() {
+		super(domain, ProjectAdapterFactoryProvider.getAdapterFactory());
+	}
 
 	@Override
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		ISelection se = HandlerUtil.getCurrentSelection(event);
+	public Image getImage(Object object) {
+		if (object instanceof IFile)
+			return PlatformUI.getWorkbench().getSharedImages()
+					.getImage(ISharedImages.IMG_OBJ_FOLDER);
+		return super.getImage(object);
+	}
 
-		// Get the view
-		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
-		IWorkbenchPage page = window.getActivePage();
+	@Override
+	public String getText(Object object) {
+		return super.getText(object);
+	}
 
-		TreeSelection sel = (TreeSelection) se;
-		Ensemble ens = (Ensemble) sel.getFirstElement();
-
-		EditorInput input = new EditorInput(ens);
-
-		try {
-			page.openEditor(input, EnsembleEditor.ID);
-
-		} catch (PartInitException e) {
-			throw new RuntimeException(e);
-		}
-
+	@Override
+	public String getDescription(Object anElement) {
 		return null;
 	}
 

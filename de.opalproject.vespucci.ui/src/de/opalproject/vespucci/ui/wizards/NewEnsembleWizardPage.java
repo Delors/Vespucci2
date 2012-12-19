@@ -31,7 +31,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package de.opalproject.vespucci.navigator.wizards;
+package de.opalproject.vespucci.ui.wizards;
 
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -100,10 +100,10 @@ public class NewEnsembleWizardPage extends WizardPage {
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				if (!description.getText().isEmpty()) {
+				//if (!description.getText().isEmpty()) {
 					setPageComplete(true);
 
-				}
+				//}
 			}
 
 		});
