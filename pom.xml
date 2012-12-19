@@ -13,7 +13,6 @@
 		<module>de.opalproject.vespucci.datamodel.edit</module>
 		<module>de.opalproject.vespucci.datamodel.persistence</module>
 		<module>de.opalproject.vespucci.datamodel.tests</module>
-		<module>de.opalproject.vespucci.editor</module>
 		<module>de.opalproject.vespucci.sliceEditor</module>
 		<module>de.opalproject.vespucci.ui</module>
 		<module>de.opalproject.vespucci.updatesite</module>
