@@ -33,7 +33,13 @@
  */
 package de.opalproject.vespucci.editor;
 
+import java.io.IOException;
+import java.util.Collections;
+
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -66,6 +72,7 @@ public class EnsembleEditor extends EditorPart {
 	private Text descriptionTextField;
 	private Text queryTextField;
 	private Button derivedCheckBox;
+	private boolean dirty;
 
 	// Will be called before createPartControl
 	@Override
@@ -140,6 +147,8 @@ public class EnsembleEditor extends EditorPart {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				queryTextField.setEnabled(!derivedCheckBox.getSelection());
+				dirty = true;
+				firePropertyChange(PROP_DIRTY);
 			}
 
 			@Override
@@ -159,10 +168,32 @@ public class EnsembleEditor extends EditorPart {
 
 	@Override
 	public void doSave(IProgressMonitor monitor) {
+		dirty = false;
 		// TODO implement real save
 		// for now only the name will be forwarded to the original model
-		ensemble.setName(nameTextField.getText());
-		System.out.println(ensemble);
+
+		final TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
+
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			protected void doExecute() {
+
+				final Resource r = ensemble.eResource();
+
+				ensemble.setName(nameTextField.getText());
+				ensemble.setDerived(derivedCheckBox.getSelection());
+				ensemble.setDescription(descriptionTextField.getText());
+				ensemble.setQuery(queryTextField.getText());
+
+				try {
+					r.save(Collections.EMPTY_MAP);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
+		firePropertyChange(PROP_DIRTY);
 	}
 
 	@Override
@@ -174,8 +205,7 @@ public class EnsembleEditor extends EditorPart {
 
 	@Override
 	public boolean isDirty() {
-		// TODO implement real dirty state once real saving is possible
-		return true;
+		return dirty;
 	}
 
 	@Override

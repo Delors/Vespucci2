@@ -33,9 +33,15 @@
  */
 package de.opalproject.vespucci.navigator.handlers;
 
+import java.io.IOException;
+import java.util.Collections;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -66,23 +72,38 @@ public class RenameHandler extends AbstractHandler {
 		IStructuredSelection currentSelection = (IStructuredSelection) HandlerUtil
 				.getCurrentSelection(event);
 
+		final TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
+
 		// Get first element of the current selection to rename
-		Ensemble selectedDomainObject = (Ensemble) currentSelection
+		final Ensemble selectetDomainObject = (Ensemble) currentSelection
 				.getFirstElement();
 
-		EnsembleWizardRename wiz = new EnsembleWizardRename(
-				selectedDomainObject.getName());
+		final Resource r = selectetDomainObject.eResource();
+
+		final EnsembleWizardRename wiz = new EnsembleWizardRename(
+				selectetDomainObject.getName());
 
 		// Launch renamewizard
 		WizardDialog dialog = new WizardDialog(
 				HandlerUtil.getActiveShell(event), wiz);
 		dialog.open();
 
-		// Check whether the userinput is diffrent from the given name
-		if (!selectedDomainObject.getName().equals(wiz.name)) {
-			// System.out.println("Rename " + selectedDomainObject.toString());
-			selectedDomainObject.setName(wiz.name);
-		}
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			protected void doExecute() {
+
+				// Check whether the userinput is diffrent from the given name
+				if (!selectetDomainObject.getName().equals(wiz.name)) {
+					selectetDomainObject.setName(wiz.name);
+				}
+
+				try {
+					r.save(Collections.EMPTY_MAP);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		});
 
 		return null;
 	}

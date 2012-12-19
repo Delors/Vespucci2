@@ -33,9 +33,15 @@
  */
 package de.opalproject.vespucci.navigator.handlers;
 
+import java.io.IOException;
+import java.util.Collections;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -48,6 +54,7 @@ import de.opalproject.vespucci.navigator.wizards.NewEnsembleWizard;
  * Used by NewEnsembleWizard to create a new ensemble
  * 
  * @author Lars
+ * @author Marco Jacobasch
  * 
  */
 public class NewEnsembleHandler extends AbstractHandler {
@@ -57,28 +64,44 @@ public class NewEnsembleHandler extends AbstractHandler {
 		IStructuredSelection currentSelection = (IStructuredSelection) HandlerUtil
 				.getCurrentSelection(event);
 
-		NewEnsembleWizard wiz = new NewEnsembleWizard();
+		final NewEnsembleWizard wiz = new NewEnsembleWizard();
 
 		WizardDialog dialog = new WizardDialog(
 				HandlerUtil.getActiveShell(event), wiz);
 		dialog.open();
 
 		if (wiz.name != null) {
-			Ensemble selectetDomainObject = (Ensemble) currentSelection
+
+			final TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+					.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
+			final Ensemble selectetDomainObject = (Ensemble) currentSelection
 					.getFirstElement();
+			final Resource r = selectetDomainObject.eResource();
 
-			DatamodelFactory factory = DatamodelFactory.eINSTANCE;
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
+				protected void doExecute() {
+					DatamodelFactory factory = DatamodelFactory.eINSTANCE;
 
-			Ensemble ens = factory.createEnsemble();
+					Ensemble ens = factory.createEnsemble();
 
-			selectetDomainObject.getChildren().add(ens);
-			ens.setName(wiz.name);
-			ens.setDescription("nothing here");
-			ens.setDerived(false);
-			ens.setQuery("");
+					//selectetDomainObject.getChildren().add(ens);
+					ens.setParent(selectetDomainObject);
+					ens.setName(wiz.name);
+					ens.setDescription("nothing here");
+					ens.setDerived(false);
+					ens.setQuery("");
+
+					try {
+						r.save(Collections.EMPTY_MAP);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			});
+
 		}
+		
 		return null;
 
 	}
-
 }

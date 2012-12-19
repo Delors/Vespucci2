@@ -1,22 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+
+   <!-- new view definition -->
    <extension
          point="org.eclipse.ui.views">
       <category
             id="de.opalproject.vespucci.navigator.category"
-            name="Vespucci Global Repository">
-      </category>
+            name="Vespucci Global Repository" />
       <view
             allowMultiple="false"
             category="de.opalproject.vespucci.navigator.category"
-            class="de.opalproject.vespucci.navigator.Navigator"
+            class="org.eclipse.ui.navigator.CommonNavigator"
             id="de.opalproject.vespucci.navigator.view"
             name="Vespucci"
-            restorable="true">
-      </view>
+            restorable="true" />
    </extension>
-   
+
+   <!-- navigator definition  -->
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewer viewerId="de.opalproject.vespucci.navigator.view" />
+      <viewerContentBinding viewerId="de.opalproject.vespucci.navigator.view">
+         <includes>
+            <contentExtension pattern="org.eclipse.ui.navigator.resourceContent"/>
+	        <contentExtension pattern="org.eclipse.ui.navigator.resources.filters.*"/>
+            <contentExtension pattern="de.opalproject.vespucci.navigator.VirtualContent"/>
+         </includes>
+      </viewerContentBinding>
+      <viewerActionBinding viewerId="de.opalproject.vespucci.navigator.view">
+         <includes>
+       	     <actionExtension pattern="org.eclipse.ui.navigator.resources.*" />
+         </includes>
+      </viewerActionBinding>
+   </extension>
+
+   <!-- content definiton for navigator  -->
    <extension
          point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
@@ -28,80 +47,64 @@
             priority="normal">
          <triggerPoints>
             <or>
-               <instanceof value="de.opalproject.vespucci.navigator.model.Root" />
-               <instanceof value="de.opalproject.vespucci.datamodel.Ensemble" />
+              <and> 
+                <instanceof value="org.eclipse.core.resources.IResource"/> 
+                 <test 
+						forcePluginActivation="true" 
+						property="org.eclipse.core.resources.extension" 
+						value="xmi"/> 
+              </and>
+              <instanceof value="de.opalproject.vespucci.datamodel.Ensemble" />
             </or>
          </triggerPoints>
          <possibleChildren>
             <or>
+               <instanceof value="org.eclipse.emf.ecore.resource.Resource"/>
                <instanceof value="de.opalproject.vespucci.datamodel.Ensemble" />
             </or>
          </possibleChildren>
       </navigatorContent>
-   </extension>
-   
+  </extension>
+
+  <!-- commands -->
+  <extension
+        point="org.eclipse.ui.commands">
+     <command
+           defaultHandler="de.opalproject.vespucci.navigator.handlers.NewEnsembleHandler"
+           id="de.opalproject.vespucci.navigator.edit.new"
+           name="new"/>
+  </extension>  
+  
+   <!-- popup menu for ensembles -->
    <extension
-         point="org.eclipse.ui.navigator.viewer">
-      <viewer
-            viewerId="de.opalproject.vespucci.navigator.view">
-      </viewer>
-      <viewerContentBinding
-            viewerId="de.opalproject.vespucci.navigator.view">
-         <includes>
-            <contentExtension
-                  isRoot="true"
-                  pattern="de.opalproject.vespucci.navigator.VirtualContent">
-            </contentExtension>
-         </includes>
-      </viewerContentBinding>
-   </extension>
-   
-      <extension
-         point="org.eclipse.ui.navigator.viewer">
-      <viewer
-            viewerId="de.opalproject.vespucci.navigator.view">
-         <popupMenu
-               allowsPlatformContributions="true"
-               id="de.opalproject.vespucci.navigator.popup">
-            <insertionPoint
-                  name="group.new"
-                  separator="false">
-            </insertionPoint>
-            <insertionPoint
-                  name="group.open"
-                  separator="false">
-            </insertionPoint>
-            <insertionPoint
-                  name="group.edit"
-                  separator="true">
-            </insertionPoint>
-         </popupMenu>
-      </viewer>
-    </extension>
-    
-    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="popup:de.opalproject.vespucci.navigator.popup?after=group.edit">
+            locationURI="popup:org.eclipse.ui.popup.any?after=group.edit">
+         <command
+               commandId="de.opalproject.vespucci.navigator.edit.new"
+               id="de.opalproject.vespucci.navigator.popupmenu.new"
+               label="New Ensemble"
+               mnemonic="N"
+               style="push" >
+         </command>
+         <command
+               commandId="de.opalproject.vespucci.editor.openEditor"
+               id="de.opalproject.vespucci.navigator.popupmenu.open"
+               label="Open"
+               style="push" >
+         </command>
          <command
                commandId="org.eclipse.ui.edit.delete"
-               id="cnf.popupmenu.delete"
+               id="de.opalproject.vespucci.navigator.popupmenu.delete"
                label="Delete"
                mnemonic="D"
-               style="push">
+               style="push" >
          </command>
          <command
                commandId="org.eclipse.ui.edit.rename"
-               id="cnf.popupmenu.rename"
+               id="de.opalproject.vespucci.navigator.popupmenu.rename"
                label="Rename"
                mnemonic="R"
-               style="push">
-         </command>
-         <command
-               commandId="org.eclipse.ui.edit.NewEnsemble"
-               id="cnf.popupmenu.newEnsemble"
-               label="New Ensemble"
-               mnemonic="N"
                style="push">
          </command>
       </menuContribution>
@@ -135,7 +138,20 @@
       </handler>
       <handler
             class="de.opalproject.vespucci.navigator.handlers.NewEnsembleHandler"
-            commandId="org.eclipse.ui.edit.NewEnsemble">
+            commandId="de.opalproject.vespucci.navigator.edit.new">
+         <activeWhen>
+            <reference
+                  definitionId="de.opalproject.vespucci.navigator.elementSelected">
+            </reference>
+         </activeWhen>
+         <enabledWhen>
+            <reference
+                  definitionId="de.opalproject.vespucci.navigator.elementSelected">
+            </reference>
+         </enabledWhen>
+      </handler>
+      <handler
+            commandId="de.opalproject.vespucci.editor.openEditor">
          <activeWhen>
             <reference
                   definitionId="de.opalproject.vespucci.navigator.elementSelected">
@@ -159,5 +175,19 @@
          </with>
       </definition>
    </extension>
+
+  <!-- transaction editing domain -->
+  <extension
+        point="org.eclipse.emf.transaction.editingDomains">
+     <editingDomain
+           factory="de.opalproject.vespucci.navigator.domain.DatamodelEditingDomainFactory"
+           id="de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain"/>
+  </extension>
+  <extension
+        point="org.eclipse.emf.transaction.listeners">
+     <listener class="de.opalproject.vespucci.navigator.listeners.EnsembleRemoveListener">
+        <editingDomain id="de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain"/>
+     </listener>
+  </extension>
 
 </plugin>
