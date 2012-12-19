@@ -41,8 +41,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.TouchEvent;
+import org.eclipse.swt.events.TouchListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -133,20 +137,70 @@ public class EnsembleEditor extends EditorPart {
 		queryTextField.setText(ensemble.getQuery());
 		queryTextField.setEnabled(!ensemble.isDerived());
 
-		// disables the query field if the query is supposed to be derived
-		derivedCheckBox.addSelectionListener(new SelectionAdapter() {
+		initInputChangeListeners();
 
+	}
+
+	/*
+	 * Adds a change listener to each editable field
+	 */
+	private void initInputChangeListeners() {
+
+		// on any change in user input, check if the state should be dirty
+		ModifyListener modifyListener = new ModifyListener() {
+			@Override
+			public void modifyText(ModifyEvent e) {
+				checkAndSetDirty();
+			}
+		};
+
+		nameTextField.addModifyListener(modifyListener);
+		queryTextField.addModifyListener(modifyListener);
+		descriptionTextField.addModifyListener(modifyListener);
+
+		derivedCheckBox.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				// disables the query field if the query is supposed to be
+				// derived
 				queryTextField.setEnabled(!derivedCheckBox.getSelection());
-				dirty = true;
-				firePropertyChange(PROP_DIRTY);
+				checkAndSetDirty();
 			}
 
 			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		});
+
+	}
+
+	/*
+	 * Checks if any user input differs from the saved data.
+	 * 
+	 * If it does, the Editor state is set to dirty and vice versa.
+	 */
+	private void checkAndSetDirty() {
+
+		boolean isDirty = false;
+
+		// the editor state becomes dirty if any user input differs from the
+		// saved data
+		if (!ensemble.getName().equals(nameTextField.getText())) {
+			isDirty = true;
+		} else if (!ensemble.getDescription().equals(
+				descriptionTextField.getText())) {
+			isDirty = true;
+		} else if (!ensemble.getQuery().equals(queryTextField.getText())) {
+			isDirty = true;
+		} else if (!ensemble.isDerived() == derivedCheckBox.getSelection()) {
+			isDirty = true;
+		}
+
+		// set the new state and fire a property change if necessary
+		if (isDirty != dirty) {
+			dirty = isDirty;
+			firePropertyChange(PROP_DIRTY);
+		}
 
 	}
 
@@ -161,8 +215,6 @@ public class EnsembleEditor extends EditorPart {
 	@Override
 	public void doSave(IProgressMonitor monitor) {
 		dirty = false;
-		// TODO implement real save
-		// for now only the name will be forwarded to the original model
 
 		final TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
