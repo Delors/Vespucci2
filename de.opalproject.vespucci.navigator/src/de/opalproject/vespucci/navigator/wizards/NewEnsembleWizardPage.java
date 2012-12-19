@@ -50,8 +50,9 @@ import org.eclipse.swt.widgets.Text;
  * 
  */
 public class NewEnsembleWizardPage extends WizardPage {
-	private Text text1;
+	private Text name;
 	private Composite container;
+	private Text description;
 
 	public NewEnsembleWizardPage() {
 		super("Super First Page");
@@ -65,12 +66,12 @@ public class NewEnsembleWizardPage extends WizardPage {
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
 		layout.numColumns = 2;
-		Label label1 = new Label(container, SWT.NULL);
-		label1.setText("Ensemble Name");
+		Label nameLabel = new Label(container, SWT.NULL);
+		nameLabel.setText("Ensemble Name");
 
-		text1 = new Text(container, SWT.BORDER | SWT.SINGLE);
-		text1.setText("");
-		text1.addKeyListener(new KeyListener() {
+		name = new Text(container, SWT.BORDER | SWT.SINGLE);
+		name.setText("");
+		name.addKeyListener(new KeyListener() {
 
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -78,22 +79,52 @@ public class NewEnsembleWizardPage extends WizardPage {
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				if (!text1.getText().isEmpty()) {
+				if (!name.getText().isEmpty()) {
 					setPageComplete(true);
 
 				}
 			}
 
 		});
-		GridData gd = new GridData(GridData.FILL_HORIZONTAL);
-		text1.setLayoutData(gd);
+		
+		Label descriptionLabel = new Label(container, SWT.NULL);
+		descriptionLabel.setText("Ensemble Description");
+		descriptionLabel.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_BEGINNING));
+		description = new Text(container, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
+		description.setText("");
+		description.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (!description.getText().isEmpty()) {
+					setPageComplete(true);
+
+				}
+			}
+
+		});
+		
+		
+		GridData nameGD = new GridData(GridData.FILL_HORIZONTAL);
+		name.setLayoutData(nameGD);
+		GridData descriptionGD = new GridData(GridData.FILL_HORIZONTAL);
+		descriptionGD.heightHint = 200;
+		description.setLayoutData(descriptionGD);
 		// Required to avoid an error in the system
 		setControl(container);
 		setPageComplete(false);
 
 	}
 
-	public String getText1() {
-		return text1.getText();
+	public String getEnsembleName() {
+		return name.getText();
+	}
+	
+	public String getEnsembleDescription(){
+		return description.getText();
 	}
 }

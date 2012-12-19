@@ -84,10 +84,10 @@ public class NewEnsembleHandler extends AbstractHandler {
 
 					Ensemble ens = factory.createEnsemble();
 
-					//selectetDomainObject.getChildren().add(ens);
+					// selectetDomainObject.getChildren().add(ens);
 					ens.setParent(selectetDomainObject);
 					ens.setName(wiz.name);
-					ens.setDescription("nothing here");
+					ens.setDescription(wiz.description);
 					ens.setDerived(false);
 					ens.setQuery("");
 
@@ -98,9 +98,8 @@ public class NewEnsembleHandler extends AbstractHandler {
 					}
 				}
 			});
-
 		}
-		
+
 		return null;
 
 	}

@@ -46,6 +46,7 @@ public class NewEnsembleWizard extends Wizard {
 	protected NewEnsembleWizardPage page;
 
 	public String name;
+	public String description;
 
 	public NewEnsembleWizard() {
 		super();
@@ -61,10 +62,11 @@ public class NewEnsembleWizard extends Wizard {
 	@Override
 	public boolean performFinish() {
 		// Print the result to the console
-		System.out.println(page.getText1());
+		System.out.println(page.getEnsembleName());
 
-		name = page.getText1();
-
+		name = page.getEnsembleName();
+		description = page.getEnsembleDescription();
+		
 		return true;
 	}
 }
