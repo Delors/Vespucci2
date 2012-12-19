@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.ICreateConnectionFeature;
+import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.ILayoutFeature;
 import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.IAddContext;
@@ -50,6 +51,7 @@ import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.sliceEditor.features.AddEReferenceFeature;
 import de.opalproject.vespucci.sliceEditor.features.AddEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.CreateEReferenceFeature;
+import de.opalproject.vespucci.sliceEditor.features.CreateEmptyEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.LayoutEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.UpdateEnsembleFeature;
 
@@ -69,6 +71,11 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 		}
 		return super.getAddFeature(context);
 	}
+	
+	@Override
+	public ICreateFeature[] getCreateFeatures() {
+	   return new ICreateFeature[] { new CreateEmptyEnsembleFeature(this) };
+	} 
 
 	@Override
 	public ILayoutFeature getLayoutFeature(ILayoutContext context) {

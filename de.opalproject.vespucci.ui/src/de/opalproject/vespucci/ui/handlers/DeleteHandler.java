@@ -31,10 +31,11 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package de.opalproject.vespucci.ui.navigator.handlers;
+package de.opalproject.vespucci.ui.handlers;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -43,25 +44,22 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
-import de.opalproject.vespucci.ui.wizards.EnsembleWizardRename;
 
 /**
- * Used by EnsembleRenameWizard to rename an existing ensemble.
+ * Handles delete requests for a selection of ensembles.
  * 
  * @author Marius-d
  * 
  */
-public class RenameHandler extends AbstractHandler {
+public class DeleteHandler extends AbstractHandler {
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * Launches a wizard(see default eclipse behaviour) to rename the first
-	 * selected element.
+	 * Initiates the deletion of the first element of the current selection.
 	 * 
 	 * @see
 	 * org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands
@@ -81,20 +79,13 @@ public class RenameHandler extends AbstractHandler {
 
 		final Resource r = selectetDomainObject.eResource();
 
-		final EnsembleWizardRename wiz = new EnsembleWizardRename(
-				selectetDomainObject.getName());
-
-		// Launch renamewizard
-		WizardDialog dialog = new WizardDialog(
-				HandlerUtil.getActiveShell(event), wiz);
-		dialog.open();
+		final List<Ensemble> ensembleList = currentSelection.toList();
 
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			protected void doExecute() {
 
-				// Check whether the userinput is diffrent from the given name
-				if (!selectetDomainObject.getName().equals(wiz.name)) {
-					selectetDomainObject.setName(wiz.name);
+				for (Ensemble ensemble : ensembleList) {
+					ensemble.setParent(null);
 				}
 
 				try {
@@ -107,5 +98,4 @@ public class RenameHandler extends AbstractHandler {
 
 		return null;
 	}
-
 }
