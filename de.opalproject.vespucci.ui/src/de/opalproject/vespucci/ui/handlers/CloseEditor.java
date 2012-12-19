@@ -78,7 +78,8 @@ public class CloseEditor extends AbstractHandler {
 		// check whether there is a corresponding open editor and close it.
 		Ensemble current = ensembleList.get(0);
 		if (current != null) {
-			IEditorPart openEditor = (page.findEditor(new EnsembleEditorInput(current)));
+			IEditorPart openEditor = (page.findEditor(new EnsembleEditorInput(
+					current)));
 			if (openEditor != null) {
 				page.closeEditor(openEditor, false);
 			}

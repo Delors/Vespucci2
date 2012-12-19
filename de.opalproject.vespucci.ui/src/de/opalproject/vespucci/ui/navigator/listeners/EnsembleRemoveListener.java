@@ -70,7 +70,8 @@ public class EnsembleRemoveListener extends DemultiplexingListener {
 
 						if (page != null) {
 							IEditorReference[] editors = page.findEditors(
-									new EnsembleEditorInput(ens), EnsembleEditor.ID, //$NON-NLS-1$
+									new EnsembleEditorInput(ens),
+									EnsembleEditor.ID, //$NON-NLS-1$
 									IWorkbenchPage.MATCH_ID
 											| IWorkbenchPage.MATCH_INPUT);
 
