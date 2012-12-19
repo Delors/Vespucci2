@@ -70,7 +70,7 @@ public class NewEnsembleHandler extends AbstractHandler {
 				HandlerUtil.getActiveShell(event), wiz);
 		dialog.open();
 
-		if (wiz.name != null) {
+		if (wiz.getName() != null) {
 
 			final TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 					.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
@@ -86,17 +86,17 @@ public class NewEnsembleHandler extends AbstractHandler {
 
 
 			selectetDomainObject.getChildren().add(ens);
-			ens.setName(wiz.name);
-			ens.setDescription(wiz.description);
+			ens.setName(wiz.getName());
+			ens.setDescription(wiz.getDescription());
 			ens.setDerived(false);
-			ens.setQuery(wiz.query);
+			ens.setQuery(wiz.getQuery());
 
 					// selectetDomainObject.getChildren().add(ens);
 					ens.setParent(selectetDomainObject);
-					ens.setName(wiz.name);
-					ens.setDescription(wiz.description);
+					ens.setName(wiz.getName());
+					ens.setDescription(wiz.getDescription());
 					ens.setDerived(false);
-					ens.setQuery("");
+					ens.setQuery(wiz.getQuery());
 
 					try {
 						r.save(Collections.EMPTY_MAP);

@@ -46,9 +46,9 @@ public class NewEnsembleWizard extends Wizard {
 	protected NewEnsembleWizardPage page;
 	protected NewEnsembleWizardQueryPage page2;
 
-	public String name;
-	public String description;
-	public String query;
+	private String name;
+	private String description;
+	private String query;
 
 	public NewEnsembleWizard() {
 		super();
@@ -73,5 +73,26 @@ public class NewEnsembleWizard extends Wizard {
 		query = page2.getEnsembleQuery();
 		
 		return true;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @return the query
+	 */
+	public String getQuery() {
+		return query;
 	}
 }

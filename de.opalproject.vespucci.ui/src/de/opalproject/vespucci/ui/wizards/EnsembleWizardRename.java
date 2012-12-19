@@ -51,7 +51,7 @@ public class EnsembleWizardRename extends Wizard {
 	/**
 	 * Name to be used for the selected ensemble.
 	 */
-	public String name;
+	private String name;
 
 	/**
 	 * Default Constructor. Create a new EnsembleWizardRename.
@@ -106,5 +106,12 @@ public class EnsembleWizardRename extends Wizard {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
 	}
 }
