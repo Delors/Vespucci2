@@ -157,7 +157,8 @@ public class CreateEReferenceFeature extends AbstractCreateConnectionFeature {
 		eReference.setEType(target.eClass());
 		eReference.setLowerBound(0);
 		eReference.setUpperBound(1);
-		source.eClass().getEStructuralFeatures().add(eReference);
+		getDiagram().eResource().getContents().add(eReference);
+		//source.eClass().getEStructuralFeatures().add(eReference);
 		return eReference;
 	}
 }

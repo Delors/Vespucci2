@@ -16,6 +16,11 @@ public class CreateEmptyEnsembleFeature extends AbstractCreateFeature {
         // set name and description of the creation feature
         super(fp, "Empty Ensemble", "Create Empty Ensemble");
     }
+    
+	@Override
+	public String getCreateImageId() {
+		return "de.opalproject.vespucci.sliceEditor.emptyEnsemble";
+	} 
  
     public boolean canCreate(ICreateContext context) {
         return context.getTargetContainer() instanceof Diagram;
