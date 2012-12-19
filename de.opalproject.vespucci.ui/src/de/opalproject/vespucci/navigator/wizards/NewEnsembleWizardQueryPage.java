@@ -19,7 +19,7 @@ public class NewEnsembleWizardQueryPage extends WizardPage {
 	public NewEnsembleWizardQueryPage() {
 		super("Second Page");
 		setTitle("New Ensemble");
-		setDescription("Enter querys");
+		setDescription("Enter query");
 	}
 
 	@Override
@@ -43,10 +43,10 @@ public class NewEnsembleWizardQueryPage extends WizardPage {
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				if (!query.getText().isEmpty()) {
+				//if (!query.getText().isEmpty()) {
 					setPageComplete(true);
 
-				}
+				//}
 			}
 
 		});
