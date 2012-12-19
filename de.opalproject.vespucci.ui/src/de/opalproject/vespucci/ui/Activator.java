@@ -31,51 +31,61 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package de.opalproject.vespucci.navigator.providers;
+package de.opalproject.vespucci.ui;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.ui.ISharedImages;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.navigator.IDescriptionProvider;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.osgi.framework.BundleContext;
 
 /**
- * Provides the label including icon and description for each object of the
- * vespucci datamodel
- * 
- * @author Marco Jacobasch
- * 
+ * The activator class controls the plug-in life cycle
  */
-public class VespucciLabelProvider extends
-		TransactionalAdapterFactoryLabelProvider implements ILabelProvider,
-		IDescriptionProvider {
+public class Activator extends AbstractUIPlugin {
 
-	private static TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
+	// The plug-in ID
+	public static final String PLUGIN_ID = "de.opalproject.vespucci.navigator"; //$NON-NLS-1$
 
-	public VespucciLabelProvider() {
-		super(domain, ProjectAdapterFactoryProvider.getAdapterFactory());
+	// The shared instance
+	private static Activator plugin;
+
+	/**
+	 * The constructor
+	 */
+	public Activator() {
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
+	 * )
+	 */
 	@Override
-	public Image getImage(Object object) {
-		if (object instanceof IFile)
-			return PlatformUI.getWorkbench().getSharedImages()
-					.getImage(ISharedImages.IMG_OBJ_FOLDER);
-		return super.getImage(object);
+	public void start(BundleContext context) throws Exception {
+		super.start(context);
+		plugin = this;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
+	 * )
+	 */
 	@Override
-	public String getText(Object object) {
-		return super.getText(object);
+	public void stop(BundleContext context) throws Exception {
+		plugin = null;
+		super.stop(context);
 	}
 
-	@Override
-	public String getDescription(Object anElement) {
-		return null;
+	/**
+	 * Returns the shared instance
+	 * 
+	 * @return the shared instance
+	 */
+	public static Activator getDefault() {
+		return plugin;
 	}
 
 }

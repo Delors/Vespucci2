@@ -31,7 +31,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package de.opalproject.vespucci.editor;
+package de.opalproject.vespucci.ui.editor;
 
 import java.io.IOException;
 import java.util.Collections;

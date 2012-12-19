@@ -14,7 +14,7 @@
  *
  * $Id: EXTLibraryEditingDomainFactory.java,v 1.5 2007/11/14 18:13:57 cdamus Exp $
  */
-package de.opalproject.vespucci.navigator.domain;
+package de.opalproject.vespucci.ui.domain;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;

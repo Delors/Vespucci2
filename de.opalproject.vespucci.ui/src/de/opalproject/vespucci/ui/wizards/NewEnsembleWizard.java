@@ -31,61 +31,47 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package de.opalproject.vespucci.editor;
+package de.opalproject.vespucci.ui.wizards;
 
-import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.osgi.framework.BundleContext;
+import org.eclipse.jface.wizard.Wizard;
 
 /**
- * The activator class controls the plug-in life cycle
+ * Wizard for creating new ensembles
+ * 
+ * @author Lars
+ * 
  */
-public class Activator extends AbstractUIPlugin {
+public class NewEnsembleWizard extends Wizard {
 
-	// The plug-in ID
-	public static final String PLUGIN_ID = "de.opalproject.vespucci.editor"; //$NON-NLS-1$
+	protected NewEnsembleWizardPage page;
+	protected NewEnsembleWizardQueryPage page2;
 
-	// The shared instance
-	private static Activator plugin;
+	public String name;
+	public String description;
+	public String query;
 
-	/**
-	 * The constructor
-	 */
-	public Activator() {
+	public NewEnsembleWizard() {
+		super();
+		setNeedsProgressMonitor(true);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
-	 * )
-	 */
 	@Override
-	public void start(BundleContext context) throws Exception {
-		super.start(context);
-		plugin = this;
+	public void addPages() {
+		page = new NewEnsembleWizardPage();
+		addPage(page);
+		page2 = new NewEnsembleWizardQueryPage();
+		addPage(page2);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
-	 * )
-	 */
 	@Override
-	public void stop(BundleContext context) throws Exception {
-		plugin = null;
-		super.stop(context);
-	}
+	public boolean performFinish() {
+		// Print the result to the console
+		System.out.println(page.getEnsembleName());
 
-	/**
-	 * Returns the shared instance
-	 * 
-	 * @return the shared instance
-	 */
-	public static Activator getDefault() {
-		return plugin;
+		name = page.getEnsembleName();
+		description = page.getEnsembleDescription();
+		query = page2.getEnsembleQuery();
+		
+		return true;
 	}
-
 }

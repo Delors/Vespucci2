@@ -31,37 +31,26 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package de.opalproject.vespucci.navigator.handlers;
+package de.opalproject.vespucci.ui.editor;
 
-import java.io.IOException;
-import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
-import de.opalproject.vespucci.navigator.wizards.EnsembleWizardRename;
 
-/**
- * Used by EnsembleRenameWizard to rename an existing ensemble.
- * 
- * @author Marius-d
- * 
- */
-public class RenameHandler extends AbstractHandler {
+public class CloseEditor extends AbstractHandler {
 
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * Launches a wizard(see default eclipse behaviour) to rename the first
-	 * selected element.
+	 * (non-Javadoc) Closes the editor belonging to a selected element so it can
+	 * be deleted.
 	 * 
 	 * @see
 	 * org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands
@@ -69,41 +58,42 @@ public class RenameHandler extends AbstractHandler {
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
+		System.out.println("close called: " + event.toString());
+
+		// Get the view
+		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
+		IWorkbenchPage page = window.getActivePage();
+
+		// Get selection
 		IStructuredSelection currentSelection = (IStructuredSelection) HandlerUtil
 				.getCurrentSelection(event);
 
-		final TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
+		
+		System.out.println("Current Selection : "  + currentSelection.toString());
+		
+		
+		@SuppressWarnings("unchecked")
+		List<Ensemble> ensembleList = currentSelection
+				.toList();
 
-		// Get first element of the current selection to rename
-		final Ensemble selectetDomainObject = (Ensemble) currentSelection
-				.getFirstElement();
-
-		final Resource r = selectetDomainObject.eResource();
-
-		final EnsembleWizardRename wiz = new EnsembleWizardRename(
-				selectetDomainObject.getName());
-
-		// Launch renamewizard
-		WizardDialog dialog = new WizardDialog(
-				HandlerUtil.getActiveShell(event), wiz);
-		dialog.open();
-
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			protected void doExecute() {
-
-				// Check whether the userinput is diffrent from the given name
-				if (!selectetDomainObject.getName().equals(wiz.name)) {
-					selectetDomainObject.setName(wiz.name);
-				}
-
-				try {
-					r.save(Collections.EMPTY_MAP);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+		// check whether there is a corresponding open editor and close it.
+		Ensemble current = ensembleList.get(0);
+		if (current != null) {
+			IEditorPart openEditor = (page.findEditor(new EditorInput(current)));
+			if (openEditor != null) {
+				page.closeEditor(openEditor, false);
 			}
-		});
+		}
+
+		// for (Ensemble current : ensembleList) {
+		// if(current != null){
+		// IEditorPart openEditor = (page.findEditor(new EditorInput(current)));
+		// if (openEditor!=null){
+		// System.out.println("OpenEditor: " + openEditor.getTitle());
+		// page.closeEditor(openEditor, false);
+		// }
+		// }
+		// }
 
 		return null;
 	}

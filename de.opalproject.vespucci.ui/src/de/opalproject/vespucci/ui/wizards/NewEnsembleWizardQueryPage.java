@@ -1,4 +1,4 @@
-package de.opalproject.vespucci.navigator.wizards;
+package de.opalproject.vespucci.ui.wizards;
 
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
