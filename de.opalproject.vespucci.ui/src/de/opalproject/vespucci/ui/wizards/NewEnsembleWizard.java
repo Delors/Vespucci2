@@ -71,7 +71,7 @@ public class NewEnsembleWizard extends Wizard {
 		name = page.getEnsembleName();
 		description = page.getEnsembleDescription();
 		query = page2.getEnsembleQuery();
-		
+
 		return true;
 	}
 

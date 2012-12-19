@@ -85,18 +85,13 @@ public class NewEnsembleHandler extends AbstractHandler {
 					Ensemble ens = factory.createEnsemble();
 
 
-			selectetDomainObject.getChildren().add(ens);
+			//selectetDomainObject.getChildren().add(ens);
+			ens.setParent(selectetDomainObject);
 			ens.setName(wiz.getName());
 			ens.setDescription(wiz.getDescription());
 			ens.setDerived(false);
 			ens.setQuery(wiz.getQuery());
 
-					// selectetDomainObject.getChildren().add(ens);
-					ens.setParent(selectetDomainObject);
-					ens.setName(wiz.getName());
-					ens.setDescription(wiz.getDescription());
-					ens.setDerived(false);
-					ens.setQuery(wiz.getQuery());
 
 					try {
 						r.save(Collections.EMPTY_MAP);

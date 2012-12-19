@@ -98,11 +98,11 @@ public class EditorInput implements IEditorInput {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		
+
 		EditorInput other = (EditorInput) obj;
 		if (!ensemble.equals(other.ensemble))
 			return false;
-		
+
 		return true;
 	}
 

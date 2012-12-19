@@ -86,10 +86,11 @@ public class NewEnsembleWizardPage extends WizardPage {
 			}
 
 		});
-		
+
 		Label descriptionLabel = new Label(container, SWT.NULL);
 		descriptionLabel.setText("Ensemble Description");
-		descriptionLabel.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_BEGINNING));
+		descriptionLabel.setLayoutData(new GridData(
+				GridData.VERTICAL_ALIGN_BEGINNING));
 		description = new Text(container, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
 		description.setText("");
 		description.addKeyListener(new KeyListener() {
@@ -100,15 +101,14 @@ public class NewEnsembleWizardPage extends WizardPage {
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				//if (!description.getText().isEmpty()) {
-					setPageComplete(true);
+				// if (!description.getText().isEmpty()) {
+				setPageComplete(true);
 
-				//}
+				// }
 			}
 
 		});
-		
-		
+
 		GridData nameGD = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameGD);
 		GridData descriptionGD = new GridData(GridData.FILL_HORIZONTAL);
@@ -123,8 +123,8 @@ public class NewEnsembleWizardPage extends WizardPage {
 	public String getEnsembleName() {
 		return name.getText();
 	}
-	
-	public String getEnsembleDescription(){
+
+	public String getEnsembleDescription() {
 		return description.getText();
 	}
 }

@@ -68,13 +68,11 @@ public class CloseEditor extends AbstractHandler {
 		IStructuredSelection currentSelection = (IStructuredSelection) HandlerUtil
 				.getCurrentSelection(event);
 
-		
-		System.out.println("Current Selection : "  + currentSelection.toString());
-		
-		
+		System.out
+				.println("Current Selection : " + currentSelection.toString());
+
 		@SuppressWarnings("unchecked")
-		List<Ensemble> ensembleList = currentSelection
-				.toList();
+		List<Ensemble> ensembleList = currentSelection.toList();
 
 		// check whether there is a corresponding open editor and close it.
 		Ensemble current = ensembleList.get(0);

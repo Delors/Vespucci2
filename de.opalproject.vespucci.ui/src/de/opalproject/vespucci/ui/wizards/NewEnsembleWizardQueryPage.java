@@ -12,7 +12,6 @@ import org.eclipse.swt.widgets.Text;
 
 public class NewEnsembleWizardQueryPage extends WizardPage {
 
-	
 	private Text query;
 	private Composite container;
 
@@ -29,10 +28,10 @@ public class NewEnsembleWizardQueryPage extends WizardPage {
 		container.setLayout(layout);
 		layout.numColumns = 2;
 
-		
 		Label queryLabel = new Label(container, SWT.NULL);
 		queryLabel.setText("Query");
-		queryLabel.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_BEGINNING));
+		queryLabel
+				.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_BEGINNING));
 		query = new Text(container, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
 		query.setText("");
 		query.addKeyListener(new KeyListener() {
@@ -50,7 +49,7 @@ public class NewEnsembleWizardQueryPage extends WizardPage {
 			}
 
 		});
-		
+
 		GridData queryGD = new GridData(GridData.FILL_HORIZONTAL);
 		queryGD.heightHint = 200;
 		query.setLayoutData(queryGD);
@@ -59,6 +58,7 @@ public class NewEnsembleWizardQueryPage extends WizardPage {
 		setPageComplete(true);
 
 	}
+
 	public String getEnsembleQuery() {
 		return query.getText();
 	}
