@@ -15,7 +15,7 @@
 		<module>de.opalproject.vespucci.datamodel.tests</module>
 		<module>de.opalproject.vespucci.editor</module>
 		<module>de.opalproject.vespucci.sliceEditor</module>
-		<module>de.opalproject.vespucci.navigator</module>
+		<module>de.opalproject.vespucci.ui</module>
 		<module>de.opalproject.vespucci.updatesite</module>
 	</modules>
 
