@@ -65,14 +65,7 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		super(fp);
 	}
 
-	// constants for Colors
-	private static final IColorConstant Ensemble_TEXT_FOREGROUND = IColorConstant.BLACK;
 
-	private static final IColorConstant Ensemble_FOREGROUND = new ColorConstant(
-			98, 131, 167);
-
-	private static final IColorConstant Ensemble_BACKGROUND = new ColorConstant(
-			187, 218, 247);
 
 	/*
 	 * checks if the dragged element is an ensemble and therefore can be added
@@ -109,15 +102,40 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 	public PictogramElement add(IAddContext context) {
 		Ensemble addedEnsemble = (Ensemble) context.getNewObject();
 		Diagram targetDiagram = (Diagram) context.getTargetContainer();
+		
+		// sets the Layout - normal or empty ensemble
+		IColorConstant Ensemble_TEXT_FOREGROUND;
+		IColorConstant Ensemble_FOREGROUND; 
+		IColorConstant Ensemble_BACKGROUND;
+		
+		if (addedEnsemble.getName() == "Empty Ensemble"){
+			Ensemble_TEXT_FOREGROUND = ColorConstant.BLACK;
 
+			Ensemble_FOREGROUND = new ColorConstant(
+					48, 48, 48);
+
+			Ensemble_BACKGROUND = new ColorConstant(
+					176, 176, 176);
+		} else {
+			Ensemble_TEXT_FOREGROUND = ColorConstant.BLACK;
+
+			Ensemble_FOREGROUND = new ColorConstant(
+					98, 131, 167);
+
+			Ensemble_BACKGROUND = new ColorConstant(
+					187, 218, 247);
+		}
+		
 		// CONTAINER SHAPE WITH ROUNDED RECTANGLE
 		IPeCreateService peCreateService = Graphiti.getPeCreateService();
 		ContainerShape containerShape = peCreateService.createContainerShape(
 				targetDiagram, true);
 
-		// define a default size for the shape
-		int width = 100;
-		int height = 50;
+		// check whether the context has a size (e.g. from a create feature)
+		// otherwise define a default size for the shape
+		final int width = context.getWidth() <= 0 ? 100 : context.getWidth();
+		final int height = context.getHeight() <= 0 ? 50 : context.getHeight();
+
 		IGaService gaService = Graphiti.getGaService();
 		RoundedRectangle roundedRectangle; // need to access it later
 
@@ -125,6 +143,7 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 			// create and set graphics algorithm
 			roundedRectangle = gaService.createRoundedRectangle(containerShape,
 					5, 5);
+			
 			roundedRectangle.setForeground(manageColor(Ensemble_FOREGROUND));
 			roundedRectangle.setBackground(manageColor(Ensemble_BACKGROUND));
 			roundedRectangle.setLineWidth(2);
