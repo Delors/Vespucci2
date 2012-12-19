@@ -43,10 +43,10 @@ public class NewEnsembleWizardQueryPage extends WizardPage {
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				//if (!query.getText().isEmpty()) {
+				if (!query.getText().isEmpty()) {
 					setPageComplete(true);
 
-				//}
+				}
 			}
 
 		});
@@ -56,7 +56,7 @@ public class NewEnsembleWizardQueryPage extends WizardPage {
 		query.setLayoutData(queryGD);
 		// Required to avoid an error in the system
 		setControl(container);
-		setPageComplete(false);
+		setPageComplete(true);
 
 	}
 	public String getEnsembleQuery() {
