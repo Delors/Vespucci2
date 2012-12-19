@@ -8,7 +8,7 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>de.opalproject.vespucci</module>
+		<module>de.opalproject.vespucci.feature</module>
 		<module>de.opalproject.vespucci.datamodel</module>
 		<module>de.opalproject.vespucci.datamodel.edit</module>
 		<module>de.opalproject.vespucci.datamodel.persistence</module>

@@ -55,6 +55,8 @@ import org.eclipse.emf.ecore.EObject;
  * Children</em>}</li>
  * <li>{@link de.opalproject.vespucci.datamodel.Ensemble#getParent <em>Parent
  * </em>}</li>
+ * <li>{@link de.opalproject.vespucci.datamodel.Ensemble#getConstraints <em>
+ * Constraints</em>}</li>
  * </ul>
  * </p>
  * 
@@ -231,5 +233,24 @@ public interface Ensemble extends EObject {
 	 * @generated
 	 */
 	void setParent(Ensemble value);
+
+	/**
+	 * Returns the value of the '<em><b>Constraints</b></em>' containment
+	 * reference list. The list contents are of type
+	 * {@link de.opalproject.vespucci.datamodel.Constraint}. <!-- begin-user-doc
+	 * -->
+	 * <p>
+	 * If the meaning of the '<em>Constraints</em>' containment reference list
+	 * isn't clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Constraints</em>' containment reference
+	 *         list.
+	 * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getEnsemble_Constraints()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Constraint> getConstraints();
 
 } // Ensemble

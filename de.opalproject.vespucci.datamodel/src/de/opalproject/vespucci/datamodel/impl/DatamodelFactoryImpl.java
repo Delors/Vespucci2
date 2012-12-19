@@ -35,6 +35,7 @@ package de.opalproject.vespucci.datamodel.impl;
 
 import de.opalproject.vespucci.datamodel.*;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
@@ -61,7 +62,7 @@ public class DatamodelFactoryImpl extends EFactoryImpl implements
 	public static DatamodelFactory init() {
 		try {
 			DatamodelFactory theDatamodelFactory = (DatamodelFactory) EPackage.Registry.INSTANCE
-					.getEFactory("http://datamodel/1.0");
+					.getEFactory("http://de/opalproject/vespucci/datamodel/1.0");
 			if (theDatamodelFactory != null) {
 				return theDatamodelFactory;
 			}
@@ -91,6 +92,8 @@ public class DatamodelFactoryImpl extends EFactoryImpl implements
 		switch (eClass.getClassifierID()) {
 		case DatamodelPackage.ENSEMBLE:
 			return createEnsemble();
+		case DatamodelPackage.CONSTRAINT:
+			return createConstraint();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
@@ -102,9 +105,105 @@ public class DatamodelFactoryImpl extends EFactoryImpl implements
 	 * 
 	 * @generated
 	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+		case DatamodelPackage.CONSTRAINT_TYPE:
+			return createConstraintTypeFromString(eDataType, initialValue);
+		case DatamodelPackage.DEPENDENCY_KIND:
+			return createDependencyKindFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '"
+					+ eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+		case DatamodelPackage.CONSTRAINT_TYPE:
+			return convertConstraintTypeToString(eDataType, instanceValue);
+		case DatamodelPackage.DEPENDENCY_KIND:
+			return convertDependencyKindToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '"
+					+ eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public Ensemble createEnsemble() {
 		EnsembleImpl ensemble = new EnsembleImpl();
 		return ensemble;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public Constraint createConstraint() {
+		ConstraintImpl constraint = new ConstraintImpl();
+		return constraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public ConstraintType createConstraintTypeFromString(EDataType eDataType,
+			String initialValue) {
+		ConstraintType result = ConstraintType.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue
+					+ "' is not a valid enumerator of '" + eDataType.getName()
+					+ "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public String convertConstraintTypeToString(EDataType eDataType,
+			Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public DependencyKind createDependencyKindFromString(EDataType eDataType,
+			String initialValue) {
+		DependencyKind result = DependencyKind.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue
+					+ "' is not a valid enumerator of '" + eDataType.getName()
+					+ "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public String convertDependencyKindToString(EDataType eDataType,
+			Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

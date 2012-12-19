@@ -58,7 +58,7 @@ public class CloseEditor extends AbstractHandler {
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		System.out.println("close called");
+		System.out.println("close called: " + event.toString());
 
 		// Get the view
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
@@ -68,6 +68,10 @@ public class CloseEditor extends AbstractHandler {
 		IStructuredSelection currentSelection = (IStructuredSelection) HandlerUtil
 				.getCurrentSelection(event);
 
+		
+		System.out.println("Current Selection : "  + currentSelection.toString());
+		
+		
 		@SuppressWarnings("unchecked")
 		List<Ensemble> ensembleList = currentSelection
 				.toList();

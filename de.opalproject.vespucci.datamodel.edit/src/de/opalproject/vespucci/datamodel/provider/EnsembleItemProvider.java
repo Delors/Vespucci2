@@ -188,6 +188,8 @@ public class EnsembleItemProvider extends ItemProviderAdapter implements
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DatamodelPackage.Literals.ENSEMBLE__CHILDREN);
+			childrenFeatures
+					.add(DatamodelPackage.Literals.ENSEMBLE__CONSTRAINTS);
 		}
 		return childrenFeatures;
 	}
@@ -252,6 +254,7 @@ public class EnsembleItemProvider extends ItemProviderAdapter implements
 					notification.getNotifier(), false, true));
 			return;
 		case DatamodelPackage.ENSEMBLE__CHILDREN:
+		case DatamodelPackage.ENSEMBLE__CONSTRAINTS:
 			fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), true, false));
 			return;
@@ -274,6 +277,10 @@ public class EnsembleItemProvider extends ItemProviderAdapter implements
 		newChildDescriptors.add(createChildParameter(
 				DatamodelPackage.Literals.ENSEMBLE__CHILDREN,
 				DatamodelFactory.eINSTANCE.createEnsemble()));
+
+		newChildDescriptors.add(createChildParameter(
+				DatamodelPackage.Literals.ENSEMBLE__CONSTRAINTS,
+				DatamodelFactory.eINSTANCE.createConstraint()));
 	}
 
 	/**

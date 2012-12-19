@@ -9,7 +9,7 @@
 		<version>2.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>de.opalproject.vespucci</artifactId>
+	<artifactId>de.opalproject.vespucci.feature</artifactId>
 	<packaging>eclipse-feature</packaging>
 
 </project>

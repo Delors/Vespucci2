@@ -30,7 +30,161 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_pYaosS47EeKQPtyIDnxSkw" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
     <element xmi:type="ecore:EClass" href="datamodel.ecore#//Ensemble"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pYaosi47EeKQPtyIDnxSkw" x="40" y="45"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pYaosi47EeKQPtyIDnxSkw" x="75" y="485"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_P2Rz8ERwEeKn4c0TrgZCLA" type="1001">
+    <children xmi:type="notation:Node" xmi:id="_P2Rz80RwEeKn4c0TrgZCLA" type="4001"/>
+    <children xmi:type="notation:Node" xmi:id="_P2Rz9ERwEeKn4c0TrgZCLA" type="5001">
+      <children xmi:type="notation:Node" xmi:id="_SDD0kERwEeKn4c0TrgZCLA" type="2001">
+        <element xmi:type="ecore:EAttribute" href="datamodel.ecore#//Constraint/constraintType"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_SDD0kURwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_TfFtsERwEeKn4c0TrgZCLA" type="2001">
+        <element xmi:type="ecore:EAttribute" href="datamodel.ecore#//Constraint/dependencyKind"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_TfFtsURwEeKn4c0TrgZCLA"/>
+      </children>
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_P2Rz9URwEeKn4c0TrgZCLA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_P2Rz9kRwEeKn4c0TrgZCLA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_P2Rz90RwEeKn4c0TrgZCLA"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_P2bk8ERwEeKn4c0TrgZCLA" type="5002">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_P2bk8URwEeKn4c0TrgZCLA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_P2bk8kRwEeKn4c0TrgZCLA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_P2bk80RwEeKn4c0TrgZCLA"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_P2Rz8URwEeKn4c0TrgZCLA" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EClass" href="datamodel.ecore#//Constraint"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_P2Rz8kRwEeKn4c0TrgZCLA" x="30" y="30"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_VDSEUERwEeKn4c0TrgZCLA" type="1005">
+    <children xmi:type="notation:Node" xmi:id="_VDSEU0RwEeKn4c0TrgZCLA" type="4010"/>
+    <children xmi:type="notation:Node" xmi:id="_VDSEVERwEeKn4c0TrgZCLA" type="5008">
+      <children xmi:type="notation:Node" xmi:id="_a4p8QERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//ConstraintType/NotAllowed"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_a4p8QURwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_bUKzkERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//ConstraintType/GlobalIncoming"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_bUKzkURwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_bhnZsERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//ConstraintType/LocalIncoming"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_bhnZsURwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_b98wYERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//ConstraintType/GlobalOutgoing"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_b98wYURwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_cVE28ERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//ConstraintType/LocalOutgoing"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_cVE28URwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_cZD_EERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//ConstraintType/Expected"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_cZD_EURwEeKn4c0TrgZCLA"/>
+      </children>
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_VDSEVURwEeKn4c0TrgZCLA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_VDSEVkRwEeKn4c0TrgZCLA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_VDSEV0RwEeKn4c0TrgZCLA"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_VDSEUURwEeKn4c0TrgZCLA" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EEnum" href="datamodel.ecore#//ConstraintType"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_VDSEUkRwEeKn4c0TrgZCLA" x="325" y="30"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_obTo8ERwEeKn4c0TrgZCLA" type="1005">
+    <children xmi:type="notation:Node" xmi:id="_obTo80RwEeKn4c0TrgZCLA" type="4010"/>
+    <children xmi:type="notation:Node" xmi:id="_obTo9ERwEeKn4c0TrgZCLA" type="5008">
+      <children xmi:type="notation:Node" xmi:id="_pY2PQERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//DependencyKind/all"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_pY2PQURwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_pnzRQERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//DependencyKind/subtype"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_pnzRQURwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_p5BkIERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//DependencyKind/extend"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_p5BkIURwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_p7YUkERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//DependencyKind/implement"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_p7YUkURwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_p-fS8ERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//DependencyKind/calls"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_p-fS8URwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_qBKzgERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//DependencyKind/invoke_virtual"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_qBKzgURwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_qDtxMERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//DependencyKind/invoke_special"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_qDtxMURwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_qFWI4ERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//DependencyKind/invoke_interface"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_qFWI4URwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_qGsMsERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//DependencyKind/invoke_static"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_qGsMsURwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_qIMokERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//DependencyKind/access"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_qIMokURwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_qJnk4ERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//DependencyKind/write_field"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_qJnk4URwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_qKz3sERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//DependencyKind/write_static_field"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_qKz3sURwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_qMO0AERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//DependencyKind/read_field"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_qMO0AURwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_qNn7IERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//DependencyKind/read_static_field"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_qNn7IURwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_qO-mAERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//DependencyKind/signature"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_qO-mAURwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_qQwusERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//DependencyKind/parameter"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_qQwusURwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_qSRKkERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//DependencyKind/return_type"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_qSRKkURwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_qT6JUERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//DependencyKind/class_cast"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_qT6JUURwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_qXqn8ERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//DependencyKind/create"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_qXqn8URwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_qbew8ERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//DependencyKind/field_type"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_qbew8URwEeKn4c0TrgZCLA"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_-U7noERwEeKn4c0TrgZCLA" type="2006">
+        <element xmi:type="ecore:EEnumLiteral" href="datamodel.ecore#//DependencyKind/throws"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_-U7noURwEeKn4c0TrgZCLA"/>
+      </children>
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_obTo9URwEeKn4c0TrgZCLA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_obTo9kRwEeKn4c0TrgZCLA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_obTo90RwEeKn4c0TrgZCLA"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_obTo8URwEeKn4c0TrgZCLA" fontColor="4210752" fontName="Segoe UI" fontHeight="10" fillColor="13761016" lineColor="8421504"/>
+    <element xmi:type="ecore:EEnum" href="datamodel.ecore#//DependencyKind"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_obTo8kRwEeKn4c0TrgZCLA" x="510" y="30"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_pYXlYS47EeKQPtyIDnxSkw"/>
   <element xmi:type="ecore:EPackage" href="datamodel.ecore#/"/>

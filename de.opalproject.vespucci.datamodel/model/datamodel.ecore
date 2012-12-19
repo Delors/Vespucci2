@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="datamodel" nsURI="http://datamodel/1.0" nsPrefix="datamodel">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="datamodel" nsURI="http://de/opalproject/vespucci/datamodel/1.0"
+    nsPrefix="de.opalproject.vespucci.datamodel">
   <eClassifiers xsi:type="ecore:EClass" name="Ensemble">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="derived" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -10,5 +11,43 @@
         eType="#//Ensemble" containment="true" resolveProxies="false" eOpposite="#//Ensemble/parent"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//Ensemble"
         eOpposite="#//Ensemble/children"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
+        eType="#//Constraint" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Constraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="constraintType" eType="#//ConstraintType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dependencyKind" eType="#//DependencyKind"
+        defaultValueLiteral="0"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ConstraintType">
+    <eLiterals name="NotAllowed"/>
+    <eLiterals name="GlobalIncoming" value="1"/>
+    <eLiterals name="LocalIncoming" value="2"/>
+    <eLiterals name="GlobalOutgoing" value="3"/>
+    <eLiterals name="LocalOutgoing" value="4"/>
+    <eLiterals name="Expected" value="5"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="DependencyKind">
+    <eLiterals name="all"/>
+    <eLiterals name="subtype" value="1"/>
+    <eLiterals name="extend" value="2"/>
+    <eLiterals name="implement" value="3"/>
+    <eLiterals name="calls" value="4"/>
+    <eLiterals name="invoke_virtual" value="5"/>
+    <eLiterals name="invoke_special" value="6"/>
+    <eLiterals name="invoke_interface" value="7"/>
+    <eLiterals name="invoke_static" value="8"/>
+    <eLiterals name="access" value="9"/>
+    <eLiterals name="write_field" value="10"/>
+    <eLiterals name="write_static_field" value="11"/>
+    <eLiterals name="read_field" value="12"/>
+    <eLiterals name="read_static_field" value="13"/>
+    <eLiterals name="signature" value="14"/>
+    <eLiterals name="parameter" value="15"/>
+    <eLiterals name="return_type" value="16"/>
+    <eLiterals name="class_cast" value="17"/>
+    <eLiterals name="create" value="18"/>
+    <eLiterals name="field_type" value="19"/>
+    <eLiterals name="throws" value="20"/>
   </eClassifiers>
 </ecore:EPackage>

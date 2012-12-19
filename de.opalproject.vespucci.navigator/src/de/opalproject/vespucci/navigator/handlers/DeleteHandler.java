@@ -45,6 +45,12 @@ import org.eclipse.ui.handlers.IHandlerService;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
 
+/**
+ * Handles delete requests for a selection of ensembles.
+ * 
+ * @author Marius-d
+ * 
+ */
 public class DeleteHandler extends AbstractHandler {
 
 	/*
@@ -61,22 +67,25 @@ public class DeleteHandler extends AbstractHandler {
 		// Get selected Elements
 		IStructuredSelection currentSelection = (IStructuredSelection) HandlerUtil
 				.getCurrentSelection(event);
+		
+		System.out.println("Current Selection : "  + currentSelection.toString());
+		
+		// Initiate handler to close open editors of the ensemble to be deleted
+		IHandlerService handlerService = (IHandlerService) HandlerUtil
+				.getActiveWorkbenchWindow(event).getWorkbench()
+				.getService(IHandlerService.class);
 
-		// C ast selection to ensembles
+		// Cast selection to ensembles
 		@SuppressWarnings("unchecked")
 		List<Ensemble> ensembleList = currentSelection.toList();
 
 		Event e = new Event();
 		e.data = currentSelection;
 
-		// Initiate handler to close open editors of the ensemble to be deleted
-		IHandlerService handlerService = (IHandlerService) HandlerUtil
-				.getActiveWorkbenchWindow(event).getWorkbench()
-				.getService(IHandlerService.class);
 
 		try {
 			handlerService.executeCommand(
-					"de.opalproject.vespucci.editor.closeEditor", e);
+					"de.opalproject.vespucci.editor.closeEditor", null);
 		} catch (Exception ex) {
 			throw new RuntimeException(
 					"de.opalproject.vespucci.editor.closeEditor not found");

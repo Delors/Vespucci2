@@ -33,6 +33,7 @@
  */
 package de.opalproject.vespucci.datamodel.impl;
 
+import de.opalproject.vespucci.datamodel.Constraint;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -42,6 +43,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -68,6 +70,9 @@ import de.opalproject.vespucci.datamodel.Ensemble;
  * <em>Children</em>}</li>
  * <li>{@link de.opalproject.vespucci.datamodel.impl.EnsembleImpl#getParent <em>
  * Parent</em>}</li>
+ * <li>
+ * {@link de.opalproject.vespucci.datamodel.impl.EnsembleImpl#getConstraints
+ * <em>Constraints</em>}</li>
  * </ul>
  * </p>
  * 
@@ -163,6 +168,16 @@ public class EnsembleImpl extends EObjectImpl implements Ensemble {
 	 * @ordered
 	 */
 	protected EList<Ensemble> children;
+
+	/**
+	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getConstraints()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Constraint> constraints;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -340,6 +355,20 @@ public class EnsembleImpl extends EObjectImpl implements Ensemble {
 	 * 
 	 * @generated
 	 */
+	public EList<Constraint> getConstraints() {
+		if (constraints == null) {
+			constraints = new EObjectContainmentEList<Constraint>(
+					Constraint.class, this,
+					DatamodelPackage.ENSEMBLE__CONSTRAINTS);
+		}
+		return constraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
@@ -370,6 +399,9 @@ public class EnsembleImpl extends EObjectImpl implements Ensemble {
 					msgs);
 		case DatamodelPackage.ENSEMBLE__PARENT:
 			return basicSetParent(null, msgs);
+		case DatamodelPackage.ENSEMBLE__CONSTRAINTS:
+			return ((InternalEList<?>) getConstraints()).basicRemove(otherEnd,
+					msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -410,6 +442,8 @@ public class EnsembleImpl extends EObjectImpl implements Ensemble {
 			return getChildren();
 		case DatamodelPackage.ENSEMBLE__PARENT:
 			return getParent();
+		case DatamodelPackage.ENSEMBLE__CONSTRAINTS:
+			return getConstraints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -442,6 +476,11 @@ public class EnsembleImpl extends EObjectImpl implements Ensemble {
 		case DatamodelPackage.ENSEMBLE__PARENT:
 			setParent((Ensemble) newValue);
 			return;
+		case DatamodelPackage.ENSEMBLE__CONSTRAINTS:
+			getConstraints().clear();
+			getConstraints()
+					.addAll((Collection<? extends Constraint>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -472,6 +511,9 @@ public class EnsembleImpl extends EObjectImpl implements Ensemble {
 		case DatamodelPackage.ENSEMBLE__PARENT:
 			setParent((Ensemble) null);
 			return;
+		case DatamodelPackage.ENSEMBLE__CONSTRAINTS:
+			getConstraints().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -499,6 +541,8 @@ public class EnsembleImpl extends EObjectImpl implements Ensemble {
 			return children != null && !children.isEmpty();
 		case DatamodelPackage.ENSEMBLE__PARENT:
 			return getParent() != null;
+		case DatamodelPackage.ENSEMBLE__CONSTRAINTS:
+			return constraints != null && !constraints.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
