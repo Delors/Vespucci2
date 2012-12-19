@@ -129,11 +129,9 @@ public class EnsembleEditor extends EditorPart {
 		Label queryLabel = new Label(queryNameAndDerivedPanel, SWT.NONE);
 		queryLabel.setText("Query");
 
-		Label derivedLabel = new Label(queryNameAndDerivedPanel, SWT.NONE);
-		derivedLabel.setText("Derived");
-
 		derivedCheckBox = new Button(queryNameAndDerivedPanel, SWT.CHECK);
 		derivedCheckBox.setSelection(ensemble.isDerived());
+		derivedCheckBox.setText("Derived");
 
 		queryTextField = new Text(parent, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL
 				| SWT.H_SCROLL);
