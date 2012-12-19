@@ -31,7 +31,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package de.opalproject.vespucci.ui.navigator.handlers;
+package de.opalproject.vespucci.ui.handlers;
 
 import java.io.IOException;
 import java.util.Collections;
