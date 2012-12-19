@@ -93,8 +93,8 @@ public class RenameHandler extends AbstractHandler {
 			protected void doExecute() {
 
 				// Check whether the userinput is diffrent from the given name
-				if (!selectetDomainObject.getName().equals(wiz.name)) {
-					selectetDomainObject.setName(wiz.name);
+				if (!selectetDomainObject.getName().equals(wiz.getName())) {
+					selectetDomainObject.setName(wiz.getName());
 				}
 
 				try {
