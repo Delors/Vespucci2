@@ -31,43 +31,76 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package de.opalproject.vespucci.ui.editor;
+package de.opalproject.vespucci.ui.handlers;
+
+import java.io.IOException;
+import java.util.Collections;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.TreeSelection;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PartInitException;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
 
+import de.opalproject.vespucci.datamodel.DatamodelFactory;
 import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.ui.wizards.NewEnsembleWizard;
 
-public class CallEditor extends AbstractHandler {
+/**
+ * Used by NewEnsembleWizard to create a new ensemble
+ * 
+ * @author Lars
+ * @author Marco Jacobasch
+ * 
+ */
+public class NewEnsembleHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		ISelection se = HandlerUtil.getCurrentSelection(event);
+		IStructuredSelection currentSelection = (IStructuredSelection) HandlerUtil
+				.getCurrentSelection(event);
 
-		// Get the view
-		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
-		IWorkbenchPage page = window.getActivePage();
+		final NewEnsembleWizard wiz = new NewEnsembleWizard();
 
-		TreeSelection sel = (TreeSelection) se;
-		Ensemble ens = (Ensemble) sel.getFirstElement();
+		WizardDialog dialog = new WizardDialog(
+				HandlerUtil.getActiveShell(event), wiz);
+		dialog.open();
 
-		EditorInput input = new EditorInput(ens);
+		if (wiz.getName() != null) {
 
-		try {
-			page.openEditor(input, EnsembleEditor.ID);
+			final TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+					.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
+			final Ensemble selectetDomainObject = (Ensemble) currentSelection
+					.getFirstElement();
+			final Resource r = selectetDomainObject.eResource();
 
-		} catch (PartInitException e) {
-			throw new RuntimeException(e);
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
+				protected void doExecute() {
+					DatamodelFactory factory = DatamodelFactory.eINSTANCE;
+
+					Ensemble ens = factory.createEnsemble();
+
+					// selectetDomainObject.getChildren().add(ens);
+					ens.setParent(selectetDomainObject);
+					ens.setName(wiz.getName());
+					ens.setDescription(wiz.getDescription());
+					ens.setDerived(false);
+					ens.setQuery(wiz.getQuery());
+
+					try {
+						r.save(Collections.EMPTY_MAP);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			});
 		}
 
 		return null;
-	}
 
+	}
 }

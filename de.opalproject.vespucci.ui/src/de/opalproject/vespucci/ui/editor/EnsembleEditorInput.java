@@ -39,11 +39,11 @@ import org.eclipse.ui.IPersistableElement;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
 
-public class EditorInput implements IEditorInput {
+public class EnsembleEditorInput implements IEditorInput {
 
 	private final Ensemble ensemble;
 
-	public EditorInput(Ensemble ensemble) {
+	public EnsembleEditorInput(Ensemble ensemble) {
 		this.ensemble = ensemble;
 	}
 
@@ -98,11 +98,11 @@ public class EditorInput implements IEditorInput {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		
-		EditorInput other = (EditorInput) obj;
+
+		EnsembleEditorInput other = (EnsembleEditorInput) obj;
 		if (!ensemble.equals(other.ensemble))
 			return false;
-		
+
 		return true;
 	}
 

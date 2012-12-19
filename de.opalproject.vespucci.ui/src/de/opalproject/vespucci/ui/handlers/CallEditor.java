@@ -31,83 +31,45 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package de.opalproject.vespucci.ui.navigator.handlers;
-
-import java.io.IOException;
-import java.util.Collections;
+package de.opalproject.vespucci.ui.handlers;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.TreeSelection;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.handlers.HandlerUtil;
 
-import de.opalproject.vespucci.datamodel.DatamodelFactory;
 import de.opalproject.vespucci.datamodel.Ensemble;
-import de.opalproject.vespucci.ui.wizards.NewEnsembleWizard;
+import de.opalproject.vespucci.ui.editor.EnsembleEditor;
+import de.opalproject.vespucci.ui.editor.EnsembleEditorInput;
 
-/**
- * Used by NewEnsembleWizard to create a new ensemble
- * 
- * @author Lars
- * @author Marco Jacobasch
- * 
- */
-public class NewEnsembleHandler extends AbstractHandler {
+public class CallEditor extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IStructuredSelection currentSelection = (IStructuredSelection) HandlerUtil
-				.getCurrentSelection(event);
+		ISelection se = HandlerUtil.getCurrentSelection(event);
 
-		final NewEnsembleWizard wiz = new NewEnsembleWizard();
+		// Get the view
+		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
+		IWorkbenchPage page = window.getActivePage();
 
-		WizardDialog dialog = new WizardDialog(
-				HandlerUtil.getActiveShell(event), wiz);
-		dialog.open();
+		TreeSelection sel = (TreeSelection) se;
+		Ensemble ens = (Ensemble) sel.getFirstElement();
 
-		if (wiz.name != null) {
+		EnsembleEditorInput input = new EnsembleEditorInput(ens);
 
-			final TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-					.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
-			final Ensemble selectetDomainObject = (Ensemble) currentSelection
-					.getFirstElement();
-			final Resource r = selectetDomainObject.eResource();
+		try {
+			page.openEditor(input, EnsembleEditor.ID);
 
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
-				protected void doExecute() {
-					DatamodelFactory factory = DatamodelFactory.eINSTANCE;
-
-					Ensemble ens = factory.createEnsemble();
-
-
-			selectetDomainObject.getChildren().add(ens);
-			ens.setName(wiz.name);
-			ens.setDescription(wiz.description);
-			ens.setDerived(false);
-			ens.setQuery(wiz.query);
-
-					// selectetDomainObject.getChildren().add(ens);
-					ens.setParent(selectetDomainObject);
-					ens.setName(wiz.name);
-					ens.setDescription(wiz.description);
-					ens.setDerived(false);
-					ens.setQuery("");
-
-					try {
-						r.save(Collections.EMPTY_MAP);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			});
+		} catch (PartInitException e) {
+			throw new RuntimeException(e);
 		}
 
 		return null;
-
 	}
+
 }
