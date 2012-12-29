@@ -18,7 +18,7 @@ public class ImageProvider extends AbstractImageProvider {
     protected void addAvailableImages() {
         // register the path for each image identifier
         addImageFilePath(IMG_EREFERENCE, "res/arrow2.gif");
-        addImageFilePath(IMG_EMPTYENSEMBLE, "res/EmptyEnsemble.gif");
+        addImageFilePath(IMG_EMPTYENSEMBLE, "res/EmptyEnsemble4.gif");
     }
 }
 
