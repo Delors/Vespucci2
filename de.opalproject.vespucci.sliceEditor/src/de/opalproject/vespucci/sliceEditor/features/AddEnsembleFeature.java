@@ -109,7 +109,8 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		IColorConstant Ensemble_BACKGROUND;
 		
 		if (addedEnsemble.getName() == "Empty Ensemble"){
-			Ensemble_TEXT_FOREGROUND = ColorConstant.BLACK;
+			Ensemble_TEXT_FOREGROUND = new ColorConstant(
+					176, 176, 176);
 
 			Ensemble_FOREGROUND = new ColorConstant(
 					48, 48, 48);
@@ -160,11 +161,11 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		}
 
 		// SHAPE WITH LINE
-		{
+		if (!(addedEnsemble.getName() == "Empty Ensemble")){
 			// create shape for line
 			Shape lineShape = peCreateService
 					.createShape(containerShape, false);
-
+			
 			// create and set graphics algorithm
 			Polyline polyline = gaService.createPolyline(lineShape, new int[] {
 					0, 20, width, 20 });
