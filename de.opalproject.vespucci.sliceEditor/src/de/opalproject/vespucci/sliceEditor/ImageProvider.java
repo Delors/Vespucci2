@@ -13,12 +13,16 @@ public class ImageProvider extends AbstractImageProvider {
     
     // The image identifier for an Empty Ensemble
     public static final String IMG_EMPTYENSEMBLE = PREFIX + "emptyEnsemble";
+    
+    
+    public static final String IMG_ENSEMBLEICON = PREFIX + "ensembleIcon";
  
     @Override
     protected void addAvailableImages() {
         // register the path for each image identifier
         addImageFilePath(IMG_EREFERENCE, "res/arrow2.gif");
         addImageFilePath(IMG_EMPTYENSEMBLE, "res/EmptyEnsemble4.gif");
+        addImageFilePath(IMG_ENSEMBLEICON, "res/Ensemble.gif");
     }
 }
 

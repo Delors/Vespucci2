@@ -33,9 +33,23 @@
  */
 package de.opalproject.vespucci.sliceEditor.features;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+
+import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
+import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.impl.AbstractAddShapeFeature;
+import org.eclipse.graphiti.mm.algorithms.Image;
 import org.eclipse.graphiti.mm.algorithms.MultiText;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
 import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
@@ -44,6 +58,7 @@ import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.mm.pictograms.PictogramLink;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
@@ -64,8 +79,6 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 	public AddEnsembleFeature(IFeatureProvider fp) {
 		super(fp);
 	}
-
-
 
 	/*
 	 * checks if the dragged element is an ensemble and therefore can be added
@@ -102,31 +115,26 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 	public PictogramElement add(IAddContext context) {
 		Ensemble addedEnsemble = (Ensemble) context.getNewObject();
 		Diagram targetDiagram = (Diagram) context.getTargetContainer();
-		
+
 		// sets the Layout - normal or empty ensemble
 		IColorConstant Ensemble_TEXT_FOREGROUND;
-		IColorConstant Ensemble_FOREGROUND; 
+		IColorConstant Ensemble_FOREGROUND;
 		IColorConstant Ensemble_BACKGROUND;
-		
-		if (addedEnsemble.getName() == "Empty Ensemble"){
-			Ensemble_TEXT_FOREGROUND = new ColorConstant(
-					176, 176, 176);
 
-			Ensemble_FOREGROUND = new ColorConstant(
-					48, 48, 48);
+		if (addedEnsemble.getName() == "Empty Ensemble") {
+			Ensemble_TEXT_FOREGROUND = new ColorConstant(176, 176, 176);
 
-			Ensemble_BACKGROUND = new ColorConstant(
-					176, 176, 176);
+			Ensemble_FOREGROUND = new ColorConstant(48, 48, 48);
+
+			Ensemble_BACKGROUND = new ColorConstant(176, 176, 176);
 		} else {
 			Ensemble_TEXT_FOREGROUND = ColorConstant.BLACK;
 
-			Ensemble_FOREGROUND = new ColorConstant(
-					98, 131, 167);
+			Ensemble_FOREGROUND = new ColorConstant(98, 131, 167);
 
-			Ensemble_BACKGROUND = new ColorConstant(
-					187, 218, 247);
+			Ensemble_BACKGROUND = new ColorConstant(187, 218, 247);
 		}
-		
+
 		// CONTAINER SHAPE WITH ROUNDED RECTANGLE
 		IPeCreateService peCreateService = Graphiti.getPeCreateService();
 		ContainerShape containerShape = peCreateService.createContainerShape(
@@ -144,7 +152,7 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 			// create and set graphics algorithm
 			roundedRectangle = gaService.createRoundedRectangle(containerShape,
 					5, 5);
-			
+
 			roundedRectangle.setForeground(manageColor(Ensemble_FOREGROUND));
 			roundedRectangle.setBackground(manageColor(Ensemble_BACKGROUND));
 			roundedRectangle.setLineWidth(2);
@@ -161,11 +169,11 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		}
 
 		// SHAPE WITH LINE
-		if (!(addedEnsemble.getName() == "Empty Ensemble")){
+		if (!(addedEnsemble.getName() == "Empty Ensemble")) {
 			// create shape for line
 			Shape lineShape = peCreateService
 					.createShape(containerShape, false);
-			
+
 			// create and set graphics algorithm
 			Polyline polyline = gaService.createPolyline(lineShape, new int[] {
 					0, 20, width, 20 });
@@ -175,15 +183,18 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 
 		// SHAPE WITH TEXT
 		{
+			
 			// create shape for name
 			Shape nameShape = peCreateService
 					.createShape(containerShape, false);
+			
 
 			// sets the name of the ensemble
 			Text name = gaService
 					.createText(nameShape, addedEnsemble.getName());
 			name.setForeground(manageColor(Ensemble_TEXT_FOREGROUND));
 			name.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
+
 			// vertical alignment has as default value "center"
 			name.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
 			gaService.setLocationAndSize(name, 0, 0, width, 20);
@@ -205,13 +216,85 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 			// create link and wire it
 			link(nameShape, addedEnsemble);
 			link(descriptionShape, addedEnsemble);
+		
+			
+			
+			// create shape for icon
+			if (!(addedEnsemble.getName() == "Empty Ensemble")) {
+			Shape iconShape = peCreateService.createShape(containerShape, false);
+			Image icon = gaService.createImage(iconShape, "de.opalproject.vespucci.sliceEditor.ensembleIcon");
+			
+
+			gaService.setLocationAndSize(icon, -((width/2)-10), 2, 16, 16);
+			}
 		}
+		
 
 		// add a chopbox anchor to the shape
 		peCreateService.createChopboxAnchor(containerShape);
 
 		layoutPictogramElement(containerShape);
 
+		//Method call to check for already existing instances
+		if (!(addedEnsemble.getName() == "Empty Ensemble")) {
+			checkForRelatives(containerShape, addedEnsemble, targetDiagram);
+		}
 		return containerShape;
 	}
+
+	
+	
+/**
+ * Checks for already occuring Ensembles and its children
+ * 	
+ * @param picel
+ * @param ens
+ * @param dia
+ */
+//In Listener auslagern?!
+//TODO Marker für Problemview einbinden
+	private void checkForRelatives(PictogramElement picel, Ensemble ens, Diagram dia) {
+		
+		EObject bo = (EObject) getBusinessObjectForPictogramElement(picel);
+		
+
+       
+		//Debugintel TODO remove
+		System.out.println("Ensemble Name: " + ens.getName());
+		System.out.println("Equal: " + (Graphiti.getLinkService().getPictogramElements(dia,
+				bo).size()/3 -1));
+		
+		
+		if((Graphiti.getLinkService().getPictogramElements(dia,
+				bo).size()/3 -1) > 0){
+			//TODO MARKER CALL HERE
+			System.out.println("Ensemble is already there");
+		}
+		if(!(checkChildrenOccurences(bo, dia, ens).size() <= 0)){
+			//TODO MARKER CALL #2 HERE
+			System.out.println("MARKER RAUSHAUEN! Kinderparasiten");
+		}		
+	}
+	
+	
+	private List<Ensemble> checkChildrenOccurences(EObject pe, Diagram dia, Ensemble ens){
+		EList <Ensemble> childrenList =  ens.getChildren();
+		List <Ensemble> infringingEnsembles = new ArrayList<Ensemble>();
+		
+		
+		for (Ensemble enmble : childrenList){
+			System.out.println("Überprüfe für Kind: " + enmble.getName());
+			 if(Graphiti.getLinkService().getPictogramElements(dia, enmble).size() > 0){
+				 infringingEnsembles.add(enmble);
+				 System.out.println("CHILD ADDED");
+			 }
+		}
+		
+
+		return infringingEnsembles;
+	}
+
+	
+	
+
 }
