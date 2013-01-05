@@ -184,11 +184,10 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 
 		// SHAPE WITH TEXT
 		{
-			
+
 			// create shape for name
 			Shape nameShape = peCreateService
 					.createShape(containerShape, false);
-			
 
 			// sets the name of the ensemble
 			Text name = gaService
@@ -217,83 +216,92 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 			// create link and wire it
 			link(nameShape, addedEnsemble);
 			link(descriptionShape, addedEnsemble);
-		
-			
-			
+
 			// create shape for icon
 			if (!(addedEnsemble.getName() == "Empty Ensemble")) {
-			Shape iconShape = peCreateService.createShape(containerShape, false);
-			Image icon = gaService.createImage(iconShape, "de.opalproject.vespucci.sliceEditor.ensembleIcon");
-			
+				Shape iconShape = peCreateService.createShape(containerShape,
+						false);
+				Image icon = gaService.createImage(iconShape,
+						"de.opalproject.vespucci.sliceEditor.ensembleIcon");
 
-			gaService.setLocationAndSize(icon, -((width/2)-10), 2, 16, 16);
+				gaService.setLocationAndSize(icon, -((width / 2) - 10), 2, 16,
+						16);
 			}
 		}
-		
 
 		// add a chopbox anchor to the shape
 		peCreateService.createChopboxAnchor(containerShape);
 
 		layoutPictogramElement(containerShape);
 
-		//Method call to check for already existing instances
+		// Method call to check for already existing instances
 		if (!(addedEnsemble.getName() == "Empty Ensemble")) {
 			checkForRelatives(containerShape, addedEnsemble, targetDiagram);
 		}
 		return containerShape;
 	}
 
-	
-	
-/**
- * Checks for already occuring Ensembles and its children
- * 	
- * @param picel
- * @param ens
- * @param dia
- */
-//In Listener auslagern?!
-//TODO Marker für Problemview einbinden
-	private void checkForRelatives(PictogramElement picel, Ensemble ens, Diagram dia) {
-		
-		EObject bo = (EObject) getBusinessObjectForPictogramElement(picel);
-		
+	/**
+	 * Checks for already occuring Ensembles and its children
+	 * 
+	 * @param picel
+	 * @param ens
+	 * @param dia
+	 */
+	// In Listener auslagern?!
+	// TODO Marker für Problemview einbinden
+	private void checkForRelatives(PictogramElement picel, Ensemble ens,
+			Diagram dia) {
 
-		//Debugintel TODO remove
+		EObject bo = (EObject) getBusinessObjectForPictogramElement(picel);
+
+		// Debugintel TODO remove
 		System.out.println("Ensemble Name: " + ens.getName());
-		System.out.println("Equal: " + (Graphiti.getLinkService().getPictogramElements(dia,
-				bo).size()/3 -1));
-		
-		
-		if((Graphiti.getLinkService().getPictogramElements(dia,
-				bo).size()/3 -1) > 0){
-			//TODO MARKER CALL HERE
+		System.out.println("Equal: "
+				+ (Graphiti.getLinkService().getPictogramElements(dia, bo)
+						.size() / 3 - 1));
+
+		if ((Graphiti.getLinkService().getPictogramElements(dia, bo).size() / 3 - 1) > 0) {
+			// TODO MARKER CALL HERE
 			System.out.println("Ensemble is already there");
 		}
-		if(!(checkChildrenOccurences(bo, dia, ens).size() <= 0)){
-			//TODO MARKER CALL #2 HERE
+		if (!(checkChildrenOccurences(bo, dia, ens).size() <= 0)) {
+			// TODO MARKER CALL #2 HERE
 			System.out.println("Child detected.");
-		}		
+		}
 	}
-	
-	
-	private Set<Ensemble> checkChildrenOccurences(EObject pe, Diagram dia, Ensemble ens){
-		EList <Ensemble> childrenList =  ens.getChildren();
-		Set <Ensemble> infringingEnsembles = new HashSet<Ensemble>();
+
+	private Set<Ensemble> checkChildrenOccurences(EObject pe, Diagram dia,
+			Ensemble ens) {
+
+		List<Ensemble> workingQueue = ens.getChildren();
+		List<Ensemble> childrenList = new ArrayList<Ensemble>();
 		
+
 		
-		for (Ensemble enmble : childrenList){
+		 // Looking at this ugly loop a method like getAllChildren() might be prettier.
+		childrenList.addAll(workingQueue);
+		do {
+			List<Ensemble> newChildren = new ArrayList<Ensemble>();
+			for (Ensemble child : workingQueue) {
+					newChildren.addAll(child.getChildren());
+			}
+			childrenList.addAll(newChildren);
+			workingQueue = newChildren;
+		} while (workingQueue.size() > 0);
+
+		Set<Ensemble> infringingEnsembles = new HashSet<Ensemble>();
+
+		for (Ensemble enmble : childrenList) {
 			System.out.println("Check for child: " + enmble.getName());
-			 if(Graphiti.getLinkService().getPictogramElements(dia, enmble).size() > 0){
-				 infringingEnsembles.add(enmble);
-				 System.out.println("Child added");
-			 }
-		}	
+			if (Graphiti.getLinkService().getPictogramElements(dia, enmble)
+					.size() > 0) {
+				infringingEnsembles.add(enmble);
+				System.out.println("Child added");
+			}
+		}
 
 		return infringingEnsembles;
 	}
-
-	
-	
 
 }
