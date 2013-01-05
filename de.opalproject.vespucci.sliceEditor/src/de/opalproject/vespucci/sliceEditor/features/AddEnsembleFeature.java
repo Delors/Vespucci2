@@ -36,6 +36,7 @@ package de.opalproject.vespucci.sliceEditor.features;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -258,7 +259,6 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		EObject bo = (EObject) getBusinessObjectForPictogramElement(picel);
 		
 
-       
 		//Debugintel TODO remove
 		System.out.println("Ensemble Name: " + ens.getName());
 		System.out.println("Equal: " + (Graphiti.getLinkService().getPictogramElements(dia,
@@ -272,24 +272,23 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		}
 		if(!(checkChildrenOccurences(bo, dia, ens).size() <= 0)){
 			//TODO MARKER CALL #2 HERE
-			System.out.println("MARKER RAUSHAUEN! Kinderparasiten");
+			System.out.println("Child detected.");
 		}		
 	}
 	
 	
-	private List<Ensemble> checkChildrenOccurences(EObject pe, Diagram dia, Ensemble ens){
+	private Set<Ensemble> checkChildrenOccurences(EObject pe, Diagram dia, Ensemble ens){
 		EList <Ensemble> childrenList =  ens.getChildren();
-		List <Ensemble> infringingEnsembles = new ArrayList<Ensemble>();
+		Set <Ensemble> infringingEnsembles = new HashSet<Ensemble>();
 		
 		
 		for (Ensemble enmble : childrenList){
-			System.out.println("Überprüfe für Kind: " + enmble.getName());
+			System.out.println("Check for child: " + enmble.getName());
 			 if(Graphiti.getLinkService().getPictogramElements(dia, enmble).size() > 0){
 				 infringingEnsembles.add(enmble);
-				 System.out.println("CHILD ADDED");
+				 System.out.println("Child added");
 			 }
-		}
-		
+		}	
 
 		return infringingEnsembles;
 	}

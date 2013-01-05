@@ -60,7 +60,7 @@ public class RenameHandler extends AbstractHandler {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * Launches a wizard(see default eclipse behaviour) to rename the first
+	 * Launches a wizard(see default eclipse behavior) to rename the first
 	 * selected element.
 	 * 
 	 * @see
@@ -92,7 +92,7 @@ public class RenameHandler extends AbstractHandler {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			protected void doExecute() {
 
-				// Check whether the userinput is diffrent from the given name
+				// Check whether the userinput is different from the given name
 				if (!selectetDomainObject.getName().equals(wiz.getName())) {
 					selectetDomainObject.setName(wiz.getName());
 				}
@@ -107,5 +107,4 @@ public class RenameHandler extends AbstractHandler {
 
 		return null;
 	}
-
 }
