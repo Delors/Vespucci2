@@ -93,7 +93,7 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 	 */
 	@Override
 	public boolean canAdd(IAddContext context) {
-		// check if user wants to add a Ensemble
+		// check if user wants to add an Ensemble
 		if (context.getNewObject() instanceof Ensemble) {
 			// check if user wants to add to a diagram
 			if (context.getTargetContainer() instanceof Diagram) {
