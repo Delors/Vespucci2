@@ -73,7 +73,7 @@ public class DeleteHandler extends AbstractHandler {
 		final TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
 
-		// Get first element of the current selection to rename
+		// Get first element of the current selection to delete
 		final Ensemble selectetDomainObject = (Ensemble) currentSelection
 				.getFirstElement();
 
