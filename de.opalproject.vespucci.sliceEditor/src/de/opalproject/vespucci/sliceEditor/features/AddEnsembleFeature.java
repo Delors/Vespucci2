@@ -91,7 +91,14 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		if (context.getNewObject() instanceof Ensemble) {
 			// check if user wants to add to a diagram
 			if (context.getTargetContainer() instanceof Diagram) {
-				return true;
+				// check if the pictogram element is already existing
+				if (Graphiti
+						.getLinkService()
+						.getPictogramElements(
+								(Diagram) context.getTargetContainer(),
+								(Ensemble) context.getNewObject()).size() == 0) {
+					return true;
+				}
 			}
 		}
 		return false;
@@ -110,12 +117,6 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 	public PictogramElement add(IAddContext context) {
 		Ensemble addedEnsemble = (Ensemble) context.getNewObject();
 		Diagram targetDiagram = (Diagram) context.getTargetContainer();
-
-		// checks if theres already an identical pictogram element
-		if (Graphiti.getLinkService()
-				.getPictogramElements(targetDiagram, addedEnsemble).size() > 0) {
-			return null;
-		}
 
 		// sets the Layout - normal or empty ensemble
 		IColorConstant Ensemble_TEXT_FOREGROUND;
@@ -249,49 +250,43 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 	 * @param ens
 	 * @param dia
 	 */
-	// In Listener auslagern?!
-	// TODO Marker für Problemview einbinden
+	// TODO Move into a listener?
 	private void checkForRelatives(PictogramElement picel, Ensemble ens,
 			Diagram dia) {
-
-		EObject bo = (EObject) getBusinessObjectForPictogramElement(picel);
-		//
-		// // Debugintel TODO remove
-		// System.out.println("Ensemble Name: " + ens.getName());
-		// System.out.println("Equal: "
-		// + (Graphiti.getLinkService().getPictogramElements(dia, bo)
-		// .size() / 3 - 1));
-		// if ((Graphiti.getLinkService().getPictogramElements(dia, bo).size() /
-		// 3 - 1) > 0) {
-		// System.out.println("Ensemble is already there");
-		// }
-		List childrenOccurances = checkChildrenOccurences(dia, ens);
-		if (!(childrenOccurances.size() <= 0)) {
-			try {
-				// retrieve URI
-				URI uri = EcoreUtil.getURI(bo);
-				uri = uri.trimFragment();
-				// remove "platform:..." from uri
-				if (uri.isPlatform()) {
-					uri = URI.createURI(uri.toPlatformString(true));
-				}
-				IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace()
-						.getRoot();
-
-				// try to get project from whole uri resource
-				IResource resource = workspaceRoot.findMember(uri.toString());
-
-				// create marker
-				IMarker marker = resource.createMarker(IMarker.PROBLEM);
-				marker.setAttribute(IMarker.MESSAGE, "Slice is invalid "
-						+ childrenOccurances.get(0).toString()
-						+ " is a descendant of  " + ens.toString());
-				marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		List<Ensemble> childrenOccurances = checkChildrenOccurences(dia, ens);
+		if (childrenOccurances.size() > 0) {
+			generateMarker(picel, ens, childrenOccurances.get(0));
 			System.out.println("Child detected.");
+		}
+	}
+
+	private void generateMarker(PictogramElement picel, Ensemble ensA,
+			Ensemble ensB) {
+		EObject bo = (EObject) getBusinessObjectForPictogramElement(picel);
+
+		try {
+			// retrieve URI
+			URI uri = EcoreUtil.getURI(bo);
+			uri = uri.trimFragment();
+			// remove "platform:..." from uri
+			if (uri.isPlatform()) {
+				uri = URI.createURI(uri.toPlatformString(true));
+			}
+			IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace()
+					.getRoot();
+
+			// try to get project from whole uri resource
+			IResource resource = workspaceRoot.findMember(uri.toString());
+
+			// create marker
+			IMarker marker = resource.createMarker(IMarker.PROBLEM);
+			marker.setAttribute(IMarker.MESSAGE,
+					"Slice is invalid " + ensB.toString()
+							+ " is a descendant of  " + ensA.toString());
+			marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
