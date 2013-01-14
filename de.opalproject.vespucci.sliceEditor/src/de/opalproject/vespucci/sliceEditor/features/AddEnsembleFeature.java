@@ -34,21 +34,16 @@
 package de.opalproject.vespucci.sliceEditor.features;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
-import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.impl.AbstractAddShapeFeature;
 import org.eclipse.graphiti.mm.algorithms.Image;
 import org.eclipse.graphiti.mm.algorithms.MultiText;
@@ -59,7 +54,6 @@ import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
-import org.eclipse.graphiti.mm.pictograms.PictogramLink;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
@@ -116,6 +110,12 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 	public PictogramElement add(IAddContext context) {
 		Ensemble addedEnsemble = (Ensemble) context.getNewObject();
 		Diagram targetDiagram = (Diagram) context.getTargetContainer();
+
+		// checks if theres already an identical pictogram element
+		if (Graphiti.getLinkService()
+				.getPictogramElements(targetDiagram, addedEnsemble).size() > 0) {
+			return null;
+		}
 
 		// sets the Layout - normal or empty ensemble
 		IColorConstant Ensemble_TEXT_FOREGROUND;
@@ -238,6 +238,7 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		if (!(addedEnsemble.getName() == "Empty Ensemble")) {
 			checkForRelatives(containerShape, addedEnsemble, targetDiagram);
 		}
+
 		return containerShape;
 	}
 
@@ -254,46 +255,68 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 			Diagram dia) {
 
 		EObject bo = (EObject) getBusinessObjectForPictogramElement(picel);
+		//
+		// // Debugintel TODO remove
+		// System.out.println("Ensemble Name: " + ens.getName());
+		// System.out.println("Equal: "
+		// + (Graphiti.getLinkService().getPictogramElements(dia, bo)
+		// .size() / 3 - 1));
+		// if ((Graphiti.getLinkService().getPictogramElements(dia, bo).size() /
+		// 3 - 1) > 0) {
+		// System.out.println("Ensemble is already there");
+		// }
+		List childrenOccurances = checkChildrenOccurences(dia, ens);
+		if (!(childrenOccurances.size() <= 0)) {
+			try {
+				// retrieve URI
+				URI uri = EcoreUtil.getURI(bo);
+				uri = uri.trimFragment();
+				// remove "platform:..." from uri
+				if (uri.isPlatform()) {
+					uri = URI.createURI(uri.toPlatformString(true));
+				}
+				IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace()
+						.getRoot();
 
-		// Debugintel TODO remove
-		System.out.println("Ensemble Name: " + ens.getName());
-		System.out.println("Equal: "
-				+ (Graphiti.getLinkService().getPictogramElements(dia, bo)
-						.size() / 3 - 1));
+				// try to get project from whole uri resource
+				IResource resource = workspaceRoot.findMember(uri.toString());
 
-		if ((Graphiti.getLinkService().getPictogramElements(dia, bo).size() / 3 - 1) > 0) {
-			// TODO MARKER CALL HERE
-			System.out.println("Ensemble is already there");
-		}
-		if (!(checkChildrenOccurences(bo, dia, ens).size() <= 0)) {
-			// TODO MARKER CALL #2 HERE
+				// create marker
+				IMarker marker = resource.createMarker(IMarker.PROBLEM);
+				marker.setAttribute(IMarker.MESSAGE, "Slice is invalid "
+						+ childrenOccurances.get(0).toString()
+						+ " is a descendant of  " + ens.toString());
+				marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			System.out.println("Child detected.");
 		}
 	}
 
-	private Set<Ensemble> checkChildrenOccurences(EObject pe, Diagram dia,
-			Ensemble ens) {
+	private List<Ensemble> checkChildrenOccurences(Diagram dia, Ensemble ens) {
 
 		List<Ensemble> workingQueue = ens.getChildren();
 		List<Ensemble> childrenList = new ArrayList<Ensemble>();
-		
 
-		
-		 // Looking at this ugly loop a method like getAllChildren() might be prettier.
+		// Looking at this ugly loop a method like getAllChildren() might be
+		// prettier.
 		childrenList.addAll(workingQueue);
 		do {
 			List<Ensemble> newChildren = new ArrayList<Ensemble>();
 			for (Ensemble child : workingQueue) {
-					newChildren.addAll(child.getChildren());
+				newChildren.addAll(child.getChildren());
 			}
 			childrenList.addAll(newChildren);
 			workingQueue = newChildren;
 		} while (workingQueue.size() > 0);
 
-		Set<Ensemble> infringingEnsembles = new HashSet<Ensemble>();
+		List<Ensemble> infringingEnsembles = new ArrayList<Ensemble>();
 
+		// check against the list of children whether theyre already in the
+		// slice model
 		for (Ensemble enmble : childrenList) {
-			System.out.println("Check for child: " + enmble.getName());
 			if (Graphiti.getLinkService().getPictogramElements(dia, enmble)
 					.size() > 0) {
 				infringingEnsembles.add(enmble);
