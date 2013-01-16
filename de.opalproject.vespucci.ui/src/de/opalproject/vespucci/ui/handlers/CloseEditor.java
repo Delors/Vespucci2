@@ -33,8 +33,6 @@
  */
 package de.opalproject.vespucci.ui.handlers;
 
-import java.util.List;
-
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -59,7 +57,6 @@ public class CloseEditor extends AbstractHandler {
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		System.out.println("close called: " + event.toString());
 
 		// Get the view
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
@@ -69,31 +66,20 @@ public class CloseEditor extends AbstractHandler {
 		IStructuredSelection currentSelection = (IStructuredSelection) HandlerUtil
 				.getCurrentSelection(event);
 
-		System.out
-				.println("Current Selection : " + currentSelection.toString());
-
-		@SuppressWarnings("unchecked")
-		List<Ensemble> ensembleList = currentSelection.toList();
+		// Check if currentSelection is an Ensemble
+		if (!(currentSelection.getFirstElement() instanceof Ensemble)) {
+			return null;
+		}
 
 		// check whether there is a corresponding open editor and close it.
-		Ensemble current = ensembleList.get(0);
+		Ensemble current = (Ensemble) currentSelection.getFirstElement();
 		if (current != null) {
-			IEditorPart openEditor = (page.findEditor(new EnsembleEditorInput(
-					current)));
+			IEditorPart openEditor = page.findEditor(new EnsembleEditorInput(
+					current));
 			if (openEditor != null) {
 				page.closeEditor(openEditor, false);
 			}
 		}
-
-		// for (Ensemble current : ensembleList) {
-		// if(current != null){
-		// IEditorPart openEditor = (page.findEditor(new EditorInput(current)));
-		// if (openEditor!=null){
-		// System.out.println("OpenEditor: " + openEditor.getTitle());
-		// page.closeEditor(openEditor, false);
-		// }
-		// }
-		// }
 
 		return null;
 	}

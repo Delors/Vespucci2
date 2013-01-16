@@ -73,7 +73,7 @@ public class EnsembleEditorInput implements IEditorInput {
 
 	@Override
 	public String getToolTipText() {
-		return "Displays a person";
+		return "Displays an ensemble";
 	}
 
 	@SuppressWarnings("rawtypes")
