@@ -68,14 +68,14 @@ public class VespucciContentProvider extends
 		super(domain, ProjectAdapterFactoryProvider.getAdapterFactory());
 		ResourcesPlugin.getWorkspace().addResourceChangeListener(this,
 				IResourceChangeEvent.POST_CHANGE);
-
 	}
 
 	@Override
 	public boolean hasChildren(Object object) {
 		if (object instanceof IFile)
 			return true;
-		return super.hasChildren(object);
+		boolean r = super.hasChildren(object);
+		return r;
 	}
 
 	@Override
@@ -85,7 +85,8 @@ public class VespucciContentProvider extends
 			URI uri = URI.createPlatformResourceURI(path, true);
 			object = resourceSet.getResource(uri, true);
 		}
-		return super.getChildren(object);
+		Object[] r = super.getChildren(object);
+		return r;
 	}
 
 	@Override

@@ -3,7 +3,7 @@
  * Copyright (c) 2012
  * Software Engineering
  * Department of Computer Science
- * Technische Universitiät Darmstadt
+ * Technische Universität Darmstadt
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -108,6 +108,21 @@ public class DatamodelAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseSliceRepository(SliceRepository object) {
+			return createSliceRepositoryAdapter();
+		}
+
+		@Override
+		public Adapter caseSlice(Slice object) {
+			return createSliceAdapter();
+		}
+
+		@Override
+		public Adapter caseEnsembleRepository(EnsembleRepository object) {
+			return createEnsembleRepositoryAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -154,6 +169,53 @@ public class DatamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '
+	 * {@link de.opalproject.vespucci.datamodel.EnsembleRepository
+	 * <em>Ensemble Repository</em>}'. <!-- begin-user-doc --> This default
+	 * implementation returns null so that we can easily ignore cases; it's
+	 * useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see de.opalproject.vespucci.datamodel.EnsembleRepository
+	 * @generated
+	 */
+	public Adapter createEnsembleRepositoryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '
+	 * {@link de.opalproject.vespucci.datamodel.SliceRepository
+	 * <em>Slice Repository</em>}'. <!-- begin-user-doc --> This default
+	 * implementation returns null so that we can easily ignore cases; it's
+	 * useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see de.opalproject.vespucci.datamodel.SliceRepository
+	 * @generated
+	 */
+	public Adapter createSliceRepositoryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '
+	 * {@link de.opalproject.vespucci.datamodel.Slice <em>Slice</em>}'. <!--
+	 * begin-user-doc --> This default implementation returns null so that we
+	 * can easily ignore cases; it's useful to ignore a case when inheritance
+	 * will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see de.opalproject.vespucci.datamodel.Slice
+	 * @generated
+	 */
+	public Adapter createSliceAdapter() {
 		return null;
 	}
 

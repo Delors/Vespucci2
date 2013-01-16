@@ -3,7 +3,7 @@
  * Copyright (c) 2012
  * Software Engineering
  * Department of Computer Science
- * Technische Universitiät Darmstadt
+ * Technische Universität Darmstadt
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,8 +55,8 @@ import org.eclipse.emf.ecore.EObject;
  * Children</em>}</li>
  * <li>{@link de.opalproject.vespucci.datamodel.Ensemble#getParent <em>Parent
  * </em>}</li>
- * <li>{@link de.opalproject.vespucci.datamodel.Ensemble#getConstraints <em>
- * Constraints</em>}</li>
+ * <li>{@link de.opalproject.vespucci.datamodel.Ensemble#getContainer <em>
+ * Container</em>}</li>
  * </ul>
  * </p>
  * 
@@ -205,18 +205,21 @@ public interface Ensemble extends EObject {
 	EList<Ensemble> getChildren();
 
 	/**
-	 * Returns the value of the '<em><b>Parent</b></em>' reference. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Parent</b></em>' container reference. It
+	 * is bidirectional and its opposite is '
+	 * {@link de.opalproject.vespucci.datamodel.Ensemble#getChildren
+	 * <em>Children</em>}'. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Parent</em>' reference isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Parent</em>' container reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Parent</em>' reference.
+	 * @return the value of the '<em>Parent</em>' container reference.
 	 * @see #setParent(Ensemble)
 	 * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getEnsemble_Parent()
-	 * @model
+	 * @see de.opalproject.vespucci.datamodel.Ensemble#getChildren
+	 * @model opposite="children" transient="false"
 	 * @generated
 	 */
 	Ensemble getParent();
@@ -224,33 +227,47 @@ public interface Ensemble extends EObject {
 	/**
 	 * Sets the value of the '
 	 * {@link de.opalproject.vespucci.datamodel.Ensemble#getParent
-	 * <em>Parent</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * <em>Parent</em>}' container reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Parent</em>' reference.
+	 *            the new value of the '<em>Parent</em>' container reference.
 	 * @see #getParent()
 	 * @generated
 	 */
 	void setParent(Ensemble value);
 
 	/**
-	 * Returns the value of the '<em><b>Constraints</b></em>' containment
-	 * reference list. The list contents are of type
-	 * {@link de.opalproject.vespucci.datamodel.Constraint}. <!-- begin-user-doc
-	 * -->
+	 * Returns the value of the '<em><b>Container</b></em>' container reference.
+	 * It is bidirectional and its opposite is '
+	 * {@link de.opalproject.vespucci.datamodel.EnsembleRepository#getContains
+	 * <em>Contains</em>}'. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Constraints</em>' containment reference list
-	 * isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Container</em>' container reference isn't
+	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Constraints</em>' containment reference
-	 *         list.
-	 * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getEnsemble_Constraints()
-	 * @model containment="true"
+	 * @return the value of the '<em>Container</em>' container reference.
+	 * @see #setContainer(EnsembleRepository)
+	 * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getEnsemble_Container()
+	 * @see de.opalproject.vespucci.datamodel.EnsembleRepository#getContains
+	 * @model opposite="contains" transient="false"
 	 * @generated
 	 */
-	EList<Constraint> getConstraints();
+	EnsembleRepository getContainer();
+
+	/**
+	 * Sets the value of the '
+	 * {@link de.opalproject.vespucci.datamodel.Ensemble#getContainer
+	 * <em>Container</em>}' container reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Container</em>' container reference.
+	 * @see #getContainer()
+	 * @generated
+	 */
+	void setContainer(EnsembleRepository value);
 
 } // Ensemble

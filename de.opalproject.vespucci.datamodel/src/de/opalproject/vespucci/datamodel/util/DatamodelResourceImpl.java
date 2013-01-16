@@ -3,7 +3,7 @@
  * Copyright (c) 2012
  * Software Engineering
  * Department of Computer Science
- * Technische Universitiät Darmstadt
+ * Technische Universität Darmstadt
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,7 +35,7 @@ package de.opalproject.vespucci.datamodel.util;
 
 import org.eclipse.emf.common.util.URI;
 
-import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 /**
  * <!-- begin-user-doc --> The <b>Resource </b> associated with the package.
@@ -44,7 +44,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
  * @see de.opalproject.vespucci.datamodel.util.DatamodelResourceFactoryImpl
  * @generated
  */
-public class DatamodelResourceImpl extends XMLResourceImpl {
+public class DatamodelResourceImpl extends XMIResourceImpl {
 	/**
 	 * Creates an instance of the resource. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -55,6 +55,11 @@ public class DatamodelResourceImpl extends XMLResourceImpl {
 	 */
 	public DatamodelResourceImpl(URI uri) {
 		super(uri);
+	}
+
+	@Override
+	protected boolean useUUIDs() {
+		return true;
 	}
 
 } // DatamodelResourceImpl

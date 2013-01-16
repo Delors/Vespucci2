@@ -9,7 +9,6 @@ import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.ConstraintType;
 import de.opalproject.vespucci.datamodel.DatamodelFactory;
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
-import de.opalproject.vespucci.datamodel.DependencyKind;
 import de.opalproject.vespucci.datamodel.impl.ConstraintImpl;
 
 import junit.framework.TestCase;
@@ -105,25 +104,21 @@ public class ConstraintTest extends TestCase {
 
 	@Test
 	public void testDefaultDependencyKind() {
-		Assert.assertEquals(DependencyKind.ALL, getFixture()
-				.getDependencyKind());
+		Assert.assertEquals("ALL", getFixture().getDependencyKind());
 	}
 
 	@Test
 	public void testSetDependencyKind() {
-		getFixture().setDependencyKind(DependencyKind.CALLS);
-		Assert.assertEquals(DependencyKind.CALLS, getFixture()
-				.getDependencyKind());
+		getFixture().setDependencyKind("ALL");
+		Assert.assertEquals("ALL", getFixture().getDependencyKind());
 	}
 
 	@Test
 	public void testResetDependencyKind() {
-		getFixture().setDependencyKind(DependencyKind.CALLS);
-		Assert.assertEquals(DependencyKind.CALLS, getFixture()
-				.getDependencyKind());
+		getFixture().setDependencyKind("ALL");
+		Assert.assertEquals("ALL", getFixture().getDependencyKind());
 		getFixture().setDependencyKind(null);
-		Assert.assertEquals(DependencyKind.ALL, getFixture()
-				.getDependencyKind());
+		Assert.assertEquals(null, getFixture().getDependencyKind());
 	}
 
 	@Test
@@ -158,7 +153,7 @@ public class ConstraintTest extends TestCase {
 	public void testReflectionsGet() {
 		ConstraintImpl localFixture = (ConstraintImpl) getFixture();
 
-		Assert.assertEquals(DependencyKind.ALL, localFixture.eGet(
+		Assert.assertEquals("ALL", localFixture.eGet(
 				DatamodelPackage.CONSTRAINT__DEPENDENCY_KIND, false, false));
 		Assert.assertEquals(ConstraintType.NOT_ALLOWED, localFixture.eGet(
 				DatamodelPackage.CONSTRAINT__CONSTRAINT_TYPE, false, false));
@@ -168,10 +163,8 @@ public class ConstraintTest extends TestCase {
 	public void testReflectionsSet() {
 		ConstraintImpl localFixture = (ConstraintImpl) getFixture();
 
-		localFixture.eSet(DatamodelPackage.CONSTRAINT__DEPENDENCY_KIND,
-				DependencyKind.CALLS);
-		Assert.assertEquals(DependencyKind.CALLS, getFixture()
-				.getDependencyKind());
+		localFixture.eSet(DatamodelPackage.CONSTRAINT__DEPENDENCY_KIND, "ALL");
+		Assert.assertEquals("ALL", getFixture().getDependencyKind());
 
 		localFixture.eSet(DatamodelPackage.CONSTRAINT__CONSTRAINT_TYPE,
 				ConstraintType.GLOBAL_INCOMING);
@@ -183,14 +176,11 @@ public class ConstraintTest extends TestCase {
 	public void testReflectionsUnSet() {
 		ConstraintImpl localFixture = (ConstraintImpl) getFixture();
 
-		localFixture.eSet(DatamodelPackage.CONSTRAINT__DEPENDENCY_KIND,
-				DependencyKind.CALLS);
-		Assert.assertEquals(DependencyKind.CALLS, getFixture()
-				.getDependencyKind());
+		localFixture.eSet(DatamodelPackage.CONSTRAINT__DEPENDENCY_KIND, "ALL");
+		Assert.assertEquals("ALL", getFixture().getDependencyKind());
 
 		localFixture.eUnset(DatamodelPackage.CONSTRAINT__DEPENDENCY_KIND);
-		Assert.assertEquals(DependencyKind.ALL, getFixture()
-				.getDependencyKind());
+		Assert.assertEquals("ALL", getFixture().getDependencyKind());
 
 		localFixture.eSet(DatamodelPackage.CONSTRAINT__CONSTRAINT_TYPE,
 				ConstraintType.GLOBAL_INCOMING);
@@ -207,7 +197,7 @@ public class ConstraintTest extends TestCase {
 
 		Assert.assertFalse(localFixture
 				.eIsSet(DatamodelPackage.CONSTRAINT__DEPENDENCY_KIND));
-		getFixture().setDependencyKind(DependencyKind.ACCESS);
+		getFixture().setDependencyKind("CALL");
 		Assert.assertTrue(localFixture
 				.eIsSet(DatamodelPackage.CONSTRAINT__DEPENDENCY_KIND));
 

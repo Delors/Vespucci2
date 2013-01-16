@@ -3,7 +3,7 @@
  * Copyright (c) 2012
  * Software Engineering
  * Department of Computer Science
- * Technische Universitiät Darmstadt
+ * Technische Universität Darmstadt
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -158,6 +158,82 @@ public class DatamodelItemProviderAdapterFactory extends
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all
+	 * {@link de.opalproject.vespucci.datamodel.SliceRepository} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected SliceRepositoryItemProvider sliceRepositoryItemProvider;
+
+	/**
+	 * This creates an adapter for a
+	 * {@link de.opalproject.vespucci.datamodel.SliceRepository}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createSliceRepositoryAdapter() {
+		if (sliceRepositoryItemProvider == null) {
+			sliceRepositoryItemProvider = new SliceRepositoryItemProvider(this);
+		}
+
+		return sliceRepositoryItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all
+	 * {@link de.opalproject.vespucci.datamodel.Slice} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected SliceItemProvider sliceItemProvider;
+
+	/**
+	 * This creates an adapter for a
+	 * {@link de.opalproject.vespucci.datamodel.Slice}. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createSliceAdapter() {
+		if (sliceItemProvider == null) {
+			sliceItemProvider = new SliceItemProvider(this);
+		}
+
+		return sliceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all
+	 * {@link de.opalproject.vespucci.datamodel.EnsembleRepository} instances.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected EnsembleRepositoryItemProvider ensembleRepositoryItemProvider;
+
+	/**
+	 * This creates an adapter for a
+	 * {@link de.opalproject.vespucci.datamodel.EnsembleRepository}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createEnsembleRepositoryAdapter() {
+		if (ensembleRepositoryItemProvider == null) {
+			ensembleRepositoryItemProvider = new EnsembleRepositoryItemProvider(
+					this);
+		}
+
+		return ensembleRepositoryItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -262,6 +338,12 @@ public class DatamodelItemProviderAdapterFactory extends
 			ensembleItemProvider.dispose();
 		if (constraintItemProvider != null)
 			constraintItemProvider.dispose();
+		if (sliceRepositoryItemProvider != null)
+			sliceRepositoryItemProvider.dispose();
+		if (sliceItemProvider != null)
+			sliceItemProvider.dispose();
+		if (ensembleRepositoryItemProvider != null)
+			ensembleRepositoryItemProvider.dispose();
 	}
 
 }

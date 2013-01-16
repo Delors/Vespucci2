@@ -15,7 +15,7 @@
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
       <parser
-            type="datamodel"
+            type="vespucci"
             class="de.opalproject.vespucci.datamodel.util.DatamodelResourceFactoryImpl"/>
    </extension>
 

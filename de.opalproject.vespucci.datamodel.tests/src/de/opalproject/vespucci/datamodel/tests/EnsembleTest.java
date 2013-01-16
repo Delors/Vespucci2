@@ -249,22 +249,6 @@ public class EnsembleTest extends TestCase {
 	}
 
 	@Test
-	public void testConstraintsNotNull() {
-		Assert.assertNotNull(getFixture().getConstraints());
-	}
-
-	@Test
-	public void testConstraintsEmpty() {
-		Assert.assertEquals(0, getFixture().getConstraints().size());
-	}
-
-	@Test
-	public void testConstraintsSameAfterInit() {
-		Assert.assertSame(getFixture().getConstraints(), getFixture()
-				.getConstraints());
-	}
-
-	@Test
 	public void testReflectionsGet() {
 		String name = "name";
 		String description = "description";
@@ -290,8 +274,6 @@ public class EnsembleTest extends TestCase {
 				DatamodelPackage.ENSEMBLE__CHILDREN, false, false));
 		Assert.assertNull(localFixture.eGet(DatamodelPackage.ENSEMBLE__PARENT,
 				false, false));
-		Assert.assertNotNull(localFixture.eGet(
-				DatamodelPackage.ENSEMBLE__CONSTRAINTS, false, false));
 	}
 
 	@Test
@@ -318,7 +300,6 @@ public class EnsembleTest extends TestCase {
 		localFixture.eSet(DatamodelPackage.ENSEMBLE__DERIVED, derived);
 		localFixture.eSet(DatamodelPackage.ENSEMBLE__QUERY, query);
 		localFixture.eSet(DatamodelPackage.ENSEMBLE__CHILDREN, children);
-		localFixture.eSet(DatamodelPackage.ENSEMBLE__CONSTRAINTS, constraints);
 		localFixture.eSet(DatamodelPackage.ENSEMBLE__PARENT, parent);
 
 		getFixture().setDerived(derived);
@@ -332,7 +313,6 @@ public class EnsembleTest extends TestCase {
 		Assert.assertEquals(query, getFixture().getQuery());
 		Assert.assertEquals(parent, getFixture().getParent());
 		Assert.assertTrue(getFixture().getChildren().contains(child));
-		Assert.assertTrue(getFixture().getConstraints().contains(constraint));
 
 	}
 
@@ -346,7 +326,6 @@ public class EnsembleTest extends TestCase {
 		localFixture.eUnset(DatamodelPackage.ENSEMBLE__DERIVED);
 		localFixture.eUnset(DatamodelPackage.ENSEMBLE__QUERY);
 		localFixture.eUnset(DatamodelPackage.ENSEMBLE__CHILDREN);
-		localFixture.eUnset(DatamodelPackage.ENSEMBLE__CONSTRAINTS);
 		localFixture.eUnset(DatamodelPackage.ENSEMBLE__PARENT);
 
 		Assert.assertNull(getFixture().getName());
@@ -355,8 +334,6 @@ public class EnsembleTest extends TestCase {
 		Assert.assertNull(getFixture().getQuery());
 		Assert.assertNull(getFixture().getParent());
 		Assert.assertNotNull(getFixture().getChildren());
-		Assert.assertNotNull(getFixture().getConstraints());
-
 	}
 
 	@Test
@@ -393,16 +370,6 @@ public class EnsembleTest extends TestCase {
 		getFixture().getChildren().add(child);
 		Assert.assertTrue(localFixture
 				.eIsSet(DatamodelPackage.ENSEMBLE__CHILDREN));
-
-		Constraint constraint = DatamodelFactory.eINSTANCE.createConstraint();
-		Assert.assertFalse(localFixture
-				.eIsSet(DatamodelPackage.ENSEMBLE__CONSTRAINTS));
-		getFixture().getConstraints();
-		Assert.assertFalse(localFixture
-				.eIsSet(DatamodelPackage.ENSEMBLE__CONSTRAINTS));
-		getFixture().getConstraints().add(constraint);
-		Assert.assertTrue(localFixture
-				.eIsSet(DatamodelPackage.ENSEMBLE__CONSTRAINTS));
 
 		Ensemble parent = DatamodelFactory.eINSTANCE.createEnsemble();
 		Assert.assertFalse(localFixture

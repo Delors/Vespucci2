@@ -39,7 +39,10 @@ import java.util.Collections;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -47,7 +50,9 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 import de.opalproject.vespucci.datamodel.DatamodelFactory;
+import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.datamodel.EnsembleRepository;
 import de.opalproject.vespucci.ui.wizards.NewEnsembleWizard;
 
 /**
@@ -72,32 +77,35 @@ public class NewEnsembleHandler extends AbstractHandler {
 
 		if (wiz.getName() != null) {
 
-			final TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 					.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
-			final Ensemble selectetDomainObject = (Ensemble) currentSelection
-					.getFirstElement();
-			final Resource r = selectetDomainObject.eResource();
+			EObject owner = (EObject) currentSelection.getFirstElement();
+			Object feature = null;
+			Resource r = owner.eResource();
 
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
-				protected void doExecute() {
-					DatamodelFactory factory = DatamodelFactory.eINSTANCE;
+			if (owner instanceof Ensemble) {
+				feature = DatamodelPackage.Literals.ENSEMBLE__CHILDREN;
+			} else if (owner instanceof EnsembleRepository) {
+				feature = DatamodelPackage.Literals.ENSEMBLE_REPOSITORY__CONTAINS;
+			}
 
-					Ensemble ens = factory.createEnsemble();
+			DatamodelFactory factory = DatamodelFactory.eINSTANCE;
 
-					// selectetDomainObject.getChildren().add(ens);
-					ens.setParent(selectetDomainObject);
-					ens.setName(wiz.getName());
-					ens.setDescription(wiz.getDescription());
-					ens.setDerived(false);
-					ens.setQuery(wiz.getQuery());
+			Ensemble ens = factory.createEnsemble();
+			ens.setName(wiz.getName());
+			ens.setDescription(wiz.getDescription());
+			ens.setDerived(false);
+			ens.setQuery(wiz.getQuery());
 
-					try {
-						r.save(Collections.EMPTY_MAP);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-			});
+			Command add = AddCommand.create(domain, owner, feature, ens);
+
+			domain.getCommandStack().execute(add);
+
+			try {
+				r.save(Collections.EMPTY_MAP);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
 		return null;

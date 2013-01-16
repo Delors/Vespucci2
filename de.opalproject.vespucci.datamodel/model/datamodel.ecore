@@ -11,13 +11,15 @@
         eType="#//Ensemble" containment="true" resolveProxies="false" eOpposite="#//Ensemble/parent"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//Ensemble"
         eOpposite="#//Ensemble/children"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
-        eType="#//Constraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//EnsembleRepository"
+        eOpposite="#//EnsembleRepository/contains"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Constraint">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="constraintType" eType="#//ConstraintType"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dependencyKind" eType="#//DependencyKind"
-        defaultValueLiteral="0"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dependencyKind" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="ALL"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Ensemble"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//Ensemble"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ConstraintType">
     <eLiterals name="NotAllowed"/>
@@ -27,27 +29,21 @@
     <eLiterals name="LocalOutgoing" value="4"/>
     <eLiterals name="Expected" value="5"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="DependencyKind">
-    <eLiterals name="all"/>
-    <eLiterals name="subtype" value="1"/>
-    <eLiterals name="extend" value="2"/>
-    <eLiterals name="implement" value="3"/>
-    <eLiterals name="calls" value="4"/>
-    <eLiterals name="invoke_virtual" value="5"/>
-    <eLiterals name="invoke_special" value="6"/>
-    <eLiterals name="invoke_interface" value="7"/>
-    <eLiterals name="invoke_static" value="8"/>
-    <eLiterals name="access" value="9"/>
-    <eLiterals name="write_field" value="10"/>
-    <eLiterals name="write_static_field" value="11"/>
-    <eLiterals name="read_field" value="12"/>
-    <eLiterals name="read_static_field" value="13"/>
-    <eLiterals name="signature" value="14"/>
-    <eLiterals name="parameter" value="15"/>
-    <eLiterals name="return_type" value="16"/>
-    <eLiterals name="class_cast" value="17"/>
-    <eLiterals name="create" value="18"/>
-    <eLiterals name="field_type" value="19"/>
-    <eLiterals name="throws" value="20"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SliceRepository">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contains" upperBound="-1"
+        eType="#//Slice" containment="true">
+      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+        <details key="namespace" value=""/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Slice">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
+        eType="#//Constraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EnsembleRepository">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contains" upperBound="-1"
+        eType="#//Ensemble" containment="true" eOpposite="#//Ensemble/container"/>
   </eClassifiers>
 </ecore:EPackage>

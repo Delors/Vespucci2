@@ -3,7 +3,7 @@
  * Copyright (c) 2012
  * Software Engineering
  * Department of Computer Science
- * Technische Universitiät Darmstadt
+ * Technische Universität Darmstadt
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -93,6 +93,7 @@ public class EnsembleItemProvider extends ItemProviderAdapter implements
 			addDerivedPropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
 			addQueryPropertyDescriptor(object);
+			addChildrenPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -173,6 +174,24 @@ public class EnsembleItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
+	 * This adds a property descriptor for the Children feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addChildrenPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Ensemble_children_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Ensemble_children_feature", "_UI_Ensemble_type"),
+				DatamodelPackage.Literals.ENSEMBLE__CHILDREN, true, false,
+				true, null, null, null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to
 	 * deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand},
@@ -188,8 +207,6 @@ public class EnsembleItemProvider extends ItemProviderAdapter implements
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DatamodelPackage.Literals.ENSEMBLE__CHILDREN);
-			childrenFeatures
-					.add(DatamodelPackage.Literals.ENSEMBLE__CONSTRAINTS);
 		}
 		return childrenFeatures;
 	}
@@ -254,7 +271,6 @@ public class EnsembleItemProvider extends ItemProviderAdapter implements
 					notification.getNotifier(), false, true));
 			return;
 		case DatamodelPackage.ENSEMBLE__CHILDREN:
-		case DatamodelPackage.ENSEMBLE__CONSTRAINTS:
 			fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), true, false));
 			return;
@@ -277,10 +293,6 @@ public class EnsembleItemProvider extends ItemProviderAdapter implements
 		newChildDescriptors.add(createChildParameter(
 				DatamodelPackage.Literals.ENSEMBLE__CHILDREN,
 				DatamodelFactory.eINSTANCE.createEnsemble()));
-
-		newChildDescriptors.add(createChildParameter(
-				DatamodelPackage.Literals.ENSEMBLE__CONSTRAINTS,
-				DatamodelFactory.eINSTANCE.createConstraint()));
 	}
 
 	/**

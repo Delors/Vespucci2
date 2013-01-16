@@ -52,20 +52,22 @@
                  <test 
 						forcePluginActivation="true" 
 						property="org.eclipse.core.resources.extension" 
-						value="xmi"/> 
+						value="vespucci"/> 
               </and>
               <instanceof value="de.opalproject.vespucci.datamodel.Ensemble" />
+              <instanceof value="de.opalproject.vespucci.datamodel.EnsembleRepository" />
             </or>
          </triggerPoints>
          <possibleChildren>
             <or>
                <instanceof value="org.eclipse.emf.ecore.resource.Resource"/>
                <instanceof value="de.opalproject.vespucci.datamodel.Ensemble" />
+               <instanceof value="de.opalproject.vespucci.datamodel.EnsembleRepository" />
             </or>
          </possibleChildren>
       </navigatorContent>
   </extension>
-
+  
   <!-- commands -->
   <extension
         point="org.eclipse.ui.commands">

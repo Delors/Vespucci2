@@ -95,7 +95,7 @@ public class DatamodelExample {
 					.println("Enter a list of file paths or URIs that have content like this:");
 			try {
 				Resource resource = resourceSet.createResource(URI
-						.createURI("http:///My.datamodel"));
+						.createURI("http:///My.vespucci"));
 				Ensemble root = DatamodelFactory.eINSTANCE.createEnsemble();
 				resource.getContents().add(root);
 				resource.save(System.out, null);

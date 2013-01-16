@@ -1,17 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.opalproject.vespucci.datamodel/src" modelPluginID="de.opalproject.vespucci.datamodel"
-    modelName="Datamodel" importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0"
-    copyrightFields="false" language="">
+    redirection="" forceOverwrite="true" modelName="Datamodel" modelPluginClass=""
+    codeFormatting="true" commentFormatting="true" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="7.0" copyrightFields="false" language="">
   <foreignModel>datamodel.ecore</foreignModel>
-  <genPackages prefix="Datamodel" basePackage="de.opalproject.vespucci" resource="XML"
-      disposableProviderFactory="true" ecorePackage="datamodel.ecore#/">
-    <genDataTypes ecoreDataType="datamodel.ecore#//EnsembleData"/>
+  <genPackages prefix="Datamodel" basePackage="de.opalproject.vespucci" resource="XMI"
+      disposableProviderFactory="true" multipleEditorPages="false" fileExtensions="vespucci"
+      ecorePackage="datamodel.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="datamodel.ecore#//ConstraintType">
+      <genEnumLiterals ecoreEnumLiteral="datamodel.ecore#//ConstraintType/NotAllowed"/>
+      <genEnumLiterals ecoreEnumLiteral="datamodel.ecore#//ConstraintType/GlobalIncoming"/>
+      <genEnumLiterals ecoreEnumLiteral="datamodel.ecore#//ConstraintType/LocalIncoming"/>
+      <genEnumLiterals ecoreEnumLiteral="datamodel.ecore#//ConstraintType/GlobalOutgoing"/>
+      <genEnumLiterals ecoreEnumLiteral="datamodel.ecore#//ConstraintType/LocalOutgoing"/>
+      <genEnumLiterals ecoreEnumLiteral="datamodel.ecore#//ConstraintType/Expected"/>
+    </genEnums>
     <genClasses ecoreClass="datamodel.ecore#//Ensemble">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datamodel.ecore#//Ensemble/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datamodel.ecore#//Ensemble/derived"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datamodel.ecore#//Ensemble/description"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datamodel.ecore#//Ensemble/query"/>
+      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference datamodel.ecore#//Ensemble/children"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference datamodel.ecore#//Ensemble/parent"/>
+    </genClasses>
+    <genClasses ecoreClass="datamodel.ecore#//Constraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datamodel.ecore#//Constraint/constraintType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datamodel.ecore#//Constraint/dependencyKind"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference datamodel.ecore#//Constraint/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference datamodel.ecore#//Constraint/target"/>
+    </genClasses>
+    <genClasses ecoreClass="datamodel.ecore#//SliceRepository">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference datamodel.ecore#//SliceRepository/contains"/>
+    </genClasses>
+    <genClasses ecoreClass="datamodel.ecore#//Slice">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datamodel.ecore#//Slice/constraints"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datamodel.ecore#//Slice/name"/>
+    </genClasses>
+    <genClasses ecoreClass="datamodel.ecore#//EnsembleRepository">
+      <genFeatures children="true" createChild="true" propertyCategory="" propertySortChoices="true"
+          ecoreFeature="ecore:EReference datamodel.ecore#//EnsembleRepository/contains"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -40,8 +40,10 @@ import java.util.List;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -70,31 +72,41 @@ public class DeleteHandler extends AbstractHandler {
 		IStructuredSelection currentSelection = (IStructuredSelection) HandlerUtil
 				.getCurrentSelection(event);
 
-		final TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
-
-		// Get first element of the current selection to delete
-		final Ensemble selectetDomainObject = (Ensemble) currentSelection
-				.getFirstElement();
-
-		final Resource r = selectetDomainObject.eResource();
 
 		final List<Ensemble> ensembleList = currentSelection.toList();
 
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			protected void doExecute() {
+		for (Ensemble ensemble : ensembleList) {
+			Object feature = ensemble.eContainingFeature();
+			EObject owner = ensemble.eContainer();
+			Resource r = ensemble.eResource();
 
-				for (Ensemble ensemble : ensembleList) {
-					ensemble.setParent(null);
-				}
-
-				try {
-					r.save(Collections.EMPTY_MAP);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+			Command delete = RemoveCommand.create(domain, owner, feature,
+					ensemble);
+			domain.getCommandStack().execute(delete);
+			try {
+				r.save(Collections.EMPTY_MAP);
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-		});
+
+		}
+
+		// domain.getCommandStack().execute(new RecordingCommand(domain) {
+		// protected void doExecute() {
+		//
+		// for (Ensemble ensemble : ensembleList) {
+		// ensemble.setParent(null);
+		// }
+		//
+		// try {
+		// r.save(Collections.EMPTY_MAP);
+		// } catch (IOException e) {
+		// e.printStackTrace();
+		// }
+		// }
+		// });
 
 		return null;
 	}

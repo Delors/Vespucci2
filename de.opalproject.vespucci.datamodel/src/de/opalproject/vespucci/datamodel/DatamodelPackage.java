@@ -3,7 +3,7 @@
  * Copyright (c) 2012
  * Software Engineering
  * Department of Computer Science
- * Technische Universitiät Darmstadt
+ * Technische Universität Darmstadt
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,7 +36,6 @@ package de.opalproject.vespucci.datamodel;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -152,13 +151,13 @@ public interface DatamodelPackage extends EPackage {
 	int ENSEMBLE__PARENT = 5;
 
 	/**
-	 * The feature id for the '<em><b>Constraints</b></em>' containment
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Container</b></em>' container reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ENSEMBLE__CONSTRAINTS = 6;
+	int ENSEMBLE__CONTAINER = 6;
 
 	/**
 	 * The number of structural features of the '<em>Ensemble</em>' class. <!--
@@ -200,13 +199,129 @@ public interface DatamodelPackage extends EPackage {
 	int CONSTRAINT__DEPENDENCY_KIND = 1;
 
 	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__SOURCE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__TARGET = 3;
+
+	/**
 	 * The number of structural features of the '<em>Constraint</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_FEATURE_COUNT = 2;
+	int CONSTRAINT_FEATURE_COUNT = 4;
+
+	/**
+	 * The meta object id for the '
+	 * {@link de.opalproject.vespucci.datamodel.impl.EnsembleRepositoryImpl
+	 * <em>Ensemble Repository</em>}' class. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see de.opalproject.vespucci.datamodel.impl.EnsembleRepositoryImpl
+	 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getEnsembleRepository()
+	 * @generated
+	 */
+	int ENSEMBLE_REPOSITORY = 4;
+
+	/**
+	 * The meta object id for the '
+	 * {@link de.opalproject.vespucci.datamodel.impl.SliceRepositoryImpl
+	 * <em>Slice Repository</em>}' class. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see de.opalproject.vespucci.datamodel.impl.SliceRepositoryImpl
+	 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getSliceRepository()
+	 * @generated
+	 */
+	int SLICE_REPOSITORY = 2;
+
+	/**
+	 * The feature id for the '<em><b>Contains</b></em>' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SLICE_REPOSITORY__CONTAINS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Slice Repository</em>'
+	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SLICE_REPOSITORY_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '
+	 * {@link de.opalproject.vespucci.datamodel.impl.SliceImpl <em>Slice</em>}'
+	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see de.opalproject.vespucci.datamodel.impl.SliceImpl
+	 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getSlice()
+	 * @generated
+	 */
+	int SLICE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' containment
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SLICE__CONSTRAINTS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SLICE__NAME = 1;
+
+	/**
+	 * The number of structural features of the '<em>Slice</em>' class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SLICE_FEATURE_COUNT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Contains</b></em>' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENSEMBLE_REPOSITORY__CONTAINS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Ensemble Repository</em>'
+	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENSEMBLE_REPOSITORY_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '
@@ -218,19 +333,7 @@ public interface DatamodelPackage extends EPackage {
 	 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getConstraintType()
 	 * @generated
 	 */
-	int CONSTRAINT_TYPE = 2;
-
-	/**
-	 * The meta object id for the '
-	 * {@link de.opalproject.vespucci.datamodel.DependencyKind
-	 * <em>Dependency Kind</em>}' enum. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @see de.opalproject.vespucci.datamodel.DependencyKind
-	 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getDependencyKind()
-	 * @generated
-	 */
-	int DEPENDENCY_KIND = 3;
+	int CONSTRAINT_TYPE = 5;
 
 	/**
 	 * Returns the meta object for class '
@@ -317,17 +420,16 @@ public interface DatamodelPackage extends EPackage {
 	EReference getEnsemble_Parent();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link de.opalproject.vespucci.datamodel.Ensemble#getConstraints
-	 * <em>Constraints</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the container reference '
+	 * {@link de.opalproject.vespucci.datamodel.Ensemble#getContainer
+	 * <em>Container</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for the containment reference list '
-	 *         <em>Constraints</em>'.
-	 * @see de.opalproject.vespucci.datamodel.Ensemble#getConstraints()
+	 * @return the meta object for the container reference '<em>Container</em>'.
+	 * @see de.opalproject.vespucci.datamodel.Ensemble#getContainer()
 	 * @see #getEnsemble()
 	 * @generated
 	 */
-	EReference getEnsemble_Constraints();
+	EReference getEnsemble_Container();
 
 	/**
 	 * Returns the meta object for class '
@@ -365,6 +467,116 @@ public interface DatamodelPackage extends EPackage {
 	EAttribute getConstraint_DependencyKind();
 
 	/**
+	 * Returns the meta object for the reference '
+	 * {@link de.opalproject.vespucci.datamodel.Constraint#getSource
+	 * <em>Source</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference '<em>Source</em>'.
+	 * @see de.opalproject.vespucci.datamodel.Constraint#getSource()
+	 * @see #getConstraint()
+	 * @generated
+	 */
+	EReference getConstraint_Source();
+
+	/**
+	 * Returns the meta object for the reference '
+	 * {@link de.opalproject.vespucci.datamodel.Constraint#getTarget
+	 * <em>Target</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see de.opalproject.vespucci.datamodel.Constraint#getTarget()
+	 * @see #getConstraint()
+	 * @generated
+	 */
+	EReference getConstraint_Target();
+
+	/**
+	 * Returns the meta object for class '
+	 * {@link de.opalproject.vespucci.datamodel.EnsembleRepository
+	 * <em>Ensemble Repository</em>}'. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @return the meta object for class '<em>Ensemble Repository</em>'.
+	 * @see de.opalproject.vespucci.datamodel.EnsembleRepository
+	 * @generated
+	 */
+	EClass getEnsembleRepository();
+
+	/**
+	 * Returns the meta object for the containment reference list '
+	 * {@link de.opalproject.vespucci.datamodel.EnsembleRepository#getContains
+	 * <em>Contains</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '
+	 *         <em>Contains</em>'.
+	 * @see de.opalproject.vespucci.datamodel.EnsembleRepository#getContains()
+	 * @see #getEnsembleRepository()
+	 * @generated
+	 */
+	EReference getEnsembleRepository_Contains();
+
+	/**
+	 * Returns the meta object for class '
+	 * {@link de.opalproject.vespucci.datamodel.SliceRepository
+	 * <em>Slice Repository</em>}'. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @return the meta object for class '<em>Slice Repository</em>'.
+	 * @see de.opalproject.vespucci.datamodel.SliceRepository
+	 * @generated
+	 */
+	EClass getSliceRepository();
+
+	/**
+	 * Returns the meta object for the containment reference list '
+	 * {@link de.opalproject.vespucci.datamodel.SliceRepository#getContains
+	 * <em>Contains</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '
+	 *         <em>Contains</em>'.
+	 * @see de.opalproject.vespucci.datamodel.SliceRepository#getContains()
+	 * @see #getSliceRepository()
+	 * @generated
+	 */
+	EReference getSliceRepository_Contains();
+
+	/**
+	 * Returns the meta object for class '
+	 * {@link de.opalproject.vespucci.datamodel.Slice <em>Slice</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Slice</em>'.
+	 * @see de.opalproject.vespucci.datamodel.Slice
+	 * @generated
+	 */
+	EClass getSlice();
+
+	/**
+	 * Returns the meta object for the containment reference list '
+	 * {@link de.opalproject.vespucci.datamodel.Slice#getConstraints
+	 * <em>Constraints</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '
+	 *         <em>Constraints</em>'.
+	 * @see de.opalproject.vespucci.datamodel.Slice#getConstraints()
+	 * @see #getSlice()
+	 * @generated
+	 */
+	EReference getSlice_Constraints();
+
+	/**
+	 * Returns the meta object for the attribute '
+	 * {@link de.opalproject.vespucci.datamodel.Slice#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see de.opalproject.vespucci.datamodel.Slice#getName()
+	 * @see #getSlice()
+	 * @generated
+	 */
+	EAttribute getSlice_Name();
+
+	/**
 	 * Returns the meta object for enum '
 	 * {@link de.opalproject.vespucci.datamodel.ConstraintType
 	 * <em>Constraint Type</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -374,17 +586,6 @@ public interface DatamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getConstraintType();
-
-	/**
-	 * Returns the meta object for enum '
-	 * {@link de.opalproject.vespucci.datamodel.DependencyKind
-	 * <em>Dependency Kind</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for enum '<em>Dependency Kind</em>'.
-	 * @see de.opalproject.vespucci.datamodel.DependencyKind
-	 * @generated
-	 */
-	EEnum getDependencyKind();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!--
@@ -471,13 +672,12 @@ public interface DatamodelPackage extends EPackage {
 		EReference ENSEMBLE__PARENT = eINSTANCE.getEnsemble_Parent();
 
 		/**
-		 * The meta object literal for the '<em><b>Constraints</b></em>'
-		 * containment reference list feature. <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
+		 * The meta object literal for the '<em><b>Container</b></em>' container
+		 * reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
-		EReference ENSEMBLE__CONSTRAINTS = eINSTANCE.getEnsemble_Constraints();
+		EReference ENSEMBLE__CONTAINER = eINSTANCE.getEnsemble_Container();
 
 		/**
 		 * The meta object literal for the '
@@ -510,6 +710,94 @@ public interface DatamodelPackage extends EPackage {
 				.getConstraint_DependencyKind();
 
 		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' reference
+		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference CONSTRAINT__SOURCE = eINSTANCE.getConstraint_Source();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' reference
+		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference CONSTRAINT__TARGET = eINSTANCE.getConstraint_Target();
+
+		/**
+		 * The meta object literal for the '
+		 * {@link de.opalproject.vespucci.datamodel.impl.EnsembleRepositoryImpl
+		 * <em>Ensemble Repository</em>}' class. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @see de.opalproject.vespucci.datamodel.impl.EnsembleRepositoryImpl
+		 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getEnsembleRepository()
+		 * @generated
+		 */
+		EClass ENSEMBLE_REPOSITORY = eINSTANCE.getEnsembleRepository();
+
+		/**
+		 * The meta object literal for the '<em><b>Contains</b></em>'
+		 * containment reference list feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference ENSEMBLE_REPOSITORY__CONTAINS = eINSTANCE
+				.getEnsembleRepository_Contains();
+
+		/**
+		 * The meta object literal for the '
+		 * {@link de.opalproject.vespucci.datamodel.impl.SliceRepositoryImpl
+		 * <em>Slice Repository</em>}' class. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @see de.opalproject.vespucci.datamodel.impl.SliceRepositoryImpl
+		 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getSliceRepository()
+		 * @generated
+		 */
+		EClass SLICE_REPOSITORY = eINSTANCE.getSliceRepository();
+
+		/**
+		 * The meta object literal for the '<em><b>Contains</b></em>'
+		 * containment reference list feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference SLICE_REPOSITORY__CONTAINS = eINSTANCE
+				.getSliceRepository_Contains();
+
+		/**
+		 * The meta object literal for the '
+		 * {@link de.opalproject.vespucci.datamodel.impl.SliceImpl
+		 * <em>Slice</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see de.opalproject.vespucci.datamodel.impl.SliceImpl
+		 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getSlice()
+		 * @generated
+		 */
+		EClass SLICE = eINSTANCE.getSlice();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraints</b></em>'
+		 * containment reference list feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference SLICE__CONSTRAINTS = eINSTANCE.getSlice_Constraints();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute
+		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute SLICE__NAME = eINSTANCE.getSlice_Name();
+
+		/**
 		 * The meta object literal for the '
 		 * {@link de.opalproject.vespucci.datamodel.ConstraintType
 		 * <em>Constraint Type</em>}' enum. <!-- begin-user-doc --> <!--
@@ -520,18 +808,6 @@ public interface DatamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum CONSTRAINT_TYPE = eINSTANCE.getConstraintType();
-
-		/**
-		 * The meta object literal for the '
-		 * {@link de.opalproject.vespucci.datamodel.DependencyKind
-		 * <em>Dependency Kind</em>}' enum. <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
-		 * 
-		 * @see de.opalproject.vespucci.datamodel.DependencyKind
-		 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getDependencyKind()
-		 * @generated
-		 */
-		EEnum DEPENDENCY_KIND = eINSTANCE.getDependencyKind();
 
 	}
 

@@ -3,7 +3,7 @@
  * Copyright (c) 2012
  * Software Engineering
  * Department of Computer Science
- * Technische Universitiät Darmstadt
+ * Technische Universität Darmstadt
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,16 +34,15 @@
 package de.opalproject.vespucci.datamodel.impl;
 
 import de.opalproject.vespucci.datamodel.*;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.impl.EFactoryImpl;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import de.opalproject.vespucci.datamodel.DatamodelFactory;
-import de.opalproject.vespucci.datamodel.DatamodelPackage;
-import de.opalproject.vespucci.datamodel.Ensemble;
+import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
@@ -94,6 +93,12 @@ public class DatamodelFactoryImpl extends EFactoryImpl implements
 			return createEnsemble();
 		case DatamodelPackage.CONSTRAINT:
 			return createConstraint();
+		case DatamodelPackage.SLICE_REPOSITORY:
+			return createSliceRepository();
+		case DatamodelPackage.SLICE:
+			return createSlice();
+		case DatamodelPackage.ENSEMBLE_REPOSITORY:
+			return createEnsembleRepository();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
@@ -110,8 +115,6 @@ public class DatamodelFactoryImpl extends EFactoryImpl implements
 		switch (eDataType.getClassifierID()) {
 		case DatamodelPackage.CONSTRAINT_TYPE:
 			return createConstraintTypeFromString(eDataType, initialValue);
-		case DatamodelPackage.DEPENDENCY_KIND:
-			return createDependencyKindFromString(eDataType, initialValue);
 		default:
 			throw new IllegalArgumentException("The datatype '"
 					+ eDataType.getName() + "' is not a valid classifier");
@@ -128,8 +131,6 @@ public class DatamodelFactoryImpl extends EFactoryImpl implements
 		switch (eDataType.getClassifierID()) {
 		case DatamodelPackage.CONSTRAINT_TYPE:
 			return convertConstraintTypeToString(eDataType, instanceValue);
-		case DatamodelPackage.DEPENDENCY_KIND:
-			return convertDependencyKindToString(eDataType, instanceValue);
 		default:
 			throw new IllegalArgumentException("The datatype '"
 					+ eDataType.getName() + "' is not a valid classifier");
@@ -161,6 +162,36 @@ public class DatamodelFactoryImpl extends EFactoryImpl implements
 	 * 
 	 * @generated
 	 */
+	public EnsembleRepository createEnsembleRepository() {
+		EnsembleRepositoryImpl ensembleRepository = new EnsembleRepositoryImpl();
+		return ensembleRepository;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public SliceRepository createSliceRepository() {
+		SliceRepositoryImpl sliceRepository = new SliceRepositoryImpl();
+		return sliceRepository;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public Slice createSlice() {
+		SliceImpl slice = new SliceImpl();
+		return slice;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public ConstraintType createConstraintTypeFromString(EDataType eDataType,
 			String initialValue) {
 		ConstraintType result = ConstraintType.get(initialValue);
@@ -177,31 +208,6 @@ public class DatamodelFactoryImpl extends EFactoryImpl implements
 	 * @generated
 	 */
 	public String convertConstraintTypeToString(EDataType eDataType,
-			Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public DependencyKind createDependencyKindFromString(EDataType eDataType,
-			String initialValue) {
-		DependencyKind result = DependencyKind.get(initialValue);
-		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public String convertDependencyKindToString(EDataType eDataType,
 			Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}

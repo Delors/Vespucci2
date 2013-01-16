@@ -3,7 +3,7 @@
  * Copyright (c) 2012
  * Software Engineering
  * Department of Computer Science
- * Technische Universitiät Darmstadt
+ * Technische Universität Darmstadt
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,18 +35,21 @@ package de.opalproject.vespucci.datamodel.impl;
 
 import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.ConstraintType;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import de.opalproject.vespucci.datamodel.DatamodelFactory;
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.DependencyKind;
 import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.datamodel.EnsembleRepository;
+import de.opalproject.vespucci.datamodel.Slice;
+import de.opalproject.vespucci.datamodel.SliceRepository;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--
@@ -69,18 +72,34 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	private EClass constraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass ensembleRepositoryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass sliceRepositoryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass sliceEClass = null;
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	private EEnum constraintTypeEEnum = null;
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private EEnum dependencyKindEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -218,7 +237,7 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * 
 	 * @generated
 	 */
-	public EReference getEnsemble_Constraints() {
+	public EReference getEnsemble_Container() {
 		return (EReference) ensembleEClass.getEStructuralFeatures().get(6);
 	}
 
@@ -254,8 +273,8 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * 
 	 * @generated
 	 */
-	public EEnum getConstraintType() {
-		return constraintTypeEEnum;
+	public EReference getConstraint_Source() {
+		return (EReference) constraintEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -263,8 +282,82 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * 
 	 * @generated
 	 */
-	public EEnum getDependencyKind() {
-		return dependencyKindEEnum;
+	public EReference getConstraint_Target() {
+		return (EReference) constraintEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getEnsembleRepository() {
+		return ensembleRepositoryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getEnsembleRepository_Contains() {
+		return (EReference) ensembleRepositoryEClass.getEStructuralFeatures()
+				.get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getSliceRepository() {
+		return sliceRepositoryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getSliceRepository_Contains() {
+		return (EReference) sliceRepositoryEClass.getEStructuralFeatures().get(
+				0);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getSlice() {
+		return sliceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getSlice_Constraints() {
+		return (EReference) sliceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getSlice_Name() {
+		return (EAttribute) sliceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EEnum getConstraintType() {
+		return constraintTypeEEnum;
 	}
 
 	/**
@@ -303,15 +396,27 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 		createEAttribute(ensembleEClass, ENSEMBLE__QUERY);
 		createEReference(ensembleEClass, ENSEMBLE__CHILDREN);
 		createEReference(ensembleEClass, ENSEMBLE__PARENT);
-		createEReference(ensembleEClass, ENSEMBLE__CONSTRAINTS);
+		createEReference(ensembleEClass, ENSEMBLE__CONTAINER);
 
 		constraintEClass = createEClass(CONSTRAINT);
 		createEAttribute(constraintEClass, CONSTRAINT__CONSTRAINT_TYPE);
 		createEAttribute(constraintEClass, CONSTRAINT__DEPENDENCY_KIND);
+		createEReference(constraintEClass, CONSTRAINT__SOURCE);
+		createEReference(constraintEClass, CONSTRAINT__TARGET);
+
+		sliceRepositoryEClass = createEClass(SLICE_REPOSITORY);
+		createEReference(sliceRepositoryEClass, SLICE_REPOSITORY__CONTAINS);
+
+		sliceEClass = createEClass(SLICE);
+		createEReference(sliceEClass, SLICE__CONSTRAINTS);
+		createEAttribute(sliceEClass, SLICE__NAME);
+
+		ensembleRepositoryEClass = createEClass(ENSEMBLE_REPOSITORY);
+		createEReference(ensembleRepositoryEClass,
+				ENSEMBLE_REPOSITORY__CONTAINS);
 
 		// Create enums
 		constraintTypeEEnum = createEEnum(CONSTRAINT_TYPE);
-		dependencyKindEEnum = createEEnum(DEPENDENCY_KIND);
 	}
 
 	/**
@@ -373,10 +478,11 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 				Ensemble.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEReference(getEnsemble_Constraints(), this.getConstraint(), null,
-				"constraints", null, 0, -1, Ensemble.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEnsemble_Container(), this.getEnsembleRepository(),
+				this.getEnsembleRepository_Contains(), "container", null, 0, 1,
+				Ensemble.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(constraintEClass, Constraint.class, "Constraint",
 				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -385,9 +491,45 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 				Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConstraint_DependencyKind(),
-				this.getDependencyKind(), "dependencyKind", "0", 0, 1,
+				ecorePackage.getEString(), "dependencyKind", "ALL", 0, 1,
 				Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConstraint_Source(), this.getEnsemble(), null,
+				"source", null, 0, 1, Constraint.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConstraint_Target(), this.getEnsemble(), null,
+				"target", null, 0, 1, Constraint.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(sliceRepositoryEClass, SliceRepository.class,
+				"SliceRepository", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSliceRepository_Contains(), this.getSlice(), null,
+				"contains", null, 0, -1, SliceRepository.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(sliceEClass, Slice.class, "Slice", !IS_ABSTRACT,
+				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSlice_Constraints(), this.getConstraint(), null,
+				"constraints", null, 0, -1, Slice.class, !IS_TRANSIENT,
+				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSlice_Name(), ecorePackage.getEString(), "name",
+				null, 0, 1, Slice.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+
+		initEClass(ensembleRepositoryEClass, EnsembleRepository.class,
+				"EnsembleRepository", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEnsembleRepository_Contains(), this.getEnsemble(),
+				this.getEnsemble_Container(), "contains", null, 0, -1,
+				EnsembleRepository.class, !IS_TRANSIENT, !IS_VOLATILE,
+				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(constraintTypeEEnum, ConstraintType.class, "ConstraintType");
@@ -398,31 +540,25 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 		addEEnumLiteral(constraintTypeEEnum, ConstraintType.LOCAL_OUTGOING);
 		addEEnumLiteral(constraintTypeEEnum, ConstraintType.EXPECTED);
 
-		initEEnum(dependencyKindEEnum, DependencyKind.class, "DependencyKind");
-		addEEnumLiteral(dependencyKindEEnum, DependencyKind.ALL);
-		addEEnumLiteral(dependencyKindEEnum, DependencyKind.SUBTYPE);
-		addEEnumLiteral(dependencyKindEEnum, DependencyKind.EXTEND);
-		addEEnumLiteral(dependencyKindEEnum, DependencyKind.IMPLEMENT);
-		addEEnumLiteral(dependencyKindEEnum, DependencyKind.CALLS);
-		addEEnumLiteral(dependencyKindEEnum, DependencyKind.INVOKE_VIRTUAL);
-		addEEnumLiteral(dependencyKindEEnum, DependencyKind.INVOKE_SPECIAL);
-		addEEnumLiteral(dependencyKindEEnum, DependencyKind.INVOKE_INTERFACE);
-		addEEnumLiteral(dependencyKindEEnum, DependencyKind.INVOKE_STATIC);
-		addEEnumLiteral(dependencyKindEEnum, DependencyKind.ACCESS);
-		addEEnumLiteral(dependencyKindEEnum, DependencyKind.WRITE_FIELD);
-		addEEnumLiteral(dependencyKindEEnum, DependencyKind.WRITE_STATIC_FIELD);
-		addEEnumLiteral(dependencyKindEEnum, DependencyKind.READ_FIELD);
-		addEEnumLiteral(dependencyKindEEnum, DependencyKind.READ_STATIC_FIELD);
-		addEEnumLiteral(dependencyKindEEnum, DependencyKind.SIGNATURE);
-		addEEnumLiteral(dependencyKindEEnum, DependencyKind.PARAMETER);
-		addEEnumLiteral(dependencyKindEEnum, DependencyKind.RETURN_TYPE);
-		addEEnumLiteral(dependencyKindEEnum, DependencyKind.CLASS_CAST);
-		addEEnumLiteral(dependencyKindEEnum, DependencyKind.CREATE);
-		addEEnumLiteral(dependencyKindEEnum, DependencyKind.FIELD_TYPE);
-		addEEnumLiteral(dependencyKindEEnum, DependencyKind.THROWS);
-
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http:///org/eclipse/emf/ecore/util/ExtendedMetaData
+		createExtendedMetaDataAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for
+	 * <b>http:///org/eclipse/emf/ecore/util/ExtendedMetaData</b>. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void createExtendedMetaDataAnnotations() {
+		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";
+		addAnnotation(getSliceRepository_Contains(), source, new String[] {
+				"namespace", "" });
 	}
 
 } // DatamodelPackageImpl

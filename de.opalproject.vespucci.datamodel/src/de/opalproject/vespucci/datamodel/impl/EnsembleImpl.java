@@ -3,7 +3,7 @@
  * Copyright (c) 2012
  * Software Engineering
  * Department of Computer Science
- * Technische Universitiät Darmstadt
+ * Technische Universität Darmstadt
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,23 +33,26 @@
  */
 package de.opalproject.vespucci.datamodel.impl;
 
-import de.opalproject.vespucci.datamodel.Constraint;
+import de.opalproject.vespucci.datamodel.DatamodelPackage;
+import de.opalproject.vespucci.datamodel.Ensemble;
+
+import de.opalproject.vespucci.datamodel.EnsembleRepository;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-
-import de.opalproject.vespucci.datamodel.DatamodelPackage;
-import de.opalproject.vespucci.datamodel.Ensemble;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -70,9 +73,8 @@ import de.opalproject.vespucci.datamodel.Ensemble;
  * <em>Children</em>}</li>
  * <li>{@link de.opalproject.vespucci.datamodel.impl.EnsembleImpl#getParent <em>
  * Parent</em>}</li>
- * <li>
- * {@link de.opalproject.vespucci.datamodel.impl.EnsembleImpl#getConstraints
- * <em>Constraints</em>}</li>
+ * <li>{@link de.opalproject.vespucci.datamodel.impl.EnsembleImpl#getContainer
+ * <em>Container</em>}</li>
  * </ul>
  * </p>
  * 
@@ -168,16 +170,6 @@ public class EnsembleImpl extends EObjectImpl implements Ensemble {
 	 * @ordered
 	 */
 	protected EList<Ensemble> children;
-
-	/**
-	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #getConstraints()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Constraint> constraints;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -355,13 +347,49 @@ public class EnsembleImpl extends EObjectImpl implements Ensemble {
 	 * 
 	 * @generated
 	 */
-	public EList<Constraint> getConstraints() {
-		if (constraints == null) {
-			constraints = new EObjectContainmentEList<Constraint>(
-					Constraint.class, this,
-					DatamodelPackage.ENSEMBLE__CONSTRAINTS);
-		}
-		return constraints;
+	public EnsembleRepository getContainer() {
+		if (eContainerFeatureID() != DatamodelPackage.ENSEMBLE__CONTAINER)
+			return null;
+		return (EnsembleRepository) eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NotificationChain basicSetContainer(EnsembleRepository newContainer,
+			NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newContainer,
+				DatamodelPackage.ENSEMBLE__CONTAINER, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setContainer(EnsembleRepository newContainer) {
+		if (newContainer != eInternalContainer()
+				|| (eContainerFeatureID() != DatamodelPackage.ENSEMBLE__CONTAINER && newContainer != null)) {
+			if (EcoreUtil.isAncestor(this, newContainer))
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newContainer != null)
+				msgs = ((InternalEObject) newContainer).eInverseAdd(this,
+						DatamodelPackage.ENSEMBLE_REPOSITORY__CONTAINS,
+						EnsembleRepository.class, msgs);
+			msgs = basicSetContainer(newContainer, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					DatamodelPackage.ENSEMBLE__CONTAINER, newContainer,
+					newContainer));
 	}
 
 	/**
@@ -381,6 +409,10 @@ public class EnsembleImpl extends EObjectImpl implements Ensemble {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			return basicSetParent((Ensemble) otherEnd, msgs);
+		case DatamodelPackage.ENSEMBLE__CONTAINER:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetContainer((EnsembleRepository) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -399,9 +431,8 @@ public class EnsembleImpl extends EObjectImpl implements Ensemble {
 					msgs);
 		case DatamodelPackage.ENSEMBLE__PARENT:
 			return basicSetParent(null, msgs);
-		case DatamodelPackage.ENSEMBLE__CONSTRAINTS:
-			return ((InternalEList<?>) getConstraints()).basicRemove(otherEnd,
-					msgs);
+		case DatamodelPackage.ENSEMBLE__CONTAINER:
+			return basicSetContainer(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -418,6 +449,10 @@ public class EnsembleImpl extends EObjectImpl implements Ensemble {
 		case DatamodelPackage.ENSEMBLE__PARENT:
 			return eInternalContainer().eInverseRemove(this,
 					DatamodelPackage.ENSEMBLE__CHILDREN, Ensemble.class, msgs);
+		case DatamodelPackage.ENSEMBLE__CONTAINER:
+			return eInternalContainer().eInverseRemove(this,
+					DatamodelPackage.ENSEMBLE_REPOSITORY__CONTAINS,
+					EnsembleRepository.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -442,8 +477,8 @@ public class EnsembleImpl extends EObjectImpl implements Ensemble {
 			return getChildren();
 		case DatamodelPackage.ENSEMBLE__PARENT:
 			return getParent();
-		case DatamodelPackage.ENSEMBLE__CONSTRAINTS:
-			return getConstraints();
+		case DatamodelPackage.ENSEMBLE__CONTAINER:
+			return getContainer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -476,10 +511,8 @@ public class EnsembleImpl extends EObjectImpl implements Ensemble {
 		case DatamodelPackage.ENSEMBLE__PARENT:
 			setParent((Ensemble) newValue);
 			return;
-		case DatamodelPackage.ENSEMBLE__CONSTRAINTS:
-			getConstraints().clear();
-			getConstraints()
-					.addAll((Collection<? extends Constraint>) newValue);
+		case DatamodelPackage.ENSEMBLE__CONTAINER:
+			setContainer((EnsembleRepository) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -511,8 +544,8 @@ public class EnsembleImpl extends EObjectImpl implements Ensemble {
 		case DatamodelPackage.ENSEMBLE__PARENT:
 			setParent((Ensemble) null);
 			return;
-		case DatamodelPackage.ENSEMBLE__CONSTRAINTS:
-			getConstraints().clear();
+		case DatamodelPackage.ENSEMBLE__CONTAINER:
+			setContainer((EnsembleRepository) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -541,8 +574,8 @@ public class EnsembleImpl extends EObjectImpl implements Ensemble {
 			return children != null && !children.isEmpty();
 		case DatamodelPackage.ENSEMBLE__PARENT:
 			return getParent() != null;
-		case DatamodelPackage.ENSEMBLE__CONSTRAINTS:
-			return constraints != null && !constraints.isEmpty();
+		case DatamodelPackage.ENSEMBLE__CONTAINER:
+			return getContainer() != null;
 		}
 		return super.eIsSet(featureID);
 	}

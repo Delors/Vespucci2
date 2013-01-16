@@ -3,7 +3,7 @@
  * Copyright (c) 2012
  * Software Engineering
  * Department of Computer Science
- * Technische Universitiät Darmstadt
+ * Technische Universität Darmstadt
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -31,54 +31,44 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package de.opalproject.vespucci.datamodel.util;
+package de.opalproject.vespucci.datamodel;
 
-import de.opalproject.vespucci.datamodel.DatamodelPackage;
+import org.eclipse.emf.common.util.EList;
 
-import java.util.Map;
-
-import org.eclipse.emf.ecore.EPackage;
-
-import org.eclipse.emf.ecore.resource.Resource;
-
-import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
+import org.eclipse.emf.ecore.EObject;
 
 /**
- * This class contains helper methods to serialize and deserialize XML documents
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '
+ * <em><b>Slice Repository</b></em>'. <!-- end-user-doc -->
  * 
+ * <p>
+ * The following features are supported:
+ * <ul>
+ * <li>{@link de.opalproject.vespucci.datamodel.SliceRepository#getContains <em>
+ * Contains</em>}</li>
+ * </ul>
+ * </p>
+ * 
+ * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getSliceRepository()
+ * @model
  * @generated
  */
-public class DatamodelXMLProcessor extends XMLProcessor {
-
+public interface SliceRepository extends EObject {
 	/**
-	 * Public constructor to instantiate the helper. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Contains</b></em>' containment reference
+	 * list. The list contents are of type
+	 * {@link de.opalproject.vespucci.datamodel.Slice}. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Contains</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
+	 * @return the value of the '<em>Contains</em>' containment reference list.
+	 * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getSliceRepository_Contains()
+	 * @model containment="true" extendedMetaData="namespace=''"
 	 * @generated
 	 */
-	public DatamodelXMLProcessor() {
-		super((EPackage.Registry.INSTANCE));
-		DatamodelPackage.eINSTANCE.eClass();
-	}
+	EList<Slice> getContains();
 
-	/**
-	 * Register for "*" and "xml" file extensions the
-	 * DatamodelResourceFactoryImpl factory. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	protected Map<String, Resource.Factory> getRegistrations() {
-		if (registrations == null) {
-			super.getRegistrations();
-			registrations
-					.put(XML_EXTENSION, new DatamodelResourceFactoryImpl());
-			registrations.put(STAR_EXTENSION,
-					new DatamodelResourceFactoryImpl());
-		}
-		return registrations;
-	}
-
-} // DatamodelXMLProcessor
+} // SliceRepository
