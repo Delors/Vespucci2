@@ -52,15 +52,19 @@ public class CallEditor extends AbstractHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ISelection se = HandlerUtil.getCurrentSelection(event);
-
+		TreeSelection sel = (TreeSelection) se;
+		
+		if (!(sel.getFirstElement() instanceof Ensemble)) {
+			return null;
+		}
+		
+		Ensemble ens = (Ensemble) sel.getFirstElement();
+		
+		EnsembleEditorInput input = new EnsembleEditorInput(ens);
+		
 		// Get the view
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
 		IWorkbenchPage page = window.getActivePage();
-
-		TreeSelection sel = (TreeSelection) se;
-		Ensemble ens = (Ensemble) sel.getFirstElement();
-
-		EnsembleEditorInput input = new EnsembleEditorInput(ens);
 
 		try {
 			page.openEditor(input, EnsembleEditor.ID);
