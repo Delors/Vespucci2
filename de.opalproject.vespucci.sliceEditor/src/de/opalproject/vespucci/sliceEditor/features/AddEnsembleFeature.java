@@ -335,6 +335,8 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		List<Ensemble> listOfParents = new ArrayList<Ensemble>();
 		Ensemble workingEnsemble = ens;
 		Ensemble parent;
+		
+		// retrieve possible parents
 		do {
 			parent = workingEnsemble.getParent();
 			listOfParents.add(ens.getParent());
@@ -354,6 +356,6 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 			}
 		}
 
-		return listOfParents;
+		return infringingEnsembles;
 	}
 }
