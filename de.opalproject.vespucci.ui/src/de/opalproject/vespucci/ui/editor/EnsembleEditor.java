@@ -45,8 +45,6 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.TouchEvent;
-import org.eclipse.swt.events.TouchListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -141,7 +139,7 @@ public class EnsembleEditor extends EditorPart {
 
 	}
 
-	/*
+	/**
 	 * Adds a change listener to each editable field
 	 */
 	private void initInputChangeListeners() {
@@ -174,7 +172,7 @@ public class EnsembleEditor extends EditorPart {
 
 	}
 
-	/*
+	/**
 	 * Checks if any user input differs from the saved data.
 	 * 
 	 * If it does, the Editor state is set to dirty and vice versa.
