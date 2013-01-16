@@ -60,7 +60,6 @@ public class EnsembleRemoveListener extends DemultiplexingListener {
 
 		if (notification instanceof ENotificationImpl) {
 			if (notification.getEventType() == ENotificationImpl.REMOVE) {
-				System.out.println(notification);
 				final Ensemble ensemble = (Ensemble) notification.getOldValue();
 
 				Display.getDefault().asyncExec(new Runnable() {
