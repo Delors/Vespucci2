@@ -51,24 +51,26 @@ public class CallEditor extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		ISelection se = HandlerUtil.getCurrentSelection(event);
-		TreeSelection sel = (TreeSelection) se;
-		
-		if (!(sel.getFirstElement() instanceof Ensemble)) {
+		// Get the current selection
+		ISelection currentSelection = HandlerUtil.getCurrentSelection(event);
+		TreeSelection currentTreeSelection = (TreeSelection) currentSelection;
+
+		// check if selection is really an ensemble
+		if (!(currentTreeSelection.getFirstElement() instanceof Ensemble)) {
 			return null;
 		}
-		
-		Ensemble ens = (Ensemble) sel.getFirstElement();
-		
-		EnsembleEditorInput input = new EnsembleEditorInput(ens);
-		
+
+		// Get the selected ensemble and create an editorinput
+		Ensemble ensemble = (Ensemble) currentTreeSelection.getFirstElement();
+		EnsembleEditorInput editorInput = new EnsembleEditorInput(ensemble);
+
 		// Get the view
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
 		IWorkbenchPage page = window.getActivePage();
 
+		// Try to open the editor
 		try {
-			page.openEditor(input, EnsembleEditor.ID);
-
+			page.openEditor(editorInput, EnsembleEditor.ID);
 		} catch (PartInitException e) {
 			throw new RuntimeException(e);
 		}

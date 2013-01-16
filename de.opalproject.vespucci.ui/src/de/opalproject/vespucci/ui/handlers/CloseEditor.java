@@ -65,7 +65,7 @@ public class CloseEditor extends AbstractHandler {
 		// Get selection
 		IStructuredSelection currentSelection = (IStructuredSelection) HandlerUtil
 				.getCurrentSelection(event);
-		
+
 		// Check if currentSelection is an Ensemble
 		if (!(currentSelection.getFirstElement() instanceof Ensemble)) {
 			return null;
@@ -74,8 +74,8 @@ public class CloseEditor extends AbstractHandler {
 		// check whether there is a corresponding open editor and close it.
 		Ensemble current = (Ensemble) currentSelection.getFirstElement();
 		if (current != null) {
-			IEditorPart openEditor = (page.findEditor(new EnsembleEditorInput(
-					current)));
+			IEditorPart openEditor = page.findEditor(new EnsembleEditorInput(
+					current));
 			if (openEditor != null) {
 				page.closeEditor(openEditor, false);
 			}
