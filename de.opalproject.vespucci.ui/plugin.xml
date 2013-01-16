@@ -6,29 +6,39 @@
    <extension
          point="org.eclipse.ui.views">
       <category
-            id="de.opalproject.vespucci.navigator.category"
+            id="de.opalproject.vespucci.ui.category"
             name="Vespucci Global Repository" />
       <view
             allowMultiple="false"
-            category="de.opalproject.vespucci.navigator.category"
+            category="de.opalproject.vespucci.ui.category"
             class="org.eclipse.ui.navigator.CommonNavigator"
-            id="de.opalproject.vespucci.navigator.view"
+            id="de.opalproject.vespucci.ui.navigator.view"
             name="Vespucci"
             restorable="true" />
    </extension>
 
-   <!-- navigator definition  -->
+   <!-- Project explorer extension -->
    <extension
          point="org.eclipse.ui.navigator.viewer">
-      <viewer viewerId="de.opalproject.vespucci.navigator.view" />
-      <viewerContentBinding viewerId="de.opalproject.vespucci.navigator.view">
+      <viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
+         <includes>
+            <contentExtension pattern="de.opalproject.vespucci.ui.navigator.VirtualContent"/>
+         </includes>
+      </viewerContentBinding>
+   </extension>
+
+   <!-- custom navigator definition -->
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewer viewerId="de.opalproject.vespucci.ui.navigator.view" />
+      <viewerContentBinding viewerId="de.opalproject.vespucci.ui.navigator.view">
          <includes>
             <contentExtension pattern="org.eclipse.ui.navigator.resourceContent"/>
 	        <contentExtension pattern="org.eclipse.ui.navigator.resources.filters.*"/>
-            <contentExtension pattern="de.opalproject.vespucci.navigator.VirtualContent"/>
+            <contentExtension pattern="de.opalproject.vespucci.ui.navigator.VirtualContent"/>
          </includes>
       </viewerContentBinding>
-      <viewerActionBinding viewerId="de.opalproject.vespucci.navigator.view">
+      <viewerActionBinding viewerId="de.opalproject.vespucci.ui.navigator.view">
          <includes>
        	     <actionExtension pattern="org.eclipse.ui.navigator.resources.*" />
          </includes>
@@ -41,7 +51,7 @@
       <navigatorContent
             activeByDefault="true"
             contentProvider="de.opalproject.vespucci.ui.navigator.providers.VespucciContentProvider"
-            id="de.opalproject.vespucci.navigator.VirtualContent"
+            id="de.opalproject.vespucci.ui.navigator.VirtualContent"
             labelProvider="de.opalproject.vespucci.ui.navigator.providers.VespucciLabelProvider"
             name="Virtual content"
             priority="normal">
@@ -73,41 +83,80 @@
         point="org.eclipse.ui.commands">
      <command
            defaultHandler="de.opalproject.vespucci.ui.handlers.NewEnsembleHandler"
-           id="de.opalproject.vespucci.navigator.edit.new"
+           id="de.opalproject.vespucci.ui.edit.new"
            name="new"/>
+     <command
+           defaultHandler="de.opalproject.vespucci.ui.handlers.CallEditor"
+           id="de.opalproject.vespucci.ui.editor.openEditor"
+           name="open">
+     </command>
+     <command
+           defaultHandler="de.opalproject.vespucci.ui.handlers.CloseEditor"
+           id="de.opalproject.vespucci.ui.editor.closeEditor"
+           name="close">
+     </command>
   </extension>  
-  
+    
    <!-- popup menu for ensembles -->
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="popup:org.eclipse.ui.popup.any?after=group.edit">
+            locationURI="popup:org.eclipse.ui.popup.any">
          <command
-               commandId="de.opalproject.vespucci.navigator.edit.new"
-               id="de.opalproject.vespucci.navigator.popupmenu.new"
+               commandId="de.opalproject.vespucci.ui.edit.new"
+               id="de.opalproject.vespucci.ui.popupmenu.new"
                label="New Ensemble"
                mnemonic="N"
                style="push" >
+            <visibleWhen
+                  checkEnabled="false">
+               <or>
+                  <reference
+                        definitionId="de.opalproject.vespucci.ui.definitions.singleEnsemble">
+                  </reference>
+                  <reference
+                        definitionId="de.opalproject.vespucci.ui.definitions.ensembleRepository">
+                  </reference>
+               </or>
+            </visibleWhen>
          </command>
          <command
-               commandId="de.opalproject.vespucci.editor.openEditor"
-               id="de.opalproject.vespucci.navigator.popupmenu.open"
+               commandId="de.opalproject.vespucci.ui.editor.openEditor"
+               id="de.opalproject.vespucci.ui.popupmenu.open"
                label="Open"
                style="push" >
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="de.opalproject.vespucci.ui.definitions.ensembles">
+               </reference>
+            </visibleWhen>
          </command>
          <command
                commandId="org.eclipse.ui.edit.delete"
-               id="de.opalproject.vespucci.navigator.popupmenu.delete"
+               id="de.opalproject.vespucci.ui.popupmenu.delete"
                label="Delete"
                mnemonic="D"
                style="push" >
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="de.opalproject.vespucci.ui.definitions.ensembles">
+               </reference>
+            </visibleWhen>
          </command>
          <command
                commandId="org.eclipse.ui.edit.rename"
-               id="de.opalproject.vespucci.navigator.popupmenu.rename"
+               id="de.opalproject.vespucci.ui.popupmenu.rename"
                label="Rename"
                mnemonic="R"
                style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="de.opalproject.vespucci.ui.definitions.ensembles">
+               </reference>
+            </visibleWhen>
          </command>
       </menuContribution>
     </extension>
@@ -117,51 +166,41 @@
       <handler
             class="de.opalproject.vespucci.ui.handlers.RenameHandler"
             commandId="org.eclipse.ui.edit.rename">
-         <activeWhen>
-            <reference definitionId="de.opalproject.vespucci.navigator.elementSelected" />
-         </activeWhen>
          <enabledWhen>
-            <reference definitionId="de.opalproject.vespucci.navigator.elementSelected" />
+            <reference
+                  definitionId="de.opalproject.vespucci.ui.definitions.singleEnsemble">
+            </reference>
          </enabledWhen>
       </handler>
       <handler
             class="de.opalproject.vespucci.ui.handlers.DeleteHandler"
             commandId="org.eclipse.ui.edit.delete">
-         <activeWhen>
-            <reference
-                  definitionId="de.opalproject.vespucci.navigator.elementSelected">
-            </reference>
-         </activeWhen>
          <enabledWhen>
             <reference
-                  definitionId="de.opalproject.vespucci.navigator.elementSelected">
+                  definitionId="de.opalproject.vespucci.ui.definitions.ensembles">
             </reference>
          </enabledWhen>
       </handler>
       <handler
             class="de.opalproject.vespucci.ui.handlers.NewEnsembleHandler"
-            commandId="de.opalproject.vespucci.navigator.edit.new">
-         <activeWhen>
-            <reference
-                  definitionId="de.opalproject.vespucci.navigator.elementSelected">
-            </reference>
-         </activeWhen>
+            commandId="de.opalproject.vespucci.ui.edit.new">
          <enabledWhen>
-            <reference
-                  definitionId="de.opalproject.vespucci.navigator.elementSelected">
-            </reference>
+            <or>
+               <reference
+                     definitionId="de.opalproject.vespucci.ui.definitions.ensembleRepository">
+               </reference>
+               <reference
+                     definitionId="de.opalproject.vespucci.ui.definitions.singleEnsemble">
+               </reference>
+            </or>
          </enabledWhen>
       </handler>
       <handler
-            commandId="de.opalproject.vespucci.editor.openEditor">
-         <activeWhen>
-            <reference
-                  definitionId="de.opalproject.vespucci.navigator.elementSelected">
-            </reference>
-         </activeWhen>
+            class="de.opalproject.vespucci.ui.handlers.CallEditor"
+            commandId="de.opalproject.vespucci.ui.editor.openEditor">
          <enabledWhen>
             <reference
-                  definitionId="de.opalproject.vespucci.navigator.elementSelected">
+                  definitionId="de.opalproject.vespucci.ui.definitions.singleEnsemble">
             </reference>
          </enabledWhen>
       </handler>
@@ -169,10 +208,40 @@
 
    <extension
          point="org.eclipse.core.expressions.definitions">
-      <definition id="de.opalproject.vespucci.navigator.elementSelected">
+      <definition id="de.opalproject.vespucci.ui.definitions.ensembles">
          <with variable="selection">
-            <iterate ifEmpty="false" operator="or">
+            <iterate ifEmpty="false" operator="and">
                <instanceof value="de.opalproject.vespucci.datamodel.Ensemble" />
+            </iterate>
+         </with>
+      </definition>
+      <definition
+            id="de.opalproject.vespucci.ui.definitions.singleEnsemble">
+         <with
+               variable="selection">
+            <and>
+               <count
+                     value="1">
+               </count>
+               <iterate
+                     ifEmpty="false"
+                     operator="and">
+                  <instanceof
+                        value="de.opalproject.vespucci.datamodel.Ensemble">
+                  </instanceof>
+               </iterate>
+            </and>
+         </with>
+      </definition>
+      <definition
+            id="de.opalproject.vespucci.ui.definitions.ensembleRepository">
+         <with
+               variable="selection">
+            <iterate
+                  operator="and">
+               <instanceof
+                     value="de.opalproject.vespucci.datamodel.EnsembleRepository">
+               </instanceof>
             </iterate>
          </with>
       </definition>
@@ -201,19 +270,6 @@
             id="de.opalproject.vespucci.editor.editor"
             name="Ensemble Editor">
       </editor>
-   </extension>
-   <extension
-         point="org.eclipse.ui.commands">
-      <command
-            defaultHandler="de.opalproject.vespucci.ui.handlers.CallEditor"
-            id="de.opalproject.vespucci.editor.openEditor"
-            name="open">
-      </command>
-      <command
-            defaultHandler="de.opalproject.vespucci.ui.handlers.CloseEditor"
-            id="de.opalproject.vespucci.editor.closeEditor"
-            name="close">
-      </command>
    </extension>
 
 </plugin>
