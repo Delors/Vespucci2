@@ -88,7 +88,7 @@ public class EnsembleEditor extends EditorPart {
 		setInput(input);
 		ensemble = ((EnsembleEditorInput) input).getEnsemble();
 
-		setPartName("Ensemble ID: " + ensemble.getName());
+		setPartName(ensemble.getName());
 	}
 
 	@Override
@@ -226,6 +226,8 @@ public class EnsembleEditor extends EditorPart {
 				ensemble.setDerived(derivedCheckBox.getSelection());
 				ensemble.setDescription(descriptionTextField.getText());
 				ensemble.setQuery(queryTextField.getText());
+				
+				setPartName(ensemble.getName());
 
 				try {
 					r.save(Collections.EMPTY_MAP);
