@@ -41,6 +41,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.FocusAdapter;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -50,6 +53,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IEditorInput;
@@ -74,6 +78,7 @@ public class EnsembleEditor extends EditorPart {
 	private Text queryTextField;
 	private Button derivedCheckBox;
 	private boolean dirty;
+	private Control lastControlInFocus;
 
 	// Will be called before createPartControl
 	@Override
@@ -93,6 +98,17 @@ public class EnsembleEditor extends EditorPart {
 
 	@Override
 	public void createPartControl(Composite parent) {
+
+		createUIElements(parent);
+		createInputChangeListeners();
+		createFocusChangeListeners();
+
+	}
+
+	/*
+	 * Creates all text fields and checkboxes
+	 */
+	private void createUIElements(Composite parent) {
 		GridLayout layout = new GridLayout();
 		layout.numColumns = 1;
 		parent.setLayout(layout);
@@ -134,15 +150,13 @@ public class EnsembleEditor extends EditorPart {
 		queryTextField.setLayoutData(textFieldLayoutData);
 		queryTextField.setText(ensemble.getQuery());
 		queryTextField.setEnabled(!ensemble.isDerived());
-
-		initInputChangeListeners();
-
 	}
 
 	/**
-	 * Adds a change listener to each editable field
+	 * Adds a change listener to each editable field. The Listeners are meant to
+	 * detect any deviation from the currently saved state.
 	 */
-	private void initInputChangeListeners() {
+	private void createInputChangeListeners() {
 
 		// on any change in user input, check if the state should be dirty
 		ModifyListener modifyListener = new ModifyListener() {
@@ -156,20 +170,38 @@ public class EnsembleEditor extends EditorPart {
 		queryTextField.addModifyListener(modifyListener);
 		descriptionTextField.addModifyListener(modifyListener);
 
+		// another listener for the query field that disables the query field if
+		// the query is supposed to be derived
 		derivedCheckBox.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				// disables the query field if the query is supposed to be
-				// derived
 				queryTextField.setEnabled(!derivedCheckBox.getSelection());
 				checkAndSetDirty();
 			}
-
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-			}
 		});
 
+	}
+
+	/*
+	 * Adds a focus listener to each control. The listeners are meant to
+	 * remember which element was the last to gain the input focus.
+	 */
+	private void createFocusChangeListeners() {
+		FocusListener focusListener = new FocusAdapter() {
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (e.getSource() instanceof Control) {
+					lastControlInFocus = (Control) e.getSource();
+				}
+			}
+		};
+		nameTextField.addFocusListener(focusListener);
+		queryTextField.addFocusListener(focusListener);
+		descriptionTextField.addFocusListener(focusListener);
+		derivedCheckBox.addFocusListener(focusListener);
+
+		lastControlInFocus = nameTextField;
 	}
 
 	/**
@@ -202,14 +234,6 @@ public class EnsembleEditor extends EditorPart {
 
 	}
 
-	/**
-	 * Disposes the toolkit
-	 */
-	@Override
-	public void dispose() {
-		super.dispose();
-	}
-
 	@Override
 	public void doSave(IProgressMonitor monitor) {
 		dirty = false;
@@ -222,12 +246,12 @@ public class EnsembleEditor extends EditorPart {
 
 				final Resource r = ensemble.eResource();
 
+				// saving in our case means writing the data back into the
+				// original model
 				ensemble.setName(nameTextField.getText());
 				ensemble.setDerived(derivedCheckBox.getSelection());
 				ensemble.setDescription(descriptionTextField.getText());
 				ensemble.setQuery(queryTextField.getText());
-				
-				setPartName(ensemble.getName());
 
 				try {
 					r.save(Collections.EMPTY_MAP);
@@ -237,6 +261,10 @@ public class EnsembleEditor extends EditorPart {
 			}
 		});
 
+		// set the editor name, as the ensemble name may have changed
+		setPartName(ensemble.getName());
+
+		// tell Eclipse that the dirty state has changed
 		firePropertyChange(PROP_DIRTY);
 	}
 
@@ -253,13 +281,15 @@ public class EnsembleEditor extends EditorPart {
 	}
 
 	@Override
-	public boolean isSaveAsAllowed() {
-		return true;
+	public void setFocus() {
+		lastControlInFocus.setFocus();
 	}
 
 	@Override
-	public void setFocus() {
-		nameTextField.setFocus();
+	public boolean isSaveAsAllowed() {
+		// There is no actual save location, therefore the user should not try
+		// to change it.
+		return false;
 	}
 
 }
