@@ -42,6 +42,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -75,38 +76,35 @@ public class DeleteHandler extends AbstractHandler {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
 
+		// Convert the current selection to a list
+		// TODO currently could contain none emf objects
+		@SuppressWarnings("unchecked")
 		final List<Ensemble> ensembleList = currentSelection.toList();
 
 		for (Ensemble ensemble : ensembleList) {
-			Object feature = ensemble.eContainingFeature();
+			EStructuralFeature feature = ensemble.eContainingFeature();
 			EObject owner = ensemble.eContainer();
-			Resource r = ensemble.eResource();
+			Resource resource = ensemble.eResource();
 
 			Command delete = RemoveCommand.create(domain, owner, feature,
 					ensemble);
 			domain.getCommandStack().execute(delete);
-			try {
-				r.save(Collections.EMPTY_MAP);
-			} catch (IOException e) {
-				e.printStackTrace();
+
+			/*
+			 * Checks if the current ensemble belongs to a resource, if so save
+			 * this resource.
+			 * 
+			 * If the parents was deleted before the current one, it will
+			 * already be deleted from the resource
+			 */
+			if (resource != null) {
+				try {
+					resource.save(Collections.EMPTY_MAP);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
-
 		}
-
-		// domain.getCommandStack().execute(new RecordingCommand(domain) {
-		// protected void doExecute() {
-		//
-		// for (Ensemble ensemble : ensembleList) {
-		// ensemble.setParent(null);
-		// }
-		//
-		// try {
-		// r.save(Collections.EMPTY_MAP);
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
-		// }
-		// });
 
 		return null;
 	}
