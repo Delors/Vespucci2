@@ -79,23 +79,6 @@
   </extension>
   
   <!-- commands -->
-  <extension
-        point="org.eclipse.ui.commands">
-     <command
-           defaultHandler="de.opalproject.vespucci.ui.handlers.NewEnsembleHandler"
-           id="de.opalproject.vespucci.ui.edit.new"
-           name="new"/>
-     <command
-           defaultHandler="de.opalproject.vespucci.ui.handlers.CallEditor"
-           id="de.opalproject.vespucci.ui.editor.openEditor"
-           name="open">
-     </command>
-     <command
-           defaultHandler="de.opalproject.vespucci.ui.handlers.CloseEditor"
-           id="de.opalproject.vespucci.ui.editor.closeEditor"
-           name="close">
-     </command>
-  </extension>  
     
    <!-- popup menu for ensembles -->
    <extension
@@ -203,6 +186,10 @@
                   definitionId="de.opalproject.vespucci.ui.definitions.singleEnsemble">
             </reference>
          </enabledWhen>
+      </handler>
+      <handler
+            class="de.opalproject.vespucci.ui.handlers.CloseEditor"
+            commandId="de.opalproject.vespucci.ui.editor.closeEditor">
       </handler>
    </extension>
 
