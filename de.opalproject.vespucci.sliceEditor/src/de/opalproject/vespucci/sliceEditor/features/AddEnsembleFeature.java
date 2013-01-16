@@ -92,6 +92,7 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 			// check if user wants to add to a diagram
 			if (context.getTargetContainer() instanceof Diagram) {
 				// check if the pictogram element is already existing
+				// TODO skip for empty ensemble types once implemented
 				if (Graphiti
 						.getLinkService()
 						.getPictogramElements(
