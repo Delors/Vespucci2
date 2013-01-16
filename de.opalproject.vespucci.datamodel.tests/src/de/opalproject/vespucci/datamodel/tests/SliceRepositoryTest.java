@@ -2,6 +2,10 @@
  */
 package de.opalproject.vespucci.datamodel.tests;
 
+import org.junit.Assert;
+import org.junit.Test;
+
+import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.DatamodelFactory;
 import de.opalproject.vespucci.datamodel.SliceRepository;
 
@@ -84,6 +88,16 @@ public class SliceRepositoryTest extends TestCase {
 	@Override
 	protected void tearDown() throws Exception {
 		setFixture(null);
+	}
+
+	@Test
+	public void testExistance() {
+		Assert.assertNotNull(getFixture());
+	}
+
+	@Test
+	public void testIfSliceRepository() {
+		Assert.assertTrue(getFixture() instanceof SliceRepository);
 	}
 
 } // SliceRepositoryTest
