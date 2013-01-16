@@ -33,8 +33,6 @@
  */
 package de.opalproject.vespucci.sliceEditor.features;
 
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateConnectionContext;
 import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
@@ -42,27 +40,30 @@ import org.eclipse.graphiti.features.impl.AbstractCreateConnectionFeature;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 
+import de.opalproject.vespucci.datamodel.Constraint;
+import de.opalproject.vespucci.datamodel.DatamodelFactory;
 import de.opalproject.vespucci.datamodel.Ensemble;
 
 /**
- * This feature allows to create new EReference links
+ * This feature allows to create new constraint link
  * 
  * @author Lars
+ * @author Marius
  * 
  */
-public class CreateEReferenceFeature extends AbstractCreateConnectionFeature {
+public class CreateConstraintFeature extends AbstractCreateConnectionFeature {
 
 	/*
 	 * constructor
 	 */
-	public CreateEReferenceFeature(IFeatureProvider fp) {
+	public CreateConstraintFeature(IFeatureProvider fp) {
 		// provide name and description for the UI, e.g. the palette
-		super(fp, "Connection", "Create EReference");
+		super(fp, "Constraint", "Create Constraint");
 	}
 	
 	@Override
 	public String getCreateImageId() {
-		return "de.opalproject.vespucci.sliceEditor.ereference";
+		return "de.opalproject.vespucci.sliceEditor.constraint";
 	}
 
 	/*
@@ -122,11 +123,11 @@ public class CreateEReferenceFeature extends AbstractCreateConnectionFeature {
 
 		if (source != null && target != null) {
 			// create new business object
-			EReference eReference = createEReference(source, target);
+			Constraint constraint = createConstraint(source, target);
 			// add connection for business object
 			AddConnectionContext addContext = new AddConnectionContext(
 					context.getSourceAnchor(), context.getTargetAnchor());
-			addContext.setNewObject(eReference);
+			addContext.setNewObject(constraint);
 			newConnection = (Connection) getFeatureProvider().addIfPossible(
 					addContext);
 		}
@@ -149,16 +150,27 @@ public class CreateEReferenceFeature extends AbstractCreateConnectionFeature {
 	}
 
 	/**
-	 * Creates a EReference between two ensembles.
+	 * Creates a constraint between two ensembles.
 	 */
-	private EReference createEReference(Ensemble source, Ensemble target) {
-		EReference eReference = EcoreFactory.eINSTANCE.createEReference();
-		eReference.setName("new EReference");
-		eReference.setEType(target.eClass());
-		eReference.setLowerBound(0);
-		eReference.setUpperBound(1);
-		getDiagram().eResource().getContents().add(eReference);
+	private Constraint createConstraint(Ensemble source, Ensemble target) {
+		// create Constraint
+    	DatamodelFactory factory = DatamodelFactory.eINSTANCE;
+		Constraint con = factory.createConstraint();
+		con.setSource(source);
+		con.setTarget(target);
+		
+		// save in diagram
+        getDiagram().eResource().getContents().add(con);
+        
+		
+//		EReference eReference = EcoreFactory.eINSTANCE.createEReference();
+//		eReference.setName("new EReference");
+//		eReference.setEType(target.eClass());
+//		eReference.setLowerBound(0);
+//		eReference.setUpperBound(1);
+//		getDiagram().eResource().getContents().add(eReference);
+
 		//source.eClass().getEStructuralFeatures().add(eReference);
-		return eReference;
+		return con;
 	}
 }

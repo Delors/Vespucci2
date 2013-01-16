@@ -51,10 +51,11 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
+import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.Ensemble;
-import de.opalproject.vespucci.sliceEditor.features.AddEReferenceFeature;
+import de.opalproject.vespucci.sliceEditor.features.AddConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.AddEnsembleFeature;
-import de.opalproject.vespucci.sliceEditor.features.CreateEReferenceFeature;
+import de.opalproject.vespucci.sliceEditor.features.CreateConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.CreateEmptyEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.LayoutEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.UpdateEnsembleFeature;
@@ -74,8 +75,8 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 		// is object for add request a EObject?
 		if (context.getNewObject() instanceof Ensemble) {
 			return new AddEnsembleFeature(this);
-		} else if (context.getNewObject() instanceof EReference) {
-			return new AddEReferenceFeature(this);
+		} else if (context.getNewObject() instanceof Constraint) {
+			return new AddConstraintFeature(this);
 		}
 		return super.getAddFeature(context);
 	}
@@ -97,7 +98,7 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 
 	@Override
 	public ICreateConnectionFeature[] getCreateConnectionFeatures() {
-		return new ICreateConnectionFeature[] { new CreateEReferenceFeature(
+		return new ICreateConnectionFeature[] { new CreateConstraintFeature(
 				this) };
 	}
 	

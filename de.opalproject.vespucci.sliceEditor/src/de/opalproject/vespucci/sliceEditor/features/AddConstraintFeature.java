@@ -33,7 +33,6 @@
  */
 package de.opalproject.vespucci.sliceEditor.features;
 
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddConnectionContext;
 import org.eclipse.graphiti.features.context.IAddContext;
@@ -49,19 +48,22 @@ import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 
+import de.opalproject.vespucci.datamodel.Constraint;
+
 /**
  * This feature add the possibility to link ensembles.
  * 
  * 
  * @author Lars
+ * @author Marius
  * 
  */
-public class AddEReferenceFeature extends AbstractAddFeature {
+public class AddConstraintFeature extends AbstractAddFeature {
 
-	private static final IColorConstant E_REFERENCE_FOREGROUND = new ColorConstant(
+	private static final IColorConstant CONSTRAINT_FOREGROUND = new ColorConstant(
 			98, 131, 167);
 
-	public AddEReferenceFeature(IFeatureProvider fp) {
+	public AddConstraintFeature(IFeatureProvider fp) {
 		super(fp);
 	}
 
@@ -77,7 +79,7 @@ public class AddEReferenceFeature extends AbstractAddFeature {
 	@Override
 	public PictogramElement add(IAddContext context) {
 		IAddConnectionContext addConContext = (IAddConnectionContext) context;
-		EReference addedEReference = (EReference) context.getNewObject();
+		Constraint addedConstrainst = (Constraint) context.getNewObject();
 		IPeCreateService peCreateService = Graphiti.getPeCreateService();
 
 		// CONNECTION WITH POLYLINE
@@ -89,7 +91,7 @@ public class AddEReferenceFeature extends AbstractAddFeature {
 		IGaService gaService = Graphiti.getGaService();
 		Polyline polyline = gaService.createPolyline(connection);
 		polyline.setLineWidth(2);
-		polyline.setForeground(manageColor(E_REFERENCE_FOREGROUND));
+		polyline.setForeground(manageColor(CONSTRAINT_FOREGROUND));
 
 		// create link and wire it
 		// link(connection, addedEReference);
@@ -104,7 +106,7 @@ public class AddEReferenceFeature extends AbstractAddFeature {
 	}
 
 	/*
-	 * checks if the given context is an EReference and therefore can be added
+	 * checks if the given context is a constraint and therefore can be added
 	 * 
 	 * (non-Javadoc)
 	 * 
@@ -114,10 +116,10 @@ public class AddEReferenceFeature extends AbstractAddFeature {
 	 */
 	@Override
 	public boolean canAdd(IAddContext context) {
-		// return true if given business object is an EReference
+		// return true if given business object is a constraint
 		// note, that the context must be an instance of IAddConnectionContext
 		if (context instanceof IAddConnectionContext
-				&& context.getNewObject() instanceof EReference) {
+				&& context.getNewObject() instanceof Constraint) {
 			return true;
 		}
 		return false;
@@ -127,7 +129,7 @@ public class AddEReferenceFeature extends AbstractAddFeature {
 		IGaService gaService = Graphiti.getGaService();
 		Polyline polyline = gaService.createPolyline(gaContainer, new int[] {
 				-15, 10, 0, 0, -15, -10 });
-		polyline.setForeground(manageColor(E_REFERENCE_FOREGROUND));
+		polyline.setForeground(manageColor(CONSTRAINT_FOREGROUND));
 		polyline.setLineWidth(2);
 		return polyline;
 	}

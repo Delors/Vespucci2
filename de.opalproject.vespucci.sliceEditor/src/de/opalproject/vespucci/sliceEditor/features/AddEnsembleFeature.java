@@ -67,6 +67,7 @@ import de.opalproject.vespucci.datamodel.Ensemble;
  * editor
  * 
  * @author Lars
+ * @author Marius
  * 
  */
 public class AddEnsembleFeature extends AbstractAddShapeFeature {
