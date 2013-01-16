@@ -255,14 +255,19 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 	// TODO Move into a listener?
 	private void checkForRelatives(PictogramElement picel, Ensemble ens,
 			Diagram dia) {
-		List<Ensemble> childrenOccurances = checkChildrenOccurences(dia, ens);
-		if (childrenOccurances.size() > 0) {
-			generateMarker(picel, ens, childrenOccurances.get(0));
+		List<Ensemble> childrenOccurrence = checkChildrenOccurrence(dia, ens);
+		List<Ensemble> parentOccurrence = checkParentOccurrence(dia, ens);
+		if (childrenOccurrence.size() > 0) {
+			generateMarker("Child detected", picel, ens, childrenOccurrence.get(0));
 			System.out.println("Child detected.");
+		}
+		if (parentOccurrence.size() > 0) {
+			generateMarker("Parent detected", picel, ens, parentOccurrence.get(0));
+			System.out.println("Parent detected.");
 		}
 	}
 
-	private void generateMarker(PictogramElement picel, Ensemble ensA,
+	private void generateMarker(String str, PictogramElement picel, Ensemble ensA,
 			Ensemble ensB) {
 		EObject bo = (EObject) getBusinessObjectForPictogramElement(picel);
 
@@ -282,9 +287,11 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 
 			// create marker
 			IMarker marker = resource.createMarker(IMarker.PROBLEM);
-			marker.setAttribute(IMarker.MESSAGE,
-					"Slice is invalid " + ensB.toString()
-							+ " is a descendant of  " + ensA.toString());
+			marker.setAttribute(
+					IMarker.MESSAGE,
+					str+ "-Slice is invalid "
+							+ ensB.toString() + " is a descendant of  "
+							+ ensA.toString());
 			marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
 
 		} catch (Exception e) {
@@ -292,7 +299,7 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		}
 	}
 
-	private List<Ensemble> checkChildrenOccurences(Diagram dia, Ensemble ens) {
+	private List<Ensemble> checkChildrenOccurrence(Diagram dia, Ensemble ens) {
 
 		List<Ensemble> workingQueue = ens.getChildren();
 		List<Ensemble> childrenList = new ArrayList<Ensemble>();
@@ -324,4 +331,29 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		return infringingEnsembles;
 	}
 
+	private List<Ensemble> checkParentOccurrence(Diagram dia, Ensemble ens) {
+		List<Ensemble> listOfParents = new ArrayList<Ensemble>();
+		Ensemble workingEnsemble = ens;
+		Ensemble parent;
+		do {
+			parent = workingEnsemble.getParent();
+			listOfParents.add(ens.getParent());
+			workingEnsemble = workingEnsemble.getParent();
+		} while (!(workingEnsemble.getParent() == null));
+		listOfParents.add(workingEnsemble);
+
+		List<Ensemble> infringingEnsembles = new ArrayList<Ensemble>();
+
+		// check against the list of parents whether theyre already in the
+		// slice model
+		for (Ensemble enmble : listOfParents) {
+			if (Graphiti.getLinkService().getPictogramElements(dia, enmble)
+					.size() > 0) {
+				infringingEnsembles.add(enmble);
+				System.out.println("Parent added");
+			}
+		}
+
+		return listOfParents;
+	}
 }
