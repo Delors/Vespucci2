@@ -61,6 +61,7 @@ import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.datamodel.EnsembleRepository;
 
 /**
  * This feature allows to drag an ensemble from the Navigator into the slice
@@ -336,6 +337,11 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		Ensemble workingEnsemble = ens;
 		Ensemble parent;
 		
+		// check whether the ensemble is already a toplevel element
+		if(ens.getParent()==null){
+			return listOfParents;
+		}
+		
 		// retrieve possible parents
 		do {
 			parent = workingEnsemble.getParent();
@@ -344,18 +350,18 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		} while (!(workingEnsemble.getParent() == null));
 		listOfParents.add(workingEnsemble);
 
+		System.out.println("successfully retrieved list of parents");
 		List<Ensemble> infringingEnsembles = new ArrayList<Ensemble>();
 
 		// check against the list of parents whether theyre already in the
 		// slice model
-		for (Ensemble enmble : listOfParents) {
-			if (Graphiti.getLinkService().getPictogramElements(dia, enmble)
+		for (Ensemble ensemble : listOfParents) {
+			if (Graphiti.getLinkService().getPictogramElements(dia, ensemble)
 					.size() > 0) {
-				infringingEnsembles.add(enmble);
+				infringingEnsembles.add(ensemble);
 				System.out.println("Parent added");
 			}
 		}
-
 		return infringingEnsembles;
 	}
 }
