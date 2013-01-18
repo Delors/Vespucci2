@@ -254,6 +254,7 @@
       <editor
             class="de.opalproject.vespucci.ui.editor.EnsembleEditor"
             default="false"
+            icon="res/Ensemble.gif"
             id="de.opalproject.vespucci.editor.editor"
             name="Ensemble Editor">
       </editor>
