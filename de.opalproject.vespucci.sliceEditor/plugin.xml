@@ -36,4 +36,34 @@
     
 
   </extension>
+<extension
+      id="de.opalproject.vespucci.sliceEditor.marker"
+      name="VespucciMarker"
+      point="org.eclipse.core.resources.markers">
+   <super
+         type="org.eclipse.core.resources.problemmarker">
+   </super>
+</extension>
+<extension
+      id="de.opalproject.vespucci.sliceEditor.childMarker"
+      name="VespucciChildMarker"
+      point="org.eclipse.core.resources.markers">
+   <persistent
+         value="true">
+   </persistent>
+   <super
+         type="de.opalproject.vespucci.sliceEditor.de.opalproject.vespucci.sliceEditor.marker">
+   </super>
+</extension>
+<extension
+      id="de.opalproject.vespucci.sliceEditor.parentMarker"
+      name="VespucciParentMarker"
+      point="org.eclipse.core.resources.markers">
+   <persistent
+         value="true">
+   </persistent>
+   <super
+         type="de.opalproject.vespucci.sliceEditor.de.opalproject.vespucci.sliceEditor.marker">
+   </super>
+</extension>
  </plugin>

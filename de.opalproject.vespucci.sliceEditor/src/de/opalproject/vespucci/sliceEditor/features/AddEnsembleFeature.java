@@ -61,7 +61,6 @@ import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 import de.opalproject.vespucci.datamodel.Ensemble;
-import de.opalproject.vespucci.datamodel.EnsembleRepository;
 
 /**
  * This feature allows to drag an ensemble from the Navigator into the slice
@@ -259,17 +258,26 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		List<Ensemble> childrenOccurrence = checkChildrenOccurrence(dia, ens);
 		List<Ensemble> parentOccurrence = checkParentOccurrence(dia, ens);
 		if (childrenOccurrence.size() > 0) {
-			generateMarker("Child detected", picel, ens, childrenOccurrence.get(0));
+			generateMarker("Child detected", picel, ens, childrenOccurrence.get(0), dia);
 			System.out.println("Child detected.");
 		}
 		if (parentOccurrence.size() > 0) {
-			generateMarker("Parent detected", picel, ens, parentOccurrence.get(0));
+			generateMarker("Parent detected", picel, ens, parentOccurrence.get(0), dia);
 			System.out.println("Parent detected.");
 		}
 	}
 
+	/**
+	 * Generate a problem marker when an invalid slice is detected.
+	 * 
+	 * @param str - String containing the type of infringement
+	 * @param picel - Pictogramelement
+	 * @param ensA - Ensemble to be added
+	 * @param ensB - An already existing conflicting ensembleinstance
+	 * @param dia TODO
+	 */
 	private void generateMarker(String str, PictogramElement picel, Ensemble ensA,
-			Ensemble ensB) {
+			Ensemble ensB, Diagram dia) {
 		EObject bo = (EObject) getBusinessObjectForPictogramElement(picel);
 
 		try {
@@ -300,8 +308,15 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		}
 	}
 
+	
+	/**
+	 * Detects if there are instances of children of the ensemble to be added.
+	 * 
+	 * @param dia - the target Diagram
+	 * @param ens - the ensemble to be added
+	 * @return List of infringing ensembles(instances of children)
+	 */
 	private List<Ensemble> checkChildrenOccurrence(Diagram dia, Ensemble ens) {
-
 		List<Ensemble> workingQueue = ens.getChildren();
 		List<Ensemble> childrenList = new ArrayList<Ensemble>();
 
@@ -325,16 +340,23 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 			if (Graphiti.getLinkService().getPictogramElements(dia, enmble)
 					.size() > 0) {
 				infringingEnsembles.add(enmble);
-				System.out.println("Child added");
 			}
 		}
 
 		return infringingEnsembles;
 	}
 
+	/**
+	 * Detects already existing parent instances of the ensemble to be added.
+	 * 
+	 * @param dia - the target Diagram
+	 * @param ens - the ensemble to be added
+	 * @return List of infringing ensembles(instances of parents)
+	 */
 	private List<Ensemble> checkParentOccurrence(Diagram dia, Ensemble ens) {
 		List<Ensemble> listOfParents = new ArrayList<Ensemble>();
 		Ensemble workingEnsemble = ens;
+		@SuppressWarnings("unused")
 		Ensemble parent;
 		
 		// check whether the ensemble is already a toplevel element
@@ -350,9 +372,7 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		} while (!(workingEnsemble.getParent() == null));
 		listOfParents.add(workingEnsemble);
 
-		System.out.println("successfully retrieved list of parents");
 		List<Ensemble> infringingEnsembles = new ArrayList<Ensemble>();
-
 		// check against the list of parents whether theyre already in the
 		// slice model
 		for (Ensemble ensemble : listOfParents) {

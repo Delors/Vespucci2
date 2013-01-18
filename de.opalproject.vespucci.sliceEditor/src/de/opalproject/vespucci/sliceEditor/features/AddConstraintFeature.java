@@ -79,6 +79,7 @@ public class AddConstraintFeature extends AbstractAddFeature {
 	@Override
 	public PictogramElement add(IAddContext context) {
 		IAddConnectionContext addConContext = (IAddConnectionContext) context;
+		@SuppressWarnings("unused")
 		Constraint addedConstrainst = (Constraint) context.getNewObject();
 		IPeCreateService peCreateService = Graphiti.getPeCreateService();
 

@@ -34,7 +34,6 @@
 package de.opalproject.vespucci.sliceEditor;
 
 import org.eclipse.graphiti.dt.AbstractDiagramTypeProvider;
-import org.eclipse.graphiti.tb.IToolBehaviorProvider;
 
 public class SliceEditorDiagramTypeProvider extends AbstractDiagramTypeProvider {
 

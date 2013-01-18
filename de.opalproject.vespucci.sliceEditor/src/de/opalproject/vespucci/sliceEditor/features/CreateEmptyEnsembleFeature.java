@@ -37,6 +37,7 @@ public class CreateEmptyEnsembleFeature extends AbstractCreateFeature {
         // as it is not needed in the Ensemble Explorer.
         getDiagram().eResource().getContents().add(ens);
         ens.setName(TITLE);
+        ens.setQuery("empty");
  
         // do the add
         addGraphicalRepresentation(context, ens);
