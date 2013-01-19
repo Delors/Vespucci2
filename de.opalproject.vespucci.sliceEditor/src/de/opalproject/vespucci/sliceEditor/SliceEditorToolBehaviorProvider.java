@@ -74,7 +74,7 @@ public class SliceEditorToolBehaviorProvider extends
 				IDecorator imageRenderingDecorator = new ImageDecorator(
 						IPlatformImageConstants.IMG_ECLIPSE_ERROR_TSK);
 				imageRenderingDecorator.setMessage("Slice invalid - "
-						+ ensemble.getName() + "is parent to "
+						+ ensemble.getName() + " is parent of "
 						+ childrenOccurrence.get(0).getName());
 				return new IDecorator[] { imageRenderingDecorator };
 			}
@@ -83,7 +83,7 @@ public class SliceEditorToolBehaviorProvider extends
 				IDecorator imageRenderingDecorator = new ImageDecorator(
 						IPlatformImageConstants.IMG_ECLIPSE_ERROR_TSK);
 				imageRenderingDecorator.setMessage("Slice invalid - "
-						+ ensemble.getName() + "is derived from "
+						+ ensemble.getName() + " is derived from "
 						+ parentOccurrence.get(0).getName());
 				return new IDecorator[] { imageRenderingDecorator };
 			}

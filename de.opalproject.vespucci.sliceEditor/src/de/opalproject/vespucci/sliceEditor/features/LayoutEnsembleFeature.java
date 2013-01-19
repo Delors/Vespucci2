@@ -33,6 +33,7 @@
  */
 package de.opalproject.vespucci.sliceEditor.features;
 
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.datatypes.IDimension;
@@ -42,6 +43,8 @@ import org.eclipse.graphiti.features.impl.AbstractLayoutFeature;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Image;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
+import org.eclipse.graphiti.mm.algorithms.Text;
+import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
 import org.eclipse.graphiti.mm.algorithms.styles.Point;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -55,6 +58,7 @@ import de.opalproject.vespucci.datamodel.Ensemble;
  * This feature take adjusts the layout while resizing
  * 
  * @author Lars
+ * @author Marius
  * 
  */
 public class LayoutEnsembleFeature extends AbstractLayoutFeature {
@@ -129,6 +133,11 @@ public class LayoutEnsembleFeature extends AbstractLayoutFeature {
 				else if (graphicsAlgorithm instanceof Image) {
 					Image icon = (Image) graphicsAlgorithm;
 					icon.setX(2);
+					anythingChanged = true;
+				}
+				else if (graphicsAlgorithm instanceof Text) {
+					Text name = (Text) graphicsAlgorithm;
+					name.setHorizontalAlignment(Orientation.ALIGNMENT_MIDDLE);
 					anythingChanged = true;
 				}
 				else {
