@@ -178,7 +178,6 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 
 		// SHAPE WITH TEXT
 		{
-
 			// create shape for name
 			Shape nameShape = peCreateService
 					.createShape(containerShape, false);
@@ -217,8 +216,7 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 						false);
 				Image icon = gaService.createImage(iconShape,
 						"de.opalproject.vespucci.sliceEditor.ensembleIcon");
-
-				gaService.setLocationAndSize(icon, -((width / 2) - 10), 2, 16,
+				gaService.setLocationAndSize(icon, 2, 3, 16,
 						16);
 			}
 		}
