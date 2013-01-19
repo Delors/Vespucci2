@@ -2,7 +2,7 @@ package de.opalproject.vespucci.sliceEditor;
  
 import org.eclipse.graphiti.ui.platform.AbstractImageProvider;
  
-public class ImageProvider extends AbstractImageProvider {
+public class SliceEditorImageProvider extends AbstractImageProvider {
  
     // The prefix for all identifiers of this image provider
     protected static final String PREFIX = 

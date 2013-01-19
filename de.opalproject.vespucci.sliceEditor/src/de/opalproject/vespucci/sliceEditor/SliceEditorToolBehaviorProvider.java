@@ -36,13 +36,6 @@ package de.opalproject.vespucci.sliceEditor;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.resources.IMarker;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
@@ -54,50 +47,58 @@ import org.eclipse.graphiti.tb.IDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
- 
-public class SliceEditorToolBehaviorProvider extends DefaultToolBehaviorProvider{
 
-    public SliceEditorToolBehaviorProvider(IDiagramTypeProvider dtp) {
-         super(dtp);
-    }
-    
-    @Override
-    public IDecorator[] getDecorators(PictogramElement pe) {
-        IFeatureProvider featureProvider = getFeatureProvider();
-        Object bo = featureProvider.getBusinessObjectForPictogramElement(pe);
-        
-        if (bo instanceof Ensemble) {
-            Ensemble ensemble = (Ensemble) bo;
-            Diagram dia = featureProvider.getDiagramTypeProvider().getDiagram();
-            List<Ensemble> childrenOccurrence = checkChildrenOccurrence(dia, ensemble);
-    		List<Ensemble> parentOccurrence = checkParentOccurrence(dia, ensemble);
-    		if(childrenOccurrence.size() > 0){
-            	IDecorator imageRenderingDecorator =
-                        new ImageDecorator(
-                            IPlatformImageConstants.IMG_ECLIPSE_ERROR_TSK);
-                    imageRenderingDecorator
-                        .setMessage("Slice invalid - " + ensemble.getName() + "is parent to " + childrenOccurrence.get(0).getName());
-                    return new IDecorator[] { imageRenderingDecorator };
-            }
-            if(parentOccurrence.size() > 0){
-            	IDecorator imageRenderingDecorator =
-                        new ImageDecorator(
-                            IPlatformImageConstants.IMG_ECLIPSE_ERROR_TSK);
-                    imageRenderingDecorator
-                        .setMessage("Slice invalid - " + ensemble.getName() + "is derived from " + parentOccurrence.get(0).getName());
-                    return new IDecorator[] { imageRenderingDecorator };
-            }
-        }
-     
-        return super.getDecorators(pe);
-     }
+public class SliceEditorToolBehaviorProvider extends
+		DefaultToolBehaviorProvider {
 
-	
+	public SliceEditorToolBehaviorProvider(IDiagramTypeProvider dtp) {
+		super(dtp);
+	}
+
+	@Override
+	public IDecorator[] getDecorators(PictogramElement pe) {
+		IFeatureProvider featureProvider = getFeatureProvider();
+		Object bo = featureProvider.getBusinessObjectForPictogramElement(pe);
+
+		// check if we're dealing with an instance of Ensemble
+		if (bo instanceof Ensemble) {
+			Ensemble ensemble = (Ensemble) bo;
+			Diagram dia = featureProvider.getDiagramTypeProvider().getDiagram();
+			// retrieve possible infringements
+			List<Ensemble> childrenOccurrence = checkChildrenOccurrence(dia,
+					ensemble);
+			List<Ensemble> parentOccurrence = checkParentOccurrence(dia,
+					ensemble);
+			// mark ensemble if invalid (child already existing in current slice)
+			if (childrenOccurrence.size() > 0) {
+				IDecorator imageRenderingDecorator = new ImageDecorator(
+						IPlatformImageConstants.IMG_ECLIPSE_ERROR_TSK);
+				imageRenderingDecorator.setMessage("Slice invalid - "
+						+ ensemble.getName() + "is parent to "
+						+ childrenOccurrence.get(0).getName());
+				return new IDecorator[] { imageRenderingDecorator };
+			}
+			// mark ensemble if invalid (parent already existing in current slice)
+			if (parentOccurrence.size() > 0) {
+				IDecorator imageRenderingDecorator = new ImageDecorator(
+						IPlatformImageConstants.IMG_ECLIPSE_ERROR_TSK);
+				imageRenderingDecorator.setMessage("Slice invalid - "
+						+ ensemble.getName() + "is derived from "
+						+ parentOccurrence.get(0).getName());
+				return new IDecorator[] { imageRenderingDecorator };
+			}
+		}
+
+		return super.getDecorators(pe);
+	}
+
 	/**
 	 * Detects if there are instances of children of the ensemble to be added.
 	 * 
-	 * @param dia - the target Diagram
-	 * @param ens - the ensemble to be added
+	 * @param dia
+	 *            - the target Diagram
+	 * @param ens
+	 *            - the ensemble to be added
 	 * @return List of infringing ensembles(instances of children)
 	 */
 	private List<Ensemble> checkChildrenOccurrence(Diagram dia, Ensemble ens) {
@@ -133,8 +134,10 @@ public class SliceEditorToolBehaviorProvider extends DefaultToolBehaviorProvider
 	/**
 	 * Detects already existing parent instances of the ensemble to be added.
 	 * 
-	 * @param dia - the target Diagram
-	 * @param ens - the ensemble to be added
+	 * @param dia
+	 *            - the target Diagram
+	 * @param ens
+	 *            - the ensemble to be added
 	 * @return List of infringing ensembles(instances of parents)
 	 */
 	private List<Ensemble> checkParentOccurrence(Diagram dia, Ensemble ens) {
@@ -142,12 +145,12 @@ public class SliceEditorToolBehaviorProvider extends DefaultToolBehaviorProvider
 		Ensemble workingEnsemble = ens;
 		@SuppressWarnings("unused")
 		Ensemble parent;
-		
+
 		// check whether the ensemble is already a toplevel element
-		if(ens.getParent()==null){
+		if (ens.getParent() == null) {
 			return listOfParents;
 		}
-		
+
 		// retrieve possible parents
 		do {
 			parent = workingEnsemble.getParent();

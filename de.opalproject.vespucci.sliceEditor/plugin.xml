@@ -30,7 +30,7 @@
 <extension
       point="org.eclipse.graphiti.ui.imageProviders">
    <imageProvider
-         class="de.opalproject.vespucci.sliceEditor.ImageProvider"
+         class="de.opalproject.vespucci.sliceEditor.SliceEditorImageProvider"
          id="de.opalproject.vespucci.sliceEditor.ImageProvider">
    </imageProvider>
     
