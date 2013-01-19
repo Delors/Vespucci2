@@ -132,12 +132,13 @@ public class LayoutEnsembleFeature extends AbstractLayoutFeature {
 				} 
 				else if (graphicsAlgorithm instanceof Image) {
 					Image icon = (Image) graphicsAlgorithm;
-					icon.setX(2);
+					icon.setX(containerWidth-18);
 					anythingChanged = true;
 				}
 				else if (graphicsAlgorithm instanceof Text) {
 					Text name = (Text) graphicsAlgorithm;
-					name.setHorizontalAlignment(Orientation.ALIGNMENT_MIDDLE);
+					name.setWidth(containerWidth);
+					name.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
 					anythingChanged = true;
 				}
 				else {
