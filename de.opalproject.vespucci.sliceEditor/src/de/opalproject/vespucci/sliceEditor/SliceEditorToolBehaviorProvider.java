@@ -36,6 +36,13 @@ package de.opalproject.vespucci.sliceEditor;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
@@ -76,6 +83,7 @@ public class SliceEditorToolBehaviorProvider extends
 				imageRenderingDecorator.setMessage("Slice invalid - "
 						+ ensemble.getName() + " is parent of "
 						+ childrenOccurrence.get(0).getName());
+				generateMarker("child existing", pe, ensemble, childrenOccurrence.get(0), dia);
 				return new IDecorator[] { imageRenderingDecorator };
 			}
 			// mark ensemble if invalid (parent already existing in current slice)
@@ -171,4 +179,45 @@ public class SliceEditorToolBehaviorProvider extends
 		}
 		return infringingEnsembles;
 	}
+	
+	/**
+	 * Generate a problem marker when an invalid slice is detected.
+	 * 
+	 * @param str - String containing the type of infringement
+	 * @param picel - Pictogramelement
+	 * @param ensA - Ensemble to be added
+	 * @param ensB - An already existing conflicting ensembleinstance
+	 */
+	private void generateMarker(String str, PictogramElement picel, Ensemble ensA,
+			Ensemble ensB, Diagram dia) {
+		EObject bo = (EObject) getFeatureProvider().getBusinessObjectForPictogramElement(picel);
+
+		try {
+			// retrieve URI
+			URI uri = EcoreUtil.getURI(bo);
+			uri = uri.trimFragment();
+			// remove "platform:..." from uri
+			if (uri.isPlatform()) {
+				uri = URI.createURI(uri.toPlatformString(true));
+			}
+			IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace()
+					.getRoot();
+
+			// try to get project from whole uri resource
+			IResource resource = workspaceRoot.findMember(uri.toString());
+
+			// create marker
+			IMarker marker = resource.createMarker(IMarker.PROBLEM);
+			marker.setAttribute(
+					IMarker.MESSAGE,
+					str+ "-Slice is invalid "
+							+ ensB.toString() + " is a descendant of  "
+							+ ensA.toString());
+			marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

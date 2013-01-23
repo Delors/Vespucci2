@@ -39,6 +39,7 @@ import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddFeature;
 import org.eclipse.graphiti.mm.GraphicsAlgorithmContainer;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
+import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -80,7 +81,7 @@ public class AddConstraintFeature extends AbstractAddFeature {
 	public PictogramElement add(IAddContext context) {
 		IAddConnectionContext addConContext = (IAddConnectionContext) context;
 		@SuppressWarnings("unused")
-		Constraint addedConstrainst = (Constraint) context.getNewObject();
+		Constraint addedConstraint = (Constraint) context.getNewObject();
 		IPeCreateService peCreateService = Graphiti.getPeCreateService();
 
 		// CONNECTION WITH POLYLINE
@@ -97,14 +98,31 @@ public class AddConstraintFeature extends AbstractAddFeature {
 		// create link and wire it
 		// link(connection, addedEReference);
 
-		// create a visual arrow at the end of the link
-		ConnectionDecorator cd;
-		cd = peCreateService.createConnectionDecorator(connection, false, 1.0,
-				true);
-		createArrow(cd);
+//		// create a visual arrow at the end of the link
+//		ConnectionDecorator cd;
+//		cd = peCreateService.createConnectionDecorator(connection, false, 1.0,
+//				true);
+//		createArrow(cd);
 
+		// add dynamic text decorator for the association name 
+	     ConnectionDecorator textDecorator =
+	         peCreateService.createConnectionDecorator(connection, true,
+	         0.5, true);
+	     Text text = gaService.createDefaultText(getDiagram(),textDecorator);
+	     text.setForeground(manageColor(IColorConstant.BLACK));
+	     gaService.setLocation(text, 10, 0);
+	     // set reference name in the text decorator
+	     text.setValue(addedConstraint.getDependencyKind());
+	 
+	     // add static graphical decorator (composition and navigable)
+	     ConnectionDecorator cd;
+	     cd = peCreateService
+	           .createConnectionDecorator(connection, false, 1.0, true);
+	     createArrow(cd);	
+		
 		return connection;
 	}
+
 
 	/*
 	 * checks if the given context is a constraint and therefore can be added
