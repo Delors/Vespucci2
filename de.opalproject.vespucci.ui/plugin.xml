@@ -104,6 +104,21 @@
             </visibleWhen>
          </command>
          <command
+               commandId="de.opalproject.vespucci.ui.edit.newSlice"
+               id="de.opalproject.vespucci.ui.popupmenu.newSlice"
+               label="New Slice"
+               mnemonic="N"
+               style="push" >
+            <visibleWhen
+                  checkEnabled="false">
+               <or>
+                  <reference
+                        definitionId="de.opalproject.vespucci.ui.definitions.sliceRepository">
+                  </reference>
+               </or>
+            </visibleWhen>
+         </command>
+         <command
                commandId="de.opalproject.vespucci.ui.editor.openEditor"
                id="de.opalproject.vespucci.ui.popupmenu.open"
                label="Open"
@@ -143,7 +158,8 @@
          </command>
       </menuContribution>
     </extension>
-    
+   
+  <!-- handler -->
    <extension
          point="org.eclipse.ui.handlers">
       <handler
@@ -179,6 +195,17 @@
          </enabledWhen>
       </handler>
       <handler
+            class="de.opalproject.vespucci.ui.handlers.NewSliceHandler"
+            commandId="de.opalproject.vespucci.ui.edit.newSlice">
+       <enabledWhen>
+            <or>
+               <reference
+                     definitionId="de.opalproject.vespucci.ui.definitions.sliceRepository">
+               </reference>
+            </or>
+         </enabledWhen>
+      </handler>
+      <handler
             class="de.opalproject.vespucci.ui.handlers.CallEditor"
             commandId="de.opalproject.vespucci.ui.editor.openEditor">
          <enabledWhen>
@@ -192,7 +219,9 @@
             commandId="de.opalproject.vespucci.ui.editor.closeEditor">
       </handler>
    </extension>
-
+   
+   
+  <!-- definitions -->
    <extension
          point="org.eclipse.core.expressions.definitions">
       <definition id="de.opalproject.vespucci.ui.definitions.ensembles">
@@ -228,6 +257,43 @@
                   operator="and">
                <instanceof
                      value="de.opalproject.vespucci.datamodel.EnsembleRepository">
+               </instanceof>
+            </iterate>
+         </with>
+      </definition>
+      <definition id="de.opalproject.vespucci.ui.definitions.slices">
+         <with variable="selection">
+            <iterate ifEmpty="false" operator="and">
+               <instanceof value="de.opalproject.vespucci.datamodel.Slice" />
+            </iterate>
+         </with>
+      </definition>
+      <definition
+            id="de.opalproject.vespucci.ui.definitions.singleSlice">
+         <with
+               variable="selection">
+            <and>
+               <count
+                     value="1">
+               </count>
+               <iterate
+                     ifEmpty="false"
+                     operator="and">
+                  <instanceof
+                        value="de.opalproject.vespucci.datamodel.Slice">
+                  </instanceof>
+               </iterate>
+            </and>
+         </with>
+      </definition>
+      <definition
+            id="de.opalproject.vespucci.ui.definitions.sliceRepository">
+         <with
+               variable="selection">
+            <iterate
+                  operator="and">
+               <instanceof
+                     value="de.opalproject.vespucci.datamodel.SliceRepository">
                </instanceof>
             </iterate>
          </with>

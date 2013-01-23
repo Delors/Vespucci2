@@ -31,6 +31,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+
 package de.opalproject.vespucci.ui.handlers;
 
 import java.io.IOException;
@@ -39,11 +40,21 @@ import java.util.Collections;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.IHandler;
+import org.eclipse.core.commands.IHandlerListener;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.graphiti.dt.IDiagramTypeProvider;
+import org.eclipse.graphiti.mm.pictograms.Diagram;
+import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -53,59 +64,49 @@ import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.datamodel.EnsembleRepository;
 import de.opalproject.vespucci.ui.wizards.NewEnsembleWizard;
+import de.opalproject.vespucci.ui.wizards.NewSliceWizard;
+
 
 /**
- * Uses NewEnsembleWizard to create a new ensemble
+ * Uses NewSliceWizard to create a new slice
  * 
  * @author Lars
- * @author Marco Jacobasch
  * 
  */
-public class NewEnsembleHandler extends AbstractHandler {
+public class NewSliceHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IStructuredSelection currentSelection = (IStructuredSelection) HandlerUtil
 				.getCurrentSelection(event);
 
-		final NewEnsembleWizard wiz = new NewEnsembleWizard();
+		final NewSliceWizard wiz = new NewSliceWizard();
 
 		WizardDialog dialog = new WizardDialog(
 				HandlerUtil.getActiveShell(event), wiz);
 		dialog.open();
 
 		if (wiz.getName() != null) {
-
-			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-					.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
-			EObject owner = (EObject) currentSelection.getFirstElement();
-			Object feature = null;
-			Resource r = owner.eResource();
-
-			if (owner instanceof Ensemble) {
-				feature = DatamodelPackage.Literals.ENSEMBLE__CHILDREN;
-			} else if (owner instanceof EnsembleRepository) {
-				feature = DatamodelPackage.Literals.ENSEMBLE_REPOSITORY__CONTAINS;
-			}
-
-			DatamodelFactory factory = DatamodelFactory.eINSTANCE;
-
-			Ensemble ens = factory.createEnsemble();
-			ens.setName(wiz.getName());
-			ens.setDescription(wiz.getDescription());
-			ens.setDerived(false);
-			ens.setQuery(wiz.getQuery());
-
-			Command add = AddCommand.create(domain, owner, feature, ens);
-
-			domain.getCommandStack().execute(add);
-
+	
+			
+			
+			Diagram diagram = Graphiti.getPeCreateService().createDiagram("sliceEditor", wiz.getName(), true);  // new Diagram
+			
+			
+			String path = "Foom/file.diagram";
+			ResourceSet resourceSet = new ResourceSetImpl();
+			System.out.println(URI.createPlatformResourceURI(path, true));
+			Resource resource = resourceSet.createResource(URI.createPlatformResourceURI(path, true));
+			resource.getContents().add(diagram);
 			try {
-				r.save(Collections.EMPTY_MAP);
-			} catch (IOException e) {
-				e.printStackTrace();
+			   resource.save(Collections.emptyMap());
+			} catch(IOException e) {
+			   e.printStackTrace();
+			   // e.g. log error
 			}
 		}
+		
+		
 
 		return null;
 
