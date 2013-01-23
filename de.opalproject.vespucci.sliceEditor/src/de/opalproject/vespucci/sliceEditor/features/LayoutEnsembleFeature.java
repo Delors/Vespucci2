@@ -33,7 +33,6 @@
  */
 package de.opalproject.vespucci.sliceEditor.features;
 
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.datatypes.IDimension;
@@ -129,20 +128,17 @@ public class LayoutEnsembleFeature extends AbstractLayoutFeature {
 							containerWidth, secondPoint.getY());
 					polyline.getPoints().set(1, newSecondPoint);
 					anythingChanged = true;
-				} 
-				else if (graphicsAlgorithm instanceof Image) {
+				} else if (graphicsAlgorithm instanceof Image) {
 					Image icon = (Image) graphicsAlgorithm;
 					icon.setX(3);
 					anythingChanged = true;
-				}
-				else if (graphicsAlgorithm instanceof Text) {
+				} else if (graphicsAlgorithm instanceof Text) {
 					Text name = (Text) graphicsAlgorithm;
-					name.setWidth(containerWidth-20);
-					name.setX(20);
-					name.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
+					name.setWidth(containerWidth - 22);
+					name.setX(22);
+					name.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
 					anythingChanged = true;
-				}
-				else {
+				} else {
 					gaService.setWidth(graphicsAlgorithm, containerWidth);
 					anythingChanged = true;
 				}
