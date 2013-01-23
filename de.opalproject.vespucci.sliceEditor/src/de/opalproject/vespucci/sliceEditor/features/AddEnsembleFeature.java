@@ -190,7 +190,7 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 
 			// vertical alignment has as default value "center"
 			name.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
-			gaService.setLocationAndSize(name, 0, 0, (width), 20);
+			gaService.setLocationAndSize(name, 20, 0, (width-20), 20);
 
 			// create shape for the description
 			Shape descriptionShape = peCreateService.createShape(
@@ -216,7 +216,7 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 						false);
 				Image icon = gaService.createImage(iconShape,
 						"de.opalproject.vespucci.sliceEditor.ensembleIcon");
-				gaService.setLocationAndSize(icon, (width-18), 3, 16,
+				gaService.setLocationAndSize(icon, 3, 3, 16,
 						16);
 			}
 		}
