@@ -45,6 +45,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IFeatureProvider;
+import org.eclipse.graphiti.features.context.IDoubleClickContext;
+import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.platform.IPlatformImageConstants;
@@ -54,6 +56,7 @@ import org.eclipse.graphiti.tb.IDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.sliceEditor.features.ChangeConstraintDependencyKind;
 
 public class SliceEditorToolBehaviorProvider extends
 		DefaultToolBehaviorProvider {
@@ -99,6 +102,18 @@ public class SliceEditorToolBehaviorProvider extends
 
 		return super.getDecorators(pe);
 	}
+	
+	@Override
+	public ICustomFeature getDoubleClickFeature(IDoubleClickContext context) {
+	    ICustomFeature customFeature =
+	        new ChangeConstraintDependencyKind(getFeatureProvider());
+	    // canExecute() tests especially if the context contains a EClass
+	    if (customFeature.canExecute(context)) {
+	        return customFeature;
+	    }
+	 
+	    return super.getDoubleClickFeature(context);
+	 }
 
 	/**
 	 * Detects if there are instances of children of the ensemble to be added.

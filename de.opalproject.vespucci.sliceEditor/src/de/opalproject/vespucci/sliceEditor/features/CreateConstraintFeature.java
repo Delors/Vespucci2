@@ -162,15 +162,7 @@ public class CreateConstraintFeature extends AbstractCreateConnectionFeature {
 		// save in diagram
         getDiagram().eResource().getContents().add(con);
         
-		
-//		EReference eReference = EcoreFactory.eINSTANCE.createEReference();
-//		eReference.setName("new EReference");
-//		eReference.setEType(target.eClass());
-//		eReference.setLowerBound(0);
-//		eReference.setUpperBound(1);
-//		getDiagram().eResource().getContents().add(eReference);
 
-		//source.eClass().getEStructuralFeatures().add(eReference);
 		return con;
 	}
 }
