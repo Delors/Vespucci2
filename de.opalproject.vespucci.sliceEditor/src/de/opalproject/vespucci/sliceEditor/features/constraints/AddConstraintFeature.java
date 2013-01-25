@@ -90,14 +90,9 @@ public abstract class AddConstraintFeature extends AbstractAddFeature {
 		connection.setEnd(addConContext.getTargetAnchor());
 
 		IGaService gaService = Graphiti.getGaService();
-		Polyline polyline = gaService.createPolyline(connection);
-		polyline.setLineWidth(2);
-		polyline.setForeground(manageColor(CONSTRAINT_FOREGROUND));
-
+		
 		// create link and wire it
 		link(connection, addedConstraint);
-
-
 
 		// add dynamic text decorator for the association name 
 	     ConnectionDecorator textDecorator =
@@ -107,14 +102,11 @@ public abstract class AddConstraintFeature extends AbstractAddFeature {
 	     text.setForeground(manageColor(IColorConstant.BLACK));
 	     text.setFont(gaService.manageFont(getDiagram(), "Arial", 10, false, false));
 	     gaService.setLocation(text, 10, 0);
-	     // set reference name in the text decorator
+	     
+	     // set dependency kind
 	     text.setValue(addedConstraint.getDependencyKind());
 	 
-	     // add static graphical decorator (composition and navigable)
-	     ConnectionDecorator cd;
-	     cd = peCreateService
-	           .createConnectionDecorator(connection, false, 1.0, true);
-	    createArrow(cd);	
+	    createArrow(connection, gaService, peCreateService);	
 		
 		return connection;
 	}
@@ -140,5 +132,6 @@ public abstract class AddConstraintFeature extends AbstractAddFeature {
 		return false;
 	}
 
-	protected abstract Polyline createArrow(GraphicsAlgorithmContainer gaContainer);
+	protected abstract Polyline createArrow(Connection connection,
+			IGaService igaService, IPeCreateService peCreateService);
 }
