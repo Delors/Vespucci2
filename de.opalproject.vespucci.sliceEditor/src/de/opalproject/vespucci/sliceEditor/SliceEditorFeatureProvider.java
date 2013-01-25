@@ -48,6 +48,8 @@ import org.eclipse.graphiti.features.context.IDirectEditingContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
+import org.eclipse.graphiti.mm.algorithms.Text;
+import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
@@ -126,8 +128,8 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 	public IDirectEditingFeature getDirectEditingFeature(
 	    IDirectEditingContext context) {
 	    PictogramElement pe = context.getPictogramElement();
-	    Object bo = getBusinessObjectForPictogramElement(pe);
-	    if (bo instanceof Constraint) {
+	    //Object bo = getBusinessObjectForPictogramElement(pe);
+	    if (pe instanceof ConnectionDecorator) {
 	        return new ConstraintKindDirectEditFeature(this);
 	    }
 	    return super.getDirectEditingFeature(context);
