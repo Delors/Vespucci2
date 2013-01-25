@@ -4,6 +4,7 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IDirectEditingContext;
 import org.eclipse.graphiti.features.impl.AbstractDirectEditingFeature;
 import org.eclipse.graphiti.mm.algorithms.Text;
+import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
@@ -39,8 +40,9 @@ public boolean canDirectEdit(IDirectEditingContext context) {
 
 public String getInitialValue(IDirectEditingContext context) {
     // return the current dependencyKind of the Constraint
-    PictogramElement pe = context.getPictogramElement();
-    Constraint constraint = (Constraint) getBusinessObjectForPictogramElement(pe);
+    ConnectionDecorator cd = (ConnectionDecorator) context.getPictogramElement();
+    Connection connection = cd.getConnection();
+    Constraint constraint = (Constraint) getBusinessObjectForPictogramElement(connection);
     return constraint.getDependencyKind();
 }
 
@@ -58,17 +60,21 @@ public String checkValueValid(String value, IDirectEditingContext context) {
 }
 
 public void setValue(String value, IDirectEditingContext context) {
-    // set the new name for the EClass
+
     PictogramElement pe = context.getPictogramElement();
-    Constraint constraint = (Constraint) getBusinessObjectForPictogramElement(pe);
+    ConnectionDecorator cd = (ConnectionDecorator) context.getPictogramElement();
+    Connection connection = cd.getConnection();
+    Constraint constraint = (Constraint) getBusinessObjectForPictogramElement(connection);
     constraint.setDependencyKind(value);
 
     // Explicitly update the shape to display the new value in the diagram
     // Note, that this might not be necessary in future versions of Graphiti
     // (currently in discussion)
 
-    // we know, that pe is the Shape of the Text, so its container is the
-    // main shape of the EClass
-    updatePictogramElement(((Shape) pe).getContainer());
+
+    if (cd.getGraphicsAlgorithm() instanceof Text) {
+		Text text = (Text) cd.getGraphicsAlgorithm();
+		text.setValue(value);
+	}
 }
 }

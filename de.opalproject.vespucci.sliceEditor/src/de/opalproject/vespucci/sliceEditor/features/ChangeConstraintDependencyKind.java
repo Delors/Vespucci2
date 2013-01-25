@@ -79,7 +79,6 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 				}
 			}
 			if (pes[0] instanceof ConnectionDecorator) {
-				System.out.println("Change initiated");
 				ConnectionDecorator cd = (ConnectionDecorator) pes[0];
 				Connection connection = cd.getConnection();
 				if(getBusinessObjectForPictogramElement(connection) instanceof Constraint){

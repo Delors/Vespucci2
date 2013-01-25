@@ -56,7 +56,6 @@ import org.eclipse.graphiti.tb.IDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
-import de.opalproject.vespucci.sliceEditor.features.ChangeConstraintDependencyKind;
 
 public class SliceEditorToolBehaviorProvider extends
 		DefaultToolBehaviorProvider {
@@ -103,17 +102,17 @@ public class SliceEditorToolBehaviorProvider extends
 		return super.getDecorators(pe);
 	}
 	
-	@Override
-	public ICustomFeature getDoubleClickFeature(IDoubleClickContext context) {
-	    ICustomFeature customFeature =
-	        new ChangeConstraintDependencyKind(getFeatureProvider());
-	    // canExecute() tests especially if the context contains a EClass
-	    if (customFeature.canExecute(context)) {
-	        return customFeature;
-	    }
-	 
-	    return super.getDoubleClickFeature(context);
-	 }
+//	@Override
+//	public ICustomFeature getDoubleClickFeature(IDoubleClickContext context) {
+//	    ICustomFeature customFeature =
+//	        new ChangeConstraintDependencyKind(getFeatureProvider());
+//	    // canExecute() tests especially if the context contains a EClass
+//	    if (customFeature.canExecute(context)) {
+//	        return customFeature;
+//	    }
+//	 
+//	    return super.getDoubleClickFeature(context);
+//	 }
 
 	/**
 	 * Detects if there are instances of children of the ensemble to be added.
