@@ -33,76 +33,52 @@
  */
 package de.opalproject.vespucci.ui.handlers;
 
-import java.io.IOException;
-import java.util.Collections;
-
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.graphiti.mm.pictograms.Diagram;
+import org.eclipse.graphiti.ui.editor.DiagramEditor;
+import org.eclipse.graphiti.ui.editor.DiagramEditorInput;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.TreeSelection;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.handlers.HandlerUtil;
 
-import de.opalproject.vespucci.datamodel.DatamodelFactory;
-import de.opalproject.vespucci.datamodel.DatamodelPackage;
-import de.opalproject.vespucci.datamodel.Ensemble;
-import de.opalproject.vespucci.ui.wizards.NewEnsembleWizard;
+import de.opalproject.vespucci.datamodel.Slice;
 
-/**
- * Used by NewEnsembleWizard to create a new ensemble
- * 
- * @author Lars
- * @author Marco Jacobasch
- * 
- */
-public class NewEnsembleHandler extends AbstractHandler {
+public class OpenDiagramEditor extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IStructuredSelection currentSelection = (IStructuredSelection) HandlerUtil
-				.getCurrentSelection(event);
+		// Get the current selection
+		ISelection currentSelection = HandlerUtil.getCurrentSelection(event);
+		TreeSelection currentTreeSelection = (TreeSelection) currentSelection;
 
-		final NewEnsembleWizard wiz = new NewEnsembleWizard();
+		// check if selection is really an ensemble
+		if (!(currentTreeSelection.getFirstElement() instanceof Slice)) {
+			return null;
+		}
 
-		WizardDialog dialog = new WizardDialog(
-				HandlerUtil.getActiveShell(event), wiz);
-		dialog.open();
+		// Get the selected ensemble and create an editorinput
+		Slice slice = (Slice) currentTreeSelection.getFirstElement();
+		Diagram diagram = (Diagram) slice.eResource().getEObject(slice.getDiagram());
+		DiagramEditorInput editorInput = DiagramEditorInput.createEditorInput(diagram, "de.opalproject.vespucci.sliceEditor.sliceEditorDiagramTypeProvider");
 
-		if (wiz.getName() != null) {
+		// Get the view
+		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
+		IWorkbenchPage page = window.getActivePage();
 
-			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-					.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
-			EObject owner = (EObject) currentSelection.getFirstElement();
-			Object feature = null;
-			Resource r = owner.eResource();
-
-			feature = DatamodelPackage.Literals.TREE_NODE__CHILDREN;
-
-			DatamodelFactory factory = DatamodelFactory.eINSTANCE;
-
-			Ensemble ens = factory.createConcreteEnsemble();
-			ens.setName(wiz.getName());
-			ens.setDescription(wiz.getDescription());
-			ens.setDerived(false);
-			ens.setQuery(wiz.getQuery());
-
-			Command add = AddCommand.create(domain, owner, feature, ens);
-
-			domain.getCommandStack().execute(add);
-
-			try {
-				r.save(Collections.EMPTY_MAP);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		// Try to open the editor
+		
+		try {
+			page.openEditor(editorInput, DiagramEditor.DIAGRAM_EDITOR_ID);
+		} catch (PartInitException e) {
+			throw new RuntimeException(e);
 		}
 
 		return null;
-
 	}
+
 }

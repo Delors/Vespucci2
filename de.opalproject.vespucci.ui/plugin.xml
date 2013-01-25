@@ -56,27 +56,30 @@
             name="Virtual content"
             priority="normal">
          <triggerPoints>
-            <or>
-              <and> 
-                <instanceof value="org.eclipse.core.resources.IResource"/> 
-                 <test 
-						forcePluginActivation="true" 
-						property="org.eclipse.core.resources.extension" 
-						value="vespucci"/> 
-              </and>
-              <instanceof value="de.opalproject.vespucci.datamodel.Ensemble" />
-              <instanceof value="de.opalproject.vespucci.datamodel.EnsembleRepository" />
-            </or>
+          <and> 
+            <instanceof value="org.eclipse.core.resources.IResource"/> 
+             <test 
+					forcePluginActivation="true" 
+					property="org.eclipse.core.resources.extension" 
+					value="vespucci"/> 
+          </and>
          </triggerPoints>
          <possibleChildren>
-            <or>
-               <instanceof value="org.eclipse.emf.ecore.resource.Resource"/>
-               <instanceof value="de.opalproject.vespucci.datamodel.Ensemble" />
-               <instanceof value="de.opalproject.vespucci.datamodel.EnsembleRepository" />
-            </or>
+               <instanceof
+                     value="de.opalproject.vespucci.datamodel.TreeNode">
+               </instanceof>
          </possibleChildren>
+         <dropAssistant
+               class="de.opalproject.vespucci.ui.dnd.EnsembleDropAdapter"
+               id="de.opalproject.vespucci.ui.dnd.EnsembleDropAdapter">
+            <possibleDropTargets>
+               <instanceof
+                     value="de.opalproject.vespucci.datamodel.TreeNode">
+               </instanceof></possibleDropTargets>
+         </dropAssistant>
       </navigatorContent>
   </extension>
+  
   
   <!-- commands -->
     
@@ -156,6 +159,18 @@
                </reference>
             </visibleWhen>
          </command>
+         <command
+               commandId="de.opalproject.vespucci.ui.editor.openDiagramEditor"
+               id="de.opalproject.vespucci.ui.popupmenu.openDiagram"
+               label="Open"
+               style="push" >
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="de.opalproject.vespucci.ui.definitions.singleSlice">
+               </reference>
+            </visibleWhen>
+         </command>
       </menuContribution>
     </extension>
    
@@ -217,6 +232,17 @@
       <handler
             class="de.opalproject.vespucci.ui.handlers.CloseEditor"
             commandId="de.opalproject.vespucci.ui.editor.closeEditor">
+      </handler>
+      <handler
+            class="de.opalproject.vespucci.ui.handlers.OpenDiagramEditor"
+            commandId="de.opalproject.vespucci.ui.editor.openDiagramEditor">
+         <enabledWhen>
+            <or>
+            <reference
+                  definitionId="de.opalproject.vespucci.ui.definitions.singleSlice">
+            </reference>
+            </or>
+         </enabledWhen>
       </handler>
    </extension>
    

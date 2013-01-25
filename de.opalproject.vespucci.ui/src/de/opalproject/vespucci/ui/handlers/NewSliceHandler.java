@@ -40,32 +40,24 @@ import java.util.Collections;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.IHandler;
-import org.eclipse.core.commands.IHandlerListener;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
+import org.eclipse.graphiti.mm.pictograms.PictogramLink;
+import org.eclipse.graphiti.mm.pictograms.PictogramsFactory;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
 
+import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.DatamodelFactory;
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
-import de.opalproject.vespucci.datamodel.Ensemble;
-import de.opalproject.vespucci.datamodel.EnsembleRepository;
-import de.opalproject.vespucci.ui.wizards.NewEnsembleWizard;
+import de.opalproject.vespucci.datamodel.Slice;
+import de.opalproject.vespucci.datamodel.SliceRepository;
 import de.opalproject.vespucci.ui.wizards.NewSliceWizard;
-
 
 /**
  * Uses NewSliceWizard to create a new slice
@@ -87,26 +79,53 @@ public class NewSliceHandler extends AbstractHandler {
 		dialog.open();
 
 		if (wiz.getName() != null) {
-	
-			
-			
-			Diagram diagram = Graphiti.getPeCreateService().createDiagram("sliceEditor", wiz.getName(), true);  // new Diagram
-			
-			
-			String path = "Foom/file.diagram";
-			ResourceSet resourceSet = new ResourceSetImpl();
-			System.out.println(URI.createPlatformResourceURI(path, true));
-			Resource resource = resourceSet.createResource(URI.createPlatformResourceURI(path, true));
-			resource.getContents().add(diagram);
+
+			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+					.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
+
+			DatamodelFactory factory = DatamodelFactory.eINSTANCE;
+			Slice slice = factory.createSlice();
+			Diagram dia = Graphiti.getPeCreateService().createDiagram(
+					"sliceEditor", wiz.getName(), true);
+			PictogramLink pl = PictogramsFactory.eINSTANCE
+					.createPictogramLink();
+			pl.getBusinessObjects().add(slice);
+			dia.setLink(pl);
+
+			SliceRepository sr = (SliceRepository) currentSelection
+					.getFirstElement();
+
+			Command addCommand2 = new AddCommand(domain, sr.eResource()
+					.getContents(), dia);
+			domain.getCommandStack().execute(addCommand2);
+
+			System.out.println(sr.eResource().getURIFragment(dia));
+
+			Command c = new SetCommand(domain, slice,
+					DatamodelPackage.Literals.SLICE__DIAGRAM, sr.eResource()
+							.getURIFragment(dia));
+			domain.getCommandStack().execute(c);
+
+			Command addCommand = new AddCommand(domain, sr,
+					DatamodelPackage.Literals.SLICE_REPOSITORY__CONTAINS, slice);
+			domain.getCommandStack().execute(addCommand);
+
+			Constraint co = factory.createConstraint();
+			Command addCommand3 = new AddCommand(domain, slice,
+					DatamodelPackage.Literals.SLICE__CONSTRAINTS, co);
+			domain.getCommandStack().execute(addCommand3);
+
+			Command addCommand4 = new SetCommand(domain, slice,
+					DatamodelPackage.Literals.SLICE__NAME, wiz.getName());
+			domain.getCommandStack().execute(addCommand4);
+
 			try {
-			   resource.save(Collections.emptyMap());
-			} catch(IOException e) {
-			   e.printStackTrace();
-			   // e.g. log error
+				sr.eResource().save(Collections.emptyMap());
+			} catch (IOException e) {
+				e.printStackTrace();
+				// e.g. log error
 			}
 		}
-		
-		
 
 		return null;
 
