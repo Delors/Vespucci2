@@ -40,13 +40,12 @@ import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IFeatureProvider;
-import org.eclipse.graphiti.features.context.IDoubleClickContext;
-import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.platform.IPlatformImageConstants;
@@ -56,6 +55,7 @@ import org.eclipse.graphiti.tb.IDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.datamodel.EnsembleRepository;
 
 public class SliceEditorToolBehaviorProvider extends
 		DefaultToolBehaviorProvider {
@@ -78,17 +78,20 @@ public class SliceEditorToolBehaviorProvider extends
 					ensemble);
 			List<Ensemble> parentOccurrence = checkParentOccurrence(dia,
 					ensemble);
-			// mark ensemble if invalid (child already existing in current slice)
+			// mark ensemble if invalid (child already existing in current
+			// slice)
 			if (childrenOccurrence.size() > 0) {
 				IDecorator imageRenderingDecorator = new ImageDecorator(
 						IPlatformImageConstants.IMG_ECLIPSE_ERROR_TSK);
 				imageRenderingDecorator.setMessage("Slice invalid - "
 						+ ensemble.getName() + " is parent of "
 						+ childrenOccurrence.get(0).getName());
-				generateMarker("child existing", pe, ensemble, childrenOccurrence.get(0), dia);
+				generateMarker("child existing", pe, ensemble,
+						childrenOccurrence.get(0), dia);
 				return new IDecorator[] { imageRenderingDecorator };
 			}
-			// mark ensemble if invalid (parent already existing in current slice)
+			// mark ensemble if invalid (parent already existing in current
+			// slice)
 			if (parentOccurrence.size() > 0) {
 				IDecorator imageRenderingDecorator = new ImageDecorator(
 						IPlatformImageConstants.IMG_ECLIPSE_ERROR_TSK);
@@ -101,18 +104,19 @@ public class SliceEditorToolBehaviorProvider extends
 
 		return super.getDecorators(pe);
 	}
-	
-//	@Override
-//	public ICustomFeature getDoubleClickFeature(IDoubleClickContext context) {
-//	    ICustomFeature customFeature =
-//	        new ChangeConstraintDependencyKind(getFeatureProvider());
-//	    // canExecute() tests especially if the context contains a EClass
-//	    if (customFeature.canExecute(context)) {
-//	        return customFeature;
-//	    }
-//	 
-//	    return super.getDoubleClickFeature(context);
-//	 }
+
+	// @Override
+	// public ICustomFeature getDoubleClickFeature(IDoubleClickContext context)
+	// {
+	// ICustomFeature customFeature =
+	// new ChangeConstraintDependencyKind(getFeatureProvider());
+	// // canExecute() tests especially if the context contains a EClass
+	// if (customFeature.canExecute(context)) {
+	// return customFeature;
+	// }
+	//
+	// return super.getDoubleClickFeature(context);
+	// }
 
 	/**
 	 * Detects if there are instances of children of the ensemble to be added.
@@ -124,29 +128,15 @@ public class SliceEditorToolBehaviorProvider extends
 	 * @return List of infringing ensembles(instances of children)
 	 */
 	private List<Ensemble> checkChildrenOccurrence(Diagram dia, Ensemble ens) {
-		List<Ensemble> workingQueue = ens.getChildren();
-		List<Ensemble> childrenList = new ArrayList<Ensemble>();
-
-		// Looking at this ugly loop a method like getAllChildren() might be
-		// prettier.
-		childrenList.addAll(workingQueue);
-		do {
-			List<Ensemble> newChildren = new ArrayList<Ensemble>();
-			for (Ensemble child : workingQueue) {
-				newChildren.addAll(child.getChildren());
-			}
-			childrenList.addAll(newChildren);
-			workingQueue = newChildren;
-		} while (workingQueue.size() > 0);
-
 		List<Ensemble> infringingEnsembles = new ArrayList<Ensemble>();
+		TreeIterator<EObject> it = ens.eAllContents();
 
-		// check against the list of children whether theyre already in the
-		// slice model
-		for (Ensemble enmble : childrenList) {
-			if (Graphiti.getLinkService().getPictogramElements(dia, enmble)
-					.size() > 0) {
-				infringingEnsembles.add(enmble);
+		while (it.hasNext()) {
+			EObject next = it.next();
+			if (next instanceof Ensemble
+					&& Graphiti.getLinkService()
+							.getPictogramElements(dia, next).size() > 0) {
+				infringingEnsembles.add((Ensemble) next);
 			}
 		}
 
@@ -163,48 +153,35 @@ public class SliceEditorToolBehaviorProvider extends
 	 * @return List of infringing ensembles(instances of parents)
 	 */
 	private List<Ensemble> checkParentOccurrence(Diagram dia, Ensemble ens) {
-		List<Ensemble> listOfParents = new ArrayList<Ensemble>();
-		Ensemble workingEnsemble = ens;
-		@SuppressWarnings("unused")
-		Ensemble parent;
-
-		// check whether the ensemble is already a toplevel element
-		if (ens.getParent() == null) {
-			return listOfParents;
-		}
-
-		// retrieve possible parents
-		do {
-			parent = workingEnsemble.getParent();
-			listOfParents.add(ens.getParent());
-			workingEnsemble = workingEnsemble.getParent();
-		} while (!(workingEnsemble.getParent() == null));
-		listOfParents.add(workingEnsemble);
-
 		List<Ensemble> infringingEnsembles = new ArrayList<Ensemble>();
-		// check against the list of parents whether theyre already in the
-		// slice model
-		for (Ensemble ensemble : listOfParents) {
-			if (Graphiti.getLinkService().getPictogramElements(dia, ensemble)
-					.size() > 0) {
-				infringingEnsembles.add(ensemble);
-				System.out.println("Parent added");
+
+		while (!(ens.getParent() instanceof EnsembleRepository)
+				&& ens.getParent() instanceof Ensemble) {
+			ens = (Ensemble) ens.getParent();
+			if (Graphiti.getLinkService().getPictogramElements(dia, ens).size() > 0) {
+				infringingEnsembles.add(ens);
 			}
 		}
+
 		return infringingEnsembles;
 	}
-	
+
 	/**
 	 * Generate a problem marker when an invalid slice is detected.
 	 * 
-	 * @param str - String containing the type of infringement
-	 * @param picel - Pictogramelement
-	 * @param ensA - Ensemble to be added
-	 * @param ensB - An already existing conflicting ensembleinstance
+	 * @param str
+	 *            - String containing the type of infringement
+	 * @param picel
+	 *            - Pictogramelement
+	 * @param ensA
+	 *            - Ensemble to be added
+	 * @param ensB
+	 *            - An already existing conflicting ensembleinstance
 	 */
-	private void generateMarker(String str, PictogramElement picel, Ensemble ensA,
-			Ensemble ensB, Diagram dia) {
-		EObject bo = (EObject) getFeatureProvider().getBusinessObjectForPictogramElement(picel);
+	private void generateMarker(String str, PictogramElement picel,
+			Ensemble ensA, Ensemble ensB, Diagram dia) {
+		EObject bo = (EObject) getFeatureProvider()
+				.getBusinessObjectForPictogramElement(picel);
 
 		try {
 			// retrieve URI
@@ -222,16 +199,14 @@ public class SliceEditorToolBehaviorProvider extends
 
 			// create marker
 			IMarker marker = resource.createMarker(IMarker.PROBLEM);
-			marker.setAttribute(
-					IMarker.MESSAGE,
-					str+ "-Slice is invalid "
-							+ ensB.toString() + " is a descendant of  "
-							+ ensA.toString());
+			marker.setAttribute(IMarker.MESSAGE,
+					str + "-Slice is invalid " + ensB.toString()
+							+ " is a descendant of  " + ensA.toString());
 			marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 }
