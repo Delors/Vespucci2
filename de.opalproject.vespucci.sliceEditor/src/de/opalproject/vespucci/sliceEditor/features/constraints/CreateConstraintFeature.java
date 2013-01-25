@@ -31,7 +31,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package de.opalproject.vespucci.sliceEditor.features;
+package de.opalproject.vespucci.sliceEditor.features.constraints;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateConnectionContext;
@@ -41,6 +41,7 @@ import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 
 import de.opalproject.vespucci.datamodel.Constraint;
+import de.opalproject.vespucci.datamodel.ConstraintType;
 import de.opalproject.vespucci.datamodel.DatamodelFactory;
 import de.opalproject.vespucci.datamodel.Ensemble;
 
@@ -51,20 +52,22 @@ import de.opalproject.vespucci.datamodel.Ensemble;
  * @author Marius
  * 
  */
-public class CreateConstraintFeature extends AbstractCreateConnectionFeature {
+public abstract class CreateConstraintFeature extends
+		AbstractCreateConnectionFeature {
+	private ConstraintType constraintType;
 
 	/*
 	 * constructor
 	 */
-	public CreateConstraintFeature(IFeatureProvider fp) {
+	public CreateConstraintFeature(IFeatureProvider fp, String title,
+			String description, ConstraintType constraintType) {
 		// provide name and description for the UI, e.g. the palette
-		super(fp, "Constraint", "Create Constraint");
+		super(fp, title, description);
+		this.constraintType = constraintType;
 	}
-	
+
 	@Override
-	public String getCreateImageId() {
-		return "de.opalproject.vespucci.sliceEditor.constraint";
-	}
+	public abstract String getCreateImageId();
 
 	/*
 	 * checks if both anchors belong to an Ensemble and those Ensembles are not
@@ -154,23 +157,16 @@ public class CreateConstraintFeature extends AbstractCreateConnectionFeature {
 	 */
 	private Constraint createConstraint(Ensemble source, Ensemble target) {
 		// create Constraint
-    	DatamodelFactory factory = DatamodelFactory.eINSTANCE;
+		DatamodelFactory factory = DatamodelFactory.eINSTANCE;
 		Constraint con = factory.createConstraint();
+		con.setConstraintType(constraintType);
 		con.setSource(source);
 		con.setTarget(target);
-		
-		// save in diagram
-        getDiagram().eResource().getContents().add(con);
-        
-		
-//		EReference eReference = EcoreFactory.eINSTANCE.createEReference();
-//		eReference.setName("new EReference");
-//		eReference.setEType(target.eClass());
-//		eReference.setLowerBound(0);
-//		eReference.setUpperBound(1);
-//		getDiagram().eResource().getContents().add(eReference);
 
-		//source.eClass().getEStructuralFeatures().add(eReference);
+		// save in diagram
+		getDiagram().eResource().getContents().add(con);
+
 		return con;
 	}
+
 }

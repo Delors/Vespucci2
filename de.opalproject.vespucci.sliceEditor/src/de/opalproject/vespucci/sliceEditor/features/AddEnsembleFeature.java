@@ -189,8 +189,9 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 			name.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
 
 			// vertical alignment has as default value "center"
-			name.setFont(gaService.manageDefaultFont(getDiagram(), false, true));
-			gaService.setLocationAndSize(name, 22, 0, (width - 22), 20);
+			name.setFont(gaService.manageFont(targetDiagram, "Arial", 10, false, true));
+			// width is dependent on the intial x coordinate
+			gaService.setLocationAndSize(name, 23, 2, (width - 23), 20);
 
 			// create shape for the description
 			Shape descriptionShape = peCreateService.createShape(
@@ -216,7 +217,7 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 						false);
 				Image icon = gaService.createImage(iconShape,
 						"de.opalproject.vespucci.sliceEditor.ensembleIcon");
-				gaService.setLocationAndSize(icon, 3, 3, 16, 16);
+				gaService.setLocationAndSize(icon, 4, 3, 16, 16);
 			}
 		}
 
@@ -227,45 +228,4 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 
 		return containerShape;
 	}
-
-	// /**
-	// * Generate a problem marker when an invalid slice is detected.
-	// *
-	// * @param str - String containing the type of infringement
-	// * @param picel - Pictogramelement
-	// * @param ensA - Ensemble to be added
-	// * @param ensB - An already existing conflicting ensembleinstance
-	// */
-	// private void generateMarker(String str, PictogramElement picel, Ensemble
-	// ensA,
-	// Ensemble ensB, Diagram dia) {
-	// EObject bo = (EObject) getBusinessObjectForPictogramElement(picel);
-	//
-	// try {
-	// // retrieve URI
-	// URI uri = EcoreUtil.getURI(bo);
-	// uri = uri.trimFragment();
-	// // remove "platform:..." from uri
-	// if (uri.isPlatform()) {
-	// uri = URI.createURI(uri.toPlatformString(true));
-	// }
-	// IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace()
-	// .getRoot();
-	//
-	// // try to get project from whole uri resource
-	// IResource resource = workspaceRoot.findMember(uri.toString());
-	//
-	// // create marker
-	// IMarker marker = resource.createMarker(IMarker.PROBLEM);
-	// marker.setAttribute(
-	// IMarker.MESSAGE,
-	// str+ "-Slice is invalid "
-	// + ensB.toString() + " is a descendant of  "
-	// + ensA.toString());
-	// marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
-	//
-	// } catch (Exception e) {
-	// e.printStackTrace();
-	// }
-	// }
 }

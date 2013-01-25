@@ -38,24 +38,43 @@ import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.ICreateConnectionFeature;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IDeleteFeature;
+import org.eclipse.graphiti.features.IDirectEditingFeature;
 import org.eclipse.graphiti.features.ILayoutFeature;
 import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.IAddContext;
+import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.IDeleteContext;
+import org.eclipse.graphiti.features.context.IDirectEditingContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
+import org.eclipse.graphiti.features.custom.ICustomFeature;
+import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
 import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.Ensemble;
-import de.opalproject.vespucci.sliceEditor.features.AddConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.AddEnsembleFeature;
-import de.opalproject.vespucci.sliceEditor.features.CreateConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.ChangeConstraintDependencyKind;
+import de.opalproject.vespucci.sliceEditor.features.ConstraintKindDirectEditFeature;
 import de.opalproject.vespucci.sliceEditor.features.CreateEmptyEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.LayoutEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.UpdateEnsembleFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.AddConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.AddExpectedConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.AddGlobalIncomingConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.AddGlobalOutgoingConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.AddLocalIncomingConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.AddLocalOutgoingConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.AddNotAllowedConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.CreateConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.CreateExpectedConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.CreateGlobalIncomingConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.CreateGlobalOutgoingConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.CreateLocalIncomingConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.CreateLocalOutgoingConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.CreateNotAllowedConstraintFeature;
 
 public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 
@@ -73,7 +92,19 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 		if (context.getNewObject() instanceof Ensemble) {
 			return new AddEnsembleFeature(this);
 		} else if (context.getNewObject() instanceof Constraint) {
-			return new AddConstraintFeature(this);
+			return new AddGlobalIncomingConstraintFeature(this);
+		} else if (context.getNewObject() instanceof Constraint) {
+			return new AddLocalIncomingConstraintFeature(this);
+		} else if (context.getNewObject() instanceof Constraint) {
+			return new AddGlobalOutgoingConstraintFeature(this);
+		} else if (context.getNewObject() instanceof Constraint) {
+			return new AddLocalOutgoingConstraintFeature(this);
+		} else if (context.getNewObject() instanceof Constraint) {
+			return new AddNotAllowedConstraintFeature(this);
+		} else if (context.getNewObject() instanceof Constraint) {
+			return new AddExpectedConstraintFeature(this);
+		} else if (context.getNewObject() instanceof Constraint) {
+			return new AddGlobalIncomingConstraintFeature(this);
 		}
 		return super.getAddFeature(context);
 	}
@@ -95,8 +126,14 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 
 	@Override
 	public ICreateConnectionFeature[] getCreateConnectionFeatures() {
-		return new ICreateConnectionFeature[] { new CreateConstraintFeature(
-				this) };
+		return new ICreateConnectionFeature[] { new CreateGlobalIncomingConstraintFeature(
+				this), new CreateLocalIncomingConstraintFeature(
+						this), new CreateGlobalOutgoingConstraintFeature(
+								this), new CreateLocalOutgoingConstraintFeature(
+										this), new CreateExpectedConstraintFeature(
+this),
+				new CreateNotAllowedConstraintFeature(
+														this) };
 	}
 	
 	@Override
@@ -110,4 +147,20 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 	   }
 	   return super.getUpdateFeature(context);
 	 } 
+	
+	@Override
+	public ICustomFeature[] getCustomFeatures(ICustomContext context) {
+	    return new ICustomFeature[] { new ChangeConstraintDependencyKind(this) };
+	}
+	
+	@Override
+	public IDirectEditingFeature getDirectEditingFeature(
+	    IDirectEditingContext context) {
+	    PictogramElement pe = context.getPictogramElement();
+	    //Object bo = getBusinessObjectForPictogramElement(pe);
+	    if (pe instanceof ConnectionDecorator) {
+	        return new ConstraintKindDirectEditFeature(this);
+	    }
+	    return super.getDirectEditingFeature(context);
+	 }
 }

@@ -31,7 +31,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package de.opalproject.vespucci.sliceEditor.features;
+package de.opalproject.vespucci.sliceEditor.features.constraints;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddConnectionContext;
@@ -59,9 +59,9 @@ import de.opalproject.vespucci.datamodel.Constraint;
  * @author Marius
  * 
  */
-public class AddConstraintFeature extends AbstractAddFeature {
+public abstract class AddConstraintFeature extends AbstractAddFeature {
 
-	private static final IColorConstant CONSTRAINT_FOREGROUND = new ColorConstant(
+	protected static final IColorConstant CONSTRAINT_FOREGROUND = new ColorConstant(
 			98, 131, 167);
 
 	public AddConstraintFeature(IFeatureProvider fp) {
@@ -80,7 +80,6 @@ public class AddConstraintFeature extends AbstractAddFeature {
 	@Override
 	public PictogramElement add(IAddContext context) {
 		IAddConnectionContext addConContext = (IAddConnectionContext) context;
-		@SuppressWarnings("unused")
 		Constraint addedConstraint = (Constraint) context.getNewObject();
 		IPeCreateService peCreateService = Graphiti.getPeCreateService();
 
@@ -96,20 +95,17 @@ public class AddConstraintFeature extends AbstractAddFeature {
 		polyline.setForeground(manageColor(CONSTRAINT_FOREGROUND));
 
 		// create link and wire it
-		// link(connection, addedEReference);
+		link(connection, addedConstraint);
 
-//		// create a visual arrow at the end of the link
-//		ConnectionDecorator cd;
-//		cd = peCreateService.createConnectionDecorator(connection, false, 1.0,
-//				true);
-//		createArrow(cd);
+
 
 		// add dynamic text decorator for the association name 
 	     ConnectionDecorator textDecorator =
 	         peCreateService.createConnectionDecorator(connection, true,
 	         0.5, true);
-	     Text text = gaService.createDefaultText(getDiagram(),textDecorator);
+	     Text text = gaService.createText(textDecorator);
 	     text.setForeground(manageColor(IColorConstant.BLACK));
+	     text.setFont(gaService.manageFont(getDiagram(), "Arial", 10, false, false));
 	     gaService.setLocation(text, 10, 0);
 	     // set reference name in the text decorator
 	     text.setValue(addedConstraint.getDependencyKind());
@@ -118,7 +114,7 @@ public class AddConstraintFeature extends AbstractAddFeature {
 	     ConnectionDecorator cd;
 	     cd = peCreateService
 	           .createConnectionDecorator(connection, false, 1.0, true);
-	     createArrow(cd);	
+	    createArrow(cd);	
 		
 		return connection;
 	}
@@ -144,12 +140,5 @@ public class AddConstraintFeature extends AbstractAddFeature {
 		return false;
 	}
 
-	private Polyline createArrow(GraphicsAlgorithmContainer gaContainer) {
-		IGaService gaService = Graphiti.getGaService();
-		Polyline polyline = gaService.createPolyline(gaContainer, new int[] {
-				-15, 10, 0, 0, -15, -10 });
-		polyline.setForeground(manageColor(CONSTRAINT_FOREGROUND));
-		polyline.setLineWidth(2);
-		return polyline;
-	}
+	protected abstract Polyline createArrow(GraphicsAlgorithmContainer gaContainer);
 }
