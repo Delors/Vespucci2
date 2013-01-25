@@ -62,9 +62,19 @@ import de.opalproject.vespucci.sliceEditor.features.CreateEmptyEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.LayoutEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.UpdateEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.constraints.AddConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.AddExpectedConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.constraints.AddGlobalIncomingConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.AddGlobalOutgoingConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.AddLocalIncomingConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.AddLocalOutgoingConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.AddNotAllowedConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.constraints.CreateConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.CreateExpectedConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.constraints.CreateGlobalIncomingConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.CreateGlobalOutgoingConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.CreateLocalIncomingConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.CreateLocalOutgoingConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.CreateNotAllowedConstraintFeature;
 
 public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 
@@ -81,6 +91,18 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 		// is object for add request a EObject?
 		if (context.getNewObject() instanceof Ensemble) {
 			return new AddEnsembleFeature(this);
+		} else if (context.getNewObject() instanceof Constraint) {
+			return new AddGlobalIncomingConstraintFeature(this);
+		} else if (context.getNewObject() instanceof Constraint) {
+			return new AddLocalIncomingConstraintFeature(this);
+		} else if (context.getNewObject() instanceof Constraint) {
+			return new AddGlobalOutgoingConstraintFeature(this);
+		} else if (context.getNewObject() instanceof Constraint) {
+			return new AddLocalOutgoingConstraintFeature(this);
+		} else if (context.getNewObject() instanceof Constraint) {
+			return new AddNotAllowedConstraintFeature(this);
+		} else if (context.getNewObject() instanceof Constraint) {
+			return new AddExpectedConstraintFeature(this);
 		} else if (context.getNewObject() instanceof Constraint) {
 			return new AddGlobalIncomingConstraintFeature(this);
 		}
@@ -105,7 +127,13 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 	@Override
 	public ICreateConnectionFeature[] getCreateConnectionFeatures() {
 		return new ICreateConnectionFeature[] { new CreateGlobalIncomingConstraintFeature(
-				this) };
+				this), new CreateLocalIncomingConstraintFeature(
+						this), new CreateGlobalOutgoingConstraintFeature(
+								this), new CreateLocalOutgoingConstraintFeature(
+										this), new CreateExpectedConstraintFeature(
+this),
+				new CreateNotAllowedConstraintFeature(
+														this) };
 	}
 	
 	@Override
