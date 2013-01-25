@@ -31,7 +31,7 @@ public class CreateEmptyEnsembleFeature extends AbstractCreateFeature {
         // create Ensemble
     	DatamodelFactory factory = DatamodelFactory.eINSTANCE;
     	// TODO change to type empty ensemble
-        Ensemble ens = factory.createEnsemble();
+        Ensemble ens = factory.createConcreteEnsemble();
         // Add model element to resource.
         // We add the model element to the resource of the diagram for
         // as it is not needed in the Ensemble Explorer.
