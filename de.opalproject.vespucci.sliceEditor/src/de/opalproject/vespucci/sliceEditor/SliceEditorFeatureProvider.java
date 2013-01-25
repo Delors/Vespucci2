@@ -54,6 +54,7 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
 import de.opalproject.vespucci.datamodel.Constraint;
+import de.opalproject.vespucci.datamodel.ConstraintType;
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.sliceEditor.features.AddEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.ChangeConstraintDependencyKind;
@@ -61,14 +62,12 @@ import de.opalproject.vespucci.sliceEditor.features.ConstraintKindDirectEditFeat
 import de.opalproject.vespucci.sliceEditor.features.CreateEmptyEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.LayoutEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.UpdateEnsembleFeature;
-import de.opalproject.vespucci.sliceEditor.features.constraints.AddConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.constraints.AddExpectedConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.constraints.AddGlobalIncomingConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.constraints.AddGlobalOutgoingConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.constraints.AddLocalIncomingConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.constraints.AddLocalOutgoingConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.constraints.AddNotAllowedConstraintFeature;
-import de.opalproject.vespucci.sliceEditor.features.constraints.CreateConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.constraints.CreateExpectedConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.constraints.CreateGlobalIncomingConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.constraints.CreateGlobalOutgoingConstraintFeature;
@@ -92,20 +91,28 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 		if (context.getNewObject() instanceof Ensemble) {
 			return new AddEnsembleFeature(this);
 		} else if (context.getNewObject() instanceof Constraint) {
-			return new AddGlobalIncomingConstraintFeature(this);
-		} else if (context.getNewObject() instanceof Constraint) {
-			return new AddLocalIncomingConstraintFeature(this);
-		} else if (context.getNewObject() instanceof Constraint) {
-			return new AddGlobalOutgoingConstraintFeature(this);
-		} else if (context.getNewObject() instanceof Constraint) {
-			return new AddLocalOutgoingConstraintFeature(this);
-		} else if (context.getNewObject() instanceof Constraint) {
-			return new AddNotAllowedConstraintFeature(this);
-		} else if (context.getNewObject() instanceof Constraint) {
-			return new AddExpectedConstraintFeature(this);
-		} else if (context.getNewObject() instanceof Constraint) {
-			return new AddGlobalIncomingConstraintFeature(this);
+
+			Constraint constraint = (Constraint) context.getNewObject();
+
+			switch (constraint.getConstraintType().getValue()) {
+			case ConstraintType.EXPECTED_VALUE:
+				return new AddExpectedConstraintFeature(this);
+			case ConstraintType.GLOBAL_INCOMING_VALUE:
+				return new AddGlobalIncomingConstraintFeature(this);
+			case ConstraintType.GLOBAL_OUTGOING_VALUE:
+				return new AddGlobalOutgoingConstraintFeature(this);
+			case ConstraintType.LOCAL_INCOMING_VALUE:
+				return new AddLocalIncomingConstraintFeature(this);
+			case ConstraintType.LOCAL_OUTGOING_VALUE:
+				return new AddLocalOutgoingConstraintFeature(this);
+			case ConstraintType.NOT_ALLOWED_VALUE:
+				return new AddNotAllowedConstraintFeature(this);
+			default:
+				return new AddNotAllowedConstraintFeature(this);
+			}
+
 		}
+
 		return super.getAddFeature(context);
 	}
 	
