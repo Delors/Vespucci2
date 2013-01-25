@@ -31,7 +31,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package de.opalproject.vespucci.sliceEditor.features;
+package de.opalproject.vespucci.sliceEditor.features.constraints;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddConnectionContext;
@@ -59,9 +59,9 @@ import de.opalproject.vespucci.datamodel.Constraint;
  * @author Marius
  * 
  */
-public class AddConstraintFeature extends AbstractAddFeature {
+public abstract class AddConstraintFeature extends AbstractAddFeature {
 
-	private static final IColorConstant CONSTRAINT_FOREGROUND = new ColorConstant(
+	protected static final IColorConstant CONSTRAINT_FOREGROUND = new ColorConstant(
 			98, 131, 167);
 
 	public AddConstraintFeature(IFeatureProvider fp) {
@@ -105,7 +105,7 @@ public class AddConstraintFeature extends AbstractAddFeature {
 	         0.5, true);
 	     Text text = gaService.createText(textDecorator);
 	     text.setForeground(manageColor(IColorConstant.BLACK));
-	     text.setFont(gaService.manageFont(getDiagram(), "ARIAL", 10, false, false));
+	     text.setFont(gaService.manageFont(getDiagram(), "Arial", 10, false, false));
 	     gaService.setLocation(text, 10, 0);
 	     // set reference name in the text decorator
 	     text.setValue(addedConstraint.getDependencyKind());
@@ -140,12 +140,5 @@ public class AddConstraintFeature extends AbstractAddFeature {
 		return false;
 	}
 
-	private Polyline createArrow(GraphicsAlgorithmContainer gaContainer) {
-		IGaService gaService = Graphiti.getGaService();
-		Polyline polyline = gaService.createPolyline(gaContainer, new int[] {
-				-15, 10, 0, 0, -15, -10 });
-		polyline.setForeground(manageColor(CONSTRAINT_FOREGROUND));
-		polyline.setLineWidth(2);
-		return polyline;
-	}
+	protected abstract Polyline createArrow(GraphicsAlgorithmContainer gaContainer);
 }

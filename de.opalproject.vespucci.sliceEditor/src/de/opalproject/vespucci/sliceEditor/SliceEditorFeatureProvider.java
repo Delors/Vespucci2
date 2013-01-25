@@ -48,7 +48,6 @@ import org.eclipse.graphiti.features.context.IDirectEditingContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
-import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -56,14 +55,16 @@ import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
 import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.Ensemble;
-import de.opalproject.vespucci.sliceEditor.features.AddConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.AddEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.ChangeConstraintDependencyKind;
 import de.opalproject.vespucci.sliceEditor.features.ConstraintKindDirectEditFeature;
-import de.opalproject.vespucci.sliceEditor.features.CreateConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.CreateEmptyEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.LayoutEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.UpdateEnsembleFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.AddConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.AddGlobalIncomingConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.CreateConstraintFeature;
+import de.opalproject.vespucci.sliceEditor.features.constraints.CreateGlobalIncomingConstraintFeature;
 
 public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 
@@ -81,7 +82,7 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 		if (context.getNewObject() instanceof Ensemble) {
 			return new AddEnsembleFeature(this);
 		} else if (context.getNewObject() instanceof Constraint) {
-			return new AddConstraintFeature(this);
+			return new AddGlobalIncomingConstraintFeature(this);
 		}
 		return super.getAddFeature(context);
 	}
@@ -103,7 +104,7 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 
 	@Override
 	public ICreateConnectionFeature[] getCreateConnectionFeatures() {
-		return new ICreateConnectionFeature[] { new CreateConstraintFeature(
+		return new ICreateConnectionFeature[] { new CreateGlobalIncomingConstraintFeature(
 				this) };
 	}
 	

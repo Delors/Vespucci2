@@ -189,7 +189,7 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 			name.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
 
 			// vertical alignment has as default value "center"
-			name.setFont(gaService.manageFont(targetDiagram, "ARIAL", 10, false, true));
+			name.setFont(gaService.manageFont(targetDiagram, "Arial", 10, false, true));
 			// width is dependent on the intial x coordinate
 			gaService.setLocationAndSize(name, 23, 2, (width - 23), 20);
 

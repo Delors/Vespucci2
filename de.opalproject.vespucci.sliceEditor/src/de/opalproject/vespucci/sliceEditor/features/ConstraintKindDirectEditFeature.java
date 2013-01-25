@@ -95,6 +95,7 @@ public class ConstraintKindDirectEditFeature extends
 
 	public void setValue(String value, IDirectEditingContext context) {
 
+		@SuppressWarnings("unused")
 		PictogramElement pe = context.getPictogramElement();
 		ConnectionDecorator cd = (ConnectionDecorator) context
 				.getPictogramElement();
