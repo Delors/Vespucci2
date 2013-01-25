@@ -33,9 +33,9 @@
  */
 package de.opalproject.vespucci.datamodel.provider;
 
+import de.opalproject.vespucci.datamodel.ConcreteEnsemble;
 import de.opalproject.vespucci.datamodel.DatamodelFactory;
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
-import de.opalproject.vespucci.datamodel.Ensemble;
 
 import java.util.Collection;
 import java.util.List;
@@ -60,12 +60,12 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a
- * {@link de.opalproject.vespucci.datamodel.Ensemble} object. <!--
+ * {@link de.opalproject.vespucci.datamodel.ConcreteEnsemble} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
-public class EnsembleItemProvider extends ItemProviderAdapter implements
+public class ConcreteEnsembleItemProvider extends ItemProviderAdapter implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
@@ -74,7 +74,7 @@ public class EnsembleItemProvider extends ItemProviderAdapter implements
 	 * 
 	 * @generated
 	 */
-	public EnsembleItemProvider(AdapterFactory adapterFactory) {
+	public ConcreteEnsembleItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -93,7 +93,6 @@ public class EnsembleItemProvider extends ItemProviderAdapter implements
 			addDerivedPropertyDescriptor(object);
 			addDescriptionPropertyDescriptor(object);
 			addQueryPropertyDescriptor(object);
-			addChildrenPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -174,24 +173,6 @@ public class EnsembleItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Children feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addChildrenPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_Ensemble_children_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_Ensemble_children_feature", "_UI_Ensemble_type"),
-				DatamodelPackage.Literals.ENSEMBLE__CHILDREN, true, false,
-				true, null, null, null));
-	}
-
-	/**
 	 * This specifies how to implement {@link #getChildren} and is used to
 	 * deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand},
@@ -206,7 +187,7 @@ public class EnsembleItemProvider extends ItemProviderAdapter implements
 			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(DatamodelPackage.Literals.ENSEMBLE__CHILDREN);
+			childrenFeatures.add(DatamodelPackage.Literals.TREE_NODE__CHILDREN);
 		}
 		return childrenFeatures;
 	}
@@ -226,27 +207,27 @@ public class EnsembleItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This returns Ensemble.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns ConcreteEnsemble.gif. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/Ensemble"));
+				getResourceLocator().getImage("full/obj16/ConcreteEnsemble"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated not
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Ensemble) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Ensemble_type")
-				+ " Name not found"
+		String label = ((ConcreteEnsemble) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_ConcreteEnsemble_type")
 				: label;
 	}
 
@@ -262,15 +243,15 @@ public class EnsembleItemProvider extends ItemProviderAdapter implements
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Ensemble.class)) {
-		case DatamodelPackage.ENSEMBLE__NAME:
-		case DatamodelPackage.ENSEMBLE__DERIVED:
-		case DatamodelPackage.ENSEMBLE__DESCRIPTION:
-		case DatamodelPackage.ENSEMBLE__QUERY:
+		switch (notification.getFeatureID(ConcreteEnsemble.class)) {
+		case DatamodelPackage.CONCRETE_ENSEMBLE__NAME:
+		case DatamodelPackage.CONCRETE_ENSEMBLE__DERIVED:
+		case DatamodelPackage.CONCRETE_ENSEMBLE__DESCRIPTION:
+		case DatamodelPackage.CONCRETE_ENSEMBLE__QUERY:
 			fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), false, true));
 			return;
-		case DatamodelPackage.ENSEMBLE__CHILDREN:
+		case DatamodelPackage.CONCRETE_ENSEMBLE__CHILDREN:
 			fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), true, false));
 			return;
@@ -291,8 +272,16 @@ public class EnsembleItemProvider extends ItemProviderAdapter implements
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-				DatamodelPackage.Literals.ENSEMBLE__CHILDREN,
-				DatamodelFactory.eINSTANCE.createEnsemble()));
+				DatamodelPackage.Literals.TREE_NODE__CHILDREN,
+				DatamodelFactory.eINSTANCE.createEnsembleRepository()));
+
+		newChildDescriptors.add(createChildParameter(
+				DatamodelPackage.Literals.TREE_NODE__CHILDREN,
+				DatamodelFactory.eINSTANCE.createEmptyEnsemble()));
+
+		newChildDescriptors.add(createChildParameter(
+				DatamodelPackage.Literals.TREE_NODE__CHILDREN,
+				DatamodelFactory.eINSTANCE.createConcreteEnsemble()));
 	}
 
 	/**

@@ -90,6 +90,8 @@ public class SliceItemProvider extends ItemProviderAdapter implements
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
+			addDiagramPropertyDescriptor(object);
+			addEnsemblesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -113,37 +115,39 @@ public class SliceItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to
-	 * deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand},
-	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
-	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Diagram feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(DatamodelPackage.Literals.SLICE__CONSTRAINTS);
-		}
-		return childrenFeatures;
+	protected void addDiagramPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Slice_diagram_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Slice_diagram_feature", "_UI_Slice_type"),
+				DatamodelPackage.Literals.SLICE__DIAGRAM, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Ensembles feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper
-		// feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+	protected void addEnsemblesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Slice_ensembles_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Slice_ensembles_feature", "_UI_Slice_type"),
+				DatamodelPackage.Literals.SLICE__ENSEMBLES, true, false, true,
+				null, null, null));
 	}
 
 	/**
@@ -184,12 +188,9 @@ public class SliceItemProvider extends ItemProviderAdapter implements
 
 		switch (notification.getFeatureID(Slice.class)) {
 		case DatamodelPackage.SLICE__NAME:
+		case DatamodelPackage.SLICE__DIAGRAM:
 			fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), false, true));
-			return;
-		case DatamodelPackage.SLICE__CONSTRAINTS:
-			fireNotifyChanged(new ViewerNotification(notification,
-					notification.getNotifier(), true, false));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -206,10 +207,6 @@ public class SliceItemProvider extends ItemProviderAdapter implements
 	protected void collectNewChildDescriptors(
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add(createChildParameter(
-				DatamodelPackage.Literals.SLICE__CONSTRAINTS,
-				DatamodelFactory.eINSTANCE.createConstraint()));
 	}
 
 	/**

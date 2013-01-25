@@ -109,31 +109,6 @@ public class DatamodelItemProviderAdapterFactory extends
 
 	/**
 	 * This keeps track of the one adapter used for all
-	 * {@link de.opalproject.vespucci.datamodel.Ensemble} instances. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected EnsembleItemProvider ensembleItemProvider;
-
-	/**
-	 * This creates an adapter for a
-	 * {@link de.opalproject.vespucci.datamodel.Ensemble}. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createEnsembleAdapter() {
-		if (ensembleItemProvider == null) {
-			ensembleItemProvider = new EnsembleItemProvider(this);
-		}
-
-		return ensembleItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all
 	 * {@link de.opalproject.vespucci.datamodel.Constraint} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -231,6 +206,57 @@ public class DatamodelItemProviderAdapterFactory extends
 		}
 
 		return ensembleRepositoryItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all
+	 * {@link de.opalproject.vespucci.datamodel.EmptyEnsemble} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected EmptyEnsembleItemProvider emptyEnsembleItemProvider;
+
+	/**
+	 * This creates an adapter for a
+	 * {@link de.opalproject.vespucci.datamodel.EmptyEnsemble}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createEmptyEnsembleAdapter() {
+		if (emptyEnsembleItemProvider == null) {
+			emptyEnsembleItemProvider = new EmptyEnsembleItemProvider(this);
+		}
+
+		return emptyEnsembleItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all
+	 * {@link de.opalproject.vespucci.datamodel.ConcreteEnsemble} instances.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected ConcreteEnsembleItemProvider concreteEnsembleItemProvider;
+
+	/**
+	 * This creates an adapter for a
+	 * {@link de.opalproject.vespucci.datamodel.ConcreteEnsemble}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createConcreteEnsembleAdapter() {
+		if (concreteEnsembleItemProvider == null) {
+			concreteEnsembleItemProvider = new ConcreteEnsembleItemProvider(
+					this);
+		}
+
+		return concreteEnsembleItemProvider;
 	}
 
 	/**
@@ -334,8 +360,6 @@ public class DatamodelItemProviderAdapterFactory extends
 	 * @generated
 	 */
 	public void dispose() {
-		if (ensembleItemProvider != null)
-			ensembleItemProvider.dispose();
 		if (constraintItemProvider != null)
 			constraintItemProvider.dispose();
 		if (sliceRepositoryItemProvider != null)
@@ -344,6 +368,10 @@ public class DatamodelItemProviderAdapterFactory extends
 			sliceItemProvider.dispose();
 		if (ensembleRepositoryItemProvider != null)
 			ensembleRepositoryItemProvider.dispose();
+		if (emptyEnsembleItemProvider != null)
+			emptyEnsembleItemProvider.dispose();
+		if (concreteEnsembleItemProvider != null)
+			concreteEnsembleItemProvider.dispose();
 	}
 
 }

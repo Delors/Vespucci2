@@ -35,6 +35,7 @@ package de.opalproject.vespucci.datamodel;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -77,6 +78,14 @@ public interface DatamodelPackage extends EPackage {
 	String eNS_PREFIX = "de.opalproject.vespucci.datamodel";
 
 	/**
+	 * The package content type ID. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 */
+	String eCONTENT_TYPE = "vespucci";
+
+	/**
 	 * The singleton instance of the package. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -87,59 +96,14 @@ public interface DatamodelPackage extends EPackage {
 
 	/**
 	 * The meta object id for the '
-	 * {@link de.opalproject.vespucci.datamodel.impl.EnsembleImpl
-	 * <em>Ensemble</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@link de.opalproject.vespucci.datamodel.TreeNode <em>Tree Node</em>}'
+	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see de.opalproject.vespucci.datamodel.impl.EnsembleImpl
-	 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getEnsemble()
+	 * @see de.opalproject.vespucci.datamodel.TreeNode
+	 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getTreeNode()
 	 * @generated
 	 */
-	int ENSEMBLE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ENSEMBLE__NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Derived</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ENSEMBLE__DERIVED = 1;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ENSEMBLE__DESCRIPTION = 2;
-
-	/**
-	 * The feature id for the '<em><b>Query</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ENSEMBLE__QUERY = 3;
-
-	/**
-	 * The feature id for the '<em><b>Children</b></em>' containment reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ENSEMBLE__CHILDREN = 4;
+	int TREE_NODE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' container reference. <!--
@@ -148,16 +112,90 @@ public interface DatamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENSEMBLE__PARENT = 5;
+	int TREE_NODE__PARENT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Container</b></em>' container reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Children</b></em>' containment reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ENSEMBLE__CONTAINER = 6;
+	int TREE_NODE__CHILDREN = 1;
+
+	/**
+	 * The number of structural features of the '<em>Tree Node</em>' class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int TREE_NODE_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '
+	 * {@link de.opalproject.vespucci.datamodel.Ensemble <em>Ensemble</em>}'
+	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see de.opalproject.vespucci.datamodel.Ensemble
+	 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getEnsemble()
+	 * @generated
+	 */
+	int ENSEMBLE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' container reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENSEMBLE__PARENT = TREE_NODE__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Children</b></em>' containment reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENSEMBLE__CHILDREN = TREE_NODE__CHILDREN;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENSEMBLE__NAME = TREE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Derived</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENSEMBLE__DERIVED = TREE_NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENSEMBLE__DESCRIPTION = TREE_NODE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Query</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENSEMBLE__QUERY = TREE_NODE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Ensemble</em>' class. <!--
@@ -166,7 +204,7 @@ public interface DatamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENSEMBLE_FEATURE_COUNT = 7;
+	int ENSEMBLE_FEATURE_COUNT = TREE_NODE_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '
@@ -227,18 +265,6 @@ public interface DatamodelPackage extends EPackage {
 
 	/**
 	 * The meta object id for the '
-	 * {@link de.opalproject.vespucci.datamodel.impl.EnsembleRepositoryImpl
-	 * <em>Ensemble Repository</em>}' class. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @see de.opalproject.vespucci.datamodel.impl.EnsembleRepositoryImpl
-	 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getEnsembleRepository()
-	 * @generated
-	 */
-	int ENSEMBLE_REPOSITORY = 4;
-
-	/**
-	 * The meta object id for the '
 	 * {@link de.opalproject.vespucci.datamodel.impl.SliceRepositoryImpl
 	 * <em>Slice Repository</em>}' class. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -250,8 +276,8 @@ public interface DatamodelPackage extends EPackage {
 	int SLICE_REPOSITORY = 2;
 
 	/**
-	 * The feature id for the '<em><b>Contains</b></em>' reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Contains</b></em>' containment reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
@@ -279,22 +305,40 @@ public interface DatamodelPackage extends EPackage {
 	int SLICE = 3;
 
 	/**
-	 * The feature id for the '<em><b>Constraints</b></em>' containment
-	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int SLICE__CONSTRAINTS = 0;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int SLICE__NAME = 1;
+	int SLICE__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Diagram</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SLICE__DIAGRAM = 1;
+
+	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' containment
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SLICE__CONSTRAINTS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Ensembles</b></em>' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SLICE__ENSEMBLES = 3;
 
 	/**
 	 * The number of structural features of the '<em>Slice</em>' class. <!--
@@ -303,16 +347,37 @@ public interface DatamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SLICE_FEATURE_COUNT = 2;
+	int SLICE_FEATURE_COUNT = 4;
 
 	/**
-	 * The feature id for the '<em><b>Contains</b></em>' reference list. <!--
+	 * The meta object id for the '
+	 * {@link de.opalproject.vespucci.datamodel.impl.EnsembleRepositoryImpl
+	 * <em>Ensemble Repository</em>}' class. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see de.opalproject.vespucci.datamodel.impl.EnsembleRepositoryImpl
+	 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getEnsembleRepository()
+	 * @generated
+	 */
+	int ENSEMBLE_REPOSITORY = 4;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' container reference. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ENSEMBLE_REPOSITORY__CONTAINS = 0;
+	int ENSEMBLE_REPOSITORY__PARENT = TREE_NODE__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Children</b></em>' containment reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENSEMBLE_REPOSITORY__CHILDREN = TREE_NODE__CHILDREN;
 
 	/**
 	 * The number of structural features of the '<em>Ensemble Repository</em>'
@@ -321,7 +386,157 @@ public interface DatamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENSEMBLE_REPOSITORY_FEATURE_COUNT = 1;
+	int ENSEMBLE_REPOSITORY_FEATURE_COUNT = TREE_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '
+	 * {@link de.opalproject.vespucci.datamodel.impl.EmptyEnsembleImpl
+	 * <em>Empty Ensemble</em>}' class. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see de.opalproject.vespucci.datamodel.impl.EmptyEnsembleImpl
+	 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getEmptyEnsemble()
+	 * @generated
+	 */
+	int EMPTY_ENSEMBLE = 6;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' container reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int EMPTY_ENSEMBLE__PARENT = ENSEMBLE__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Children</b></em>' containment reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int EMPTY_ENSEMBLE__CHILDREN = ENSEMBLE__CHILDREN;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int EMPTY_ENSEMBLE__NAME = ENSEMBLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Derived</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int EMPTY_ENSEMBLE__DERIVED = ENSEMBLE__DERIVED;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int EMPTY_ENSEMBLE__DESCRIPTION = ENSEMBLE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Query</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int EMPTY_ENSEMBLE__QUERY = ENSEMBLE__QUERY;
+
+	/**
+	 * The number of structural features of the '<em>Empty Ensemble</em>' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int EMPTY_ENSEMBLE_FEATURE_COUNT = ENSEMBLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '
+	 * {@link de.opalproject.vespucci.datamodel.impl.ConcreteEnsembleImpl
+	 * <em>Concrete Ensemble</em>}' class. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see de.opalproject.vespucci.datamodel.impl.ConcreteEnsembleImpl
+	 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getConcreteEnsemble()
+	 * @generated
+	 */
+	int CONCRETE_ENSEMBLE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' container reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_ENSEMBLE__PARENT = ENSEMBLE__PARENT;
+
+	/**
+	 * The feature id for the '<em><b>Children</b></em>' containment reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_ENSEMBLE__CHILDREN = ENSEMBLE__CHILDREN;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_ENSEMBLE__NAME = ENSEMBLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Derived</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_ENSEMBLE__DERIVED = ENSEMBLE__DERIVED;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_ENSEMBLE__DESCRIPTION = ENSEMBLE__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Query</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_ENSEMBLE__QUERY = ENSEMBLE__QUERY;
+
+	/**
+	 * The number of structural features of the '<em>Concrete Ensemble</em>'
+	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_ENSEMBLE_FEATURE_COUNT = ENSEMBLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '
@@ -333,7 +548,7 @@ public interface DatamodelPackage extends EPackage {
 	 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getConstraintType()
 	 * @generated
 	 */
-	int CONSTRAINT_TYPE = 5;
+	int CONSTRAINT_TYPE = 8;
 
 	/**
 	 * Returns the meta object for class '
@@ -393,43 +608,6 @@ public interface DatamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getEnsemble_Query();
-
-	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link de.opalproject.vespucci.datamodel.Ensemble#getChildren
-	 * <em>Children</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the containment reference list '
-	 *         <em>Children</em>'.
-	 * @see de.opalproject.vespucci.datamodel.Ensemble#getChildren()
-	 * @see #getEnsemble()
-	 * @generated
-	 */
-	EReference getEnsemble_Children();
-
-	/**
-	 * Returns the meta object for the container reference '
-	 * {@link de.opalproject.vespucci.datamodel.Ensemble#getParent
-	 * <em>Parent</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the container reference '<em>Parent</em>'.
-	 * @see de.opalproject.vespucci.datamodel.Ensemble#getParent()
-	 * @see #getEnsemble()
-	 * @generated
-	 */
-	EReference getEnsemble_Parent();
-
-	/**
-	 * Returns the meta object for the container reference '
-	 * {@link de.opalproject.vespucci.datamodel.Ensemble#getContainer
-	 * <em>Container</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the container reference '<em>Container</em>'.
-	 * @see de.opalproject.vespucci.datamodel.Ensemble#getContainer()
-	 * @see #getEnsemble()
-	 * @generated
-	 */
-	EReference getEnsemble_Container();
 
 	/**
 	 * Returns the meta object for class '
@@ -492,31 +670,6 @@ public interface DatamodelPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '
-	 * {@link de.opalproject.vespucci.datamodel.EnsembleRepository
-	 * <em>Ensemble Repository</em>}'. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @return the meta object for class '<em>Ensemble Repository</em>'.
-	 * @see de.opalproject.vespucci.datamodel.EnsembleRepository
-	 * @generated
-	 */
-	EClass getEnsembleRepository();
-
-	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link de.opalproject.vespucci.datamodel.EnsembleRepository#getContains
-	 * <em>Contains</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the containment reference list '
-	 *         <em>Contains</em>'.
-	 * @see de.opalproject.vespucci.datamodel.EnsembleRepository#getContains()
-	 * @see #getEnsembleRepository()
-	 * @generated
-	 */
-	EReference getEnsembleRepository_Contains();
-
-	/**
-	 * Returns the meta object for class '
 	 * {@link de.opalproject.vespucci.datamodel.SliceRepository
 	 * <em>Slice Repository</em>}'. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
@@ -565,6 +718,18 @@ public interface DatamodelPackage extends EPackage {
 	EReference getSlice_Constraints();
 
 	/**
+	 * Returns the meta object for the reference list '
+	 * {@link de.opalproject.vespucci.datamodel.Slice#getEnsembles
+	 * <em>Ensembles</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference list '<em>Ensembles</em>'.
+	 * @see de.opalproject.vespucci.datamodel.Slice#getEnsembles()
+	 * @see #getSlice()
+	 * @generated
+	 */
+	EReference getSlice_Ensembles();
+
+	/**
 	 * Returns the meta object for the attribute '
 	 * {@link de.opalproject.vespucci.datamodel.Slice#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -575,6 +740,89 @@ public interface DatamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getSlice_Name();
+
+	/**
+	 * Returns the meta object for the attribute '
+	 * {@link de.opalproject.vespucci.datamodel.Slice#getDiagram
+	 * <em>Diagram</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Diagram</em>'.
+	 * @see de.opalproject.vespucci.datamodel.Slice#getDiagram()
+	 * @see #getSlice()
+	 * @generated
+	 */
+	EAttribute getSlice_Diagram();
+
+	/**
+	 * Returns the meta object for class '
+	 * {@link de.opalproject.vespucci.datamodel.EnsembleRepository
+	 * <em>Ensemble Repository</em>}'. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @return the meta object for class '<em>Ensemble Repository</em>'.
+	 * @see de.opalproject.vespucci.datamodel.EnsembleRepository
+	 * @generated
+	 */
+	EClass getEnsembleRepository();
+
+	/**
+	 * Returns the meta object for class '
+	 * {@link de.opalproject.vespucci.datamodel.TreeNode <em>Tree Node</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Tree Node</em>'.
+	 * @see de.opalproject.vespucci.datamodel.TreeNode
+	 * @generated
+	 */
+	EClass getTreeNode();
+
+	/**
+	 * Returns the meta object for the container reference '
+	 * {@link de.opalproject.vespucci.datamodel.TreeNode#getParent
+	 * <em>Parent</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the container reference '<em>Parent</em>'.
+	 * @see de.opalproject.vespucci.datamodel.TreeNode#getParent()
+	 * @see #getTreeNode()
+	 * @generated
+	 */
+	EReference getTreeNode_Parent();
+
+	/**
+	 * Returns the meta object for the containment reference list '
+	 * {@link de.opalproject.vespucci.datamodel.TreeNode#getChildren
+	 * <em>Children</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '
+	 *         <em>Children</em>'.
+	 * @see de.opalproject.vespucci.datamodel.TreeNode#getChildren()
+	 * @see #getTreeNode()
+	 * @generated
+	 */
+	EReference getTreeNode_Children();
+
+	/**
+	 * Returns the meta object for class '
+	 * {@link de.opalproject.vespucci.datamodel.EmptyEnsemble
+	 * <em>Empty Ensemble</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Empty Ensemble</em>'.
+	 * @see de.opalproject.vespucci.datamodel.EmptyEnsemble
+	 * @generated
+	 */
+	EClass getEmptyEnsemble();
+
+	/**
+	 * Returns the meta object for class '
+	 * {@link de.opalproject.vespucci.datamodel.ConcreteEnsemble
+	 * <em>Concrete Ensemble</em>}'. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @return the meta object for class '<em>Concrete Ensemble</em>'.
+	 * @see de.opalproject.vespucci.datamodel.ConcreteEnsemble
+	 * @generated
+	 */
+	EClass getConcreteEnsemble();
 
 	/**
 	 * Returns the meta object for enum '
@@ -612,11 +860,10 @@ public interface DatamodelPackage extends EPackage {
 	interface Literals {
 		/**
 		 * The meta object literal for the '
-		 * {@link de.opalproject.vespucci.datamodel.impl.EnsembleImpl
-		 * <em>Ensemble</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc
-		 * -->
+		 * {@link de.opalproject.vespucci.datamodel.Ensemble <em>Ensemble</em>}'
+		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
-		 * @see de.opalproject.vespucci.datamodel.impl.EnsembleImpl
+		 * @see de.opalproject.vespucci.datamodel.Ensemble
 		 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getEnsemble()
 		 * @generated
 		 */
@@ -653,31 +900,6 @@ public interface DatamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ENSEMBLE__QUERY = eINSTANCE.getEnsemble_Query();
-
-		/**
-		 * The meta object literal for the '<em><b>Children</b></em>'
-		 * containment reference list feature. <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EReference ENSEMBLE__CHILDREN = eINSTANCE.getEnsemble_Children();
-
-		/**
-		 * The meta object literal for the '<em><b>Parent</b></em>' container
-		 * reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EReference ENSEMBLE__PARENT = eINSTANCE.getEnsemble_Parent();
-
-		/**
-		 * The meta object literal for the '<em><b>Container</b></em>' container
-		 * reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EReference ENSEMBLE__CONTAINER = eINSTANCE.getEnsemble_Container();
 
 		/**
 		 * The meta object literal for the '
@@ -727,28 +949,6 @@ public interface DatamodelPackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '
-		 * {@link de.opalproject.vespucci.datamodel.impl.EnsembleRepositoryImpl
-		 * <em>Ensemble Repository</em>}' class. <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
-		 * 
-		 * @see de.opalproject.vespucci.datamodel.impl.EnsembleRepositoryImpl
-		 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getEnsembleRepository()
-		 * @generated
-		 */
-		EClass ENSEMBLE_REPOSITORY = eINSTANCE.getEnsembleRepository();
-
-		/**
-		 * The meta object literal for the '<em><b>Contains</b></em>'
-		 * containment reference list feature. <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EReference ENSEMBLE_REPOSITORY__CONTAINS = eINSTANCE
-				.getEnsembleRepository_Contains();
-
-		/**
-		 * The meta object literal for the '
 		 * {@link de.opalproject.vespucci.datamodel.impl.SliceRepositoryImpl
 		 * <em>Slice Repository</em>}' class. <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
@@ -790,12 +990,92 @@ public interface DatamodelPackage extends EPackage {
 		EReference SLICE__CONSTRAINTS = eINSTANCE.getSlice_Constraints();
 
 		/**
+		 * The meta object literal for the '<em><b>Ensembles</b></em>' reference
+		 * list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference SLICE__ENSEMBLES = eINSTANCE.getSlice_Ensembles();
+
+		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute
 		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
 		EAttribute SLICE__NAME = eINSTANCE.getSlice_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Diagram</b></em>' attribute
+		 * feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute SLICE__DIAGRAM = eINSTANCE.getSlice_Diagram();
+
+		/**
+		 * The meta object literal for the '
+		 * {@link de.opalproject.vespucci.datamodel.impl.EnsembleRepositoryImpl
+		 * <em>Ensemble Repository</em>}' class. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @see de.opalproject.vespucci.datamodel.impl.EnsembleRepositoryImpl
+		 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getEnsembleRepository()
+		 * @generated
+		 */
+		EClass ENSEMBLE_REPOSITORY = eINSTANCE.getEnsembleRepository();
+
+		/**
+		 * The meta object literal for the '
+		 * {@link de.opalproject.vespucci.datamodel.TreeNode <em>Tree Node</em>}
+		 * ' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see de.opalproject.vespucci.datamodel.TreeNode
+		 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getTreeNode()
+		 * @generated
+		 */
+		EClass TREE_NODE = eINSTANCE.getTreeNode();
+
+		/**
+		 * The meta object literal for the '<em><b>Parent</b></em>' container
+		 * reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference TREE_NODE__PARENT = eINSTANCE.getTreeNode_Parent();
+
+		/**
+		 * The meta object literal for the '<em><b>Children</b></em>'
+		 * containment reference list feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference TREE_NODE__CHILDREN = eINSTANCE.getTreeNode_Children();
+
+		/**
+		 * The meta object literal for the '
+		 * {@link de.opalproject.vespucci.datamodel.impl.EmptyEnsembleImpl
+		 * <em>Empty Ensemble</em>}' class. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @see de.opalproject.vespucci.datamodel.impl.EmptyEnsembleImpl
+		 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getEmptyEnsemble()
+		 * @generated
+		 */
+		EClass EMPTY_ENSEMBLE = eINSTANCE.getEmptyEnsemble();
+
+		/**
+		 * The meta object literal for the '
+		 * {@link de.opalproject.vespucci.datamodel.impl.ConcreteEnsembleImpl
+		 * <em>Concrete Ensemble</em>}' class. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @see de.opalproject.vespucci.datamodel.impl.ConcreteEnsembleImpl
+		 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getConcreteEnsemble()
+		 * @generated
+		 */
+		EClass CONCRETE_ENSEMBLE = eINSTANCE.getConcreteEnsemble();
 
 		/**
 		 * The meta object literal for the '

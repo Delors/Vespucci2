@@ -35,12 +35,12 @@ package de.opalproject.vespucci.datamodel;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>Ensemble Repository</b></em>'. <!-- end-user-doc -->
+ * <em><b>Empty Ensemble</b></em>'. <!-- end-user-doc -->
  * 
  * 
- * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getEnsembleRepository()
+ * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getEmptyEnsemble()
  * @model
  * @generated
  */
-public interface EnsembleRepository extends TreeNode {
-} // EnsembleRepository
+public interface EmptyEnsemble extends Ensemble {
+} // EmptyEnsemble

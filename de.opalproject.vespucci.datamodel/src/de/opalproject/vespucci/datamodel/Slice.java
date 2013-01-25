@@ -44,9 +44,13 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
+ * <li>{@link de.opalproject.vespucci.datamodel.Slice#getName <em>Name</em>}</li>
+ * <li>{@link de.opalproject.vespucci.datamodel.Slice#getDiagram <em>Diagram
+ * </em>}</li>
  * <li>{@link de.opalproject.vespucci.datamodel.Slice#getConstraints <em>
  * Constraints</em>}</li>
- * <li>{@link de.opalproject.vespucci.datamodel.Slice#getName <em>Name</em>}</li>
+ * <li>{@link de.opalproject.vespucci.datamodel.Slice#getEnsembles <em>Ensembles
+ * </em>}</li>
  * </ul>
  * </p>
  * 
@@ -73,6 +77,24 @@ public interface Slice extends EObject {
 	 * @generated
 	 */
 	EList<Constraint> getConstraints();
+
+	/**
+	 * Returns the value of the '<em><b>Ensembles</b></em>' reference list. The
+	 * list contents are of type
+	 * {@link de.opalproject.vespucci.datamodel.Ensemble}. <!-- begin-user-doc
+	 * -->
+	 * <p>
+	 * If the meaning of the '<em>Ensembles</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Ensembles</em>' reference list.
+	 * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getSlice_Ensembles()
+	 * @model
+	 * @generated
+	 */
+	EList<Ensemble> getEnsembles();
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!--
@@ -102,5 +124,35 @@ public interface Slice extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Diagram</b></em>' attribute. <!--
+	 * begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Diagram</em>' attribute isn't clear, there
+	 * really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Diagram</em>' attribute.
+	 * @see #setDiagram(String)
+	 * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getSlice_Diagram()
+	 * @model
+	 * @generated
+	 */
+	String getDiagram();
+
+	/**
+	 * Sets the value of the '
+	 * {@link de.opalproject.vespucci.datamodel.Slice#getDiagram
+	 * <em>Diagram</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Diagram</em>' attribute.
+	 * @see #getDiagram()
+	 * @generated
+	 */
+	void setDiagram(String value);
 
 } // Slice

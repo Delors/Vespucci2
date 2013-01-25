@@ -123,6 +123,21 @@ public class DatamodelAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseTreeNode(TreeNode object) {
+			return createTreeNodeAdapter();
+		}
+
+		@Override
+		public Adapter caseEmptyEnsemble(EmptyEnsemble object) {
+			return createEmptyEnsembleAdapter();
+		}
+
+		@Override
+		public Adapter caseConcreteEnsemble(ConcreteEnsemble object) {
+			return createConcreteEnsembleAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -174,22 +189,6 @@ public class DatamodelAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '
-	 * {@link de.opalproject.vespucci.datamodel.EnsembleRepository
-	 * <em>Ensemble Repository</em>}'. <!-- begin-user-doc --> This default
-	 * implementation returns null so that we can easily ignore cases; it's
-	 * useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see de.opalproject.vespucci.datamodel.EnsembleRepository
-	 * @generated
-	 */
-	public Adapter createEnsembleRepositoryAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '
 	 * {@link de.opalproject.vespucci.datamodel.SliceRepository
 	 * <em>Slice Repository</em>}'. <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
@@ -216,6 +215,69 @@ public class DatamodelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSliceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '
+	 * {@link de.opalproject.vespucci.datamodel.EnsembleRepository
+	 * <em>Ensemble Repository</em>}'. <!-- begin-user-doc --> This default
+	 * implementation returns null so that we can easily ignore cases; it's
+	 * useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see de.opalproject.vespucci.datamodel.EnsembleRepository
+	 * @generated
+	 */
+	public Adapter createEnsembleRepositoryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '
+	 * {@link de.opalproject.vespucci.datamodel.TreeNode <em>Tree Node</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null so that
+	 * we can easily ignore cases; it's useful to ignore a case when inheritance
+	 * will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see de.opalproject.vespucci.datamodel.TreeNode
+	 * @generated
+	 */
+	public Adapter createTreeNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '
+	 * {@link de.opalproject.vespucci.datamodel.EmptyEnsemble
+	 * <em>Empty Ensemble</em>}'. <!-- begin-user-doc --> This default
+	 * implementation returns null so that we can easily ignore cases; it's
+	 * useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see de.opalproject.vespucci.datamodel.EmptyEnsemble
+	 * @generated
+	 */
+	public Adapter createEmptyEnsembleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '
+	 * {@link de.opalproject.vespucci.datamodel.ConcreteEnsemble
+	 * <em>Concrete Ensemble</em>}'. <!-- begin-user-doc --> This default
+	 * implementation returns null so that we can easily ignore cases; it's
+	 * useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see de.opalproject.vespucci.datamodel.ConcreteEnsemble
+	 * @generated
+	 */
+	public Adapter createConcreteEnsembleAdapter() {
 		return null;
 	}
 

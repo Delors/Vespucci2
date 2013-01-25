@@ -134,7 +134,7 @@ public interface Constraint extends EObject {
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(Ensemble)
 	 * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getConstraint_Source()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	Ensemble getSource();
@@ -164,7 +164,7 @@ public interface Constraint extends EObject {
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(Ensemble)
 	 * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getConstraint_Target()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	Ensemble getTarget();

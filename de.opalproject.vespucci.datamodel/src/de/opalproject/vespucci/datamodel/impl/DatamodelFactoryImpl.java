@@ -34,15 +34,22 @@
 package de.opalproject.vespucci.datamodel.impl;
 
 import de.opalproject.vespucci.datamodel.*;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import de.opalproject.vespucci.datamodel.ConcreteEnsemble;
+import de.opalproject.vespucci.datamodel.Constraint;
+import de.opalproject.vespucci.datamodel.ConstraintType;
+import de.opalproject.vespucci.datamodel.DatamodelFactory;
+import de.opalproject.vespucci.datamodel.DatamodelPackage;
+import de.opalproject.vespucci.datamodel.EmptyEnsemble;
+import de.opalproject.vespucci.datamodel.EnsembleRepository;
+import de.opalproject.vespucci.datamodel.Slice;
+import de.opalproject.vespucci.datamodel.SliceRepository;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
@@ -89,8 +96,6 @@ public class DatamodelFactoryImpl extends EFactoryImpl implements
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case DatamodelPackage.ENSEMBLE:
-			return createEnsemble();
 		case DatamodelPackage.CONSTRAINT:
 			return createConstraint();
 		case DatamodelPackage.SLICE_REPOSITORY:
@@ -99,6 +104,10 @@ public class DatamodelFactoryImpl extends EFactoryImpl implements
 			return createSlice();
 		case DatamodelPackage.ENSEMBLE_REPOSITORY:
 			return createEnsembleRepository();
+		case DatamodelPackage.EMPTY_ENSEMBLE:
+			return createEmptyEnsemble();
+		case DatamodelPackage.CONCRETE_ENSEMBLE:
+			return createConcreteEnsemble();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName()
 					+ "' is not a valid classifier");
@@ -142,29 +151,9 @@ public class DatamodelFactoryImpl extends EFactoryImpl implements
 	 * 
 	 * @generated
 	 */
-	public Ensemble createEnsemble() {
-		EnsembleImpl ensemble = new EnsembleImpl();
-		return ensemble;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public Constraint createConstraint() {
 		ConstraintImpl constraint = new ConstraintImpl();
 		return constraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EnsembleRepository createEnsembleRepository() {
-		EnsembleRepositoryImpl ensembleRepository = new EnsembleRepositoryImpl();
-		return ensembleRepository;
 	}
 
 	/**
@@ -192,14 +181,62 @@ public class DatamodelFactoryImpl extends EFactoryImpl implements
 	 * 
 	 * @generated
 	 */
+	public EnsembleRepository createEnsembleRepository() {
+		EnsembleRepositoryImpl ensembleRepository = new EnsembleRepositoryImpl();
+		return ensembleRepository;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EmptyEnsemble createEmptyEnsemble() {
+		EmptyEnsembleImpl emptyEnsemble = new EmptyEnsembleImpl();
+		return emptyEnsemble;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public ConcreteEnsemble createConcreteEnsemble() {
+		ConcreteEnsembleImpl concreteEnsemble = new ConcreteEnsembleImpl();
+		return concreteEnsemble;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public ConstraintType createConstraintType(String literal) {
+		ConstraintType result = ConstraintType.get(literal);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + literal
+					+ "' is not a valid enumerator of '"
+					+ DatamodelPackage.Literals.CONSTRAINT_TYPE.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public ConstraintType createConstraintTypeFromString(EDataType eDataType,
 			String initialValue) {
-		ConstraintType result = ConstraintType.get(initialValue);
-		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue
-					+ "' is not a valid enumerator of '" + eDataType.getName()
-					+ "'");
-		return result;
+		return createConstraintType(initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public String convertConstraintType(ConstraintType instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**
@@ -209,7 +246,7 @@ public class DatamodelFactoryImpl extends EFactoryImpl implements
 	 */
 	public String convertConstraintTypeToString(EDataType eDataType,
 			Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
+		return convertConstraintType((ConstraintType) instanceValue);
 	}
 
 	/**

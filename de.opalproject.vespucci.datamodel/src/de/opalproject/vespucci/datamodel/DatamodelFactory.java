@@ -53,15 +53,6 @@ public interface DatamodelFactory extends EFactory {
 			.init();
 
 	/**
-	 * Returns a new object of class '<em>Ensemble</em>'. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * 
-	 * @return a new object of class '<em>Ensemble</em>'.
-	 * @generated
-	 */
-	Ensemble createEnsemble();
-
-	/**
 	 * Returns a new object of class '<em>Constraint</em>'. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
@@ -69,15 +60,6 @@ public interface DatamodelFactory extends EFactory {
 	 * @generated
 	 */
 	Constraint createConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Ensemble Repository</em>'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return a new object of class '<em>Ensemble Repository</em>'.
-	 * @generated
-	 */
-	EnsembleRepository createEnsembleRepository();
 
 	/**
 	 * Returns a new object of class '<em>Slice Repository</em>'. <!--
@@ -96,6 +78,55 @@ public interface DatamodelFactory extends EFactory {
 	 * @generated
 	 */
 	Slice createSlice();
+
+	/**
+	 * Returns a new object of class '<em>Ensemble Repository</em>'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Ensemble Repository</em>'.
+	 * @generated
+	 */
+	EnsembleRepository createEnsembleRepository();
+
+	/**
+	 * Returns a new object of class '<em>Empty Ensemble</em>'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Empty Ensemble</em>'.
+	 * @generated
+	 */
+	EmptyEnsemble createEmptyEnsemble();
+
+	/**
+	 * Returns a new object of class '<em>Concrete Ensemble</em>'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Concrete Ensemble</em>'.
+	 * @generated
+	 */
+	ConcreteEnsemble createConcreteEnsemble();
+
+	/**
+	 * Returns an instance of data type '<em>Constraint Type</em>' corresponding
+	 * the given literal. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param literal
+	 *            a literal of the data type.
+	 * @return a new instance value of the data type.
+	 * @generated
+	 */
+	ConstraintType createConstraintType(String literal);
+
+	/**
+	 * Returns a literal representation of an instance of data type '
+	 * <em>Constraint Type</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param instanceValue
+	 *            an instance value of the data type.
+	 * @return a literal representation of the instance value.
+	 * @generated
+	 */
+	String convertConstraintType(ConstraintType instanceValue);
 
 	/**
 	 * Returns the package supported by this factory. <!-- begin-user-doc -->

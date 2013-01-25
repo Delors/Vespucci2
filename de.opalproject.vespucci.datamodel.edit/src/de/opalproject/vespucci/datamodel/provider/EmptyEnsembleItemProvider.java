@@ -35,8 +35,8 @@ package de.opalproject.vespucci.datamodel.provider;
 
 import de.opalproject.vespucci.datamodel.DatamodelFactory;
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
+import de.opalproject.vespucci.datamodel.EmptyEnsemble;
 
-import de.opalproject.vespucci.datamodel.SliceRepository;
 import java.util.Collection;
 import java.util.List;
 
@@ -46,6 +46,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -53,17 +54,18 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a
- * {@link de.opalproject.vespucci.datamodel.SliceRepository} object. <!--
+ * {@link de.opalproject.vespucci.datamodel.EmptyEnsemble} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
-public class SliceRepositoryItemProvider extends ItemProviderAdapter implements
+public class EmptyEnsembleItemProvider extends ItemProviderAdapter implements
 		IEditingDomainItemProvider, IStructuredItemContentProvider,
 		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
@@ -72,7 +74,7 @@ public class SliceRepositoryItemProvider extends ItemProviderAdapter implements
 	 * 
 	 * @generated
 	 */
-	public SliceRepositoryItemProvider(AdapterFactory adapterFactory) {
+	public EmptyEnsembleItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -87,28 +89,87 @@ public class SliceRepositoryItemProvider extends ItemProviderAdapter implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addContainsPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
+			addDerivedPropertyDescriptor(object);
+			addDescriptionPropertyDescriptor(object);
+			addQueryPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Contains feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Name feature. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void addContainsPropertyDescriptor(Object object) {
+	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(
 				((ComposeableAdapterFactory) adapterFactory)
 						.getRootAdapterFactory(),
 				getResourceLocator(),
-				getString("_UI_SliceRepository_contains_feature"),
+				getString("_UI_Ensemble_name_feature"),
 				getString("_UI_PropertyDescriptor_description",
-						"_UI_SliceRepository_contains_feature",
-						"_UI_SliceRepository_type"),
-				DatamodelPackage.Literals.SLICE_REPOSITORY__CONTAINS, true,
-				false, true, null, null, null));
+						"_UI_Ensemble_name_feature", "_UI_Ensemble_type"),
+				DatamodelPackage.Literals.ENSEMBLE__NAME, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Derived feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addDerivedPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Ensemble_derived_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Ensemble_derived_feature", "_UI_Ensemble_type"),
+				DatamodelPackage.Literals.ENSEMBLE__DERIVED, true, false,
+				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Description feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addDescriptionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+				.add(createItemPropertyDescriptor(
+						((ComposeableAdapterFactory) adapterFactory)
+								.getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_Ensemble_description_feature"),
+						getString("_UI_PropertyDescriptor_description",
+								"_UI_Ensemble_description_feature",
+								"_UI_Ensemble_type"),
+						DatamodelPackage.Literals.ENSEMBLE__DESCRIPTION, true,
+						false, false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Query feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addQueryPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Ensemble_query_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Ensemble_query_feature", "_UI_Ensemble_type"),
+				DatamodelPackage.Literals.ENSEMBLE__QUERY, true, false, false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -126,8 +187,7 @@ public class SliceRepositoryItemProvider extends ItemProviderAdapter implements
 			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(DatamodelPackage.Literals.SLICE_REPOSITORY__CONTAINS);
+			childrenFeatures.add(DatamodelPackage.Literals.TREE_NODE__CHILDREN);
 		}
 		return childrenFeatures;
 	}
@@ -147,15 +207,15 @@ public class SliceRepositoryItemProvider extends ItemProviderAdapter implements
 	}
 
 	/**
-	 * This returns SliceRepository.gif. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This returns EmptyEnsemble.gif. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/SliceRepository"));
+				getResourceLocator().getImage("full/obj16/EmptyEnsemble"));
 	}
 
 	/**
@@ -166,7 +226,9 @@ public class SliceRepositoryItemProvider extends ItemProviderAdapter implements
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_SliceRepository_type");
+		String label = ((EmptyEnsemble) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_EmptyEnsemble_type")
+				: getString("_UI_EmptyEnsemble_type") + " " + label;
 	}
 
 	/**
@@ -181,8 +243,15 @@ public class SliceRepositoryItemProvider extends ItemProviderAdapter implements
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(SliceRepository.class)) {
-		case DatamodelPackage.SLICE_REPOSITORY__CONTAINS:
+		switch (notification.getFeatureID(EmptyEnsemble.class)) {
+		case DatamodelPackage.EMPTY_ENSEMBLE__NAME:
+		case DatamodelPackage.EMPTY_ENSEMBLE__DERIVED:
+		case DatamodelPackage.EMPTY_ENSEMBLE__DESCRIPTION:
+		case DatamodelPackage.EMPTY_ENSEMBLE__QUERY:
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+			return;
+		case DatamodelPackage.EMPTY_ENSEMBLE__CHILDREN:
 			fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), true, false));
 			return;
@@ -203,8 +272,16 @@ public class SliceRepositoryItemProvider extends ItemProviderAdapter implements
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-				DatamodelPackage.Literals.SLICE_REPOSITORY__CONTAINS,
-				DatamodelFactory.eINSTANCE.createSlice()));
+				DatamodelPackage.Literals.TREE_NODE__CHILDREN,
+				DatamodelFactory.eINSTANCE.createEnsembleRepository()));
+
+		newChildDescriptors.add(createChildParameter(
+				DatamodelPackage.Literals.TREE_NODE__CHILDREN,
+				DatamodelFactory.eINSTANCE.createEmptyEnsemble()));
+
+		newChildDescriptors.add(createChildParameter(
+				DatamodelPackage.Literals.TREE_NODE__CHILDREN,
+				DatamodelFactory.eINSTANCE.createConcreteEnsemble()));
 	}
 
 	/**

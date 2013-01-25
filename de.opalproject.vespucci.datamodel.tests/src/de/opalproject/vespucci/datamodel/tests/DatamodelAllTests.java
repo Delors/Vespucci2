@@ -33,6 +33,8 @@
  */
 package de.opalproject.vespucci.datamodel.tests;
 
+import org.junit.runners.Suite.SuiteClasses;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -58,10 +60,16 @@ public class DatamodelAllTests extends TestSuite {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated not
 	 */
 	public static Test suite() {
 		TestSuite suite = new DatamodelAllTests("Datamodel Tests");
+		suite.addTestSuite(ConcreteEnsembleTest.class);
+		suite.addTestSuite(ConstraintTest.class);
+		suite.addTestSuite(EmptyEnsembleTest.class);
+		suite.addTestSuite(EnsembleRepositoryTest.class);
+		suite.addTestSuite(SliceRepositoryTest.class);
+		suite.addTestSuite(SliceTest.class);
 		return suite;
 	}
 

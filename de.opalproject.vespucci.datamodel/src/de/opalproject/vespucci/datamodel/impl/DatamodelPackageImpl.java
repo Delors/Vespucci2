@@ -33,23 +33,32 @@
  */
 package de.opalproject.vespucci.datamodel.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
+import de.opalproject.vespucci.datamodel.ConcreteEnsemble;
 import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.ConstraintType;
 import de.opalproject.vespucci.datamodel.DatamodelFactory;
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
-import de.opalproject.vespucci.datamodel.DependencyKind;
+import java.io.IOException;
+import java.net.URL;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
+import de.opalproject.vespucci.datamodel.EmptyEnsemble;
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.datamodel.EnsembleRepository;
 import de.opalproject.vespucci.datamodel.Slice;
 import de.opalproject.vespucci.datamodel.SliceRepository;
-
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-
-import org.eclipse.emf.ecore.impl.EPackageImpl;
+import de.opalproject.vespucci.datamodel.TreeNode;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--
@@ -59,6 +68,13 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  */
 public class DatamodelPackageImpl extends EPackageImpl implements
 		DatamodelPackage {
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected String packageFilename = "datamodel.ecore";
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -78,13 +94,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * 
 	 * @generated
 	 */
-	private EClass ensembleRepositoryEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	private EClass sliceRepositoryEClass = null;
 
 	/**
@@ -93,6 +102,34 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	private EClass sliceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass ensembleRepositoryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass treeNodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass emptyEnsembleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass concreteEnsembleEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -154,11 +191,11 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 		isInited = true;
 
-		// Create package meta-data objects
-		theDatamodelPackage.createPackageContents();
+		// Load packages
+		theDatamodelPackage.loadPackage();
 
-		// Initialize created meta-data
-		theDatamodelPackage.initializePackageContents();
+		// Fix loaded packages
+		theDatamodelPackage.fixPackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theDatamodelPackage.freeze();
@@ -175,6 +212,11 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EClass getEnsemble() {
+		if (ensembleEClass == null) {
+			ensembleEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(DatamodelPackage.eNS_URI).getEClassifiers()
+					.get(0);
+		}
 		return ensembleEClass;
 	}
 
@@ -184,7 +226,7 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EAttribute getEnsemble_Name() {
-		return (EAttribute) ensembleEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) getEnsemble().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -193,7 +235,7 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EAttribute getEnsemble_Derived() {
-		return (EAttribute) ensembleEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) getEnsemble().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -202,7 +244,7 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EAttribute getEnsemble_Description() {
-		return (EAttribute) ensembleEClass.getEStructuralFeatures().get(2);
+		return (EAttribute) getEnsemble().getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -211,34 +253,7 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EAttribute getEnsemble_Query() {
-		return (EAttribute) ensembleEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getEnsemble_Children() {
-		return (EReference) ensembleEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getEnsemble_Parent() {
-		return (EReference) ensembleEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getEnsemble_Container() {
-		return (EReference) ensembleEClass.getEStructuralFeatures().get(6);
+		return (EAttribute) getEnsemble().getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -247,6 +262,11 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EClass getConstraint() {
+		if (constraintEClass == null) {
+			constraintEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(DatamodelPackage.eNS_URI).getEClassifiers()
+					.get(1);
+		}
 		return constraintEClass;
 	}
 
@@ -256,7 +276,7 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EAttribute getConstraint_ConstraintType() {
-		return (EAttribute) constraintEClass.getEStructuralFeatures().get(0);
+		return (EAttribute) getConstraint().getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -265,7 +285,7 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EAttribute getConstraint_DependencyKind() {
-		return (EAttribute) constraintEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) getConstraint().getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -274,7 +294,7 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getConstraint_Source() {
-		return (EReference) constraintEClass.getEStructuralFeatures().get(2);
+		return (EReference) getConstraint().getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -283,26 +303,7 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getConstraint_Target() {
-		return (EReference) constraintEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EClass getEnsembleRepository() {
-		return ensembleRepositoryEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getEnsembleRepository_Contains() {
-		return (EReference) ensembleRepositoryEClass.getEStructuralFeatures()
-				.get(0);
+		return (EReference) getConstraint().getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -311,6 +312,11 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EClass getSliceRepository() {
+		if (sliceRepositoryEClass == null) {
+			sliceRepositoryEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(DatamodelPackage.eNS_URI).getEClassifiers()
+					.get(3);
+		}
 		return sliceRepositoryEClass;
 	}
 
@@ -320,8 +326,8 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getSliceRepository_Contains() {
-		return (EReference) sliceRepositoryEClass.getEStructuralFeatures().get(
-				0);
+		return (EReference) getSliceRepository().getEStructuralFeatures()
+				.get(0);
 	}
 
 	/**
@@ -330,6 +336,11 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EClass getSlice() {
+		if (sliceEClass == null) {
+			sliceEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(DatamodelPackage.eNS_URI).getEClassifiers()
+					.get(4);
+		}
 		return sliceEClass;
 	}
 
@@ -339,7 +350,16 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EReference getSlice_Constraints() {
-		return (EReference) sliceEClass.getEStructuralFeatures().get(0);
+		return (EReference) getSlice().getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getSlice_Ensembles() {
+		return (EReference) getSlice().getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -348,7 +368,90 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EAttribute getSlice_Name() {
-		return (EAttribute) sliceEClass.getEStructuralFeatures().get(1);
+		return (EAttribute) getSlice().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getSlice_Diagram() {
+		return (EAttribute) getSlice().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getEnsembleRepository() {
+		if (ensembleRepositoryEClass == null) {
+			ensembleRepositoryEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(DatamodelPackage.eNS_URI).getEClassifiers()
+					.get(5);
+		}
+		return ensembleRepositoryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getTreeNode() {
+		if (treeNodeEClass == null) {
+			treeNodeEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(DatamodelPackage.eNS_URI).getEClassifiers()
+					.get(6);
+		}
+		return treeNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getTreeNode_Parent() {
+		return (EReference) getTreeNode().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getTreeNode_Children() {
+		return (EReference) getTreeNode().getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getEmptyEnsemble() {
+		if (emptyEnsembleEClass == null) {
+			emptyEnsembleEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(DatamodelPackage.eNS_URI).getEClassifiers()
+					.get(7);
+		}
+		return emptyEnsembleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getConcreteEnsemble() {
+		if (concreteEnsembleEClass == null) {
+			concreteEnsembleEClass = (EClass) EPackage.Registry.INSTANCE
+					.getEPackage(DatamodelPackage.eNS_URI).getEClassifiers()
+					.get(8);
+		}
+		return concreteEnsembleEClass;
 	}
 
 	/**
@@ -357,6 +460,11 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	public EEnum getConstraintType() {
+		if (constraintTypeEEnum == null) {
+			constraintTypeEEnum = (EEnum) EPackage.Registry.INSTANCE
+					.getEPackage(DatamodelPackage.eNS_URI).getEClassifiers()
+					.get(2);
+		}
 		return constraintTypeEEnum;
 	}
 
@@ -374,49 +482,34 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * 
 	 * @generated
 	 */
-	private boolean isCreated = false;
+	private boolean isLoaded = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to
-	 * have no affect on any invocation but its first. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Laods the package and any sub-packages from their serialized form. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	public void createPackageContents() {
-		if (isCreated)
+	public void loadPackage() {
+		if (isLoaded)
 			return;
-		isCreated = true;
+		isLoaded = true;
 
-		// Create classes and their features
-		ensembleEClass = createEClass(ENSEMBLE);
-		createEAttribute(ensembleEClass, ENSEMBLE__NAME);
-		createEAttribute(ensembleEClass, ENSEMBLE__DERIVED);
-		createEAttribute(ensembleEClass, ENSEMBLE__DESCRIPTION);
-		createEAttribute(ensembleEClass, ENSEMBLE__QUERY);
-		createEReference(ensembleEClass, ENSEMBLE__CHILDREN);
-		createEReference(ensembleEClass, ENSEMBLE__PARENT);
-		createEReference(ensembleEClass, ENSEMBLE__CONTAINER);
-
-		constraintEClass = createEClass(CONSTRAINT);
-		createEAttribute(constraintEClass, CONSTRAINT__CONSTRAINT_TYPE);
-		createEAttribute(constraintEClass, CONSTRAINT__DEPENDENCY_KIND);
-		createEReference(constraintEClass, CONSTRAINT__SOURCE);
-		createEReference(constraintEClass, CONSTRAINT__TARGET);
-
-		sliceRepositoryEClass = createEClass(SLICE_REPOSITORY);
-		createEReference(sliceRepositoryEClass, SLICE_REPOSITORY__CONTAINS);
-
-		sliceEClass = createEClass(SLICE);
-		createEReference(sliceEClass, SLICE__CONSTRAINTS);
-		createEAttribute(sliceEClass, SLICE__NAME);
-
-		ensembleRepositoryEClass = createEClass(ENSEMBLE_REPOSITORY);
-		createEReference(ensembleRepositoryEClass,
-				ENSEMBLE_REPOSITORY__CONTAINS);
-
-		// Create enums
-		constraintTypeEEnum = createEEnum(CONSTRAINT_TYPE);
+		URL url = getClass().getResource(packageFilename);
+		if (url == null) {
+			throw new RuntimeException("Missing serialized package: "
+					+ packageFilename);
+		}
+		URI uri = URI.createURI(url.toString());
+		Resource resource = new EcoreResourceFactoryImpl().createResource(uri);
+		try {
+			resource.load(null);
+		} catch (IOException exception) {
+			throw new WrappedException(exception);
+		}
+		initializeFromLoadedEPackage(this, (EPackage) resource.getContents()
+				.get(0));
+		createResource(eNS_URI);
 	}
 
 	/**
@@ -424,141 +517,35 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * 
 	 * @generated
 	 */
-	private boolean isInitialized = false;
+	private boolean isFixed = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This
-	 * method is guarded to have no affect on any invocation but its first. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Fixes up the loaded package, to make it appear as if it had been
+	 * programmatically built. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	public void initializePackageContents() {
-		if (isInitialized)
+	public void fixPackageContents() {
+		if (isFixed)
 			return;
-		isInitialized = true;
-
-		// Initialize package
-		setName(eNAME);
-		setNsPrefix(eNS_PREFIX);
-		setNsURI(eNS_URI);
-
-		// Create type parameters
-
-		// Set bounds for type parameters
-
-		// Add supertypes to classes
-
-		// Initialize classes and features; add operations and parameters
-		initEClass(ensembleEClass, Ensemble.class, "Ensemble", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getEnsemble_Name(), ecorePackage.getEString(), "name",
-				null, 0, 1, Ensemble.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEAttribute(getEnsemble_Derived(), ecorePackage.getEBoolean(),
-				"derived", null, 0, 1, Ensemble.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEnsemble_Description(), ecorePackage.getEString(),
-				"description", null, 0, 1, Ensemble.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEnsemble_Query(), ecorePackage.getEString(), "query",
-				null, 0, 1, Ensemble.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-		initEReference(getEnsemble_Children(), this.getEnsemble(),
-				this.getEnsemble_Parent(), "children", null, 0, -1,
-				Ensemble.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getEnsemble_Parent(), this.getEnsemble(),
-				this.getEnsemble_Children(), "parent", null, 0, 1,
-				Ensemble.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-		initEReference(getEnsemble_Container(), this.getEnsembleRepository(),
-				this.getEnsembleRepository_Contains(), "container", null, 0, 1,
-				Ensemble.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-				!IS_DERIVED, IS_ORDERED);
-
-		initEClass(constraintEClass, Constraint.class, "Constraint",
-				!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getConstraint_ConstraintType(),
-				this.getConstraintType(), "constraintType", null, 0, 1,
-				Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getConstraint_DependencyKind(),
-				ecorePackage.getEString(), "dependencyKind", "ALL", 0, 1,
-				Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConstraint_Source(), this.getEnsemble(), null,
-				"source", null, 0, 1, Constraint.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConstraint_Target(), this.getEnsemble(), null,
-				"target", null, 0, 1, Constraint.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(sliceRepositoryEClass, SliceRepository.class,
-				"SliceRepository", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSliceRepository_Contains(), this.getSlice(), null,
-				"contains", null, 0, -1, SliceRepository.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(sliceEClass, Slice.class, "Slice", !IS_ABSTRACT,
-				!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSlice_Constraints(), this.getConstraint(), null,
-				"constraints", null, 0, -1, Slice.class, !IS_TRANSIENT,
-				!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSlice_Name(), ecorePackage.getEString(), "name",
-				null, 0, 1, Slice.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
-				IS_ORDERED);
-
-		initEClass(ensembleRepositoryEClass, EnsembleRepository.class,
-				"EnsembleRepository", !IS_ABSTRACT, !IS_INTERFACE,
-				IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEnsembleRepository_Contains(), this.getEnsemble(),
-				this.getEnsemble_Container(), "contains", null, 0, -1,
-				EnsembleRepository.class, !IS_TRANSIENT, !IS_VOLATILE,
-				IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
-				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		// Initialize enums and add enum literals
-		initEEnum(constraintTypeEEnum, ConstraintType.class, "ConstraintType");
-		addEEnumLiteral(constraintTypeEEnum, ConstraintType.NOT_ALLOWED);
-		addEEnumLiteral(constraintTypeEEnum, ConstraintType.GLOBAL_INCOMING);
-		addEEnumLiteral(constraintTypeEEnum, ConstraintType.LOCAL_INCOMING);
-		addEEnumLiteral(constraintTypeEEnum, ConstraintType.GLOBAL_OUTGOING);
-		addEEnumLiteral(constraintTypeEEnum, ConstraintType.LOCAL_OUTGOING);
-		addEEnumLiteral(constraintTypeEEnum, ConstraintType.EXPECTED);
-
-		// Create resource
-		createResource(eNS_URI);
-
-		// Create annotations
-		// http:///org/eclipse/emf/ecore/util/ExtendedMetaData
-		createExtendedMetaDataAnnotations();
+		isFixed = true;
+		fixEClassifiers();
 	}
 
 	/**
-	 * Initializes the annotations for
-	 * <b>http:///org/eclipse/emf/ecore/util/ExtendedMetaData</b>. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the instance class on the given classifier. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void createExtendedMetaDataAnnotations() {
-		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";
-		addAnnotation(getSliceRepository_Contains(), source, new String[] {
-				"namespace", "" });
+	@Override
+	protected void fixInstanceClass(EClassifier eClassifier) {
+		if (eClassifier.getInstanceClassName() == null) {
+			eClassifier
+					.setInstanceClassName("de.opalproject.vespucci.datamodel."
+							+ eClassifier.getName());
+			setGeneratedClassName(eClassifier);
+		}
 	}
 
 } // DatamodelPackageImpl

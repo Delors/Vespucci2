@@ -100,6 +100,8 @@ public class DatamodelSwitch<T> extends Switch<T> {
 			Ensemble ensemble = (Ensemble) theEObject;
 			T result = caseEnsemble(ensemble);
 			if (result == null)
+				result = caseTreeNode(ensemble);
+			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
 		}
@@ -127,6 +129,37 @@ public class DatamodelSwitch<T> extends Switch<T> {
 		case DatamodelPackage.ENSEMBLE_REPOSITORY: {
 			EnsembleRepository ensembleRepository = (EnsembleRepository) theEObject;
 			T result = caseEnsembleRepository(ensembleRepository);
+			if (result == null)
+				result = caseTreeNode(ensembleRepository);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DatamodelPackage.TREE_NODE: {
+			TreeNode treeNode = (TreeNode) theEObject;
+			T result = caseTreeNode(treeNode);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DatamodelPackage.EMPTY_ENSEMBLE: {
+			EmptyEnsemble emptyEnsemble = (EmptyEnsemble) theEObject;
+			T result = caseEmptyEnsemble(emptyEnsemble);
+			if (result == null)
+				result = caseEnsemble(emptyEnsemble);
+			if (result == null)
+				result = caseTreeNode(emptyEnsemble);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case DatamodelPackage.CONCRETE_ENSEMBLE: {
+			ConcreteEnsemble concreteEnsemble = (ConcreteEnsemble) theEObject;
+			T result = caseConcreteEnsemble(concreteEnsemble);
+			if (result == null)
+				result = caseEnsemble(concreteEnsemble);
+			if (result == null)
+				result = caseTreeNode(concreteEnsemble);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -172,23 +205,6 @@ public class DatamodelSwitch<T> extends Switch<T> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '
-	 * <em>Ensemble Repository</em>'. <!-- begin-user-doc --> This
-	 * implementation returns null; returning a non-null result will terminate
-	 * the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object
-	 *            the target of the switch.
-	 * @return the result of interpreting the object as an instance of '
-	 *         <em>Ensemble Repository</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEnsembleRepository(EnsembleRepository object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '
 	 * <em>Slice Repository</em>'. <!-- begin-user-doc --> This implementation
 	 * returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
@@ -218,6 +234,74 @@ public class DatamodelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseSlice(Slice object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '
+	 * <em>Ensemble Repository</em>'. <!-- begin-user-doc --> This
+	 * implementation returns null; returning a non-null result will terminate
+	 * the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object
+	 *            the target of the switch.
+	 * @return the result of interpreting the object as an instance of '
+	 *         <em>Ensemble Repository</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEnsembleRepository(EnsembleRepository object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '
+	 * <em>Tree Node</em>'. <!-- begin-user-doc --> This implementation returns
+	 * null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object
+	 *            the target of the switch.
+	 * @return the result of interpreting the object as an instance of '
+	 *         <em>Tree Node</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTreeNode(TreeNode object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '
+	 * <em>Empty Ensemble</em>'. <!-- begin-user-doc --> This implementation
+	 * returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object
+	 *            the target of the switch.
+	 * @return the result of interpreting the object as an instance of '
+	 *         <em>Empty Ensemble</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEmptyEnsemble(EmptyEnsemble object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '
+	 * <em>Concrete Ensemble</em>'. <!-- begin-user-doc --> This implementation
+	 * returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object
+	 *            the target of the switch.
+	 * @return the result of interpreting the object as an instance of '
+	 *         <em>Concrete Ensemble</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConcreteEnsemble(ConcreteEnsemble object) {
 		return null;
 	}
 

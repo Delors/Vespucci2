@@ -59,8 +59,8 @@ public interface SliceRepository extends EObject {
 	 * list. The list contents are of type
 	 * {@link de.opalproject.vespucci.datamodel.Slice}. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Contains</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Contains</em>' containment reference list
+	 * isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
