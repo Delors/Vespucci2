@@ -51,6 +51,8 @@ import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
+
+import de.opalproject.vespucci.datamodel.EmptyEnsemble;
 import de.opalproject.vespucci.datamodel.Ensemble;
 
 /**
@@ -84,8 +86,7 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 			// check if user wants to add to a diagram
 			if (context.getTargetContainer() instanceof Diagram) {
 				// check if the pictogram element is already existing
-				// TODO skip for empty ensemble types once implemented
-				if (Graphiti
+				if ((Ensemble) context.getNewObject() instanceof EmptyEnsemble || Graphiti
 						.getLinkService()
 						.getPictogramElements(
 								(Diagram) context.getTargetContainer(),
@@ -116,7 +117,7 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		IColorConstant Ensemble_FOREGROUND;
 		IColorConstant Ensemble_BACKGROUND;
 
-		if (addedEnsemble.getName() == "Empty Ensemble") {
+		if (addedEnsemble instanceof EmptyEnsemble) {
 			Ensemble_TEXT_FOREGROUND = new ColorConstant(176, 176, 176);
 
 			Ensemble_FOREGROUND = new ColorConstant(48, 48, 48);
@@ -164,7 +165,7 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		}
 
 		// SHAPE WITH LINE
-		if (!(addedEnsemble.getName() == "Empty Ensemble")) {
+		if (!(addedEnsemble instanceof EmptyEnsemble)) {
 			// create shape for line
 			Shape lineShape = peCreateService
 					.createShape(containerShape, false);
@@ -212,7 +213,7 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 			link(descriptionShape, addedEnsemble);
 
 			// create shape for icon
-			if (!(addedEnsemble.getName() == "Empty Ensemble")) {
+			if (!(addedEnsemble instanceof EmptyEnsemble)) {
 				Shape iconShape = peCreateService.createShape(containerShape,
 						false);
 				Image icon = gaService.createImage(iconShape,
