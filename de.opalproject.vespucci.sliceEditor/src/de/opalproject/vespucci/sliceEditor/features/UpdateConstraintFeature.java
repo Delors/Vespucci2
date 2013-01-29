@@ -34,78 +34,79 @@
 package de.opalproject.vespucci.sliceEditor.features;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
-import org.eclipse.graphiti.features.context.IDirectEditingContext;
-import org.eclipse.graphiti.features.impl.AbstractDirectEditingFeature;
+import org.eclipse.graphiti.features.IReason;
+import org.eclipse.graphiti.features.context.IUpdateContext;
+import org.eclipse.graphiti.features.impl.AbstractUpdateFeature;
+import org.eclipse.graphiti.features.impl.Reason;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
-import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import de.opalproject.vespucci.datamodel.Constraint;
 
-public class ConstraintKindDirectEditFeature extends
-		AbstractDirectEditingFeature {
+public class UpdateConstraintFeature extends AbstractUpdateFeature {
 
-	public ConstraintKindDirectEditFeature(IFeatureProvider fp) {
+	public UpdateConstraintFeature(IFeatureProvider fp) {
 		super(fp);
 	}
 
-	public int getEditingType() {
-		// there are several possible editor-types supported:
-		// text-field, checkbox, color-chooser, combobox, ...
-		return TYPE_TEXT;
+	public boolean canUpdate(IUpdateContext context) {
+		return (context.getPictogramElement() instanceof ConnectionDecorator);
 	}
 
-	@Override
-	public boolean canDirectEdit(IDirectEditingContext context) {
-		PictogramElement pe = context.getPictogramElement();
-		if (pe instanceof ConnectionDecorator) {
-			ConnectionDecorator cd = (ConnectionDecorator) pe;
-			if (cd.getGraphicsAlgorithm() instanceof Text) {
-				if (getBusinessObjectForPictogramElement(cd.getConnection()) instanceof Constraint) {
-					return true;
-				}
-			}
+	public IReason updateNeeded(IUpdateContext context) {
+		// retrieve constraint kind
+		String constraintKind = null;
+
+		ConnectionDecorator cd = (ConnectionDecorator) context
+				.getPictogramElement();
+		Connection connection = cd.getConnection();
+		Text text = (Text) cd.getGraphicsAlgorithm();
+
+		// Retrieve current value from pictogramElement
+		constraintKind = text.getValue();
+
+		// retrieve currentValue from businessModel
+		String businessValue = null;
+		Object bo = getBusinessObjectForPictogramElement(connection);
+		if (bo instanceof Constraint) {
+			Constraint constraint = (Constraint) bo;
+			businessValue = constraint.getDependencyKind();
 		}
 
-		// direct editing not supported in all other cases
+		// update needed, if constraintKind label is out of date
+		boolean updateConstraintKindNeeded = ((constraintKind == null && businessValue != null) || (constraintKind != null && !constraintKind
+				.equals(businessValue)));
+		if (updateConstraintKindNeeded) {
+			return Reason
+					.createTrueReason("ConstraintKind label is out of date");
+		} else {
+			return Reason.createFalseReason();
+		}
+	}
+
+	public boolean update(IUpdateContext context) {
+		// retrieve constraint kind
+		ConnectionDecorator cd = null;
+		if (context.getPictogramElement() instanceof ConnectionDecorator) {
+			cd = (ConnectionDecorator) context.getPictogramElement();
+		}
+		Connection connection = cd.getConnection();
+
+		// retrieve currentValue from businessModel
+		String businessValue = null;
+		Object bo = getBusinessObjectForPictogramElement(connection);
+		if (bo instanceof Constraint) {
+			Constraint constraint = (Constraint) bo;
+			businessValue = constraint.getDependencyKind();
+		}
+
+		// Set constraintKind pictogram model
+		if (cd.getGraphicsAlgorithm() instanceof Text) {
+			Text text = (Text) cd.getGraphicsAlgorithm();
+			text.setValue(businessValue);
+			return true;
+		}
+
 		return false;
-	}
-
-	public String getInitialValue(IDirectEditingContext context) {
-		// return the current dependencyKind of the Constraint
-		ConnectionDecorator cd = (ConnectionDecorator) context
-				.getPictogramElement();
-		Connection connection = cd.getConnection();
-		Constraint constraint = (Constraint) getBusinessObjectForPictogramElement(connection);
-		return constraint.getDependencyKind();
-	}
-
-	@Override
-	public String checkValueValid(String value, IDirectEditingContext context) {
-		if (value.length() < 1)
-			return "Please enter any text as dependency kind.";
-		if (value.contains(" "))
-			return "Spaces are not allowed in dependency kind.";
-		if (value.contains("\n"))
-			return "Line breakes are not allowed in dependency kind.";
-
-		// null means, that the value is valid
-		return null;
-	}
-
-	public void setValue(String value, IDirectEditingContext context) {
-
-		PictogramElement pe = context.getPictogramElement();
-		ConnectionDecorator cd = (ConnectionDecorator) context
-				.getPictogramElement();
-		Connection connection = cd.getConnection();
-		Constraint constraint = (Constraint) getBusinessObjectForPictogramElement(connection);
-		constraint.setDependencyKind(value);
-
-		// Explicitly update the shape to display the new value in the diagram
-		// Note, that this might not be necessary in future versions of Graphiti
-		// (currently in discussion)
-		
-		updatePictogramElement(pe);
 	}
 }

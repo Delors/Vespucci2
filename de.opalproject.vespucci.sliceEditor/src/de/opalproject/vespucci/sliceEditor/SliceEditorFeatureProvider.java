@@ -48,6 +48,7 @@ import org.eclipse.graphiti.features.context.IDirectEditingContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
+import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -61,6 +62,7 @@ import de.opalproject.vespucci.sliceEditor.features.ChangeConstraintDependencyKi
 import de.opalproject.vespucci.sliceEditor.features.ConstraintKindDirectEditFeature;
 import de.opalproject.vespucci.sliceEditor.features.CreateEmptyEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.LayoutEnsembleFeature;
+import de.opalproject.vespucci.sliceEditor.features.UpdateConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.UpdateEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.constraints.AddExpectedConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.constraints.AddGlobalIncomingConstraintFeature;
@@ -150,6 +152,12 @@ this),
 	       Object bo = getBusinessObjectForPictogramElement(pictogramElement);
 	       if (bo instanceof Ensemble) {
 	           return new UpdateEnsembleFeature(this);
+	       }
+	   }
+	   if (pictogramElement instanceof ConnectionDecorator){
+		   Object bo = getBusinessObjectForPictogramElement(((ConnectionDecorator) pictogramElement).getConnection());
+		   if (bo instanceof Constraint && ((ConnectionDecorator) pictogramElement).getGraphicsAlgorithm() instanceof Text) {
+	           return new UpdateConstraintFeature(this);
 	       }
 	   }
 	   return super.getUpdateFeature(context);

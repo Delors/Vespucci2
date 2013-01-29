@@ -203,6 +203,8 @@ public class SliceEditorToolBehaviorProvider extends
 					str + "-Slice is invalid " + ensB.toString()
 							+ " is a descendant of  " + ensA.toString());
 			marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
+			// TODO to implement
+			//marker.setAttribute(IDE.EDITOR_ID_ATTR, DiagramEditor.DIAGRAM_EDITOR_ID);
 
 		} catch (Exception e) {
 			e.printStackTrace();
