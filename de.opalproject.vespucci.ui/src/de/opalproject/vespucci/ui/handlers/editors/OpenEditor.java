@@ -47,7 +47,7 @@ import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.ui.editor.EnsembleEditor;
 import de.opalproject.vespucci.ui.editor.EnsembleEditorInput;
 
-public class CallEditor extends AbstractHandler {
+public class OpenEditor extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {

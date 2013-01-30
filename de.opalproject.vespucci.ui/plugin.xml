@@ -255,7 +255,7 @@
          </enabledWhen>
       </handler>
       <handler
-            class="de.opalproject.vespucci.ui.handlers.editors.CallEditor"
+            class="de.opalproject.vespucci.ui.handlers.editors.OpenEditor"
             commandId="de.opalproject.vespucci.ui.editor.openEditor">
          <enabledWhen>
             <reference
