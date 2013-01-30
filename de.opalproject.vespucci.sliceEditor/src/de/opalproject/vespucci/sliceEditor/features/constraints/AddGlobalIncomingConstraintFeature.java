@@ -55,11 +55,13 @@ public class AddGlobalIncomingConstraintFeature extends AddConstraintFeature {
 	protected void createArrow(Connection connection, IGaService igaService,
 			IPeCreateService peCreateService) {
 
+		// draw connection
 		IGaService gaService = Graphiti.getGaService();
 		Polyline polyline = gaService.createPolyline(connection);
 		polyline.setLineWidth(2);
 		polyline.setForeground(manageColor(CONSTRAINT_FOREGROUND));
 
+		// draw arrowhead
 		ConnectionDecorator cd;
 		cd = peCreateService.createConnectionDecorator(connection, false, 1.0,
 				true);
@@ -68,6 +70,7 @@ public class AddGlobalIncomingConstraintFeature extends AddConstraintFeature {
 		polylineArrow.setForeground(manageColor(CONSTRAINT_FOREGROUND));
 		polylineArrow.setLineWidth(2);
 
+		// draw circle
 		cd = peCreateService.createConnectionDecorator(connection, false, 1.0,
 				true);
 		Ellipse circle = gaService.createEllipse(cd);

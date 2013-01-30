@@ -50,14 +50,15 @@ public class AddLocalOutgoingConstraintFeature extends AddConstraintFeature {
 	protected void createArrow(Connection connection, IGaService igaService,
 			IPeCreateService peCreateService) {
 
+		// draw connection
 		Polyline polyline = igaService.createPolyline(connection);
 		polyline.setLineWidth(2);
 		polyline.setForeground(manageColor(CONSTRAINT_FOREGROUND));
 
+		// draw arrowhead
 		ConnectionDecorator cd;
 		cd = peCreateService.createConnectionDecorator(connection, false, 0,
 				true);
-
 		Polyline polylineArrow = igaService.createPolyline(cd, new int[] { 2,
 				10, -14, 0, 2, -10 });
 		polylineArrow.setForeground(manageColor(CONSTRAINT_FOREGROUND));
