@@ -41,6 +41,7 @@ import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.impl.AbstractLayoutFeature;
 import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
 import org.eclipse.graphiti.mm.algorithms.Image;
+import org.eclipse.graphiti.mm.algorithms.MultiText;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
@@ -115,6 +116,7 @@ public class LayoutEnsembleFeature extends AbstractLayoutFeature {
 		}
 
 		int containerWidth = containerGa.getWidth();
+		int containerHeight = containerGa.getHeight();
 
 		for (Shape shape : containerShape.getChildren()) {
 			GraphicsAlgorithm graphicsAlgorithm = shape.getGraphicsAlgorithm();
@@ -138,6 +140,11 @@ public class LayoutEnsembleFeature extends AbstractLayoutFeature {
 					name.setX(22);
 					name.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
 					anythingChanged = true;
+				} else if (graphicsAlgorithm instanceof MultiText){
+					
+					 gaService.setLocationAndSize(graphicsAlgorithm, 2, 20, containerWidth, containerHeight);
+
+					 anythingChanged = true;
 				} else {
 					gaService.setWidth(graphicsAlgorithm, containerWidth);
 					anythingChanged = true;

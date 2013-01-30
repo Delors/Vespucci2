@@ -108,8 +108,7 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 					for (ConnectionDecorator condec : connection
 							.getConnectionDecorators()) {
 						if (condec.getGraphicsAlgorithm() instanceof Text) {
-							Text text = (Text) condec.getGraphicsAlgorithm();
-							text.setValue(newKind);
+							updatePictogramElement(condec);
 						}
 					}
 				}
@@ -126,10 +125,7 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 					if (newKind != null && !newKind.equals(currentKind)) {
 						this.hasDoneChanges = true;
 						constraint.setDependencyKind(newKind);
-						if (cd.getGraphicsAlgorithm() instanceof Text) {
-							Text text = (Text) cd.getGraphicsAlgorithm();
-							text.setValue(newKind);
-						}
+						updatePictogramElement(cd);
 					}
 				}
 			}
