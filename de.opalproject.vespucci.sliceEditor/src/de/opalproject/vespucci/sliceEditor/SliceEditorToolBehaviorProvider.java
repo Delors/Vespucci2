@@ -53,6 +53,7 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider;
 import org.eclipse.graphiti.tb.IDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
+import org.eclipse.graphiti.ui.editor.DiagramEditorInput;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.datamodel.EnsembleRepository;
@@ -98,6 +99,8 @@ public class SliceEditorToolBehaviorProvider extends
 				imageRenderingDecorator.setMessage("Slice invalid - "
 						+ ensemble.getName() + " is derived from "
 						+ parentOccurrence.get(0).getName());
+				generateMarker("parent existing", pe, ensemble,
+						parentOccurrence.get(0), dia);
 				return new IDecorator[] { imageRenderingDecorator };
 			}
 		}
@@ -180,12 +183,10 @@ public class SliceEditorToolBehaviorProvider extends
 	 */
 	private void generateMarker(String str, PictogramElement picel,
 			Ensemble ensA, Ensemble ensB, Diagram dia) {
-		EObject bo = (EObject) getFeatureProvider()
-				.getBusinessObjectForPictogramElement(picel);
-
+		
 		try {
 			// retrieve URI
-			URI uri = EcoreUtil.getURI(bo);
+			URI uri = dia.eResource().getURI();
 			uri = uri.trimFragment();
 			// remove "platform:..." from uri
 			if (uri.isPlatform()) {
