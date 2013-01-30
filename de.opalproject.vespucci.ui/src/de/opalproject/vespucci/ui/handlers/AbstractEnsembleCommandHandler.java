@@ -3,7 +3,7 @@
  * Copyright (c) 2012
  * Software Engineering
  * Department of Computer Science
- * Technische Universitiät Darmstadt
+ * Technische Universität Darmstadt
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,46 +33,40 @@
  */
 package de.opalproject.vespucci.ui.handlers;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.IStructuredSelection;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.datamodel.EnsembleRepository;
 
 /**
- * Handles delete requests for a selection of ensembles.
+ * Abstract handler for operations on ensembles
  * 
- * @author Marius-d
  * @author Marco Jacobasch
  * 
  */
-public class DeleteHandler extends AbstractEnsembleCommandHandler {
+public abstract class AbstractEnsembleCommandHandler extends
+		AbstractCommandHandler {
 
-	@Override
-	public Command getCommand(IStructuredSelection selection,
-			ExecutionEvent event) {
-		List<Command> commandList = new ArrayList<Command>();
-
-		@SuppressWarnings("unchecked")
-		final List<Ensemble> ensembleList = selection.toList();
-
-		for (Ensemble ensemble : ensembleList) {
-			EStructuralFeature feature = ensemble.eContainingFeature();
-			EObject owner = ensemble.eContainer();
-
-			Command delete = RemoveCommand.create(getEditingDomain(), owner,
-					feature, ensemble);
-			commandList.add(delete);
-		}
-
-		Command deleteCommand = new CompoundCommand(commandList);
-		return deleteCommand;
+	/**
+	 * Returns the first element of a selection as {@link EObject}
+	 * 
+	 * Could be {@link Ensemble} or {@link EnsembleRepository}
+	 * 
+	 * @param selection
+	 * @return
+	 */
+	public EObject getOwner(IStructuredSelection selection) {
+		return (EObject) selection.getFirstElement();
 	}
+
+	/**
+	 * Returns the resource of the first elemet of a selection
+	 */
+	@Override
+	public Resource getResource(IStructuredSelection selection) {
+		return getOwner(selection).eResource();
+	}
+
 }

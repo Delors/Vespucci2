@@ -33,17 +33,10 @@
  */
 package de.opalproject.vespucci.ui.handlers;
 
-import java.io.IOException;
-import java.util.Collections;
-
-import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -60,49 +53,54 @@ import de.opalproject.vespucci.ui.wizards.NewEnsembleWizard;
  * @author Marco Jacobasch
  * 
  */
-public class NewEnsembleHandler extends AbstractHandler {
+public class NewEnsembleHandler extends AbstractEnsembleCommandHandler {
 
 	@Override
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IStructuredSelection currentSelection = (IStructuredSelection) HandlerUtil
-				.getCurrentSelection(event);
+	public Command getCommand(IStructuredSelection selection,
+			ExecutionEvent event) {
+		NewEnsembleWizard wizard = createAndOpenWizard(event);
+		Ensemble ensemble = createEnsemble(wizard);
 
-		final NewEnsembleWizard wiz = new NewEnsembleWizard();
+		EObject owner = getOwner(selection);
+		Object feature = DatamodelPackage.Literals.TREE_NODE__CHILDREN;
+
+		Command add = AddCommand.create(getEditingDomain(), owner, feature,
+				ensemble);
+
+		return add;
+	}
+
+	/**
+	 * Opens a new ensemble wizard
+	 * 
+	 * @param event
+	 * @return
+	 */
+	private NewEnsembleWizard createAndOpenWizard(ExecutionEvent event) {
+		final NewEnsembleWizard wizard = new NewEnsembleWizard();
 
 		WizardDialog dialog = new WizardDialog(
-				HandlerUtil.getActiveShell(event), wiz);
+				HandlerUtil.getActiveShell(event), wizard);
 		dialog.open();
 
-		if (wiz.getName() != null) {
-
-			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-					.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
-			EObject owner = (EObject) currentSelection.getFirstElement();
-			Object feature = null;
-			Resource r = owner.eResource();
-
-			feature = DatamodelPackage.Literals.TREE_NODE__CHILDREN;
-
-			DatamodelFactory factory = DatamodelFactory.eINSTANCE;
-
-			Ensemble ens = factory.createConcreteEnsemble();
-			ens.setName(wiz.getName());
-			ens.setDescription(wiz.getDescription());
-			ens.setDerived(false);
-			ens.setQuery(wiz.getQuery());
-
-			Command add = AddCommand.create(domain, owner, feature, ens);
-
-			domain.getCommandStack().execute(add);
-
-			try {
-				r.save(Collections.EMPTY_MAP);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-
-		return null;
-
+		return wizard;
 	}
+
+	/**
+	 * Creates a new ensemble with data provided by the wizard
+	 * 
+	 * @param wizard
+	 * @return
+	 */
+	private Ensemble createEnsemble(NewEnsembleWizard wizard) {
+		DatamodelFactory factory = DatamodelFactory.eINSTANCE;
+		Ensemble ensemble = factory.createConcreteEnsemble();
+		ensemble.setName(wizard.getName());
+		ensemble.setDescription(wizard.getDescription());
+		ensemble.setDerived(false);
+		ensemble.setQuery(wizard.getQuery());
+
+		return ensemble;
+	}
+
 }

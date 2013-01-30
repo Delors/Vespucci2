@@ -33,46 +33,60 @@
  */
 package de.opalproject.vespucci.ui.handlers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.ui.handlers.HandlerUtil;
 
+import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.ui.wizards.EnsembleWizardRename;
 
 /**
- * Handles delete requests for a selection of ensembles.
+ * Used by EnsembleRenameWizard to rename an existing ensemble.
  * 
  * @author Marius-d
  * @author Marco Jacobasch
  * 
  */
-public class DeleteHandler extends AbstractEnsembleCommandHandler {
+public class RenameEnsembleHandler extends AbstractEnsembleCommandHandler {
 
 	@Override
 	public Command getCommand(IStructuredSelection selection,
 			ExecutionEvent event) {
-		List<Command> commandList = new ArrayList<Command>();
+		EnsembleWizardRename wizard = createAndOpenWizard(selection, event);
 
-		@SuppressWarnings("unchecked")
-		final List<Ensemble> ensembleList = selection.toList();
+		EObject owner = getOwner(selection);
+		Object feature = DatamodelPackage.Literals.ENSEMBLE__NAME;
 
-		for (Ensemble ensemble : ensembleList) {
-			EStructuralFeature feature = ensemble.eContainingFeature();
-			EObject owner = ensemble.eContainer();
+		Command add = SetCommand.create(getEditingDomain(), owner, feature,
+				wizard.getName());
 
-			Command delete = RemoveCommand.create(getEditingDomain(), owner,
-					feature, ensemble);
-			commandList.add(delete);
-		}
-
-		Command deleteCommand = new CompoundCommand(commandList);
-		return deleteCommand;
+		return add;
 	}
+
+	/**
+	 * Opens the rename wizard
+	 * 
+	 * @param selection
+	 * @param event
+	 * @return
+	 */
+	private EnsembleWizardRename createAndOpenWizard(
+			IStructuredSelection selection, ExecutionEvent event) {
+		final Ensemble ensemble = (Ensemble) getOwner(selection);
+		final EnsembleWizardRename wizard = new EnsembleWizardRename(
+				ensemble.getName());
+
+		// Launch renamewizard
+		WizardDialog dialog = new WizardDialog(
+				HandlerUtil.getActiveShell(event), wizard);
+		dialog.open();
+
+		return wizard;
+	}
+
 }
