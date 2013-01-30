@@ -51,15 +51,16 @@ public class AddLocalIncomingConstraintFeature extends AddConstraintFeature{
 	protected void createArrow(Connection connection,
 			IGaService igaService, IPeCreateService peCreateService) {
 
+		// draw connection
 		IGaService gaService = Graphiti.getGaService();
 		Polyline polyline = gaService.createPolyline(connection);
 		polyline.setLineWidth(2);
 		polyline.setForeground(manageColor(CONSTRAINT_FOREGROUND));
 
+		// draw arrowhead
 		ConnectionDecorator cd;
 		cd = peCreateService.createConnectionDecorator(connection, false, 1.0,
 				true);
-
 		Polyline polylineArrow = gaService.createPolyline(cd,
 				new int[] { -15, 10, 1, 0, -15, -10 });
 		polylineArrow.setForeground(manageColor(CONSTRAINT_FOREGROUND));

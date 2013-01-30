@@ -107,6 +107,7 @@ public abstract class AddConstraintFeature extends AbstractAddFeature {
 		// set dependency kind
 		text.setValue(addedConstraint.getDependencyKind());
 
+		// create any optical arrow representation
 		createArrow(connection, gaService, peCreateService);
 
 		return connection;

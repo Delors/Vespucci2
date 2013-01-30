@@ -49,10 +49,12 @@ public class AddNotAllowedConstraintFeature extends AddConstraintFeature {
 	protected void createArrow(Connection connection, IGaService igaService,
 			IPeCreateService peCreateService) {
 
+		// draw connection
 		Polyline polyline = igaService.createPolyline(connection);
 		polyline.setLineWidth(2);
 		polyline.setForeground(manageColor(CONSTRAINT_FOREGROUND));
 
+		// draw arrowhead
 		ConnectionDecorator cd;
 		cd = peCreateService.createConnectionDecorator(connection, false, 0,
 				true);
@@ -61,6 +63,7 @@ public class AddNotAllowedConstraintFeature extends AddConstraintFeature {
 		polylineArrow.setForeground(manageColor(CONSTRAINT_FOREGROUND));
 		polylineArrow.setLineWidth(2);
 
+		// draw second arrowhead further up
 		cd = peCreateService.createConnectionDecorator(connection, false, 0,
 				true);
 		Polyline secondArrow = igaService.createPolyline(cd, new int[] { -20,
@@ -68,6 +71,7 @@ public class AddNotAllowedConstraintFeature extends AddConstraintFeature {
 		secondArrow.setForeground(manageColor(CONSTRAINT_FOREGROUND));
 		secondArrow.setLineWidth(2);
 
+		// draw another arrowhead in the opposite direction
 		cd = peCreateService.createConnectionDecorator(connection, false, 0,
 				true);
 		Polyline secondArrowConter = igaService.createPolyline(cd, new int[] {

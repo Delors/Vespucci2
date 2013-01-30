@@ -51,15 +51,17 @@ public class AddExpectedConstraintFeature extends AddConstraintFeature {
 	protected void createArrow(Connection connection, IGaService igaService,
 			IPeCreateService peCreateService) {
 
+		// draw connection
 		Polyline polyline = igaService.createPolyline(connection);
 		polyline.setLineWidth(2);
 		polyline.setForeground(manageColor(CONSTRAINT_FOREGROUND));
 		polyline.setLineStyle(LineStyle.DASH);
 
+		
+		// draw arrowhead
 		ConnectionDecorator cd;
 		cd = peCreateService.createConnectionDecorator(connection, false, 0,
 				true);
-
 		Polyline polylineArrow = igaService.createPolyline(cd, new int[] { -30,
 				10, -45, 0, -30, -10 });
 		polylineArrow.setForeground(manageColor(CONSTRAINT_FOREGROUND));
