@@ -3,7 +3,7 @@
  * Copyright (c) 2012
  * Software Engineering
  * Department of Computer Science
- * Technische Universität Darmstadt
+ * Technische Universitï¿½t Darmstadt
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -15,7 +15,7 @@
  * this list of conditions and the following disclaimer in the documentation
  * and/or other materials provided with the distribution.
  * - Neither the name of the Software Engineering Group or Technische
- * Universität Darmstadt nor the names of its contributors may be used to
+ * Universitï¿½t Darmstadt nor the names of its contributors may be used to
  * endorse or promote products derived from this software without specific
  * prior written permission.
  *
@@ -55,13 +55,11 @@ import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -80,15 +78,15 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
-import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 
 import de.opalproject.vespucci.datamodel.DatamodelFactory;
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.datamodel.EnsembleRepository;
+import de.opalproject.vespucci.datamodel.SliceRepository;
 import de.opalproject.vespucci.datamodel.provider.DatamodelEditPlugin;
 
 /**
@@ -246,13 +244,22 @@ public class DatamodelModelWizard extends Wizard implements INewWizard {
 						// Create a resource for this file.
 						//
 						Resource resource = resourceSet.createResource(fileURI);
+						EnsembleRepository ensembleRepository = datamodelFactory
+								.createEnsembleRepository();
+						SliceRepository sliceRepository = datamodelFactory
+								.createSliceRepository();
+
+						Ensemble emptyEnsemble = datamodelFactory
+								.createEmptyEnsemble();
+						emptyEnsemble.setName("Empty Ensemble");
+						emptyEnsemble.setQuery("empty");
+
+						sliceRepository.setEmptyEnsemble(emptyEnsemble);
 
 						// Add the initial model object to the contents.
 						//
-						resource.getContents().add(
-								datamodelFactory.createEnsembleRepository());
-						resource.getContents().add(
-								datamodelFactory.createSliceRepository());
+						resource.getContents().add(ensembleRepository);
+						resource.getContents().add(sliceRepository);
 
 						// Save the contents of the resource to the file system.
 						//

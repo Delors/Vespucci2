@@ -87,28 +87,8 @@ public class SliceRepositoryItemProvider extends ItemProviderAdapter implements
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addContainsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Contains feature. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addContainsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_SliceRepository_contains_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_SliceRepository_contains_feature",
-						"_UI_SliceRepository_type"),
-				DatamodelPackage.Literals.SLICE_REPOSITORY__CONTAINS, true,
-				false, true, null, null, null));
 	}
 
 	/**
@@ -127,7 +107,7 @@ public class SliceRepositoryItemProvider extends ItemProviderAdapter implements
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures
-					.add(DatamodelPackage.Literals.SLICE_REPOSITORY__CONTAINS);
+					.add(DatamodelPackage.Literals.SLICE_REPOSITORY__SLICES);
 		}
 		return childrenFeatures;
 	}
@@ -182,7 +162,11 @@ public class SliceRepositoryItemProvider extends ItemProviderAdapter implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(SliceRepository.class)) {
-		case DatamodelPackage.SLICE_REPOSITORY__CONTAINS:
+		case DatamodelPackage.SLICE_REPOSITORY__EMPTY_ENSEMBLE:
+			fireNotifyChanged(new ViewerNotification(notification,
+					notification.getNotifier(), false, true));
+			return;
+		case DatamodelPackage.SLICE_REPOSITORY__SLICES:
 			fireNotifyChanged(new ViewerNotification(notification,
 					notification.getNotifier(), true, false));
 			return;
@@ -203,7 +187,7 @@ public class SliceRepositoryItemProvider extends ItemProviderAdapter implements
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-				DatamodelPackage.Literals.SLICE_REPOSITORY__CONTAINS,
+				DatamodelPackage.Literals.SLICE_REPOSITORY__SLICES,
 				DatamodelFactory.eINSTANCE.createSlice()));
 	}
 

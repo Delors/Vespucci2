@@ -276,13 +276,22 @@ public interface DatamodelPackage extends EPackage {
 	int SLICE_REPOSITORY = 2;
 
 	/**
-	 * The feature id for the '<em><b>Contains</b></em>' containment reference
+	 * The feature id for the '<em><b>Slices</b></em>' containment reference
 	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int SLICE_REPOSITORY__CONTAINS = 0;
+	int SLICE_REPOSITORY__SLICES = 0;
+
+	/**
+	 * The feature id for the '<em><b>Empty Ensemble</b></em>' containment
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SLICE_REPOSITORY__EMPTY_ENSEMBLE = 1;
 
 	/**
 	 * The number of structural features of the '<em>Slice Repository</em>'
@@ -291,7 +300,7 @@ public interface DatamodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SLICE_REPOSITORY_FEATURE_COUNT = 1;
+	int SLICE_REPOSITORY_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '
@@ -341,13 +350,22 @@ public interface DatamodelPackage extends EPackage {
 	int SLICE__ENSEMBLES = 3;
 
 	/**
+	 * The feature id for the '<em><b>Slice Repository</b></em>' container
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SLICE__SLICE_REPOSITORY = 4;
+
+	/**
 	 * The number of structural features of the '<em>Slice</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int SLICE_FEATURE_COUNT = 4;
+	int SLICE_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '
@@ -551,6 +569,16 @@ public interface DatamodelPackage extends EPackage {
 	int CONSTRAINT_TYPE = 8;
 
 	/**
+	 * The meta object id for the '<em>EEnsemble</em>' data type. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see java.lang.Object
+	 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getEEnsemble()
+	 * @generated
+	 */
+	int EENSEMBLE = 9;
+
+	/**
 	 * Returns the meta object for class '
 	 * {@link de.opalproject.vespucci.datamodel.Ensemble <em>Ensemble</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -682,16 +710,29 @@ public interface DatamodelPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the containment reference list '
-	 * {@link de.opalproject.vespucci.datamodel.SliceRepository#getContains
-	 * <em>Contains</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@link de.opalproject.vespucci.datamodel.SliceRepository#getSlices
+	 * <em>Slices</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the containment reference list '
-	 *         <em>Contains</em>'.
-	 * @see de.opalproject.vespucci.datamodel.SliceRepository#getContains()
+	 *         <em>Slices</em>'.
+	 * @see de.opalproject.vespucci.datamodel.SliceRepository#getSlices()
 	 * @see #getSliceRepository()
 	 * @generated
 	 */
-	EReference getSliceRepository_Contains();
+	EReference getSliceRepository_Slices();
+
+	/**
+	 * Returns the meta object for the containment reference '
+	 * {@link de.opalproject.vespucci.datamodel.SliceRepository#getEmptyEnsemble
+	 * <em>Empty Ensemble</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference '
+	 *         <em>Empty Ensemble</em>'.
+	 * @see de.opalproject.vespucci.datamodel.SliceRepository#getEmptyEnsemble()
+	 * @see #getSliceRepository()
+	 * @generated
+	 */
+	EReference getSliceRepository_EmptyEnsemble();
 
 	/**
 	 * Returns the meta object for class '
@@ -728,6 +769,20 @@ public interface DatamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSlice_Ensembles();
+
+	/**
+	 * Returns the meta object for the container reference '
+	 * {@link de.opalproject.vespucci.datamodel.Slice#getSliceRepository
+	 * <em>Slice Repository</em>}'. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @return the meta object for the container reference '
+	 *         <em>Slice Repository</em>'.
+	 * @see de.opalproject.vespucci.datamodel.Slice#getSliceRepository()
+	 * @see #getSlice()
+	 * @generated
+	 */
+	EReference getSlice_SliceRepository();
 
 	/**
 	 * Returns the meta object for the attribute '
@@ -834,6 +889,17 @@ public interface DatamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getConstraintType();
+
+	/**
+	 * Returns the meta object for data type '{@link java.lang.Object
+	 * <em>EEnsemble</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for data type '<em>EEnsemble</em>'.
+	 * @see java.lang.Object
+	 * @model instanceClass="java.lang.Object"
+	 * @generated
+	 */
+	EDataType getEEnsemble();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!--
@@ -960,14 +1026,23 @@ public interface DatamodelPackage extends EPackage {
 		EClass SLICE_REPOSITORY = eINSTANCE.getSliceRepository();
 
 		/**
-		 * The meta object literal for the '<em><b>Contains</b></em>'
-		 * containment reference list feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Slices</b></em>' containment
+		 * reference list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference SLICE_REPOSITORY__SLICES = eINSTANCE
+				.getSliceRepository_Slices();
+
+		/**
+		 * The meta object literal for the '<em><b>Empty Ensemble</b></em>'
+		 * containment reference feature. <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
 		 * @generated
 		 */
-		EReference SLICE_REPOSITORY__CONTAINS = eINSTANCE
-				.getSliceRepository_Contains();
+		EReference SLICE_REPOSITORY__EMPTY_ENSEMBLE = eINSTANCE
+				.getSliceRepository_EmptyEnsemble();
 
 		/**
 		 * The meta object literal for the '
@@ -996,6 +1071,16 @@ public interface DatamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SLICE__ENSEMBLES = eINSTANCE.getSlice_Ensembles();
+
+		/**
+		 * The meta object literal for the '<em><b>Slice Repository</b></em>'
+		 * container reference feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference SLICE__SLICE_REPOSITORY = eINSTANCE
+				.getSlice_SliceRepository();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute
@@ -1088,6 +1173,16 @@ public interface DatamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum CONSTRAINT_TYPE = eINSTANCE.getConstraintType();
+
+		/**
+		 * The meta object literal for the '<em>EEnsemble</em>' data type. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see java.lang.Object
+		 * @see de.opalproject.vespucci.datamodel.impl.DatamodelPackageImpl#getEEnsemble()
+		 * @generated
+		 */
+		EDataType EENSEMBLE = eINSTANCE.getEEnsemble();
 
 	}
 

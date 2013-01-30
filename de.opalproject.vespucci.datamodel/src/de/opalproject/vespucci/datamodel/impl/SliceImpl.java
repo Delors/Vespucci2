@@ -44,12 +44,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.datamodel.Slice;
+import de.opalproject.vespucci.datamodel.SliceRepository;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -65,6 +67,9 @@ import de.opalproject.vespucci.datamodel.Slice;
  * <em>Constraints</em>}</li>
  * <li>{@link de.opalproject.vespucci.datamodel.impl.SliceImpl#getEnsembles <em>
  * Ensembles</em>}</li>
+ * <li>
+ * {@link de.opalproject.vespucci.datamodel.impl.SliceImpl#getSliceRepository
+ * <em>Slice Repository</em>}</li>
  * </ul>
  * </p>
  * 
@@ -181,6 +186,73 @@ public class SliceImpl extends EObjectImpl implements Slice {
 	 * 
 	 * @generated
 	 */
+	public SliceRepository getSliceRepository() {
+		if (eContainerFeatureID() != DatamodelPackage.SLICE__SLICE_REPOSITORY)
+			return null;
+		return (SliceRepository) eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NotificationChain basicSetSliceRepository(
+			SliceRepository newSliceRepository, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newSliceRepository,
+				DatamodelPackage.SLICE__SLICE_REPOSITORY, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setSliceRepository(SliceRepository newSliceRepository) {
+		if (newSliceRepository != eInternalContainer()
+				|| (eContainerFeatureID() != DatamodelPackage.SLICE__SLICE_REPOSITORY && newSliceRepository != null)) {
+			if (EcoreUtil.isAncestor(this, newSliceRepository))
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newSliceRepository != null)
+				msgs = ((InternalEObject) newSliceRepository).eInverseAdd(this,
+						DatamodelPackage.SLICE_REPOSITORY__SLICES,
+						SliceRepository.class, msgs);
+			msgs = basicSetSliceRepository(newSliceRepository, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					DatamodelPackage.SLICE__SLICE_REPOSITORY,
+					newSliceRepository, newSliceRepository));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case DatamodelPackage.SLICE__SLICE_REPOSITORY:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetSliceRepository((SliceRepository) otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public String getName() {
 		return name;
 	}
@@ -232,8 +304,27 @@ public class SliceImpl extends EObjectImpl implements Slice {
 		case DatamodelPackage.SLICE__CONSTRAINTS:
 			return ((InternalEList<?>) getConstraints()).basicRemove(otherEnd,
 					msgs);
+		case DatamodelPackage.SLICE__SLICE_REPOSITORY:
+			return basicSetSliceRepository(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+		case DatamodelPackage.SLICE__SLICE_REPOSITORY:
+			return eInternalContainer().eInverseRemove(this,
+					DatamodelPackage.SLICE_REPOSITORY__SLICES,
+					SliceRepository.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -252,6 +343,8 @@ public class SliceImpl extends EObjectImpl implements Slice {
 			return getConstraints();
 		case DatamodelPackage.SLICE__ENSEMBLES:
 			return getEnsembles();
+		case DatamodelPackage.SLICE__SLICE_REPOSITORY:
+			return getSliceRepository();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -280,6 +373,9 @@ public class SliceImpl extends EObjectImpl implements Slice {
 			getEnsembles().clear();
 			getEnsembles().addAll((Collection<? extends Ensemble>) newValue);
 			return;
+		case DatamodelPackage.SLICE__SLICE_REPOSITORY:
+			setSliceRepository((SliceRepository) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -304,6 +400,9 @@ public class SliceImpl extends EObjectImpl implements Slice {
 		case DatamodelPackage.SLICE__ENSEMBLES:
 			getEnsembles().clear();
 			return;
+		case DatamodelPackage.SLICE__SLICE_REPOSITORY:
+			setSliceRepository((SliceRepository) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -326,6 +425,8 @@ public class SliceImpl extends EObjectImpl implements Slice {
 			return constraints != null && !constraints.isEmpty();
 		case DatamodelPackage.SLICE__ENSEMBLES:
 			return ensembles != null && !ensembles.isEmpty();
+		case DatamodelPackage.SLICE__SLICE_REPOSITORY:
+			return getSliceRepository() != null;
 		}
 		return super.eIsSet(featureID);
 	}

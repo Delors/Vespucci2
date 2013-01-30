@@ -65,9 +65,14 @@
           </and>
          </triggerPoints>
          <possibleChildren>
-               <instanceof
-                     value="de.opalproject.vespucci.datamodel.TreeNode">
-               </instanceof>
+               <or>
+                  <instanceof
+                        value="de.opalproject.vespucci.datamodel.TreeNode">
+                  </instanceof>
+                  <instanceof
+                        value="de.opalproject.vespucci.datamodel.SliceRepository">
+                  </instanceof>
+               </or>
          </possibleChildren>
          <dropAssistant
                class="de.opalproject.vespucci.ui.dnd.EnsembleDropAdapter"

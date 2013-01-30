@@ -77,7 +77,7 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final ConstraintType CONSTRAINT_TYPE_EDEFAULT = ConstraintType.NOT_ALLOWED;
+	protected static final ConstraintType CONSTRAINT_TYPE_EDEFAULT = ConstraintType.UNDEFINED;
 
 	/**
 	 * The cached value of the '{@link #getConstraintType()

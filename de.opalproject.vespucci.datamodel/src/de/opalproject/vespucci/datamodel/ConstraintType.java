@@ -50,14 +50,22 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum ConstraintType implements Enumerator {
 	/**
-	 * The '<em><b>Not Allowed</b></em>' literal object. <!-- begin-user-doc -->
+	 * The '<em><b>Undefined</b></em>' literal object. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
+	 * @see #UNDEFINED_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	UNDEFINED(0, "Undefined", "Undefined"), /**
+	 * The '<em><b>Not Allowed</b></em>'
+	 * literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #NOT_ALLOWED_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	NOT_ALLOWED(0, "NotAllowed", "NotAllowed"),
+	NOT_ALLOWED(1, "NotAllowed", "NotAllowed"),
 
 	/**
 	 * The '<em><b>Global Incoming</b></em>' literal object. <!-- begin-user-doc
@@ -67,7 +75,7 @@ public enum ConstraintType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GLOBAL_INCOMING(1, "GlobalIncoming", "GlobalIncoming"),
+	GLOBAL_INCOMING(2, "GlobalIncoming", "GlobalIncoming"),
 
 	/**
 	 * The '<em><b>Local Incoming</b></em>' literal object. <!-- begin-user-doc
@@ -77,7 +85,7 @@ public enum ConstraintType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LOCAL_INCOMING(2, "LocalIncoming", "LocalIncoming"),
+	LOCAL_INCOMING(3, "LocalIncoming", "LocalIncoming"),
 
 	/**
 	 * The '<em><b>Global Outgoing</b></em>' literal object. <!-- begin-user-doc
@@ -87,7 +95,7 @@ public enum ConstraintType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	GLOBAL_OUTGOING(3, "GlobalOutgoing", "GlobalOutgoing"),
+	GLOBAL_OUTGOING(4, "GlobalOutgoing", "GlobalOutgoing"),
 
 	/**
 	 * The '<em><b>Local Outgoing</b></em>' literal object. <!-- begin-user-doc
@@ -97,7 +105,7 @@ public enum ConstraintType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	LOCAL_OUTGOING(4, "LocalOutgoing", "LocalOutgoing"),
+	LOCAL_OUTGOING(5, "LocalOutgoing", "LocalOutgoing"),
 
 	/**
 	 * The '<em><b>Expected</b></em>' literal object. <!-- begin-user-doc -->
@@ -107,7 +115,22 @@ public enum ConstraintType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	EXPECTED(5, "Expected", "Expected");
+	EXPECTED(6, "Expected", "Expected");
+
+	/**
+	 * The '<em><b>Undefined</b></em>' literal value. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Undefined</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see #UNDEFINED
+	 * @model name="Undefined"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int UNDEFINED_VALUE = 0;
 
 	/**
 	 * The '<em><b>Not Allowed</b></em>' literal value. <!-- begin-user-doc -->
@@ -122,7 +145,7 @@ public enum ConstraintType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int NOT_ALLOWED_VALUE = 0;
+	public static final int NOT_ALLOWED_VALUE = 1;
 
 	/**
 	 * The '<em><b>Global Incoming</b></em>' literal value. <!-- begin-user-doc
@@ -138,7 +161,7 @@ public enum ConstraintType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GLOBAL_INCOMING_VALUE = 1;
+	public static final int GLOBAL_INCOMING_VALUE = 2;
 
 	/**
 	 * The '<em><b>Local Incoming</b></em>' literal value. <!-- begin-user-doc
@@ -154,7 +177,7 @@ public enum ConstraintType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LOCAL_INCOMING_VALUE = 2;
+	public static final int LOCAL_INCOMING_VALUE = 3;
 
 	/**
 	 * The '<em><b>Global Outgoing</b></em>' literal value. <!-- begin-user-doc
@@ -170,7 +193,7 @@ public enum ConstraintType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GLOBAL_OUTGOING_VALUE = 3;
+	public static final int GLOBAL_OUTGOING_VALUE = 4;
 
 	/**
 	 * The '<em><b>Local Outgoing</b></em>' literal value. <!-- begin-user-doc
@@ -186,7 +209,7 @@ public enum ConstraintType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int LOCAL_OUTGOING_VALUE = 4;
+	public static final int LOCAL_OUTGOING_VALUE = 5;
 
 	/**
 	 * The '<em><b>Expected</b></em>' literal value. <!-- begin-user-doc -->
@@ -201,7 +224,7 @@ public enum ConstraintType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int EXPECTED_VALUE = 5;
+	public static final int EXPECTED_VALUE = 6;
 
 	/**
 	 * An array of all the '<em><b>Constraint Type</b></em>' enumerators. <!--
@@ -210,8 +233,8 @@ public enum ConstraintType implements Enumerator {
 	 * @generated
 	 */
 	private static final ConstraintType[] VALUES_ARRAY = new ConstraintType[] {
-			NOT_ALLOWED, GLOBAL_INCOMING, LOCAL_INCOMING, GLOBAL_OUTGOING,
-			LOCAL_OUTGOING, EXPECTED, };
+			UNDEFINED, NOT_ALLOWED, GLOBAL_INCOMING, LOCAL_INCOMING,
+			GLOBAL_OUTGOING, LOCAL_OUTGOING, EXPECTED, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Constraint Type</b></em>'
@@ -262,6 +285,8 @@ public enum ConstraintType implements Enumerator {
 	 */
 	public static ConstraintType get(int value) {
 		switch (value) {
+		case UNDEFINED_VALUE:
+			return UNDEFINED;
 		case NOT_ALLOWED_VALUE:
 			return NOT_ALLOWED;
 		case GLOBAL_INCOMING_VALUE:

@@ -129,6 +129,28 @@ public interface DatamodelFactory extends EFactory {
 	String convertConstraintType(ConstraintType instanceValue);
 
 	/**
+	 * Returns an instance of data type '<em>EEnsemble</em>' corresponding the
+	 * given literal. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param literal
+	 *            a literal of the data type.
+	 * @return a new instance value of the data type.
+	 * @generated
+	 */
+	Object createEEnsemble(String literal);
+
+	/**
+	 * Returns a literal representation of an instance of data type '
+	 * <em>EEnsemble</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param instanceValue
+	 *            an instance value of the data type.
+	 * @return a literal representation of the instance value.
+	 * @generated
+	 */
+	String convertEEnsemble(Object instanceValue);
+
+	/**
 	 * Returns the package supported by this factory. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
