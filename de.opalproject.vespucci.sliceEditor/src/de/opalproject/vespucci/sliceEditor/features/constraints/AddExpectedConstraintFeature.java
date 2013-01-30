@@ -42,14 +42,14 @@ import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 
 public class AddExpectedConstraintFeature extends AddConstraintFeature {
-	
+
 	public AddExpectedConstraintFeature(IFeatureProvider fp) {
 		super(fp);
 	}
 
 	@Override
-	protected void createArrow(Connection connection,
-			IGaService igaService, IPeCreateService peCreateService) {
+	protected void createArrow(Connection connection, IGaService igaService,
+			IPeCreateService peCreateService) {
 
 		Polyline polyline = igaService.createPolyline(connection);
 		polyline.setLineWidth(2);
@@ -57,11 +57,11 @@ public class AddExpectedConstraintFeature extends AddConstraintFeature {
 		polyline.setLineStyle(LineStyle.DASH);
 
 		ConnectionDecorator cd;
-		cd = peCreateService.createConnectionDecorator(connection, false, 1.0,
+		cd = peCreateService.createConnectionDecorator(connection, false, 0,
 				true);
 
-		Polyline polylineArrow = igaService.createPolyline(cd,
-				new int[] { -15, 10, 0, 0, -15, -10 });
+		Polyline polylineArrow = igaService.createPolyline(cd, new int[] { -30,
+				10, -45, 0, -30, -10 });
 		polylineArrow.setForeground(manageColor(CONSTRAINT_FOREGROUND));
 		polylineArrow.setLineWidth(2);
 	}
