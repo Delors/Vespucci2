@@ -131,6 +131,6 @@ public abstract class AddConstraintFeature extends AbstractAddFeature {
 		return false;
 	}
 
-	protected abstract Polyline createArrow(Connection connection,
+	protected abstract void createArrow(Connection connection,
 			IGaService igaService, IPeCreateService peCreateService);
 }

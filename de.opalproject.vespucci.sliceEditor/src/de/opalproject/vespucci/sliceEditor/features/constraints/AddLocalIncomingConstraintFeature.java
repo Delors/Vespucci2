@@ -48,7 +48,7 @@ public class AddLocalIncomingConstraintFeature extends AddConstraintFeature{
 	}
 
 	@Override
-	protected Polyline createArrow(Connection connection,
+	protected void createArrow(Connection connection,
 			IGaService igaService, IPeCreateService peCreateService) {
 
 		IGaService gaService = Graphiti.getGaService();
@@ -64,6 +64,5 @@ public class AddLocalIncomingConstraintFeature extends AddConstraintFeature{
 				new int[] { -15, 10, 1, 0, -15, -10 });
 		polylineArrow.setForeground(manageColor(CONSTRAINT_FOREGROUND));
 		polylineArrow.setLineWidth(2);
-		return polyline;
 	}
 }

@@ -47,8 +47,8 @@ public class AddLocalOutgoingConstraintFeature extends AddConstraintFeature {
 	}
 
 	@Override
-	protected Polyline createArrow(Connection connection,
-			IGaService igaService, IPeCreateService peCreateService) {
+	protected void createArrow(Connection connection, IGaService igaService,
+			IPeCreateService peCreateService) {
 
 		Polyline polyline = igaService.createPolyline(connection);
 		polyline.setLineWidth(2);
@@ -62,6 +62,5 @@ public class AddLocalOutgoingConstraintFeature extends AddConstraintFeature {
 				10, -10, 0, 2, -10 });
 		polylineArrow.setForeground(manageColor(CONSTRAINT_FOREGROUND));
 		polylineArrow.setLineWidth(2);
-		return polyline;
 	}
 }
