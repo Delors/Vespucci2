@@ -33,6 +33,8 @@
  */
 package de.opalproject.vespucci.sliceEditor.features;
 
+import java.io.Console;
+
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddShapeFeature;
@@ -197,17 +199,20 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 			// create shape for the description
 			Shape descriptionShape = peCreateService.createShape(
 					containerShape, false);
-
+			
 			// sets the description of the ensemble
+			
+			
 			MultiText description = gaService.createMultiText(descriptionShape,
 					addedEnsemble.getDescription());
+
+			
 			description.setLineWidth(width);
-			description.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
 			description.setVerticalAlignment(Orientation.ALIGNMENT_TOP);
 			description.setFont(gaService.manageDefaultFont(getDiagram(),
 					false, true));
 			gaService
-					.setLocationAndSize(description, 2, 20, width, height - 20);
+					.setLocationAndSize(description, 2, 20, width, height);
 			// create link and wire it
 			link(nameShape, addedEnsemble);
 			link(descriptionShape, addedEnsemble);
