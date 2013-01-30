@@ -53,7 +53,7 @@ import de.opalproject.vespucci.datamodel.Ensemble;
  * @author Marco Jacobasch
  * 
  */
-public class DeleteHandler extends AbstractEnsembleCommandHandler {
+public class DeleteEnsembleHandler extends AbstractEnsembleCommandHandler {
 
 	@Override
 	public Command getCommand(IStructuredSelection selection,
