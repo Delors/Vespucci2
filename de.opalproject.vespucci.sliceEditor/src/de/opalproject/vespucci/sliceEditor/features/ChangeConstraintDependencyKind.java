@@ -33,7 +33,6 @@
  */
 package de.opalproject.vespucci.sliceEditor.features;
 
-import org.eclipse.graphiti.examples.common.ExampleUtil;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.custom.AbstractCustomFeature;
@@ -79,9 +78,9 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 			}
 		}
 		if (pes != null && pes.length == 1) {
-			if(pes[0] instanceof ConnectionDecorator){
-				if(((ConnectionDecorator) pes[0]).getGraphicsAlgorithm() instanceof Text)
-				return true;
+			if (pes[0] instanceof ConnectionDecorator) {
+				if (((ConnectionDecorator) pes[0]).getGraphicsAlgorithm() instanceof Text)
+					return true;
 			}
 		}
 		return ret;
@@ -90,7 +89,7 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 	@Override
 	public void execute(ICustomContext context) {
 		PictogramElement[] pes = context.getPictogramElements();
-		
+
 		if (pes != null && pes.length == 1) {
 			Object bo = getBusinessObjectForPictogramElement(pes[0]);
 			if (bo instanceof Constraint) {
@@ -98,8 +97,8 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 				Constraint constraint = (Constraint) bo;
 				String currentKind = constraint.getDependencyKind();
 				// ask user for a new dependency kind
-				String newKind = askString(getName(),
-						getDescription(), currentKind);
+				String newKind = askString(getName(), getDescription(),
+						currentKind);
 				// TODO add check to see whether the newly entered is a valid
 				// one
 				if (newKind != null && !newKind.equals(currentKind)) {
@@ -118,12 +117,12 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 			if (pes[0] instanceof ConnectionDecorator) {
 				ConnectionDecorator cd = (ConnectionDecorator) pes[0];
 				Connection connection = cd.getConnection();
-				if(getBusinessObjectForPictogramElement(connection) instanceof Constraint){
+				if (getBusinessObjectForPictogramElement(connection) instanceof Constraint) {
 					Constraint constraint = (Constraint) getBusinessObjectForPictogramElement(connection);
 					String currentKind = constraint.getDependencyKind();
 					// ask user for a new dependency kind
-					String newKind = ExampleUtil.askString(getName(),
-							getDescription(), currentKind);
+					String newKind = askString(getName(), getDescription(),
+							currentKind);
 					if (newKind != null && !newKind.equals(currentKind)) {
 						this.hasDoneChanges = true;
 						constraint.setDependencyKind(newKind);
@@ -141,7 +140,7 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 	public boolean hasDoneChanges() {
 		return this.hasDoneChanges;
 	}
-	
+
 	/**
 	 * Opens an simple input dialog with OK and Cancel buttons.
 	 * <p>
@@ -155,10 +154,13 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 	 *            (equivalent to the empty string)
 	 * @return the string
 	 */
-	public static String askString(String dialogTitle, String dialogMessage, String initialValue) {
+	public static String askString(String dialogTitle, String dialogMessage,
+			String initialValue) {
 		String ret = null;
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		InputDialog inputDialog = new InputDialog(shell, dialogTitle, dialogMessage, initialValue, null);
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+				.getShell();
+		InputDialog inputDialog = new InputDialog(shell, dialogTitle,
+				dialogMessage, initialValue, null);
 		int retDialog = inputDialog.open();
 		if (retDialog == Window.OK) {
 			ret = inputDialog.getValue();
