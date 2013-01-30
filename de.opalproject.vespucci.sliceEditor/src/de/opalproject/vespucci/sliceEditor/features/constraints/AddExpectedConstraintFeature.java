@@ -48,7 +48,7 @@ public class AddExpectedConstraintFeature extends AddConstraintFeature {
 	}
 
 	@Override
-	protected Polyline createArrow(Connection connection,
+	protected void createArrow(Connection connection,
 			IGaService igaService, IPeCreateService peCreateService) {
 
 		Polyline polyline = igaService.createPolyline(connection);
@@ -64,6 +64,5 @@ public class AddExpectedConstraintFeature extends AddConstraintFeature {
 				new int[] { -15, 10, 0, 0, -15, -10 });
 		polylineArrow.setForeground(manageColor(CONSTRAINT_FOREGROUND));
 		polylineArrow.setLineWidth(2);
-		return polyline;
 	}
 }

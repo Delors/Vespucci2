@@ -56,11 +56,20 @@ public class UpdateConstraintFeature extends AbstractUpdateFeature {
 	public IReason updateNeeded(IUpdateContext context) {
 		// retrieve constraint kind
 		String constraintKind = null;
-
+		Text text = null;
+		Connection connection = null;
 		ConnectionDecorator cd = (ConnectionDecorator) context
 				.getPictogramElement();
-		Connection connection = cd.getConnection();
-		Text text = (Text) cd.getGraphicsAlgorithm();
+		if (cd.getGraphicsAlgorithm() instanceof Text) {
+			connection = cd.getConnection();
+			text = (Text) cd.getGraphicsAlgorithm();
+		} else {
+
+		}
+		for (ConnectionDecorator condec : connection.getConnectionDecorators()) {
+			if (condec.getGraphicsAlgorithm() instanceof Text)
+				text = (Text) condec.getGraphicsAlgorithm();
+		}
 
 		// Retrieve current value from pictogramElement
 		constraintKind = text.getValue();
@@ -105,6 +114,15 @@ public class UpdateConstraintFeature extends AbstractUpdateFeature {
 			Text text = (Text) cd.getGraphicsAlgorithm();
 			text.setValue(businessValue);
 			return true;
+		} else {
+			for (ConnectionDecorator condec : connection
+					.getConnectionDecorators()) {
+				if (condec.getGraphicsAlgorithm() instanceof Text) {
+					Text text = (Text) condec.getGraphicsAlgorithm();
+					text.setValue(businessValue);
+					return true;
+				}
+			}
 		}
 
 		return false;

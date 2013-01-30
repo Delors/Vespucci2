@@ -41,28 +41,26 @@ import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 
-public class AddLocalOutgoingConstraintFeature extends AddConstraintFeature{
+public class AddLocalOutgoingConstraintFeature extends AddConstraintFeature {
 	public AddLocalOutgoingConstraintFeature(IFeatureProvider fp) {
 		super(fp);
 	}
 
 	@Override
-	protected Polyline createArrow(Connection connection,
-			IGaService igaService, IPeCreateService peCreateService) {
+	protected void createArrow(Connection connection, IGaService igaService,
+			IPeCreateService peCreateService) {
 
 		Polyline polyline = igaService.createPolyline(connection);
 		polyline.setLineWidth(2);
 		polyline.setForeground(manageColor(CONSTRAINT_FOREGROUND));
-		polyline.setLineStyle(LineStyle.DASH);
 
 		ConnectionDecorator cd;
-		cd = peCreateService.createConnectionDecorator(connection, false, 1.0,
+		cd = peCreateService.createConnectionDecorator(connection, false, 0,
 				true);
 
-		Polyline polylineArrow = igaService.createPolyline(cd,
-				new int[] { -15, 10, 0, 0, -15, -10 });
+		Polyline polylineArrow = igaService.createPolyline(cd, new int[] { 2,
+				10, -10, 0, 2, -10 });
 		polylineArrow.setForeground(manageColor(CONSTRAINT_FOREGROUND));
 		polylineArrow.setLineWidth(2);
-		return polyline;
 	}
 }

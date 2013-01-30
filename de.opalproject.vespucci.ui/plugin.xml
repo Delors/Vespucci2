@@ -162,7 +162,7 @@
          <command
                commandId="de.opalproject.vespucci.ui.editor.openDiagramEditor"
                id="de.opalproject.vespucci.ui.popupmenu.openDiagram"
-               label="Open"
+               label="Open Diagram"
                style="push" >
             <visibleWhen
                   checkEnabled="false">
@@ -351,5 +351,24 @@
             name="Ensemble Editor">
       </editor>
    </extension>
+  <extension
+        point="org.eclipse.ui.commands">
+     <command
+           id="de.opalproject.vespucci.ui.edit.newSlice"
+           name="de.opalproject.vespucci.ui.edit.newSlice">
+     </command>
+     <command
+           id="de.opalproject.vespucci.ui.edit.new"
+           name="de.opalproject.vespucci.ui.edit.new">
+     </command>
+     <command
+           id="de.opalproject.vespucci.ui.editor.openEditor"
+           name="de.opalproject.vespucci.ui.editor.openEditor">
+     </command>
+     <command
+           id="de.opalproject.vespucci.ui.editor.openDiagramEditor"
+           name="de.opalproject.vespucci.ui.editor.openDiagramEditor">
+     </command>
+  </extension>
 
 </plugin>
