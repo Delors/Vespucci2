@@ -55,14 +55,13 @@ public class AddLocalIncomingConstraintFeature extends AddConstraintFeature{
 		Polyline polyline = gaService.createPolyline(connection);
 		polyline.setLineWidth(2);
 		polyline.setForeground(manageColor(CONSTRAINT_FOREGROUND));
-		polyline.setLineStyle(LineStyle.DASH);
 
 		ConnectionDecorator cd;
 		cd = peCreateService.createConnectionDecorator(connection, false, 1.0,
 				true);
 
 		Polyline polylineArrow = gaService.createPolyline(cd,
-				new int[] { -15, 10, 0, 0, -15, -10 });
+				new int[] { -15, 10, 1, 0, -15, -10 });
 		polylineArrow.setForeground(manageColor(CONSTRAINT_FOREGROUND));
 		polylineArrow.setLineWidth(2);
 		return polyline;
