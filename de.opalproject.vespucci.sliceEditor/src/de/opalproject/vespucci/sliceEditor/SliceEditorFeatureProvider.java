@@ -82,9 +82,9 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 	public SliceEditorFeatureProvider(IDiagramTypeProvider dtp) {
 		super(dtp);
 	}
-	
-	public IDeleteFeature getDeleteFeature(IDeleteContext context){
-		return null;	
+
+	public IDeleteFeature getDeleteFeature(IDeleteContext context) {
+		return null;
 	}
 
 	@Override
@@ -117,11 +117,11 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 
 		return super.getAddFeature(context);
 	}
-	
+
 	@Override
 	public ICreateFeature[] getCreateFeatures() {
-	   return new ICreateFeature[] { new CreateEmptyEnsembleFeature(this) };
-	} 
+		return new ICreateFeature[] { new CreateEmptyEnsembleFeature(this) };
+	}
 
 	@Override
 	public ILayoutFeature getLayoutFeature(ILayoutContext context) {
@@ -135,47 +135,49 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 
 	@Override
 	public ICreateConnectionFeature[] getCreateConnectionFeatures() {
-		return new ICreateConnectionFeature[] { new CreateGlobalIncomingConstraintFeature(
-				this), new CreateLocalIncomingConstraintFeature(
-						this), new CreateGlobalOutgoingConstraintFeature(
-								this), new CreateLocalOutgoingConstraintFeature(
-										this), new CreateExpectedConstraintFeature(
-this),
-				new CreateNotAllowedConstraintFeature(
-														this) };
+		return new ICreateConnectionFeature[] {
+				new CreateLocalIncomingConstraintFeature(this),
+				new CreateLocalOutgoingConstraintFeature(this),
+				new CreateGlobalIncomingConstraintFeature(this),
+				new CreateGlobalOutgoingConstraintFeature(this),
+				new CreateExpectedConstraintFeature(this),
+				new CreateNotAllowedConstraintFeature(this) };
 	}
-	
+
 	@Override
 	public IUpdateFeature getUpdateFeature(IUpdateContext context) {
-	   PictogramElement pictogramElement = context.getPictogramElement();
-	   if (pictogramElement instanceof ContainerShape) {
-	       Object bo = getBusinessObjectForPictogramElement(pictogramElement);
-	       if (bo instanceof Ensemble) {
-	           return new UpdateEnsembleFeature(this);
-	       }
-	   }
-	   if (pictogramElement instanceof ConnectionDecorator){
-		   Object bo = getBusinessObjectForPictogramElement(((ConnectionDecorator) pictogramElement).getConnection());
-		   if (bo instanceof Constraint && ((ConnectionDecorator) pictogramElement).getGraphicsAlgorithm() instanceof Text) {
-	           return new UpdateConstraintFeature(this);
-	       }
-	   }
-	   return super.getUpdateFeature(context);
-	 } 
-	
+		PictogramElement pictogramElement = context.getPictogramElement();
+		if (pictogramElement instanceof ContainerShape) {
+			Object bo = getBusinessObjectForPictogramElement(pictogramElement);
+			if (bo instanceof Ensemble) {
+				return new UpdateEnsembleFeature(this);
+			}
+		}
+		if (pictogramElement instanceof ConnectionDecorator) {
+			Object bo = getBusinessObjectForPictogramElement(((ConnectionDecorator) pictogramElement)
+					.getConnection());
+			if (bo instanceof Constraint
+					&& ((ConnectionDecorator) pictogramElement)
+							.getGraphicsAlgorithm() instanceof Text) {
+				return new UpdateConstraintFeature(this);
+			}
+		}
+		return super.getUpdateFeature(context);
+	}
+
 	@Override
 	public ICustomFeature[] getCustomFeatures(ICustomContext context) {
-	    return new ICustomFeature[] { new ChangeConstraintDependencyKind(this) };
+		return new ICustomFeature[] { new ChangeConstraintDependencyKind(this) };
 	}
-	
+
 	@Override
 	public IDirectEditingFeature getDirectEditingFeature(
-	    IDirectEditingContext context) {
-	    PictogramElement pe = context.getPictogramElement();
-	    //Object bo = getBusinessObjectForPictogramElement(pe);
-	    if (pe instanceof ConnectionDecorator) {
-	        return new ConstraintKindDirectEditFeature(this);
-	    }
-	    return super.getDirectEditingFeature(context);
-	 }
+			IDirectEditingContext context) {
+		PictogramElement pe = context.getPictogramElement();
+		// Object bo = getBusinessObjectForPictogramElement(pe);
+		if (pe instanceof ConnectionDecorator) {
+			return new ConstraintKindDirectEditFeature(this);
+		}
+		return super.getDirectEditingFeature(context);
+	}
 }
