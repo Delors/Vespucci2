@@ -124,6 +124,8 @@ public class DatamodelFactoryImpl extends EFactoryImpl implements
 		switch (eDataType.getClassifierID()) {
 		case DatamodelPackage.CONSTRAINT_TYPE:
 			return createConstraintTypeFromString(eDataType, initialValue);
+		case DatamodelPackage.EENSEMBLE:
+			return createEEnsembleFromString(eDataType, initialValue);
 		default:
 			throw new IllegalArgumentException("The datatype '"
 					+ eDataType.getName() + "' is not a valid classifier");
@@ -140,6 +142,8 @@ public class DatamodelFactoryImpl extends EFactoryImpl implements
 		switch (eDataType.getClassifierID()) {
 		case DatamodelPackage.CONSTRAINT_TYPE:
 			return convertConstraintTypeToString(eDataType, instanceValue);
+		case DatamodelPackage.EENSEMBLE:
+			return convertEEnsembleToString(eDataType, instanceValue);
 		default:
 			throw new IllegalArgumentException("The datatype '"
 					+ eDataType.getName() + "' is not a valid classifier");
@@ -247,6 +251,46 @@ public class DatamodelFactoryImpl extends EFactoryImpl implements
 	public String convertConstraintTypeToString(EDataType eDataType,
 			Object instanceValue) {
 		return convertConstraintType((ConstraintType) instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public Object createEEnsemble(String literal) {
+		return super.createFromString(DatamodelPackage.Literals.EENSEMBLE,
+				literal);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public Object createEEnsembleFromString(EDataType eDataType,
+			String initialValue) {
+		return createEEnsemble(initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public String convertEEnsemble(Object instanceValue) {
+		return super.convertToString(DatamodelPackage.Literals.EENSEMBLE,
+				instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public String convertEEnsembleToString(EDataType eDataType,
+			Object instanceValue) {
+		return convertEEnsemble((Object) instanceValue);
 	}
 
 	/**

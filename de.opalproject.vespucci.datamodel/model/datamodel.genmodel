@@ -11,6 +11,7 @@
       dataTypeConverters="true" multipleEditorPages="false" contentTypeIdentifier="vespucci"
       fileExtensions="vespucci" ecorePackage="datamodel.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="datamodel.ecore#//ConstraintType">
+      <genEnumLiterals ecoreEnumLiteral="datamodel.ecore#//ConstraintType/Undefined"/>
       <genEnumLiterals ecoreEnumLiteral="datamodel.ecore#//ConstraintType/NotAllowed"/>
       <genEnumLiterals ecoreEnumLiteral="datamodel.ecore#//ConstraintType/GlobalIncoming"/>
       <genEnumLiterals ecoreEnumLiteral="datamodel.ecore#//ConstraintType/LocalIncoming"/>
@@ -18,7 +19,7 @@
       <genEnumLiterals ecoreEnumLiteral="datamodel.ecore#//ConstraintType/LocalOutgoing"/>
       <genEnumLiterals ecoreEnumLiteral="datamodel.ecore#//ConstraintType/Expected"/>
     </genEnums>
-    <genDataTypes ecoreDataType="datamodel.ecore#//EnsembleType"/>
+    <genDataTypes ecoreDataType="datamodel.ecore#//EEnsemble"/>
     <genClasses ecoreClass="datamodel.ecore#//Ensemble">
       <genFeatures createChild="false" propertyCategory="" ecoreFeature="ecore:EAttribute datamodel.ecore#//Ensemble/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datamodel.ecore#//Ensemble/derived"/>
@@ -32,13 +33,15 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference datamodel.ecore#//Constraint/target"/>
     </genClasses>
     <genClasses ecoreClass="datamodel.ecore#//SliceRepository">
-      <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference datamodel.ecore#//SliceRepository/contains"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference datamodel.ecore#//SliceRepository/slices"/>
+      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EReference datamodel.ecore#//SliceRepository/emptyEnsemble"/>
     </genClasses>
     <genClasses ecoreClass="datamodel.ecore#//Slice">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datamodel.ecore#//Slice/name"/>
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference datamodel.ecore#//Slice/constraints"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference datamodel.ecore#//Slice/contains"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datamodel.ecore#//Slice/diagram"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference datamodel.ecore#//Slice/constraints"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference datamodel.ecore#//Slice/ensembles"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference datamodel.ecore#//Slice/sliceRepository"/>
     </genClasses>
     <genClasses ecoreClass="datamodel.ecore#//EnsembleRepository"/>
     <genClasses image="false" ecoreClass="datamodel.ecore#//TreeNode">

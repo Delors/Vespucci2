@@ -44,8 +44,11 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link de.opalproject.vespucci.datamodel.SliceRepository#getContains <em>
- * Contains</em>}</li>
+ * <li>{@link de.opalproject.vespucci.datamodel.SliceRepository#getSlices <em>
+ * Slices</em>}</li>
+ * <li>
+ * {@link de.opalproject.vespucci.datamodel.SliceRepository#getEmptyEnsemble
+ * <em>Empty Ensemble</em>}</li>
  * </ul>
  * </p>
  * 
@@ -55,20 +58,56 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface SliceRepository extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Contains</b></em>' containment reference
+	 * Returns the value of the '<em><b>Slices</b></em>' containment reference
 	 * list. The list contents are of type
-	 * {@link de.opalproject.vespucci.datamodel.Slice}. <!-- begin-user-doc -->
+	 * {@link de.opalproject.vespucci.datamodel.Slice}. It is bidirectional and
+	 * its opposite is '
+	 * {@link de.opalproject.vespucci.datamodel.Slice#getSliceRepository
+	 * <em>Slice Repository</em>}'. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Contains</em>' containment reference list
+	 * If the meaning of the '<em>Slices</em>' containment reference list isn't
+	 * clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Slices</em>' containment reference list.
+	 * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getSliceRepository_Slices()
+	 * @see de.opalproject.vespucci.datamodel.Slice#getSliceRepository
+	 * @model opposite="sliceRepository" containment="true"
+	 *        extendedMetaData="namespace=''"
+	 * @generated
+	 */
+	EList<Slice> getSlices();
+
+	/**
+	 * Returns the value of the '<em><b>Empty Ensemble</b></em>' containment
+	 * reference. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Empty Ensemble</em>' containment reference
 	 * isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Contains</em>' containment reference list.
-	 * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getSliceRepository_Contains()
-	 * @model containment="true" extendedMetaData="namespace=''"
+	 * @return the value of the '<em>Empty Ensemble</em>' containment reference.
+	 * @see #setEmptyEnsemble(Ensemble)
+	 * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getSliceRepository_EmptyEnsemble()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<Slice> getContains();
+	Ensemble getEmptyEnsemble();
+
+	/**
+	 * Sets the value of the '
+	 * {@link de.opalproject.vespucci.datamodel.SliceRepository#getEmptyEnsemble
+	 * <em>Empty Ensemble</em>}' containment reference. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Empty Ensemble</em>' containment
+	 *            reference.
+	 * @see #getEmptyEnsemble()
+	 * @generated
+	 */
+	void setEmptyEnsemble(Ensemble value);
 
 } // SliceRepository

@@ -34,11 +34,13 @@
 package de.opalproject.vespucci.datamodel.impl;
 
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
+import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.datamodel.Slice;
 import de.opalproject.vespucci.datamodel.SliceRepository;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -46,8 +48,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -58,8 +62,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  * <li>
- * {@link de.opalproject.vespucci.datamodel.impl.SliceRepositoryImpl#getContains
- * <em>Contains</em>}</li>
+ * {@link de.opalproject.vespucci.datamodel.impl.SliceRepositoryImpl#getSlices
+ * <em>Slices</em>}</li>
+ * <li>
+ * {@link de.opalproject.vespucci.datamodel.impl.SliceRepositoryImpl#getEmptyEnsemble
+ * <em>Empty Ensemble</em>}</li>
  * </ul>
  * </p>
  * 
@@ -67,14 +74,25 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class SliceRepositoryImpl extends EObjectImpl implements SliceRepository {
 	/**
-	 * The cached value of the '{@link #getContains() <em>Contains</em>}'
+	 * The cached value of the '{@link #getSlices() <em>Slices</em>}'
 	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see #getContains()
+	 * @see #getSlices()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Slice> contains;
+	protected EList<Slice> slices;
+
+	/**
+	 * The cached value of the '{@link #getEmptyEnsemble()
+	 * <em>Empty Ensemble</em>}' containment reference. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see #getEmptyEnsemble()
+	 * @generated
+	 * @ordered
+	 */
+	protected Ensemble emptyEnsemble;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -100,12 +118,92 @@ public class SliceRepositoryImpl extends EObjectImpl implements SliceRepository 
 	 * 
 	 * @generated
 	 */
-	public EList<Slice> getContains() {
-		if (contains == null) {
-			contains = new EObjectContainmentEList<Slice>(Slice.class, this,
-					DatamodelPackage.SLICE_REPOSITORY__CONTAINS);
+	public EList<Slice> getSlices() {
+		if (slices == null) {
+			slices = new EObjectContainmentWithInverseEList<Slice>(Slice.class,
+					this, DatamodelPackage.SLICE_REPOSITORY__SLICES,
+					DatamodelPackage.SLICE__SLICE_REPOSITORY);
 		}
-		return contains;
+		return slices;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public Ensemble getEmptyEnsemble() {
+		return emptyEnsemble;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NotificationChain basicSetEmptyEnsemble(Ensemble newEmptyEnsemble,
+			NotificationChain msgs) {
+		Ensemble oldEmptyEnsemble = emptyEnsemble;
+		emptyEnsemble = newEmptyEnsemble;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET,
+					DatamodelPackage.SLICE_REPOSITORY__EMPTY_ENSEMBLE,
+					oldEmptyEnsemble, newEmptyEnsemble);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setEmptyEnsemble(Ensemble newEmptyEnsemble) {
+		if (newEmptyEnsemble != emptyEnsemble) {
+			NotificationChain msgs = null;
+			if (emptyEnsemble != null)
+				msgs = ((InternalEObject) emptyEnsemble)
+						.eInverseRemove(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- DatamodelPackage.SLICE_REPOSITORY__EMPTY_ENSEMBLE,
+								null, msgs);
+			if (newEmptyEnsemble != null)
+				msgs = ((InternalEObject) newEmptyEnsemble)
+						.eInverseAdd(
+								this,
+								EOPPOSITE_FEATURE_BASE
+										- DatamodelPackage.SLICE_REPOSITORY__EMPTY_ENSEMBLE,
+								null, msgs);
+			msgs = basicSetEmptyEnsemble(newEmptyEnsemble, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					DatamodelPackage.SLICE_REPOSITORY__EMPTY_ENSEMBLE,
+					newEmptyEnsemble, newEmptyEnsemble));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case DatamodelPackage.SLICE_REPOSITORY__SLICES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSlices())
+					.basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -117,9 +215,10 @@ public class SliceRepositoryImpl extends EObjectImpl implements SliceRepository 
 	public NotificationChain eInverseRemove(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case DatamodelPackage.SLICE_REPOSITORY__CONTAINS:
-			return ((InternalEList<?>) getContains()).basicRemove(otherEnd,
-					msgs);
+		case DatamodelPackage.SLICE_REPOSITORY__SLICES:
+			return ((InternalEList<?>) getSlices()).basicRemove(otherEnd, msgs);
+		case DatamodelPackage.SLICE_REPOSITORY__EMPTY_ENSEMBLE:
+			return basicSetEmptyEnsemble(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -132,8 +231,10 @@ public class SliceRepositoryImpl extends EObjectImpl implements SliceRepository 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case DatamodelPackage.SLICE_REPOSITORY__CONTAINS:
-			return getContains();
+		case DatamodelPackage.SLICE_REPOSITORY__SLICES:
+			return getSlices();
+		case DatamodelPackage.SLICE_REPOSITORY__EMPTY_ENSEMBLE:
+			return getEmptyEnsemble();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -147,9 +248,12 @@ public class SliceRepositoryImpl extends EObjectImpl implements SliceRepository 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case DatamodelPackage.SLICE_REPOSITORY__CONTAINS:
-			getContains().clear();
-			getContains().addAll((Collection<? extends Slice>) newValue);
+		case DatamodelPackage.SLICE_REPOSITORY__SLICES:
+			getSlices().clear();
+			getSlices().addAll((Collection<? extends Slice>) newValue);
+			return;
+		case DatamodelPackage.SLICE_REPOSITORY__EMPTY_ENSEMBLE:
+			setEmptyEnsemble((Ensemble) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -163,8 +267,11 @@ public class SliceRepositoryImpl extends EObjectImpl implements SliceRepository 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case DatamodelPackage.SLICE_REPOSITORY__CONTAINS:
-			getContains().clear();
+		case DatamodelPackage.SLICE_REPOSITORY__SLICES:
+			getSlices().clear();
+			return;
+		case DatamodelPackage.SLICE_REPOSITORY__EMPTY_ENSEMBLE:
+			setEmptyEnsemble((Ensemble) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -178,8 +285,10 @@ public class SliceRepositoryImpl extends EObjectImpl implements SliceRepository 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case DatamodelPackage.SLICE_REPOSITORY__CONTAINS:
-			return contains != null && !contains.isEmpty();
+		case DatamodelPackage.SLICE_REPOSITORY__SLICES:
+			return slices != null && !slices.isEmpty();
+		case DatamodelPackage.SLICE_REPOSITORY__EMPTY_ENSEMBLE:
+			return emptyEnsemble != null;
 		}
 		return super.eIsSet(featureID);
 	}

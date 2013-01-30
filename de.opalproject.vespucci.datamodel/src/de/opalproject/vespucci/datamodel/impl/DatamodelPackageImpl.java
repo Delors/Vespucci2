@@ -139,6 +139,13 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	private EEnum constraintTypeEEnum = null;
 
 	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EDataType eEnsembleEDataType = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
 	 * package package URI value.
@@ -325,9 +332,19 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * 
 	 * @generated
 	 */
-	public EReference getSliceRepository_Contains() {
+	public EReference getSliceRepository_Slices() {
 		return (EReference) getSliceRepository().getEStructuralFeatures()
 				.get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getSliceRepository_EmptyEnsemble() {
+		return (EReference) getSliceRepository().getEStructuralFeatures()
+				.get(1);
 	}
 
 	/**
@@ -360,6 +377,15 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 */
 	public EReference getSlice_Ensembles() {
 		return (EReference) getSlice().getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getSlice_SliceRepository() {
+		return (EReference) getSlice().getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -466,6 +492,20 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 					.get(2);
 		}
 		return constraintTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EDataType getEEnsemble() {
+		if (eEnsembleEDataType == null) {
+			eEnsembleEDataType = (EDataType) EPackage.Registry.INSTANCE
+					.getEPackage(DatamodelPackage.eNS_URI).getEClassifiers()
+					.get(9);
+		}
+		return eEnsembleEDataType;
 	}
 
 	/**

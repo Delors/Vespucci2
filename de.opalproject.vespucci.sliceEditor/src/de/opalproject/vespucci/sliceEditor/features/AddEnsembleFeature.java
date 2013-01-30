@@ -33,6 +33,14 @@
  */
 package de.opalproject.vespucci.sliceEditor.features;
 
+import java.io.IOException;
+import java.util.Collections;
+
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.impl.AbstractAddShapeFeature;
@@ -52,8 +60,10 @@ import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.ColorConstant;
 import org.eclipse.graphiti.util.IColorConstant;
 
+import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.EmptyEnsemble;
 import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.datamodel.Slice;
 
 /**
  * This feature allows to drag an ensemble from the Navigator into the slice
@@ -86,11 +96,13 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 			// check if user wants to add to a diagram
 			if (context.getTargetContainer() instanceof Diagram) {
 				// check if the pictogram element is already existing
-				if ((Ensemble) context.getNewObject() instanceof EmptyEnsemble || Graphiti
-						.getLinkService()
-						.getPictogramElements(
-								(Diagram) context.getTargetContainer(),
-								(Ensemble) context.getNewObject()).size() == 0) {
+				if ((Ensemble) context.getNewObject() instanceof EmptyEnsemble
+						|| Graphiti
+								.getLinkService()
+								.getPictogramElements(
+										(Diagram) context.getTargetContainer(),
+										(Ensemble) context.getNewObject())
+								.size() == 0) {
 					return true;
 				}
 			}
@@ -190,7 +202,8 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 			name.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
 
 			// vertical alignment has as default value "center"
-			name.setFont(gaService.manageFont(targetDiagram, "Arial", 10, false, true));
+			name.setFont(gaService.manageFont(targetDiagram, "Arial", 10,
+					false, true));
 			// width is dependent on the intial x coordinate
 			gaService.setLocationAndSize(name, 23, 2, (width - 23), 20);
 
@@ -226,6 +239,31 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		peCreateService.createChopboxAnchor(containerShape);
 
 		layoutPictogramElement(containerShape);
+
+		EList<EObject> businessObjects = targetDiagram.getLink()
+				.getBusinessObjects();
+
+		for (EObject eObject : businessObjects) {
+			if (eObject instanceof Slice) {
+
+				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+						.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
+
+				Slice slice = (Slice) eObject;
+
+				Command addCommand = AddCommand.create(domain, slice,
+						DatamodelPackage.Literals.SLICE__ENSEMBLES,
+						addedEnsemble);
+
+				domain.getCommandStack().execute(addCommand);
+
+				try {
+					slice.eResource().save(Collections.EMPTY_MAP);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 
 		return containerShape;
 	}

@@ -120,12 +120,8 @@ public class NewSliceHandler extends AbstractHandler {
 							.getURIFragment(dia)));
 
 			// add slice to slice repository
-			commandList
-					.add(new AddCommand(
-							domain,
-							sr,
-							DatamodelPackage.Literals.SLICE_REPOSITORY__CONTAINS,
-							slice));
+			commandList.add(new AddCommand(domain, sr,
+					DatamodelPackage.Literals.SLICE_REPOSITORY__SLICES, slice));
 
 			// Merge all commands into a single one
 			Command commmand = new CompoundCommand(commandList);
