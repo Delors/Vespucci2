@@ -41,6 +41,10 @@ import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.jface.dialogs.InputDialog;
+import org.eclipse.jface.window.Window;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
 
 import de.opalproject.vespucci.datamodel.Constraint;
 
@@ -94,7 +98,7 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 				Constraint constraint = (Constraint) bo;
 				String currentKind = constraint.getDependencyKind();
 				// ask user for a new dependency kind
-				String newKind = ExampleUtil.askString(getName(),
+				String newKind = askString(getName(),
 						getDescription(), currentKind);
 				// TODO add check to see whether the newly entered is a valid
 				// one
@@ -136,5 +140,29 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 	@Override
 	public boolean hasDoneChanges() {
 		return this.hasDoneChanges;
+	}
+	
+	/**
+	 * Opens an simple input dialog with OK and Cancel buttons.
+	 * <p>
+	 * 
+	 * @param dialogTitle
+	 *            the dialog title, or <code>null</code> if none
+	 * @param dialogMessage
+	 *            the dialog message, or <code>null</code> if none
+	 * @param initialValue
+	 *            the initial input value, or <code>null</code> if none
+	 *            (equivalent to the empty string)
+	 * @return the string
+	 */
+	public static String askString(String dialogTitle, String dialogMessage, String initialValue) {
+		String ret = null;
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
+		InputDialog inputDialog = new InputDialog(shell, dialogTitle, dialogMessage, initialValue, null);
+		int retDialog = inputDialog.open();
+		if (retDialog == Window.OK) {
+			ret = inputDialog.getValue();
+		}
+		return ret;
 	}
 }
