@@ -154,7 +154,7 @@ public class ConstraintTest extends TestCase {
 
 	@Test
 	public void testDefaultConstraintType() {
-		Assert.assertEquals(ConstraintType.NOT_ALLOWED, getFixture()
+		Assert.assertEquals(ConstraintType.UNDEFINED, getFixture()
 				.getConstraintType());
 	}
 
@@ -171,7 +171,7 @@ public class ConstraintTest extends TestCase {
 		Assert.assertEquals(ConstraintType.EXPECTED, getFixture()
 				.getConstraintType());
 		getFixture().setConstraintType(null);
-		Assert.assertEquals(ConstraintType.NOT_ALLOWED, getFixture()
+		Assert.assertEquals(ConstraintType.UNDEFINED, getFixture()
 				.getConstraintType());
 	}
 
@@ -186,7 +186,7 @@ public class ConstraintTest extends TestCase {
 
 		Assert.assertEquals("ALL", localFixture.eGet(
 				DatamodelPackage.CONSTRAINT__DEPENDENCY_KIND, false, false));
-		Assert.assertEquals(ConstraintType.NOT_ALLOWED, localFixture.eGet(
+		Assert.assertEquals(ConstraintType.UNDEFINED, localFixture.eGet(
 				DatamodelPackage.CONSTRAINT__CONSTRAINT_TYPE, false, false));
 	}
 
@@ -218,7 +218,7 @@ public class ConstraintTest extends TestCase {
 		Assert.assertEquals(ConstraintType.GLOBAL_INCOMING, getFixture()
 				.getConstraintType());
 		localFixture.eUnset(DatamodelPackage.CONSTRAINT__CONSTRAINT_TYPE);
-		Assert.assertEquals(ConstraintType.NOT_ALLOWED, getFixture()
+		Assert.assertEquals(ConstraintType.UNDEFINED, getFixture()
 				.getConstraintType());
 	}
 
