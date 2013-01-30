@@ -62,6 +62,8 @@ public abstract class AddConstraintFeature extends AbstractAddFeature {
 
 	protected static final IColorConstant CONSTRAINT_FOREGROUND = new ColorConstant(
 			98, 131, 167);
+	protected static final IColorConstant CONSTRAINT_BACKGROUND = new ColorConstant(
+			255, 255, 255);
 
 	public AddConstraintFeature(IFeatureProvider fp) {
 		super(fp);
@@ -89,27 +91,26 @@ public abstract class AddConstraintFeature extends AbstractAddFeature {
 		connection.setEnd(addConContext.getTargetAnchor());
 
 		IGaService gaService = Graphiti.getGaService();
-		
+
 		// create link and wire it
 		link(connection, addedConstraint);
 
-		// add dynamic text decorator for the association name 
-	     ConnectionDecorator textDecorator =
-	         peCreateService.createConnectionDecorator(connection, true,
-	         0.5, true);
-	     Text text = gaService.createText(textDecorator);
-	     text.setForeground(manageColor(IColorConstant.BLACK));
-	     text.setFont(gaService.manageFont(getDiagram(), "Arial", 10, false, false));
-	     gaService.setLocation(text, 10, 0);
-	     
-	     // set dependency kind
-	     text.setValue(addedConstraint.getDependencyKind());
-	 
-	    createArrow(connection, gaService, peCreateService);	
-		
+		// add dynamic text decorator for the association name
+		ConnectionDecorator textDecorator = peCreateService
+				.createConnectionDecorator(connection, true, 0.5, true);
+		Text text = gaService.createText(textDecorator);
+		text.setForeground(manageColor(IColorConstant.BLACK));
+		text.setFont(gaService.manageFont(getDiagram(), "Arial", 10, false,
+				false));
+		gaService.setLocation(text, 10, 0);
+
+		// set dependency kind
+		text.setValue(addedConstraint.getDependencyKind());
+
+		createArrow(connection, gaService, peCreateService);
+
 		return connection;
 	}
-
 
 	/*
 	 * checks if the given context is a constraint and therefore can be added

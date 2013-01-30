@@ -59,7 +59,7 @@ public class AddLocalOutgoingConstraintFeature extends AddConstraintFeature {
 				true);
 
 		Polyline polylineArrow = igaService.createPolyline(cd, new int[] { 2,
-				10, -10, 0, 2, -10 });
+				10, -14, 0, 2, -10 });
 		polylineArrow.setForeground(manageColor(CONSTRAINT_FOREGROUND));
 		polylineArrow.setLineWidth(2);
 	}
