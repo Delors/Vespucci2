@@ -231,6 +231,9 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		peCreateService.createChopboxAnchor(containerShape);
 
 		layoutPictogramElement(containerShape);
+		
+		//setting needed for the collapse feature
+		Graphiti.getPeService().setPropertyValue(containerShape, "iscollapsed", "false");
 
 		return containerShape;
 	}

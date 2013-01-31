@@ -45,15 +45,22 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
 import org.eclipse.graphiti.features.IFeatureProvider;
+import org.eclipse.graphiti.features.context.IPictogramElementContext;
+import org.eclipse.graphiti.features.context.impl.CustomContext;
+import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.platform.IPlatformImageConstants;
 import org.eclipse.graphiti.services.Graphiti;
+import org.eclipse.graphiti.tb.ContextEntryHelper;
 import org.eclipse.graphiti.tb.DefaultToolBehaviorProvider;
+import org.eclipse.graphiti.tb.IContextButtonEntry;
+import org.eclipse.graphiti.tb.IContextButtonPadData;
 import org.eclipse.graphiti.tb.IDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.datamodel.EnsembleRepository;
+import de.opalproject.vespucci.sliceEditor.features.CollapseFeature;
 
 public class SliceEditorToolBehaviorProvider extends
 		DefaultToolBehaviorProvider {
@@ -207,6 +214,32 @@ public class SliceEditorToolBehaviorProvider extends
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public IContextButtonPadData getContextButtonPad(
+	                                   IPictogramElementContext context) {
+	    IContextButtonPadData data = super.getContextButtonPad(context);
+	    PictogramElement pe = context.getPictogramElement();
+	 
+	    //  set the generic context buttons
+	    setGenericContextButtons(data, pe, CONTEXT_BUTTON_REMOVE);
+	        
+	    // set the collapse button 
+	    CustomContext cc = new CustomContext(new PictogramElement[] { pe });
+	    ICustomFeature[] cf = getFeatureProvider().getCustomFeatures(cc);
+	    for (int i = 0; i < cf.length; i++) {
+	        ICustomFeature iCustomFeature = cf[i];
+	        if (iCustomFeature instanceof CollapseFeature) {
+	            IContextButtonEntry collapseButton = ContextEntryHelper.
+	               createCollapseContextButton(true, iCustomFeature, cc);
+	            data.setCollapseContextButton(collapseButton);
+	            break;
+	           }
+	    }
+	         
+	    
+	    return data;
 	}
 
 }
