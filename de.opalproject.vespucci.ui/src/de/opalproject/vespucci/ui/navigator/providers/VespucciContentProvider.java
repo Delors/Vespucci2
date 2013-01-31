@@ -50,6 +50,9 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 
+import de.opalproject.vespucci.datamodel.EnsembleRepository;
+import de.opalproject.vespucci.datamodel.SliceRepository;
+
 /**
  * Provides the datamodel content for the navigator
  * 
@@ -84,6 +87,7 @@ public class VespucciContentProvider extends
 			String path = ((IFile) object).getFullPath().toString();
 			URI uri = URI.createPlatformResourceURI(path, true);
 			object = resourceSet.getResource(uri, true);
+			return stripDiagrams(super.getChildren(object));
 		}
 		Object[] r = super.getChildren(object);
 		return r;
@@ -135,6 +139,33 @@ public class VespucciContentProvider extends
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * Used to strips Diagrams from emf resources.
+	 * 
+	 * Remove every object which are not an instance of
+	 * {@link EnsembleRepository} or {@link SliceRepository}.
+	 * 
+	 * TODO find a better way to hide the graphiti diagrams
+	 * 
+	 * @param objects
+	 * @return
+	 */
+	private Object[] stripDiagrams(Object[] objects) {
+		Object[] r = new Object[2];
+		int index = 0;
+
+		for (int i = 0; i < objects.length; i++) {
+			if (objects[i] instanceof SliceRepository
+					|| objects[i] instanceof EnsembleRepository) {
+				r[index] = objects[i];
+				index++;
+			}
+
+		}
+
+		return r;
 	}
 
 }

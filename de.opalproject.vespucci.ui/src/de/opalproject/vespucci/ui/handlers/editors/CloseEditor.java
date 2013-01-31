@@ -31,37 +31,57 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package de.opalproject.vespucci.sliceEditor.features.constraints;
+package de.opalproject.vespucci.ui.handlers.editors;
 
-import org.eclipse.graphiti.features.IFeatureProvider;
-import org.eclipse.graphiti.mm.algorithms.Polyline;
-import org.eclipse.graphiti.mm.algorithms.styles.LineStyle;
-import org.eclipse.graphiti.mm.pictograms.Connection;
-import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
-import org.eclipse.graphiti.services.IGaService;
-import org.eclipse.graphiti.services.IPeCreateService;
+import org.eclipse.core.commands.AbstractHandler;
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.handlers.HandlerUtil;
 
-public class AddLocalOutgoingConstraintFeature extends AddConstraintFeature {
-	public AddLocalOutgoingConstraintFeature(IFeatureProvider fp) {
-		super(fp);
-	}
+import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.ui.editor.EnsembleEditorInput;
 
+public class CloseEditor extends AbstractHandler {
+
+	/*
+	 * (non-Javadoc) Closes the editor belonging to a selected element so it can
+	 * be deleted.
+	 * 
+	 * @see
+	 * org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands
+	 * .ExecutionEvent)
+	 */
 	@Override
-	protected void createArrow(Connection connection, IGaService igaService,
-			IPeCreateService peCreateService) {
+	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		// draw connection
-		Polyline polyline = igaService.createPolyline(connection);
-		polyline.setLineWidth(2);
-		polyline.setForeground(manageColor(CONSTRAINT_FOREGROUND));
+		// Get the view
+		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
+		IWorkbenchPage page = window.getActivePage();
 
-		// draw arrowhead
-		ConnectionDecorator cd;
-		cd = peCreateService.createConnectionDecorator(connection, false, 0,
-				true);
-		Polyline polylineArrow = igaService.createPolyline(cd, new int[] { 2,
-				10, -14, 0, 2, -10 });
-		polylineArrow.setForeground(manageColor(CONSTRAINT_FOREGROUND));
-		polylineArrow.setLineWidth(2);
+		// Get selection
+		IStructuredSelection currentSelection = (IStructuredSelection) HandlerUtil
+				.getCurrentSelection(event);
+
+		// Check if currentSelection is an Ensemble
+		if (!(currentSelection.getFirstElement() instanceof Ensemble)) {
+			return null;
+		}
+
+		// check whether there is a corresponding open editor and close it.
+		Ensemble current = (Ensemble) currentSelection.getFirstElement();
+		if (current != null) {
+			IEditorPart openEditor = page.findEditor(new EnsembleEditorInput(
+					current));
+			if (openEditor != null) {
+				page.closeEditor(openEditor, false);
+			}
+		}
+
+		return null;
 	}
+
 }

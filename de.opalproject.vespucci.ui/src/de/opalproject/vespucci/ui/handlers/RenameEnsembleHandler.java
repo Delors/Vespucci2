@@ -33,79 +33,60 @@
  */
 package de.opalproject.vespucci.ui.handlers;
 
-import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
-
-import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.edit.command.RemoveCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
 
+import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.ui.wizards.EnsembleWizardRename;
 
 /**
- * Handles delete requests for a selection of ensembles.
+ * Used by EnsembleRenameWizard to rename an existing ensemble.
  * 
  * @author Marius-d
+ * @author Marco Jacobasch
  * 
  */
-public class DeleteHandler extends AbstractHandler {
+public class RenameEnsembleHandler extends AbstractEnsembleCommandHandler {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * Initiates the deletion of the first element of the current selection.
-	 * 
-	 * @see
-	 * org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands
-	 * .ExecutionEvent)
-	 */
 	@Override
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IStructuredSelection currentSelection = (IStructuredSelection) HandlerUtil
-				.getCurrentSelection(event);
+	public Command getCommand(IStructuredSelection selection,
+			ExecutionEvent event) {
+		EnsembleWizardRename wizard = createAndOpenWizard(selection, event);
 
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
+		EObject owner = getOwner(selection);
+		Object feature = DatamodelPackage.Literals.ENSEMBLE__NAME;
 
-		// Convert the current selection to a list
-		// TODO currently could contain none emf objects
-		@SuppressWarnings("unchecked")
-		final List<Ensemble> ensembleList = currentSelection.toList();
+		Command add = SetCommand.create(getEditingDomain(), owner, feature,
+				wizard.getName());
 
-		for (Ensemble ensemble : ensembleList) {
-			EStructuralFeature feature = ensemble.eContainingFeature();
-			EObject owner = ensemble.eContainer();
-			Resource resource = ensemble.eResource();
-
-			Command delete = RemoveCommand.create(domain, owner, feature,
-					ensemble);
-			domain.getCommandStack().execute(delete);
-
-			/*
-			 * Checks if the current ensemble belongs to a resource, if so save
-			 * this resource.
-			 * 
-			 * If the parents was deleted before the current one, it will
-			 * already be deleted from the resource
-			 */
-			if (resource != null) {
-				try {
-					resource.save(Collections.EMPTY_MAP);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-
-		return null;
+		return add;
 	}
+
+	/**
+	 * Opens the rename wizard
+	 * 
+	 * @param selection
+	 * @param event
+	 * @return
+	 */
+	private EnsembleWizardRename createAndOpenWizard(
+			IStructuredSelection selection, ExecutionEvent event) {
+		final Ensemble ensemble = (Ensemble) getOwner(selection);
+		final EnsembleWizardRename wizard = new EnsembleWizardRename(
+				ensemble.getName());
+
+		// Launch renamewizard
+		WizardDialog dialog = new WizardDialog(
+				HandlerUtil.getActiveShell(event), wizard);
+		dialog.open();
+
+		return wizard;
+	}
+
 }

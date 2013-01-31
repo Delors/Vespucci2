@@ -19,20 +19,23 @@
         eType="#//Ensemble"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ConstraintType">
-    <eLiterals name="NotAllowed"/>
-    <eLiterals name="GlobalIncoming" value="1"/>
-    <eLiterals name="LocalIncoming" value="2"/>
-    <eLiterals name="GlobalOutgoing" value="3"/>
-    <eLiterals name="LocalOutgoing" value="4"/>
-    <eLiterals name="Expected" value="5"/>
+    <eLiterals name="Undefined"/>
+    <eLiterals name="NotAllowed" value="1"/>
+    <eLiterals name="GlobalIncoming" value="2"/>
+    <eLiterals name="LocalIncoming" value="3"/>
+    <eLiterals name="GlobalOutgoing" value="4"/>
+    <eLiterals name="LocalOutgoing" value="5"/>
+    <eLiterals name="Expected" value="6"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SliceRepository">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contains" upperBound="-1"
-        eType="#//Slice" containment="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="slices" upperBound="-1"
+        eType="#//Slice" containment="true" eOpposite="#//Slice/sliceRepository">
       <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
         <details key="namespace" value=""/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="emptyEnsemble" lowerBound="1"
+        eType="#//Ensemble" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Slice">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -41,6 +44,8 @@
         eType="#//Constraint" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ensembles" upperBound="-1"
         eType="#//Ensemble"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sliceRepository" lowerBound="1"
+        eType="#//SliceRepository" eOpposite="#//SliceRepository/slices"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EnsembleRepository" eSuperTypes="#//TreeNode"/>
   <eClassifiers xsi:type="ecore:EClass" name="TreeNode" abstract="true" interface="true">
@@ -51,4 +56,5 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EmptyEnsemble" eSuperTypes="#//Ensemble"/>
   <eClassifiers xsi:type="ecore:EClass" name="ConcreteEnsemble" eSuperTypes="#//Ensemble"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="EEnsemble" instanceTypeName="Ensemble"/>
 </ecore:EPackage>

@@ -31,37 +31,48 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package de.opalproject.vespucci.sliceEditor.features.constraints;
+package de.opalproject.vespucci.ui.handlers;
 
-import org.eclipse.graphiti.features.IFeatureProvider;
-import org.eclipse.graphiti.mm.algorithms.Polyline;
-import org.eclipse.graphiti.mm.algorithms.styles.LineStyle;
-import org.eclipse.graphiti.mm.pictograms.Connection;
-import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
-import org.eclipse.graphiti.services.IGaService;
-import org.eclipse.graphiti.services.IPeCreateService;
+import java.util.ArrayList;
+import java.util.List;
 
-public class AddLocalOutgoingConstraintFeature extends AddConstraintFeature {
-	public AddLocalOutgoingConstraintFeature(IFeatureProvider fp) {
-		super(fp);
-	}
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.jface.viewers.IStructuredSelection;
+
+import de.opalproject.vespucci.datamodel.Ensemble;
+
+/**
+ * Handles delete requests for a selection of ensembles.
+ * 
+ * @author Marius-d
+ * @author Marco Jacobasch
+ * 
+ */
+public class DeleteEnsembleHandler extends AbstractEnsembleCommandHandler {
 
 	@Override
-	protected void createArrow(Connection connection, IGaService igaService,
-			IPeCreateService peCreateService) {
+	public Command getCommand(IStructuredSelection selection,
+			ExecutionEvent event) {
+		List<Command> commandList = new ArrayList<Command>();
 
-		// draw connection
-		Polyline polyline = igaService.createPolyline(connection);
-		polyline.setLineWidth(2);
-		polyline.setForeground(manageColor(CONSTRAINT_FOREGROUND));
+		@SuppressWarnings("unchecked")
+		final List<Ensemble> ensembleList = selection.toList();
 
-		// draw arrowhead
-		ConnectionDecorator cd;
-		cd = peCreateService.createConnectionDecorator(connection, false, 0,
-				true);
-		Polyline polylineArrow = igaService.createPolyline(cd, new int[] { 2,
-				10, -14, 0, 2, -10 });
-		polylineArrow.setForeground(manageColor(CONSTRAINT_FOREGROUND));
-		polylineArrow.setLineWidth(2);
+		for (Ensemble ensemble : ensembleList) {
+			EStructuralFeature feature = ensemble.eContainingFeature();
+			EObject owner = ensemble.eContainer();
+
+			Command delete = RemoveCommand.create(getEditingDomain(), owner,
+					feature, ensemble);
+			commandList.add(delete);
+		}
+
+		Command deleteCommand = new CompoundCommand(commandList);
+		return deleteCommand;
 	}
 }

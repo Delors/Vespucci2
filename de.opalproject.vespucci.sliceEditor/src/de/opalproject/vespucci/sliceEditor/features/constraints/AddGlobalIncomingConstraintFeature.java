@@ -33,11 +33,15 @@
  */
 package de.opalproject.vespucci.sliceEditor.features.constraints;
 
+import java.awt.Color;
+
 import org.eclipse.graphiti.features.IFeatureProvider;
+import org.eclipse.graphiti.mm.algorithms.Ellipse;
 import org.eclipse.graphiti.mm.algorithms.Polyline;
 import org.eclipse.graphiti.mm.algorithms.styles.LineStyle;
 import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
+import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 
@@ -51,17 +55,32 @@ public class AddGlobalIncomingConstraintFeature extends AddConstraintFeature {
 	protected void createArrow(Connection connection, IGaService igaService,
 			IPeCreateService peCreateService) {
 
-		Polyline polyline = igaService.createPolyline(connection);
+		// draw connection
+		IGaService gaService = Graphiti.getGaService();
+		Polyline polyline = gaService.createPolyline(connection);
 		polyline.setLineWidth(2);
 		polyline.setForeground(manageColor(CONSTRAINT_FOREGROUND));
 
+		// draw arrowhead
 		ConnectionDecorator cd;
 		cd = peCreateService.createConnectionDecorator(connection, false, 1.0,
 				true);
-
-		Polyline polylineArrow = igaService.createPolyline(cd, new int[] { -15,
-				10, 0, 0, -15, -10 });
+		Polyline polylineArrow = gaService.createPolyline(cd, new int[] { -15,
+				10, 1, 0, -15, -10 });
 		polylineArrow.setForeground(manageColor(CONSTRAINT_FOREGROUND));
 		polylineArrow.setLineWidth(2);
+
+		// draw circle
+		cd = peCreateService.createConnectionDecorator(connection, false, 1.0,
+				true);
+		Ellipse circle = gaService.createEllipse(cd);
+		circle.setForeground(manageColor(CONSTRAINT_FOREGROUND));
+		circle.setLineWidth(2);
+		circle.setX(16);
+		circle.setY(0);
+		circle.setWidth(16);
+		circle.setHeight(16);
+		circle.setFilled(true);
+		circle.setBackground(manageColor(CONSTRAINT_BACKGROUND));
 	}
 }

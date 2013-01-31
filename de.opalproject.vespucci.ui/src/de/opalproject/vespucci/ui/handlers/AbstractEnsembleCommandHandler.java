@@ -3,7 +3,7 @@
  * Copyright (c) 2012
  * Software Engineering
  * Department of Computer Science
- * Technische Universitiät Darmstadt
+ * Technische Universität Darmstadt
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,55 +33,40 @@
  */
 package de.opalproject.vespucci.ui.handlers;
 
-import org.eclipse.core.commands.AbstractHandler;
-import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.handlers.HandlerUtil;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
-import de.opalproject.vespucci.ui.editor.EnsembleEditorInput;
+import de.opalproject.vespucci.datamodel.EnsembleRepository;
 
-public class CloseEditor extends AbstractHandler {
+/**
+ * Abstract handler for operations on ensembles
+ * 
+ * @author Marco Jacobasch
+ * 
+ */
+public abstract class AbstractEnsembleCommandHandler extends
+		AbstractCommandHandler {
 
-	/*
-	 * (non-Javadoc) Closes the editor belonging to a selected element so it can
-	 * be deleted.
+	/**
+	 * Returns the first element of a selection as {@link EObject}
 	 * 
-	 * @see
-	 * org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands
-	 * .ExecutionEvent)
+	 * Could be {@link Ensemble} or {@link EnsembleRepository}
+	 * 
+	 * @param selection
+	 * @return
+	 */
+	public EObject getOwner(IStructuredSelection selection) {
+		return (EObject) selection.getFirstElement();
+	}
+
+	/**
+	 * Returns the resource of the first elemet of a selection
 	 */
 	@Override
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-
-		// Get the view
-		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
-		IWorkbenchPage page = window.getActivePage();
-
-		// Get selection
-		IStructuredSelection currentSelection = (IStructuredSelection) HandlerUtil
-				.getCurrentSelection(event);
-
-		// Check if currentSelection is an Ensemble
-		if (!(currentSelection.getFirstElement() instanceof Ensemble)) {
-			return null;
-		}
-
-		// check whether there is a corresponding open editor and close it.
-		Ensemble current = (Ensemble) currentSelection.getFirstElement();
-		if (current != null) {
-			IEditorPart openEditor = page.findEditor(new EnsembleEditorInput(
-					current));
-			if (openEditor != null) {
-				page.closeEditor(openEditor, false);
-			}
-		}
-
-		return null;
+	public Resource getResource(IStructuredSelection selection) {
+		return getOwner(selection).eResource();
 	}
 
 }

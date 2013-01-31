@@ -51,6 +51,8 @@ import org.eclipse.emf.ecore.EObject;
  * Constraints</em>}</li>
  * <li>{@link de.opalproject.vespucci.datamodel.Slice#getEnsembles <em>Ensembles
  * </em>}</li>
+ * <li>{@link de.opalproject.vespucci.datamodel.Slice#getSliceRepository <em>
+ * Slice Repository</em>}</li>
  * </ul>
  * </p>
  * 
@@ -95,6 +97,40 @@ public interface Slice extends EObject {
 	 * @generated
 	 */
 	EList<Ensemble> getEnsembles();
+
+	/**
+	 * Returns the value of the '<em><b>Slice Repository</b></em>' container
+	 * reference. It is bidirectional and its opposite is '
+	 * {@link de.opalproject.vespucci.datamodel.SliceRepository#getSlices
+	 * <em>Slices</em>}'. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Slice Repository</em>' container reference
+	 * isn't clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Slice Repository</em>' container reference.
+	 * @see #setSliceRepository(SliceRepository)
+	 * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getSlice_SliceRepository()
+	 * @see de.opalproject.vespucci.datamodel.SliceRepository#getSlices
+	 * @model opposite="slices" required="true" transient="false"
+	 * @generated
+	 */
+	SliceRepository getSliceRepository();
+
+	/**
+	 * Sets the value of the '
+	 * {@link de.opalproject.vespucci.datamodel.Slice#getSliceRepository
+	 * <em>Slice Repository</em>}' container reference. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Slice Repository</em>' container
+	 *            reference.
+	 * @see #getSliceRepository()
+	 * @generated
+	 */
+	void setSliceRepository(SliceRepository value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!--

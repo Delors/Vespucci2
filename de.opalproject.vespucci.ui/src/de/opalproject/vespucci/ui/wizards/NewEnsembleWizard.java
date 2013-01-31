@@ -65,9 +65,6 @@ public class NewEnsembleWizard extends Wizard {
 
 	@Override
 	public boolean performFinish() {
-		// Print the result to the console
-		System.out.println(page.getEnsembleName());
-
 		name = page.getEnsembleName();
 		description = page.getEnsembleDescription();
 		query = page2.getEnsembleQuery();

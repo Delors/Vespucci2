@@ -3,7 +3,7 @@
  * Copyright (c) 2012
  * Software Engineering
  * Department of Computer Science
- * Technische Universitiät Darmstadt
+ * Technische Universität Darmstadt
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,72 +39,81 @@ import java.util.Collections;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
 
-import de.opalproject.vespucci.datamodel.Ensemble;
-import de.opalproject.vespucci.ui.wizards.EnsembleWizardRename;
-
 /**
- * Used by EnsembleRenameWizard to rename an existing ensemble.
+ * Abstract command handler for every emf transaction
  * 
- * @author Marius-d
+ * @author Marco Jacobasch
  * 
  */
-public class RenameHandler extends AbstractHandler {
+public abstract class AbstractCommandHandler extends AbstractHandler {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * Launches a wizard(see default eclipse behavior) to rename the first
-	 * selected element.
-	 * 
-	 * @see
-	 * org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands
-	 * .ExecutionEvent)
+	/**
+	 * Transactional editing domain which is used for every command.
 	 */
+	private final TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+			.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
+
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IStructuredSelection currentSelection = (IStructuredSelection) HandlerUtil
-				.getCurrentSelection(event);
+		IStructuredSelection selection = getSelection(event);
+		Command command = getCommand(selection, event);
+		Resource resource = getResource(selection);
 
-		final TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
+		getEditingDomain().getCommandStack().execute(command);
 
-		// Get first element of the current selection to rename
-		final Ensemble selectetDomainObject = (Ensemble) currentSelection
-				.getFirstElement();
-
-		final Resource r = selectetDomainObject.eResource();
-
-		final EnsembleWizardRename wiz = new EnsembleWizardRename(
-				selectetDomainObject.getName());
-
-		// Launch renamewizard
-		WizardDialog dialog = new WizardDialog(
-				HandlerUtil.getActiveShell(event), wiz);
-		dialog.open();
-
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			protected void doExecute() {
-
-				// Check whether the userinput is different from the given name
-				if (!selectetDomainObject.getName().equals(wiz.getName())) {
-					selectetDomainObject.setName(wiz.getName());
-				}
-
-				try {
-					r.save(Collections.EMPTY_MAP);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		});
-
+		try {
+			resource.save(Collections.EMPTY_MAP);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
+
+	/**
+	 * Returns the current selection as {@link IStructuredSelection}
+	 * 
+	 * @param event
+	 * @return the current selection
+	 */
+	public IStructuredSelection getSelection(ExecutionEvent event) {
+		return (IStructuredSelection) HandlerUtil.getCurrentSelection(event);
+	}
+
+	/**
+	 * Returns the used editing domain
+	 * 
+	 * @return
+	 */
+	public TransactionalEditingDomain getEditingDomain() {
+		return domain;
+	}
+
+	/**
+	 * Returns the command which will be executed
+	 * 
+	 * Must be implemented by subclasses
+	 * 
+	 * @param selection
+	 * @param event
+	 * @return
+	 */
+	public abstract Command getCommand(IStructuredSelection selection,
+			ExecutionEvent event);
+
+	/**
+	 * Returns the resource which will be saved.
+	 * 
+	 * Must be implemented by subclasses
+	 * 
+	 * @param selection
+	 * @return
+	 */
+	public abstract Resource getResource(IStructuredSelection selection);
+
 }
