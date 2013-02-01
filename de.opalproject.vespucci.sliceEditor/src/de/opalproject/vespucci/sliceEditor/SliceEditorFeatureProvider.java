@@ -65,6 +65,7 @@ import de.opalproject.vespucci.sliceEditor.features.ChangeConstraintDependencyKi
 import de.opalproject.vespucci.sliceEditor.features.CollapseFeature;
 import de.opalproject.vespucci.sliceEditor.features.ConstraintKindDirectEditFeature;
 import de.opalproject.vespucci.sliceEditor.features.CreateEmptyEnsembleFeature;
+import de.opalproject.vespucci.sliceEditor.features.DependencyKindCollapseFeature;
 import de.opalproject.vespucci.sliceEditor.features.LayoutEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.ResizeEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.UpdateConstraintFeature;
@@ -174,7 +175,7 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 	public ICustomFeature[] getCustomFeatures(ICustomContext context) {
 		return new ICustomFeature[] 
 				{ new ChangeConstraintDependencyKind(this),
-					 new CollapseFeature(this)};
+					 new CollapseFeature(this), new DependencyKindCollapseFeature(this)};
 	}
 
 	@Override
