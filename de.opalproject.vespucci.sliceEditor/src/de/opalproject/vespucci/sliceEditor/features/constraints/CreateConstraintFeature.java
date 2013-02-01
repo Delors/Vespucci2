@@ -36,6 +36,7 @@ package de.opalproject.vespucci.sliceEditor.features.constraints;
 import java.io.IOException;
 import java.util.Collections;
 
+import org.eclipse.core.internal.localstore.IsSynchronizedVisitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -47,6 +48,8 @@ import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateConnectionFeature;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.Connection;
+import org.eclipse.graphiti.services.IGaService;
+import org.eclipse.graphiti.services.IPeCreateService;
 
 import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.ConstraintType;
@@ -95,13 +98,16 @@ public abstract class CreateConstraintFeature extends
 		Ensemble source = getEnsemble(context.getSourceAnchor());
 		Ensemble target = getEnsemble(context.getTargetAnchor());
 		if (source != null && target != null && source != target) {
-			return true;
+			if (isAnchorSensibleSource(source)
+					&& isAnchorSensibleTarget(target)) {
+				return true;
+			}
 		}
 		return false;
 	}
 
 	/*
-	 * checks if start anchor belongs to a Ensemble
+	 * checks if start anchor belongs to an Ensemble
 	 * 
 	 * (non-Javadoc)
 	 * 
@@ -112,10 +118,32 @@ public abstract class CreateConstraintFeature extends
 	@Override
 	public boolean canStartConnection(ICreateConnectionContext context) {
 		if (getEnsemble(context.getSourceAnchor()) != null) {
-			return true;
+			return isAnchorSensibleSource(getEnsemble(context.getSourceAnchor()));
 		}
 		return false;
 	}
+
+	/**
+	 * checks whether the given ensemble would be a good source anchor for this
+	 * constraint
+	 * 
+	 * mostly checks for compatibility with the empty ensemble
+	 * 
+	 * @param ensemble
+	 * @return
+	 */
+	protected abstract boolean isAnchorSensibleSource(Ensemble ensemble);
+
+	/**
+	 * checks whether the given ensemble would be a good target anchor for this
+	 * constraint
+	 * 
+	 * mostly checks for compatibility with the empty ensemble
+	 * 
+	 * @param ensemble
+	 * @return
+	 */
+	protected abstract boolean isAnchorSensibleTarget(Ensemble ensemble);
 
 	/*
 	 * create the connection
@@ -173,7 +201,6 @@ public abstract class CreateConstraintFeature extends
 		constraints.setSource(source);
 		constraints.setTarget(target);
 
-		
 		EList<EObject> businessObjects = getDiagram().getLink()
 				.getBusinessObjects();
 		for (EObject eObject : businessObjects) {
