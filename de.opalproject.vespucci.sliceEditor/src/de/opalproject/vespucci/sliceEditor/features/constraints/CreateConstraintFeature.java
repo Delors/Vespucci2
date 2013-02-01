@@ -101,7 +101,7 @@ public abstract class CreateConstraintFeature extends
 	}
 
 	/*
-	 * checks if start anchor belongs to a Ensemble
+	 * checks if start anchor belongs to an Ensemble
 	 * 
 	 * (non-Javadoc)
 	 * 
