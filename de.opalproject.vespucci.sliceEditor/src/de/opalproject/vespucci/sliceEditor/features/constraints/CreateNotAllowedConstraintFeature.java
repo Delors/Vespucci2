@@ -36,17 +36,38 @@ package de.opalproject.vespucci.sliceEditor.features.constraints;
 import org.eclipse.graphiti.features.IFeatureProvider;
 
 import de.opalproject.vespucci.datamodel.ConstraintType;
+import de.opalproject.vespucci.datamodel.EmptyEnsemble;
+import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.sliceEditor.SliceEditorImageProvider;
 
-public class CreateNotAllowedConstraintFeature extends CreateConstraintFeature{
+public class CreateNotAllowedConstraintFeature extends CreateConstraintFeature {
 
 	public CreateNotAllowedConstraintFeature(IFeatureProvider fp) {
 		// provide name and description for the UI, e.g. the palette
-		super(fp, "Not Allowed", "Create Not Allowed Constraint", ConstraintType.NOT_ALLOWED);
+		super(fp, "Not Allowed", "Create Not Allowed Constraint",
+				ConstraintType.NOT_ALLOWED);
 	}
 
 	@Override
 	public String getCreateImageId() {
-			return SliceEditorImageProvider.IMG_NOTALLOWED;
+		return SliceEditorImageProvider.IMG_NOTALLOWED;
+	}
+
+	@Override
+	protected boolean isAnchorSensibleSource(Ensemble ensemble) {
+		if (ensemble instanceof EmptyEnsemble) {
+			return false;
+		} else {
+			return true;
 		}
+	}
+
+	@Override
+	protected boolean isAnchorSensibleTarget(Ensemble ensemble) {
+		if (ensemble instanceof EmptyEnsemble) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }
