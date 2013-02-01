@@ -84,9 +84,9 @@ public class DependencyKindCollapseFeature extends AbstractCustomFeature {
 		for (Connection connection : connections) {
 			for (ConnectionDecorator cd : connection.getConnectionDecorators()) {
 				if (cd.getGraphicsAlgorithm() instanceof Text
-						&& ((Text) cd.getGraphicsAlgorithm()).getValue()
-								.equals("ALL")) {
-					if (cd.isVisible()) {
+						) {
+					if (cd.isVisible() && ((Text) cd.getGraphicsAlgorithm()).getValue()
+					.equals("ALL")) {
 						cd.setVisible(false);
 					} else {
 						cd.setVisible(true);
