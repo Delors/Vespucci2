@@ -40,18 +40,21 @@ import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IDeleteFeature;
 import org.eclipse.graphiti.features.IDirectEditingFeature;
 import org.eclipse.graphiti.features.ILayoutFeature;
+import org.eclipse.graphiti.features.IResizeShapeFeature;
 import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.IDeleteContext;
 import org.eclipse.graphiti.features.context.IDirectEditingContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
+import org.eclipse.graphiti.features.context.IResizeShapeContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
+import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider;
 
 import de.opalproject.vespucci.datamodel.Constraint;
@@ -59,9 +62,12 @@ import de.opalproject.vespucci.datamodel.ConstraintType;
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.sliceEditor.features.AddEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.ChangeConstraintDependencyKind;
+import de.opalproject.vespucci.sliceEditor.features.CollapseFeature;
 import de.opalproject.vespucci.sliceEditor.features.ConstraintKindDirectEditFeature;
 import de.opalproject.vespucci.sliceEditor.features.CreateEmptyEnsembleFeature;
+import de.opalproject.vespucci.sliceEditor.features.DependencyKindCollapseFeature;
 import de.opalproject.vespucci.sliceEditor.features.LayoutEnsembleFeature;
+import de.opalproject.vespucci.sliceEditor.features.ResizeEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.UpdateConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.UpdateEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.constraints.AddExpectedConstraintFeature;
@@ -167,7 +173,9 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 
 	@Override
 	public ICustomFeature[] getCustomFeatures(ICustomContext context) {
-		return new ICustomFeature[] { new ChangeConstraintDependencyKind(this) };
+		return new ICustomFeature[] 
+				{ new ChangeConstraintDependencyKind(this),
+					 new CollapseFeature(this), new DependencyKindCollapseFeature(this)};
 	}
 
 	@Override
@@ -180,4 +188,15 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 		}
 		return super.getDirectEditingFeature(context);
 	}
+	
+	@Override
+	public IResizeShapeFeature getResizeShapeFeature(
+	        IResizeShapeContext context) {
+	    Shape shape = context.getShape();
+	    Object bo = getBusinessObjectForPictogramElement(shape);
+	    if (bo instanceof Ensemble) {
+	        return new ResizeEnsembleFeature(this);
+	    }
+	    return super.getResizeShapeFeature(context);
+	 }
 }

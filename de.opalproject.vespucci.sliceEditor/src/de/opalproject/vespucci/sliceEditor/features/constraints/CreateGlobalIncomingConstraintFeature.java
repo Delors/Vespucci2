@@ -36,17 +36,35 @@ package de.opalproject.vespucci.sliceEditor.features.constraints;
 import org.eclipse.graphiti.features.IFeatureProvider;
 
 import de.opalproject.vespucci.datamodel.ConstraintType;
+import de.opalproject.vespucci.datamodel.EmptyEnsemble;
+import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.sliceEditor.SliceEditorImageProvider;
 
-public class CreateGlobalIncomingConstraintFeature extends CreateConstraintFeature{
+public class CreateGlobalIncomingConstraintFeature extends
+		CreateConstraintFeature {
 
 	public CreateGlobalIncomingConstraintFeature(IFeatureProvider fp) {
 		// provide name and description for the UI, e.g. the palette
-		super(fp, "Global Incoming", "Create Global Incoming Constraint", ConstraintType.GLOBAL_INCOMING);
+		super(fp, "Global Incoming", "Create Global Incoming Constraint",
+				ConstraintType.GLOBAL_INCOMING);
 	}
 
 	@Override
 	public String getCreateImageId() {
-			return SliceEditorImageProvider.IMG_GLOBALINCOMING;
+		return SliceEditorImageProvider.IMG_GLOBALINCOMING;
+	}
+
+	@Override
+	protected boolean isAnchorSensibleSource(Ensemble ensemble) {
+		return true;
+	}
+
+	@Override
+	protected boolean isAnchorSensibleTarget(Ensemble ensemble) {
+		if (ensemble instanceof EmptyEnsemble) {
+			return false;
+		} else {
+			return true;
 		}
+	}
 }

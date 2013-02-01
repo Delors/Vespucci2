@@ -239,6 +239,9 @@ if ((Ensemble) context.getNewObject() instanceof EmptyEnsemble || Graphiti
 		peCreateService.createChopboxAnchor(containerShape);
 
 		layoutPictogramElement(containerShape);
+		
+		//setting needed for the collapse feature
+		Graphiti.getPeService().setPropertyValue(containerShape, "iscollapsed", "false");
 
 		EList<EObject> businessObjects = targetDiagram.getLink()
 				.getBusinessObjects();
