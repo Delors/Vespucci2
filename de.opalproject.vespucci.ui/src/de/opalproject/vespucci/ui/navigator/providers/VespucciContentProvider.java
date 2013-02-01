@@ -34,6 +34,8 @@
 package de.opalproject.vespucci.ui.navigator.providers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -123,8 +125,7 @@ public class VespucciContentProvider extends
 	@Override
 	public boolean visit(IResourceDelta delta) throws CoreException {
 		IResource changedResource = delta.getResource();
-		if (changedResource.getType() == IResource.FILE
-				&& changedResource.getFileExtension().equals("ecore")) {
+		if (changedResource.getType() == IResource.FILE) {
 			try {
 				String path = ((IFile) changedResource).getFullPath()
 						.toString();
@@ -153,19 +154,16 @@ public class VespucciContentProvider extends
 	 * @return
 	 */
 	private Object[] stripDiagrams(Object[] objects) {
-		Object[] r = new Object[2];
-		int index = 0;
+		List<Object> r = new ArrayList<Object>();
 
 		for (int i = 0; i < objects.length; i++) {
 			if (objects[i] instanceof SliceRepository
 					|| objects[i] instanceof EnsembleRepository) {
-				r[index] = objects[i];
-				index++;
+				r.add(objects[i]);
 			}
-
 		}
 
-		return r;
+		return r.toArray();
 	}
 
 }
