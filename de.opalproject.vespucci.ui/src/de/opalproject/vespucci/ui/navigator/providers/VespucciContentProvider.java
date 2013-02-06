@@ -33,20 +33,12 @@
  */
 package de.opalproject.vespucci.ui.navigator.providers;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IResourceChangeEvent;
-import org.eclipse.core.resources.IResourceChangeListener;
-import org.eclipse.core.resources.IResourceDelta;
-import org.eclipse.core.resources.IResourceDeltaVisitor;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
@@ -63,7 +55,7 @@ import de.opalproject.vespucci.datamodel.SliceRepository;
  */
 public class VespucciContentProvider extends
 		TransactionalAdapterFactoryContentProvider implements
-		ITreeContentProvider, IResourceChangeListener, IResourceDeltaVisitor {
+		ITreeContentProvider {
 
 	private static TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
@@ -71,8 +63,6 @@ public class VespucciContentProvider extends
 
 	public VespucciContentProvider() {
 		super(domain, ProjectAdapterFactoryProvider.getAdapterFactory());
-		ResourcesPlugin.getWorkspace().addResourceChangeListener(this,
-				IResourceChangeEvent.POST_CHANGE);
 	}
 
 	@Override
@@ -109,37 +99,6 @@ public class VespucciContentProvider extends
 
 	@Override
 	public void dispose() {
-		ResourcesPlugin.getWorkspace().removeResourceChangeListener(this);
-	}
-
-	@Override
-	public void resourceChanged(IResourceChangeEvent event) {
-		try {
-			IResourceDelta delta = event.getDelta();
-			delta.accept(this);
-		} catch (CoreException e) {
-			System.out.println("Resource Changed Fail - " + e.toString());
-		}
-	}
-
-	@Override
-	public boolean visit(IResourceDelta delta) throws CoreException {
-		IResource changedResource = delta.getResource();
-		if (changedResource.getType() == IResource.FILE) {
-			try {
-				String path = ((IFile) changedResource).getFullPath()
-						.toString();
-				URI uri = URI.createPlatformResourceURI(path, true);
-				Resource res = resourceSet.getResource(uri, true);
-				res.unload();
-				res.load(resourceSet.getLoadOptions());
-			} catch (IOException ie) {
-				System.out.println("Error reloading resource - "
-						+ ie.toString());
-			}
-			return false;
-		}
-		return true;
 	}
 
 	/**
