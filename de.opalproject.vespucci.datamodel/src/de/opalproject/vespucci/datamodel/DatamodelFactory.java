@@ -38,24 +38,23 @@ import org.eclipse.emf.ecore.EFactory;
 /**
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a
  * create method for each non-abstract class of the model. <!-- end-user-doc -->
- * 
  * @see de.opalproject.vespucci.datamodel.DatamodelPackage
  * @generated
  */
 public interface DatamodelFactory extends EFactory {
 	/**
-	 * The singleton instance of the factory. <!-- begin-user-doc --> <!--
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	DatamodelFactory eINSTANCE = de.opalproject.vespucci.datamodel.impl.DatamodelFactoryImpl
 			.init();
 
 	/**
-	 * Returns a new object of class '<em>Constraint</em>'. <!-- begin-user-doc
+	 * Returns a new object of class '<em>Constraint</em>'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Constraint</em>'.
 	 * @generated
 	 */
@@ -71,9 +70,9 @@ public interface DatamodelFactory extends EFactory {
 	SliceRepository createSliceRepository();
 
 	/**
-	 * Returns a new object of class '<em>Slice</em>'. <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Slice</em>'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Slice</em>'.
 	 * @generated
 	 */
@@ -107,53 +106,45 @@ public interface DatamodelFactory extends EFactory {
 	ConcreteEnsemble createConcreteEnsemble();
 
 	/**
-	 * Returns an instance of data type '<em>Constraint Type</em>' corresponding
-	 * the given literal. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param literal
-	 *            a literal of the data type.
+	 * Returns an instance of data type '<em>Constraint Type</em>' corresponding the given literal.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param literal a literal of the data type.
 	 * @return a new instance value of the data type.
 	 * @generated
 	 */
 	ConstraintType createConstraintType(String literal);
 
 	/**
-	 * Returns a literal representation of an instance of data type '
-	 * <em>Constraint Type</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param instanceValue
-	 *            an instance value of the data type.
+	 * Returns a literal representation of an instance of data type '<em>Constraint Type</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param instanceValue an instance value of the data type.
 	 * @return a literal representation of the instance value.
 	 * @generated
 	 */
 	String convertConstraintType(ConstraintType instanceValue);
 
 	/**
-	 * Returns an instance of data type '<em>EEnsemble</em>' corresponding the
-	 * given literal. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param literal
-	 *            a literal of the data type.
+	 * Returns an instance of data type '<em>EEnsemble</em>' corresponding the given literal.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param literal a literal of the data type.
 	 * @return a new instance value of the data type.
 	 * @generated
 	 */
 	Object createEEnsemble(String literal);
 
 	/**
-	 * Returns a literal representation of an instance of data type '
-	 * <em>EEnsemble</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param instanceValue
-	 *            an instance value of the data type.
+	 * Returns a literal representation of an instance of data type '<em>EEnsemble</em>'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param instanceValue an instance value of the data type.
 	 * @return a literal representation of the instance value.
 	 * @generated
 	 */
 	String convertEEnsemble(Object instanceValue);
 
 	/**
-	 * Returns the package supported by this factory. <!-- begin-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

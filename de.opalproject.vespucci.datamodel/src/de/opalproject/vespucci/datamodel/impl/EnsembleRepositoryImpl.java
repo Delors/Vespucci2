@@ -60,23 +60,18 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link de.opalproject.vespucci.datamodel.impl.EnsembleRepositoryImpl#getParent
- * <em>Parent</em>}</li>
- * <li>
- * {@link de.opalproject.vespucci.datamodel.impl.EnsembleRepositoryImpl#getChildren
- * <em>Children</em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.impl.EnsembleRepositoryImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.impl.EnsembleRepositoryImpl#getChildren <em>Children</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class EnsembleRepositoryImpl extends EObjectImpl implements
 		EnsembleRepository {
 	/**
-	 * The cached value of the '{@link #getChildren() <em>Children</em>}'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getChildren()
 	 * @generated
 	 * @ordered
@@ -85,7 +80,6 @@ public class EnsembleRepositoryImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EnsembleRepositoryImpl() {
@@ -94,7 +88,6 @@ public class EnsembleRepositoryImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -104,7 +97,6 @@ public class EnsembleRepositoryImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TreeNode getParent() {
@@ -115,7 +107,6 @@ public class EnsembleRepositoryImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetParent(TreeNode newParent,
@@ -127,7 +118,6 @@ public class EnsembleRepositoryImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setParent(TreeNode newParent) {
@@ -154,7 +144,6 @@ public class EnsembleRepositoryImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<TreeNode> getChildren() {
@@ -169,7 +158,6 @@ public class EnsembleRepositoryImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -190,7 +178,6 @@ public class EnsembleRepositoryImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -208,7 +195,6 @@ public class EnsembleRepositoryImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -224,7 +210,6 @@ public class EnsembleRepositoryImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -240,7 +225,6 @@ public class EnsembleRepositoryImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -260,7 +244,6 @@ public class EnsembleRepositoryImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -278,7 +261,6 @@ public class EnsembleRepositoryImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

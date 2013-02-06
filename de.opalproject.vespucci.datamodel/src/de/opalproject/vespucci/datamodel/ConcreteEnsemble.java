@@ -36,8 +36,8 @@ package de.opalproject.vespucci.datamodel;
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Concrete Ensemble</b></em>'. <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getConcreteEnsemble()
  * @model
  * @generated

@@ -60,35 +60,22 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link de.opalproject.vespucci.datamodel.impl.ConcreteEnsembleImpl#getParent
- * <em>Parent</em>}</li>
- * <li>
- * {@link de.opalproject.vespucci.datamodel.impl.ConcreteEnsembleImpl#getChildren
- * <em>Children</em>}</li>
- * <li>
- * {@link de.opalproject.vespucci.datamodel.impl.ConcreteEnsembleImpl#getName
- * <em>Name</em>}</li>
- * <li>
- * {@link de.opalproject.vespucci.datamodel.impl.ConcreteEnsembleImpl#isDerived
- * <em>Derived</em>}</li>
- * <li>
- * {@link de.opalproject.vespucci.datamodel.impl.ConcreteEnsembleImpl#getDescription
- * <em>Description</em>}</li>
- * <li>
- * {@link de.opalproject.vespucci.datamodel.impl.ConcreteEnsembleImpl#getQuery
- * <em>Query</em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.impl.ConcreteEnsembleImpl#getParent <em>Parent</em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.impl.ConcreteEnsembleImpl#getChildren <em>Children</em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.impl.ConcreteEnsembleImpl#getName <em>Name</em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.impl.ConcreteEnsembleImpl#isDerived <em>Derived</em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.impl.ConcreteEnsembleImpl#getDescription <em>Description</em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.impl.ConcreteEnsembleImpl#getQuery <em>Query</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ConcreteEnsembleImpl extends EObjectImpl implements
 		ConcreteEnsemble {
 	/**
-	 * The cached value of the '{@link #getChildren() <em>Children</em>}'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getChildren()
 	 * @generated
 	 * @ordered
@@ -98,7 +85,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -108,7 +94,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getName()
 	 * @generated
 	 * @ordered
@@ -116,9 +101,8 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isDerived() <em>Derived</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #isDerived() <em>Derived</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isDerived()
 	 * @generated
 	 * @ordered
@@ -126,9 +110,8 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 	protected static final boolean DERIVED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isDerived() <em>Derived</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #isDerived() <em>Derived</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #isDerived()
 	 * @generated
 	 * @ordered
@@ -136,9 +119,8 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 	protected boolean derived = DERIVED_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -146,9 +128,8 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 	protected static final String DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -158,7 +139,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 	/**
 	 * The default value of the '{@link #getQuery() <em>Query</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getQuery()
 	 * @generated
 	 * @ordered
@@ -168,7 +148,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 	/**
 	 * The cached value of the '{@link #getQuery() <em>Query</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getQuery()
 	 * @generated
 	 * @ordered
@@ -177,7 +156,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ConcreteEnsembleImpl() {
@@ -186,7 +164,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -196,7 +173,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TreeNode getParent() {
@@ -207,7 +183,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetParent(TreeNode newParent,
@@ -219,7 +194,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setParent(TreeNode newParent) {
@@ -246,7 +220,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<TreeNode> getChildren() {
@@ -261,7 +234,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -270,7 +242,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
@@ -283,7 +254,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isDerived() {
@@ -292,7 +262,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDerived(boolean newDerived) {
@@ -306,7 +275,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getDescription() {
@@ -315,7 +283,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
@@ -329,7 +296,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getQuery() {
@@ -338,7 +304,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setQuery(String newQuery) {
@@ -351,7 +316,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -372,7 +336,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -390,7 +353,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -406,7 +368,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -430,7 +391,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -462,7 +422,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -492,7 +451,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -519,7 +477,6 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

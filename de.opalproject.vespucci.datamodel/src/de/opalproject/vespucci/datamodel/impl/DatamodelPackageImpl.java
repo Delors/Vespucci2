@@ -40,6 +40,7 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.emf.ecore.resource.Resource;
@@ -49,6 +50,7 @@ import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.ConstraintType;
 import de.opalproject.vespucci.datamodel.DatamodelFactory;
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
+import de.opalproject.vespucci.datamodel.util.DatamodelValidator;
 import java.io.IOException;
 import java.net.URL;
 import org.eclipse.emf.common.util.URI;
@@ -63,84 +65,72 @@ import de.opalproject.vespucci.datamodel.TreeNode;
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class DatamodelPackageImpl extends EPackageImpl implements
 		DatamodelPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected String packageFilename = "datamodel.ecore";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass ensembleEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass constraintEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass sliceRepositoryEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass sliceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass ensembleRepositoryEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass treeNodeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass emptyEnsembleEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass concreteEnsembleEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EEnum constraintTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EDataType eEnsembleEDataType = null;
@@ -166,7 +156,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
@@ -204,6 +193,14 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 		// Fix loaded packages
 		theDatamodelPackage.fixPackageContents();
 
+		// Register package validator
+		EValidator.Registry.INSTANCE.put(theDatamodelPackage,
+				new EValidator.Descriptor() {
+					public EValidator getEValidator() {
+						return DatamodelValidator.INSTANCE;
+					}
+				});
+
 		// Mark meta-data to indicate it can't be changed
 		theDatamodelPackage.freeze();
 
@@ -215,7 +212,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getEnsemble() {
@@ -229,7 +225,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getEnsemble_Name() {
@@ -238,7 +233,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getEnsemble_Derived() {
@@ -247,7 +241,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getEnsemble_Description() {
@@ -256,7 +249,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getEnsemble_Query() {
@@ -265,7 +257,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getConstraint() {
@@ -279,7 +270,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getConstraint_ConstraintType() {
@@ -288,7 +278,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getConstraint_DependencyKind() {
@@ -297,7 +286,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getConstraint_Source() {
@@ -306,7 +294,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getConstraint_Target() {
@@ -315,7 +302,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getSliceRepository() {
@@ -329,7 +315,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getSliceRepository_Slices() {
@@ -339,7 +324,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getSliceRepository_EmptyEnsemble() {
@@ -349,7 +333,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getSlice() {
@@ -363,7 +346,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getSlice_Constraints() {
@@ -372,7 +354,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getSlice_Ensembles() {
@@ -381,7 +362,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getSlice_SliceRepository() {
@@ -390,7 +370,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getSlice_Name() {
@@ -399,7 +378,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getSlice_Diagram() {
@@ -408,7 +386,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getEnsembleRepository() {
@@ -422,7 +399,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getTreeNode() {
@@ -436,7 +412,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getTreeNode_Parent() {
@@ -445,7 +420,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getTreeNode_Children() {
@@ -454,7 +428,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getEmptyEnsemble() {
@@ -468,7 +441,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getConcreteEnsemble() {
@@ -482,7 +454,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EEnum getConstraintType() {
@@ -496,7 +467,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EDataType getEEnsemble() {
@@ -510,7 +480,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DatamodelFactory getDatamodelFactory() {
@@ -519,7 +488,6 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isLoaded = false;
@@ -554,15 +522,13 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isFixed = false;
 
 	/**
-	 * Fixes up the loaded package, to make it appear as if it had been
-	 * programmatically built. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Fixes up the loaded package, to make it appear as if it had been programmatically built.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void fixPackageContents() {
@@ -573,9 +539,9 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	}
 
 	/**
-	 * Sets the instance class on the given classifier. <!-- begin-user-doc -->
+	 * Sets the instance class on the given classifier.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

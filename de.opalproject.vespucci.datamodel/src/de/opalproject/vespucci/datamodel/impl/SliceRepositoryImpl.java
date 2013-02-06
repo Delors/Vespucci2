@@ -61,22 +61,17 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link de.opalproject.vespucci.datamodel.impl.SliceRepositoryImpl#getSlices
- * <em>Slices</em>}</li>
- * <li>
- * {@link de.opalproject.vespucci.datamodel.impl.SliceRepositoryImpl#getEmptyEnsemble
- * <em>Empty Ensemble</em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.impl.SliceRepositoryImpl#getSlices <em>Slices</em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.impl.SliceRepositoryImpl#getEmptyEnsemble <em>Empty Ensemble</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class SliceRepositoryImpl extends EObjectImpl implements SliceRepository {
 	/**
-	 * The cached value of the '{@link #getSlices() <em>Slices</em>}'
-	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getSlices() <em>Slices</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getSlices()
 	 * @generated
 	 * @ordered
@@ -84,10 +79,9 @@ public class SliceRepositoryImpl extends EObjectImpl implements SliceRepository 
 	protected EList<Slice> slices;
 
 	/**
-	 * The cached value of the '{@link #getEmptyEnsemble()
-	 * <em>Empty Ensemble</em>}' containment reference. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getEmptyEnsemble() <em>Empty Ensemble</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getEmptyEnsemble()
 	 * @generated
 	 * @ordered
@@ -96,7 +90,6 @@ public class SliceRepositoryImpl extends EObjectImpl implements SliceRepository 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SliceRepositoryImpl() {
@@ -105,7 +98,6 @@ public class SliceRepositoryImpl extends EObjectImpl implements SliceRepository 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -115,7 +107,6 @@ public class SliceRepositoryImpl extends EObjectImpl implements SliceRepository 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Slice> getSlices() {
@@ -129,7 +120,6 @@ public class SliceRepositoryImpl extends EObjectImpl implements SliceRepository 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Ensemble getEmptyEnsemble() {
@@ -138,7 +128,6 @@ public class SliceRepositoryImpl extends EObjectImpl implements SliceRepository 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetEmptyEnsemble(Ensemble newEmptyEnsemble,
@@ -160,7 +149,6 @@ public class SliceRepositoryImpl extends EObjectImpl implements SliceRepository 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setEmptyEnsemble(Ensemble newEmptyEnsemble) {
@@ -191,7 +179,6 @@ public class SliceRepositoryImpl extends EObjectImpl implements SliceRepository 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -208,7 +195,6 @@ public class SliceRepositoryImpl extends EObjectImpl implements SliceRepository 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -225,7 +211,6 @@ public class SliceRepositoryImpl extends EObjectImpl implements SliceRepository 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -241,7 +226,6 @@ public class SliceRepositoryImpl extends EObjectImpl implements SliceRepository 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -261,7 +245,6 @@ public class SliceRepositoryImpl extends EObjectImpl implements SliceRepository 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -279,7 +262,6 @@ public class SliceRepositoryImpl extends EObjectImpl implements SliceRepository 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

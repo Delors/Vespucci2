@@ -40,40 +40,34 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Slice</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link de.opalproject.vespucci.datamodel.Slice#getName <em>Name</em>}</li>
- * <li>{@link de.opalproject.vespucci.datamodel.Slice#getDiagram <em>Diagram
- * </em>}</li>
- * <li>{@link de.opalproject.vespucci.datamodel.Slice#getConstraints <em>
- * Constraints</em>}</li>
- * <li>{@link de.opalproject.vespucci.datamodel.Slice#getEnsembles <em>Ensembles
- * </em>}</li>
- * <li>{@link de.opalproject.vespucci.datamodel.Slice#getSliceRepository <em>
- * Slice Repository</em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.Slice#getName <em>Name</em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.Slice#getDiagram <em>Diagram</em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.Slice#getConstraints <em>Constraints</em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.Slice#getEnsembles <em>Ensembles</em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.Slice#getSliceRepository <em>Slice Repository</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getSlice()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='NonChildParent'"
  * @generated
  */
 public interface Slice extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Constraints</b></em>' containment
-	 * reference list. The list contents are of type
-	 * {@link de.opalproject.vespucci.datamodel.Constraint}. <!-- begin-user-doc
+	 * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
+	 * The list contents are of type {@link de.opalproject.vespucci.datamodel.Constraint}.
+	 * <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Constraints</em>' containment reference list
 	 * isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Constraints</em>' containment reference
-	 *         list.
+	 * @return the value of the '<em>Constraints</em>' containment reference list.
 	 * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getSlice_Constraints()
 	 * @model containment="true"
 	 * @generated
@@ -81,16 +75,15 @@ public interface Slice extends EObject {
 	EList<Constraint> getConstraints();
 
 	/**
-	 * Returns the value of the '<em><b>Ensembles</b></em>' reference list. The
-	 * list contents are of type
-	 * {@link de.opalproject.vespucci.datamodel.Ensemble}. <!-- begin-user-doc
+	 * Returns the value of the '<em><b>Ensembles</b></em>' reference list.
+	 * The list contents are of type {@link de.opalproject.vespucci.datamodel.Ensemble}.
+	 * <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Ensembles</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Ensembles</em>' reference list.
 	 * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getSlice_Ensembles()
 	 * @model
@@ -99,16 +92,14 @@ public interface Slice extends EObject {
 	EList<Ensemble> getEnsembles();
 
 	/**
-	 * Returns the value of the '<em><b>Slice Repository</b></em>' container
-	 * reference. It is bidirectional and its opposite is '
-	 * {@link de.opalproject.vespucci.datamodel.SliceRepository#getSlices
-	 * <em>Slices</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Slice Repository</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link de.opalproject.vespucci.datamodel.SliceRepository#getSlices <em>Slices</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Slice Repository</em>' container reference
 	 * isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Slice Repository</em>' container reference.
 	 * @see #setSliceRepository(SliceRepository)
 	 * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getSlice_SliceRepository()
@@ -119,14 +110,10 @@ public interface Slice extends EObject {
 	SliceRepository getSliceRepository();
 
 	/**
-	 * Sets the value of the '
-	 * {@link de.opalproject.vespucci.datamodel.Slice#getSliceRepository
-	 * <em>Slice Repository</em>}' container reference. <!-- begin-user-doc -->
+	 * Sets the value of the '{@link de.opalproject.vespucci.datamodel.Slice#getSliceRepository <em>Slice Repository</em>}' container reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Slice Repository</em>' container
-	 *            reference.
+	 * @param value the new value of the '<em>Slice Repository</em>' container reference.
 	 * @see #getSliceRepository()
 	 * @generated
 	 */
@@ -150,12 +137,9 @@ public interface Slice extends EObject {
 	String getName();
 
 	/**
-	 * Sets the value of the '
-	 * {@link de.opalproject.vespucci.datamodel.Slice#getName <em>Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Name</em>' attribute.
+	 * Sets the value of the '{@link de.opalproject.vespucci.datamodel.Slice#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
 	 */

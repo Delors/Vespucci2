@@ -36,8 +36,8 @@ package de.opalproject.vespucci.datamodel;
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Empty Ensemble</b></em>'. <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getEmptyEnsemble()
  * @model
  * @generated

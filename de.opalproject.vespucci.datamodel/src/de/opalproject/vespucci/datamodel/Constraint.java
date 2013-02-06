@@ -38,21 +38,17 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Constraint</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link de.opalproject.vespucci.datamodel.Constraint#getConstraintType
- * <em>Constraint Type</em>}</li>
- * <li>{@link de.opalproject.vespucci.datamodel.Constraint#getDependencyKind
- * <em>Dependency Kind</em>}</li>
- * <li>{@link de.opalproject.vespucci.datamodel.Constraint#getSource <em>Source
- * </em>}</li>
- * <li>{@link de.opalproject.vespucci.datamodel.Constraint#getTarget <em>Target
- * </em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.Constraint#getConstraintType <em>Constraint Type</em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.Constraint#getDependencyKind <em>Dependency Kind</em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.Constraint#getSource <em>Source</em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.Constraint#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getConstraint()
  * @model
  * @generated
@@ -79,13 +75,10 @@ public interface Constraint extends EObject {
 	ConstraintType getConstraintType();
 
 	/**
-	 * Sets the value of the '
-	 * {@link de.opalproject.vespucci.datamodel.Constraint#getConstraintType
-	 * <em>Constraint Type</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link de.opalproject.vespucci.datamodel.Constraint#getConstraintType <em>Constraint Type</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Constraint Type</em>' attribute.
+	 * @param value the new value of the '<em>Constraint Type</em>' attribute.
 	 * @see de.opalproject.vespucci.datamodel.ConstraintType
 	 * @see #getConstraintType()
 	 * @generated
@@ -93,14 +86,14 @@ public interface Constraint extends EObject {
 	void setConstraintType(ConstraintType value);
 
 	/**
-	 * Returns the value of the '<em><b>Dependency Kind</b></em>' attribute. The
-	 * default value is <code>"ALL"</code>. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Dependency Kind</b></em>' attribute.
+	 * The default value is <code>"ALL"</code>.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Dependency Kind</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Dependency Kind</em>' attribute.
 	 * @see #setDependencyKind(String)
 	 * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getConstraint_DependencyKind()
@@ -110,13 +103,10 @@ public interface Constraint extends EObject {
 	String getDependencyKind();
 
 	/**
-	 * Sets the value of the '
-	 * {@link de.opalproject.vespucci.datamodel.Constraint#getDependencyKind
-	 * <em>Dependency Kind</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link de.opalproject.vespucci.datamodel.Constraint#getDependencyKind <em>Dependency Kind</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Dependency Kind</em>' attribute.
+	 * @param value the new value of the '<em>Dependency Kind</em>' attribute.
 	 * @see #getDependencyKind()
 	 * @generated
 	 */

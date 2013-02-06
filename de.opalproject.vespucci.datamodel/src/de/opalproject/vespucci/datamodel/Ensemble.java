@@ -36,20 +36,17 @@ package de.opalproject.vespucci.datamodel;
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Ensemble</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link de.opalproject.vespucci.datamodel.Ensemble#getName <em>Name</em>}</li>
- * <li>{@link de.opalproject.vespucci.datamodel.Ensemble#isDerived <em>Derived
- * </em>}</li>
- * <li>{@link de.opalproject.vespucci.datamodel.Ensemble#getDescription <em>
- * Description</em>}</li>
- * <li>{@link de.opalproject.vespucci.datamodel.Ensemble#getQuery <em>Query
- * </em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.Ensemble#getName <em>Name</em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.Ensemble#isDerived <em>Derived</em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.Ensemble#getDescription <em>Description</em>}</li>
+ *   <li>{@link de.opalproject.vespucci.datamodel.Ensemble#getQuery <em>Query</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getEnsemble()
  * @model interface="true" abstract="true"
  * @generated
@@ -73,12 +70,9 @@ public interface Ensemble extends TreeNode {
 	String getName();
 
 	/**
-	 * Sets the value of the '
-	 * {@link de.opalproject.vespucci.datamodel.Ensemble#getName <em>Name</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Name</em>' attribute.
+	 * Sets the value of the '{@link de.opalproject.vespucci.datamodel.Ensemble#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
 	 */
@@ -132,13 +126,10 @@ public interface Ensemble extends TreeNode {
 	String getDescription();
 
 	/**
-	 * Sets the value of the '
-	 * {@link de.opalproject.vespucci.datamodel.Ensemble#getDescription
-	 * <em>Description</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * Sets the value of the '{@link de.opalproject.vespucci.datamodel.Ensemble#getDescription <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Description</em>' attribute.
+	 * @param value the new value of the '<em>Description</em>' attribute.
 	 * @see #getDescription()
 	 * @generated
 	 */
@@ -162,12 +153,9 @@ public interface Ensemble extends TreeNode {
 	String getQuery();
 
 	/**
-	 * Sets the value of the '
-	 * {@link de.opalproject.vespucci.datamodel.Ensemble#getQuery
-	 * <em>Query</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Query</em>' attribute.
+	 * Sets the value of the '{@link de.opalproject.vespucci.datamodel.Ensemble#getQuery <em>Query</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Query</em>' attribute.
 	 * @see #getQuery()
 	 * @generated
 	 */
