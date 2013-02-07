@@ -8,6 +8,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -198,6 +200,7 @@ public class DatamodelValidator extends EObjectValidator {
 	 * @param diagnostics
 	 * @param context
 	 * @return
+	 * @throws CoreException 
 	 */
 	public boolean validateSlice_NonChildParent(Slice slice,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -217,6 +220,56 @@ public class DatamodelValidator extends EObjectValidator {
 			return false;
 		}
 		return true;
+	}
+	
+	/**
+	 * @param slice
+	 * @param diagnostics
+	 * @param context
+	 * @return
+	 */
+	public Status validateSlice_NonChildParentStatus(Slice slice,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		Status status;
+		if (checkParentOccurrence(slice.getEnsembles())) {
+			if (diagnostics != null) {
+				diagnostics.add(createDiagnostic(Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE, 0,
+						"_UI_GenericConstraint_diagnostic", new Object[] {
+								"NonChildParent",
+								getObjectLabel(slice, context) },
+						new Object[] { slice }, context));
+			}
+			status = new Status(Status.ERROR, DIAGNOSTIC_SOURCE, "_UI_GenericConstraint_status");
+			return status;
+		}
+		status = new Status(Status.OK, DIAGNOSTIC_SOURCE, "_UI_GenericConstraint_stauts");
+		return status;
+	}
+	
+	/**
+	 * @param slice
+	 * @param diagnostics
+	 * @param context
+	 * @return
+	 */
+	public Diagnostic validateSlice_NonChildParent(Slice slice, Map<Object, Object> context) {
+		if (checkParentOccurrence(slice.getEnsembles())) {
+			
+			return createDiagnostic(Diagnostic.ERROR,
+					DIAGNOSTIC_SOURCE, 0,
+					"_UI_GenericConstraint_diagnostic", new Object[] {
+							"NonChildParent",
+							getObjectLabel(slice, context) },
+					new Object[] { slice }, context);
+		}	
+		
+		return createDiagnostic(Diagnostic.OK,
+				DIAGNOSTIC_SOURCE, 0,
+				"_UI_GenericConstraint_diagnostic", new Object[] {
+						"NonChildParent",
+						getObjectLabel(slice, context) },
+				new Object[] { slice }, context);
 	}
 
 	/**

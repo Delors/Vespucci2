@@ -36,14 +36,12 @@ package de.opalproject.vespucci.sliceEditor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
+import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -65,7 +63,6 @@ import org.eclipse.graphiti.tb.ImageDecorator;
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.datamodel.EnsembleRepository;
 import de.opalproject.vespucci.datamodel.Slice;
-import de.opalproject.vespucci.datamodel.SliceRepository;
 import de.opalproject.vespucci.datamodel.util.DatamodelValidator;
 import de.opalproject.vespucci.sliceEditor.features.CollapseFeature;
 
@@ -113,17 +110,18 @@ public class SliceEditorToolBehaviorProvider extends
 			System.out.println("Validator: "
 					+ validator.validateSlice_NonChildParent(slice, null,
 							new HashMap<Object, Object>()));
-			
-			// TODO implement validation with status-return and the generation of corresponding markers
-			// IStatus status =
-			// validator.validateSlice_NonChildParent((Slice)domainObject,
-			// diagnostics, (Map<Object, Object>) context);
-			// BasicDiagnostic d = new BasicDiagnostic(status.getPlugin(),
-			// status.getSeverity(), status.getMessage(), new Object[]
-			// {slice});
-			// EditUImarkerHelper h = new EditUImarkerHelper();
-			// h.createmarkers(d);
 
+			
+			// Experimental Marker creation
+			EditUIMarkerHelper h = new EditUIMarkerHelper();
+			try {
+				h.createMarkers(validator.validateSlice_NonChildParent(slice, new HashMap<Object, Object>()));
+			} catch (CoreException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
 			// retrieve possible graphical infringements
 			List<Ensemble> childrenOccurrence = checkChildrenOccurrence(dia,
 					ensemble);
@@ -137,8 +135,6 @@ public class SliceEditorToolBehaviorProvider extends
 				imageRenderingDecorator.setMessage("Slice invalid - "
 						+ ensemble.getName() + " is parent of "
 						+ childrenOccurrence.get(0).getName());
-				generateMarker("child existing", pe, ensemble,
-						childrenOccurrence.get(0), dia);
 				return new IDecorator[] { imageRenderingDecorator };
 			}
 			// mark ensemble if invalid (parent already existing in current
@@ -149,8 +145,6 @@ public class SliceEditorToolBehaviorProvider extends
 				imageRenderingDecorator.setMessage("Slice invalid - "
 						+ ensemble.getName() + " is derived from "
 						+ parentOccurrence.get(0).getName());
-				generateMarker("parent existing", pe, ensemble,
-						parentOccurrence.get(0), dia);
 				return new IDecorator[] { imageRenderingDecorator };
 			}
 		}
@@ -219,49 +213,49 @@ public class SliceEditorToolBehaviorProvider extends
 		return infringingEnsembles;
 	}
 
-	/**
-	 * Generate a problem marker when an invalid slice is detected.
-	 * 
-	 * @param str
-	 *            - String containing the type of infringement
-	 * @param picel
-	 *            - Pictogramelement
-	 * @param ensA
-	 *            - Ensemble to be added
-	 * @param ensB
-	 *            - An already existing conflicting ensembleinstance
-	 */
-	private void generateMarker(String str, PictogramElement picel,
-			Ensemble ensA, Ensemble ensB, Diagram dia) {
-
-		try {
-			// retrieve URI
-			URI uri = dia.eResource().getURI();
-			uri = uri.trimFragment();
-			// remove "platform:..." from uri
-			if (uri.isPlatform()) {
-				uri = URI.createURI(uri.toPlatformString(true));
-			}
-			IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace()
-					.getRoot();
-
-			// try to get project from whole uri resource
-			IResource resource = workspaceRoot.findMember(uri.toString());
-
-			// create marker
-			IMarker marker = resource.createMarker(IMarker.PROBLEM);
-			marker.setAttribute(IMarker.MESSAGE,
-					str + "-Slice is invalid " + ensB.toString()
-							+ " is a descendant of  " + ensA.toString());
-			marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
-			// TODO to implement
-			// marker.setAttribute(IDE.EDITOR_ID_ATTR,
-			// DiagramEditor.DIAGRAM_EDITOR_ID);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	/**
+//	 * Generate a problem marker when an invalid slice is detected.
+//	 * 
+//	 * @param str
+//	 *            - String containing the type of infringement
+//	 * @param picel
+//	 *            - Pictogramelement
+//	 * @param ensA
+//	 *            - Ensemble to be added
+//	 * @param ensB
+//	 *            - An already existing conflicting ensembleinstance
+//	 */
+//	private void generateMarker(String str, PictogramElement picel,
+//			Ensemble ensA, Ensemble ensB, Diagram dia) {
+//
+//		try {
+//			// retrieve URI
+//			URI uri = dia.eResource().getURI();
+//			uri = uri.trimFragment();
+//			// remove "platform:..." from uri
+//			if (uri.isPlatform()) {
+//				uri = URI.createURI(uri.toPlatformString(true));
+//			}
+//			IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace()
+//					.getRoot();
+//
+//			// try to get project from whole uri resource
+//			IResource resource = workspaceRoot.findMember(uri.toString());
+//
+//			// create marker
+//			IMarker marker = resource.createMarker(IMarker.PROBLEM);
+//			marker.setAttribute(IMarker.MESSAGE,
+//					str + "-Slice is invalid " + ensB.toString()
+//							+ " is a descendant of  " + ensA.toString());
+//			marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
+//			// TODO to implement
+//			// marker.setAttribute(IDE.EDITOR_ID_ATTR,
+//			// DiagramEditor.DIAGRAM_EDITOR_ID);
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	@Override
 	public IContextButtonPadData getContextButtonPad(
