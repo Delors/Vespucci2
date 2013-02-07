@@ -34,12 +34,16 @@
 package de.opalproject.vespucci.sliceEditor;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -60,15 +64,32 @@ import org.eclipse.graphiti.tb.IDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.datamodel.EnsembleRepository;
+import de.opalproject.vespucci.datamodel.Slice;
+import de.opalproject.vespucci.datamodel.SliceRepository;
+import de.opalproject.vespucci.datamodel.util.DatamodelValidator;
 import de.opalproject.vespucci.sliceEditor.features.CollapseFeature;
 
+/**
+ * @author marius
+ * 
+ */
 public class SliceEditorToolBehaviorProvider extends
 		DefaultToolBehaviorProvider {
 
+	/**
+	 * @param dtp
+	 */
 	public SliceEditorToolBehaviorProvider(IDiagramTypeProvider dtp) {
 		super(dtp);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.tb.DefaultToolBehaviorProvider#getDecorators(org
+	 * .eclipse.graphiti.mm.pictograms.PictogramElement)
+	 */
 	@Override
 	public IDecorator[] getDecorators(PictogramElement pe) {
 		IFeatureProvider featureProvider = getFeatureProvider();
@@ -78,7 +99,32 @@ public class SliceEditorToolBehaviorProvider extends
 		if (bo instanceof Ensemble) {
 			Ensemble ensemble = (Ensemble) bo;
 			Diagram dia = featureProvider.getDiagramTypeProvider().getDiagram();
-			// retrieve possible infringements
+			Slice slice = null;
+			// validator call, retrieve slice
+			for (EObject eObject : dia.getLink().getBusinessObjects()) {
+				if (eObject instanceof Slice) {
+					slice = (Slice) eObject;
+					break;
+				}
+			}
+			// get validator
+			DatamodelValidator validator = new DatamodelValidator();
+			// check validator
+			System.out.println("Validator: "
+					+ validator.validateSlice_NonChildParent(slice, null,
+							new HashMap<Object, Object>()));
+			
+			// TODO implement validation with status-return and the generation of corresponding markers
+			// IStatus status =
+			// validator.validateSlice_NonChildParent((Slice)domainObject,
+			// diagnostics, (Map<Object, Object>) context);
+			// BasicDiagnostic d = new BasicDiagnostic(status.getPlugin(),
+			// status.getSeverity(), status.getMessage(), new Object[]
+			// {slice});
+			// EditUImarkerHelper h = new EditUImarkerHelper();
+			// h.createmarkers(d);
+
+			// retrieve possible graphical infringements
 			List<Ensemble> childrenOccurrence = checkChildrenOccurrence(dia,
 					ensemble);
 			List<Ensemble> parentOccurrence = checkParentOccurrence(dia,
@@ -187,7 +233,7 @@ public class SliceEditorToolBehaviorProvider extends
 	 */
 	private void generateMarker(String str, PictogramElement picel,
 			Ensemble ensA, Ensemble ensB, Diagram dia) {
-		
+
 		try {
 			// retrieve URI
 			URI uri = dia.eResource().getURI();
@@ -209,37 +255,37 @@ public class SliceEditorToolBehaviorProvider extends
 							+ " is a descendant of  " + ensA.toString());
 			marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
 			// TODO to implement
-			//marker.setAttribute(IDE.EDITOR_ID_ATTR, DiagramEditor.DIAGRAM_EDITOR_ID);
+			// marker.setAttribute(IDE.EDITOR_ID_ATTR,
+			// DiagramEditor.DIAGRAM_EDITOR_ID);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public IContextButtonPadData getContextButtonPad(
-	                                   IPictogramElementContext context) {
-	    IContextButtonPadData data = super.getContextButtonPad(context);
-	    PictogramElement pe = context.getPictogramElement();
-	 
-	    //  set the generic context buttons
-	    setGenericContextButtons(data, pe, CONTEXT_BUTTON_REMOVE);
-	        
-	    // set the collapse button 
-	    CustomContext cc = new CustomContext(new PictogramElement[] { pe });
-	    ICustomFeature[] cf = getFeatureProvider().getCustomFeatures(cc);
-	    for (int i = 0; i < cf.length; i++) {
-	        ICustomFeature iCustomFeature = cf[i];
-	        if (iCustomFeature instanceof CollapseFeature) {
-	            IContextButtonEntry collapseButton = ContextEntryHelper.
-	               createCollapseContextButton(true, iCustomFeature, cc);
-	            data.setCollapseContextButton(collapseButton);
-	            break;
-	           }
-	    }
-	         
-	    
-	    return data;
+			IPictogramElementContext context) {
+		IContextButtonPadData data = super.getContextButtonPad(context);
+		PictogramElement pe = context.getPictogramElement();
+
+		// set the generic context buttons
+		setGenericContextButtons(data, pe, CONTEXT_BUTTON_REMOVE);
+
+		// set the collapse button
+		CustomContext cc = new CustomContext(new PictogramElement[] { pe });
+		ICustomFeature[] cf = getFeatureProvider().getCustomFeatures(cc);
+		for (int i = 0; i < cf.length; i++) {
+			ICustomFeature iCustomFeature = cf[i];
+			if (iCustomFeature instanceof CollapseFeature) {
+				IContextButtonEntry collapseButton = ContextEntryHelper
+						.createCollapseContextButton(true, iCustomFeature, cc);
+				data.setCollapseContextButton(collapseButton);
+				break;
+			}
+		}
+
+		return data;
 	}
 
 }

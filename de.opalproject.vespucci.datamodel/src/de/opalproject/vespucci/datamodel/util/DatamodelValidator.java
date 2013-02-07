@@ -4,6 +4,7 @@ package de.opalproject.vespucci.datamodel.util;
 
 import de.opalproject.vespucci.datamodel.*;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -192,6 +193,12 @@ public class DatamodelValidator extends EObjectValidator {
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 */
+	/**
+	 * @param slice
+	 * @param diagnostics
+	 * @param context
+	 * @return
+	 */
 	public boolean validateSlice_NonChildParent(Slice slice,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		// TODO implement the constraint
@@ -309,10 +316,32 @@ public class DatamodelValidator extends EObjectValidator {
 		return super.getResourceLocator();
 	}
 	
-	public static boolean validateObject(EObject eObject)
+//	public static boolean validateObject(EObject eObject)
+//	  {
+//	    Diagnostic diagnostic = Diagnostician.INSTANCE.validate(eObject);
+//	    return diagnostic.getSeverity() == Diagnostic.OK;
+//	  }
+	
+	 public static boolean validateObject(EObject eObject)
 	  {
 	    Diagnostic diagnostic = Diagnostician.INSTANCE.validate(eObject);
-	    return diagnostic.getSeverity() == Diagnostic.OK;
+	    if (diagnostic.getSeverity() == Diagnostic.ERROR || 
+	      diagnostic.getSeverity() == Diagnostic.WARNING)
+	    {
+	      System.err.println(diagnostic.getMessage());
+	      for (Iterator i=diagnostic.getChildren().iterator(); i.hasNext();)
+	      {
+	        Diagnostic childDiagnostic = (Diagnostic)i.next();
+	        switch (childDiagnostic.getSeverity())
+	        {
+	          case Diagnostic.ERROR:
+	          case Diagnostic.WARNING:
+	            System.err.println("\t" + childDiagnostic.getMessage());
+	        }
+	      }
+	      return false;
+	    }
+	    return true;
 	  }
 
 } // DatamodelValidator
