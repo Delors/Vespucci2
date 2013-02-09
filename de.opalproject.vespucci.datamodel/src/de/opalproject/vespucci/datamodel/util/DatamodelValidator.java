@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -19,6 +18,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
 
 /**
  * <!-- begin-user-doc --> The <b>Validator</b> for the model. <!-- end-user-doc
@@ -192,19 +192,22 @@ public class DatamodelValidator extends EObjectValidator {
 
 	/**
 	 * Validates the NonChildParent constraint of '<em>Slice</em>'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * begin-user-doc -->
+	 *
+	 * Checks whether there are child and parent within a slice model.
+	 *  
+	 *<!-- end-user-doc -->
 	 * 
 	 */
 	/**
 	 * @param slice
 	 * @param diagnostics
 	 * @param context
-	 * @return
-	 * @throws CoreException 
+	 * @return true if valids
+	 * @throws CoreException
 	 */
 	public boolean validateSlice_NonChildParent(Slice slice,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		// TODO implement the constraint
 		// -> specify the condition that violates the constraint
 		// -> verify the diagnostic details, including severity, code, and
 		// message
@@ -220,56 +223,6 @@ public class DatamodelValidator extends EObjectValidator {
 			return false;
 		}
 		return true;
-	}
-	
-	/**
-	 * @param slice
-	 * @param diagnostics
-	 * @param context
-	 * @return
-	 */
-	public Status validateSlice_NonChildParentStatus(Slice slice,
-			DiagnosticChain diagnostics, Map<Object, Object> context) {
-		Status status;
-		if (checkParentOccurrence(slice.getEnsembles())) {
-			if (diagnostics != null) {
-				diagnostics.add(createDiagnostic(Diagnostic.ERROR,
-						DIAGNOSTIC_SOURCE, 0,
-						"_UI_GenericConstraint_diagnostic", new Object[] {
-								"NonChildParent",
-								getObjectLabel(slice, context) },
-						new Object[] { slice }, context));
-			}
-			status = new Status(Status.ERROR, DIAGNOSTIC_SOURCE, "_UI_GenericConstraint_status");
-			return status;
-		}
-		status = new Status(Status.OK, DIAGNOSTIC_SOURCE, "_UI_GenericConstraint_stauts");
-		return status;
-	}
-	
-	/**
-	 * @param slice
-	 * @param diagnostics
-	 * @param context
-	 * @return
-	 */
-	public Diagnostic validateSlice_NonChildParent(Slice slice, Map<Object, Object> context) {
-		if (checkParentOccurrence(slice.getEnsembles())) {
-			
-			return createDiagnostic(Diagnostic.ERROR,
-					DIAGNOSTIC_SOURCE, 0,
-					"_UI_GenericConstraint_diagnostic", new Object[] {
-							"NonChildParent",
-							getObjectLabel(slice, context) },
-					new Object[] { slice }, context);
-		}	
-		
-		return createDiagnostic(Diagnostic.OK,
-				DIAGNOSTIC_SOURCE, 0,
-				"_UI_GenericConstraint_diagnostic", new Object[] {
-						"NonChildParent",
-						getObjectLabel(slice, context) },
-				new Object[] { slice }, context);
 	}
 
 	/**
@@ -368,33 +321,43 @@ public class DatamodelValidator extends EObjectValidator {
 		// Ensure that you remove @generated or mark it @generated NOT
 		return super.getResourceLocator();
 	}
-	
-//	public static boolean validateObject(EObject eObject)
-//	  {
-//	    Diagnostic diagnostic = Diagnostician.INSTANCE.validate(eObject);
-//	    return diagnostic.getSeverity() == Diagnostic.OK;
-//	  }
-	
-	 public static boolean validateObject(EObject eObject)
-	  {
-	    Diagnostic diagnostic = Diagnostician.INSTANCE.validate(eObject);
-	    if (diagnostic.getSeverity() == Diagnostic.ERROR || 
-	      diagnostic.getSeverity() == Diagnostic.WARNING)
-	    {
-	      System.err.println(diagnostic.getMessage());
-	      for (Iterator i=diagnostic.getChildren().iterator(); i.hasNext();)
-	      {
-	        Diagnostic childDiagnostic = (Diagnostic)i.next();
-	        switch (childDiagnostic.getSeverity())
-	        {
-	          case Diagnostic.ERROR:
-	          case Diagnostic.WARNING:
-	            System.err.println("\t" + childDiagnostic.getMessage());
-	        }
-	      }
-	      return false;
-	    }
-	    return true;
-	  }
 
+	/**
+	 * @param eObject
+	 * @return
+	 */
+	public static boolean validateObject(EObject eObject) {
+		Diagnostic diagnostic = Diagnostician.INSTANCE.validate(eObject);
+		EditUIMarkerHelper h = new EditUIMarkerHelper();
+		if (diagnostic.getSeverity() == Diagnostic.ERROR
+				|| diagnostic.getSeverity() == Diagnostic.WARNING) {
+			System.err.println(diagnostic.getMessage());
+			for (Iterator i = diagnostic.getChildren().iterator(); i.hasNext();) {
+				Diagnostic childDiagnostic = (Diagnostic) i.next();
+				switch (childDiagnostic.getSeverity()) {
+				case Diagnostic.ERROR:
+				case Diagnostic.WARNING:
+					// TODO experimental marker management added to validation
+					// TODO add own markertype
+					// TODO fix marker display
+					System.out.println("Marker creation triggered");
+					try {
+						h.createMarkers(childDiagnostic);
+					} catch (CoreException e) {
+						e.printStackTrace();
+					}
+					System.out.println("Has markers? : "
+							+ h.hasMarkers(eObject));
+					System.err.println("\t" + childDiagnostic.getMessage());
+				}
+			}
+			return false;
+		}
+		// marker deletion if not needed anymore.
+		if(h.hasMarkers(eObject)){
+			System.out.println("Marker deletion triggerd");
+			h.deleteMarkers(eObject);
+		}
+		return true;
+	}
 } // DatamodelValidator
