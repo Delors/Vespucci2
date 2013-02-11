@@ -84,6 +84,8 @@ public class EnsembleDropAdapter extends CommonDropAdapterAssistant {
 				source.getParent().getChildren().remove(source);
 				source.setParent(target);
 
+				//TODO Add validation call over all existing slices
+				
 				try {
 					r.save(Collections.EMPTY_MAP);
 					r2.save(Collections.EMPTY_MAP);

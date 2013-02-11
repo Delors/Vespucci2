@@ -42,19 +42,34 @@ import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import de.opalproject.vespucci.datamodel.Constraint;
 
+/**
+ * Feature to change constraint-kind value directly inline.
+ * 
+ * @author marius
+ *
+ */
 public class ConstraintKindDirectEditFeature extends
 		AbstractDirectEditingFeature {
 
+	/**
+	 * @param fp
+	 */
 	public ConstraintKindDirectEditFeature(IFeatureProvider fp) {
 		super(fp);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.func.IDirectEditing#getEditingType()
+	 */
 	public int getEditingType() {
 		// there are several possible editor-types supported:
 		// text-field, checkbox, color-chooser, combobox, ...
 		return TYPE_TEXT;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.features.impl.AbstractDirectEditingFeature#canDirectEdit(org.eclipse.graphiti.features.context.IDirectEditingContext)
+	 */
 	@Override
 	public boolean canDirectEdit(IDirectEditingContext context) {
 		PictogramElement pe = context.getPictogramElement();
@@ -71,6 +86,9 @@ public class ConstraintKindDirectEditFeature extends
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.func.IDirectEditing#getInitialValue(org.eclipse.graphiti.features.context.IDirectEditingContext)
+	 */
 	public String getInitialValue(IDirectEditingContext context) {
 		// return the current dependencyKind of the Constraint
 		ConnectionDecorator cd = (ConnectionDecorator) context
@@ -80,6 +98,9 @@ public class ConstraintKindDirectEditFeature extends
 		return constraint.getDependencyKind();
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.features.impl.AbstractDirectEditingFeature#checkValueValid(java.lang.String, org.eclipse.graphiti.features.context.IDirectEditingContext)
+	 */
 	@Override
 	public String checkValueValid(String value, IDirectEditingContext context) {
 		if (value.length() < 1)
@@ -93,6 +114,9 @@ public class ConstraintKindDirectEditFeature extends
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.features.impl.AbstractDirectEditingFeature#setValue(java.lang.String, org.eclipse.graphiti.features.context.IDirectEditingContext)
+	 */
 	public void setValue(String value, IDirectEditingContext context) {
 
 		PictogramElement pe = context.getPictogramElement();

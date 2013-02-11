@@ -35,6 +35,11 @@ package de.opalproject.vespucci.sliceEditor;
 
 import org.eclipse.graphiti.ui.platform.AbstractImageProvider;
 
+/**
+ * @author Lars
+ * @author Marius
+ *
+ */
 public class SliceEditorImageProvider extends AbstractImageProvider {
 
 	// The prefix for all identifiers of this image provider
@@ -61,6 +66,9 @@ public class SliceEditorImageProvider extends AbstractImageProvider {
 	// The image identifier for a generic ensemble
 	public static final String IMG_ENSEMBLEICON = PREFIX + "ensembleIcon";
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.ui.platform.AbstractImageProvider#addAvailableImages()
+	 */
 	@Override
 	protected void addAvailableImages() {
 		// register the path for each image identifier

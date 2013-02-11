@@ -6,12 +6,22 @@ import org.eclipse.graphiti.features.impl.DefaultResizeShapeFeature;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 
+/**
+ * @author Lars
+ *
+ */
 public class ResizeEnsembleFeature extends DefaultResizeShapeFeature {
     
+    /**
+     * @param fp
+     */
     public ResizeEnsembleFeature(IFeatureProvider fp) {
         super(fp);
     }
  
+    /* (non-Javadoc)
+     * @see org.eclipse.graphiti.features.impl.DefaultResizeShapeFeature#canResizeShape(org.eclipse.graphiti.features.context.IResizeShapeContext)
+     */
     @Override
     public boolean canResizeShape(IResizeShapeContext context) {
         boolean canResize = super.canResizeShape(context);

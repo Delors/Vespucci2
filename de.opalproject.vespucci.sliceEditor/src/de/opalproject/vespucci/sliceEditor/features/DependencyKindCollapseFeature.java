@@ -44,22 +44,40 @@ import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.platform.IPlatformImageConstants;
 
+/**
+ * Feature to toggle visibility of constraint-kind labels displaying "ALL". 
+ * 
+ * @author marius
+ *
+ */
 public class DependencyKindCollapseFeature extends AbstractCustomFeature {
 
+	/**
+	 * @param fp
+	 */
 	public DependencyKindCollapseFeature(IFeatureProvider fp) {
 		super(fp);
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.features.impl.AbstractFeature#getName()
+	 */
 	@Override
 	public String getName() {
 		return "Hide \"ALL\" Constraint-Labels";
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.features.custom.AbstractCustomFeature#getDescription()
+	 */
 	@Override
 	public String getDescription() {
 		return "Hides all constraint-kind text labels displaying \"ALL\"";
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.features.custom.AbstractCustomFeature#canExecute(org.eclipse.graphiti.features.context.ICustomContext)
+	 */
 	@Override
 	public boolean canExecute(ICustomContext context) {
 		PictogramElement[] pes = context.getPictogramElements();
@@ -71,11 +89,17 @@ public class DependencyKindCollapseFeature extends AbstractCustomFeature {
 		return false;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.features.custom.AbstractCustomFeature#getImageId()
+	 */
 	@Override
 	public String getImageId() {
 		return IPlatformImageConstants.IMG_EDIT_COLLAPSE;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.features.custom.ICustomFeature#execute(org.eclipse.graphiti.features.context.ICustomContext)
+	 */
 	@Override
 	public void execute(ICustomContext context) {
 		PictogramElement pictogramElements[] = context.getPictogramElements();

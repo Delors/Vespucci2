@@ -47,24 +47,43 @@ import org.eclipse.ui.PlatformUI;
 
 import de.opalproject.vespucci.datamodel.Constraint;
 
+/**
+ * This features allows to change the value of a constraintkind.
+ * Upon execution a popup-window opens to enter the new value as a string.
+ * 
+ * @author marius
+ *
+ */
 public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 
 	private boolean hasDoneChanges = false;
 
+	/**
+	 * @param fp
+	 */
 	public ChangeConstraintDependencyKind(IFeatureProvider fp) {
 		super(fp);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.features.impl.AbstractFeature#getName()
+	 */
 	@Override
 	public String getName() {
 		return "Change Dependency Kind";
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.features.custom.AbstractCustomFeature#getDescription()
+	 */
 	@Override
 	public String getDescription() {
 		return "Change the dependency kind of a constraint";
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.features.custom.AbstractCustomFeature#canExecute(org.eclipse.graphiti.features.context.ICustomContext)
+	 */
 	@Override
 	public boolean canExecute(ICustomContext context) {
 		// allow rename if exactly one pictogram element
@@ -86,6 +105,9 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 		return ret;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.features.custom.ICustomFeature#execute(org.eclipse.graphiti.features.context.ICustomContext)
+	 */
 	@Override
 	public void execute(ICustomContext context) {
 		PictogramElement[] pes = context.getPictogramElements();
@@ -132,6 +154,9 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.features.impl.AbstractFeature#hasDoneChanges()
+	 */
 	@Override
 	public boolean hasDoneChanges() {
 		return this.hasDoneChanges;

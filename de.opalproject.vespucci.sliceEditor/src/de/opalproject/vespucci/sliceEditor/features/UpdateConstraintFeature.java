@@ -43,16 +43,31 @@ import org.eclipse.graphiti.mm.pictograms.Connection;
 import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
 import de.opalproject.vespucci.datamodel.Constraint;
 
+/**
+ * This feature updates constraint-kind labels if changes have been made.
+ * 
+ * @author Marius
+ *
+ */
 public class UpdateConstraintFeature extends AbstractUpdateFeature {
 
+	/**
+	 * @param fp
+	 */
 	public UpdateConstraintFeature(IFeatureProvider fp) {
 		super(fp);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.func.IUpdate#canUpdate(org.eclipse.graphiti.features.context.IUpdateContext)
+	 */
 	public boolean canUpdate(IUpdateContext context) {
 		return (context.getPictogramElement() instanceof ConnectionDecorator);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.func.IUpdate#updateNeeded(org.eclipse.graphiti.features.context.IUpdateContext)
+	 */
 	public IReason updateNeeded(IUpdateContext context) {
 		// retrieve constraint kind
 		String constraintKind = null;
@@ -93,6 +108,9 @@ public class UpdateConstraintFeature extends AbstractUpdateFeature {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.func.IUpdate#update(org.eclipse.graphiti.features.context.IUpdateContext)
+	 */
 	public boolean update(IUpdateContext context) {
 		// retrieve constraint kind
 		ConnectionDecorator cd = null;
@@ -110,16 +128,24 @@ public class UpdateConstraintFeature extends AbstractUpdateFeature {
 		}
 
 		// Set constraintKind pictogram model
+		// case cd is the actual constraint-kind label
 		if (cd.getGraphicsAlgorithm() instanceof Text) {
 			Text text = (Text) cd.getGraphicsAlgorithm();
 			text.setValue(businessValue);
+			if (!cd.isVisible()) {
+				cd.setVisible(true);
+			}
 			return true;
 		} else {
+			// otherwise look for the constraint-kind label
 			for (ConnectionDecorator condec : connection
 					.getConnectionDecorators()) {
 				if (condec.getGraphicsAlgorithm() instanceof Text) {
 					Text text = (Text) condec.getGraphicsAlgorithm();
 					text.setValue(businessValue);
+					if (!condec.isVisible()) {
+						condec.setVisible(true);
+					}
 					return true;
 				}
 			}

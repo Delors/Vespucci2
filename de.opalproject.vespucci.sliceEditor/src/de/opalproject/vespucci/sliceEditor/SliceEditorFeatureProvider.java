@@ -83,16 +83,29 @@ import de.opalproject.vespucci.sliceEditor.features.constraints.CreateLocalIncom
 import de.opalproject.vespucci.sliceEditor.features.constraints.CreateLocalOutgoingConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.constraints.CreateNotAllowedConstraintFeature;
 
+/**
+ * @author marius
+ *
+ */
 public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 
+	/**
+	 * @param dtp
+	 */
 	public SliceEditorFeatureProvider(IDiagramTypeProvider dtp) {
 		super(dtp);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.ui.features.DefaultFeatureProvider#getDeleteFeature(org.eclipse.graphiti.features.context.IDeleteContext)
+	 */
 	public IDeleteFeature getDeleteFeature(IDeleteContext context) {
 		return null;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.features.impl.AbstractFeatureProvider#getAddFeature(org.eclipse.graphiti.features.context.IAddContext)
+	 */
 	@Override
 	public IAddFeature getAddFeature(IAddContext context) {
 		// is object for add request a EObject?
@@ -124,11 +137,17 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 		return super.getAddFeature(context);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.features.impl.AbstractFeatureProvider#getCreateFeatures()
+	 */
 	@Override
 	public ICreateFeature[] getCreateFeatures() {
 		return new ICreateFeature[] { new CreateEmptyEnsembleFeature(this) };
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.features.impl.AbstractFeatureProvider#getLayoutFeature(org.eclipse.graphiti.features.context.ILayoutContext)
+	 */
 	@Override
 	public ILayoutFeature getLayoutFeature(ILayoutContext context) {
 		PictogramElement pictogramElement = context.getPictogramElement();
@@ -139,6 +158,9 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 		return super.getLayoutFeature(context);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.features.impl.AbstractFeatureProvider#getCreateConnectionFeatures()
+	 */
 	@Override
 	public ICreateConnectionFeature[] getCreateConnectionFeatures() {
 		return new ICreateConnectionFeature[] {
@@ -150,6 +172,9 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 				new CreateNotAllowedConstraintFeature(this) };
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.ui.features.DefaultFeatureProvider#getUpdateFeature(org.eclipse.graphiti.features.context.IUpdateContext)
+	 */
 	@Override
 	public IUpdateFeature getUpdateFeature(IUpdateContext context) {
 		PictogramElement pictogramElement = context.getPictogramElement();
@@ -171,6 +196,9 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 		return super.getUpdateFeature(context);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.ui.features.DefaultFeatureProvider#getCustomFeatures(org.eclipse.graphiti.features.context.ICustomContext)
+	 */
 	@Override
 	public ICustomFeature[] getCustomFeatures(ICustomContext context) {
 		return new ICustomFeature[] 
@@ -178,6 +206,9 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 					 new CollapseFeature(this), new DependencyKindCollapseFeature(this)};
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.features.impl.AbstractFeatureProvider#getDirectEditingFeature(org.eclipse.graphiti.features.context.IDirectEditingContext)
+	 */
 	@Override
 	public IDirectEditingFeature getDirectEditingFeature(
 			IDirectEditingContext context) {
@@ -189,6 +220,9 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 		return super.getDirectEditingFeature(context);
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.ui.features.DefaultFeatureProvider#getResizeShapeFeature(org.eclipse.graphiti.features.context.IResizeShapeContext)
+	 */
 	@Override
 	public IResizeShapeFeature getResizeShapeFeature(
 	        IResizeShapeContext context) {
