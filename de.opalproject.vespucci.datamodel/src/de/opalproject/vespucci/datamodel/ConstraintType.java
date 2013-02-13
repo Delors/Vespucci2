@@ -43,32 +43,34 @@ import org.eclipse.emf.common.util.Enumerator;
  * <!-- begin-user-doc --> A representation of the literals of the enumeration '
  * <em><b>Constraint Type</b></em>', and utility methods for working with them.
  * <!-- end-user-doc -->
+ * 
  * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getConstraintType()
  * @model
  * @generated
  */
 public enum ConstraintType implements Enumerator {
 	/**
-	 * The '<em><b>Undefined</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Undefined</b></em>' literal object. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #UNDEFINED_VALUE
 	 * @generated
 	 * @ordered
 	 */
 	UNDEFINED(0, "Undefined", "Undefined"), /**
-											 * The '<em><b>Not Allowed</b></em>' literal object.
-											 * <!-- begin-user-doc --> <!-- end-user-doc -->
-											 * @see #NOT_ALLOWED_VALUE
-											 * @generated
-											 * @ordered
-											 */
+	 * The '<em><b>Not Allowed</b></em>'
+	 * literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #NOT_ALLOWED_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	NOT_ALLOWED(1, "NotAllowed", "NotAllowed"),
 
 	/**
-	 * The '<em><b>Global Incoming</b></em>' literal object.
-	 * <!-- begin-user-doc
+	 * The '<em><b>Global Incoming</b></em>' literal object. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #GLOBAL_INCOMING_VALUE
 	 * @generated
 	 * @ordered
@@ -76,9 +78,9 @@ public enum ConstraintType implements Enumerator {
 	GLOBAL_INCOMING(2, "GlobalIncoming", "GlobalIncoming"),
 
 	/**
-	 * The '<em><b>Local Incoming</b></em>' literal object.
-	 * <!-- begin-user-doc
+	 * The '<em><b>Local Incoming</b></em>' literal object. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #LOCAL_INCOMING_VALUE
 	 * @generated
 	 * @ordered
@@ -86,9 +88,9 @@ public enum ConstraintType implements Enumerator {
 	LOCAL_INCOMING(3, "LocalIncoming", "LocalIncoming"),
 
 	/**
-	 * The '<em><b>Global Outgoing</b></em>' literal object.
-	 * <!-- begin-user-doc
+	 * The '<em><b>Global Outgoing</b></em>' literal object. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #GLOBAL_OUTGOING_VALUE
 	 * @generated
 	 * @ordered
@@ -96,9 +98,9 @@ public enum ConstraintType implements Enumerator {
 	GLOBAL_OUTGOING(4, "GlobalOutgoing", "GlobalOutgoing"),
 
 	/**
-	 * The '<em><b>Local Outgoing</b></em>' literal object.
-	 * <!-- begin-user-doc
+	 * The '<em><b>Local Outgoing</b></em>' literal object. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #LOCAL_OUTGOING_VALUE
 	 * @generated
 	 * @ordered
@@ -106,9 +108,9 @@ public enum ConstraintType implements Enumerator {
 	LOCAL_OUTGOING(5, "LocalOutgoing", "LocalOutgoing"),
 
 	/**
-	 * The '<em><b>Expected</b></em>' literal object.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Expected</b></em>' literal object. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #EXPECTED_VALUE
 	 * @generated
 	 * @ordered
@@ -116,13 +118,13 @@ public enum ConstraintType implements Enumerator {
 	EXPECTED(6, "Expected", "Expected");
 
 	/**
-	 * The '<em><b>Undefined</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Undefined</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Undefined</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #UNDEFINED
 	 * @model name="Undefined"
 	 * @generated
@@ -131,13 +133,13 @@ public enum ConstraintType implements Enumerator {
 	public static final int UNDEFINED_VALUE = 0;
 
 	/**
-	 * The '<em><b>Not Allowed</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Not Allowed</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Not Allowed</b></em>' literal object isn't
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #NOT_ALLOWED
 	 * @model name="NotAllowed"
 	 * @generated
@@ -146,14 +148,14 @@ public enum ConstraintType implements Enumerator {
 	public static final int NOT_ALLOWED_VALUE = 1;
 
 	/**
-	 * The '<em><b>Global Incoming</b></em>' literal value.
-	 * <!-- begin-user-doc
+	 * The '<em><b>Global Incoming</b></em>' literal value. <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of '<em><b>Global Incoming</b></em>' literal object isn't
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #GLOBAL_INCOMING
 	 * @model name="GlobalIncoming"
 	 * @generated
@@ -162,14 +164,14 @@ public enum ConstraintType implements Enumerator {
 	public static final int GLOBAL_INCOMING_VALUE = 2;
 
 	/**
-	 * The '<em><b>Local Incoming</b></em>' literal value.
-	 * <!-- begin-user-doc
+	 * The '<em><b>Local Incoming</b></em>' literal value. <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of '<em><b>Local Incoming</b></em>' literal object isn't
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #LOCAL_INCOMING
 	 * @model name="LocalIncoming"
 	 * @generated
@@ -178,14 +180,14 @@ public enum ConstraintType implements Enumerator {
 	public static final int LOCAL_INCOMING_VALUE = 3;
 
 	/**
-	 * The '<em><b>Global Outgoing</b></em>' literal value.
-	 * <!-- begin-user-doc
+	 * The '<em><b>Global Outgoing</b></em>' literal value. <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of '<em><b>Global Outgoing</b></em>' literal object isn't
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #GLOBAL_OUTGOING
 	 * @model name="GlobalOutgoing"
 	 * @generated
@@ -194,14 +196,14 @@ public enum ConstraintType implements Enumerator {
 	public static final int GLOBAL_OUTGOING_VALUE = 4;
 
 	/**
-	 * The '<em><b>Local Outgoing</b></em>' literal value.
-	 * <!-- begin-user-doc
+	 * The '<em><b>Local Outgoing</b></em>' literal value. <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of '<em><b>Local Outgoing</b></em>' literal object isn't
 	 * clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #LOCAL_OUTGOING
 	 * @model name="LocalOutgoing"
 	 * @generated
@@ -210,13 +212,13 @@ public enum ConstraintType implements Enumerator {
 	public static final int LOCAL_OUTGOING_VALUE = 5;
 
 	/**
-	 * The '<em><b>Expected</b></em>' literal value.
-	 * <!-- begin-user-doc -->
+	 * The '<em><b>Expected</b></em>' literal value. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of '<em><b>Expected</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #EXPECTED
 	 * @model name="Expected"
 	 * @generated
@@ -235,16 +237,18 @@ public enum ConstraintType implements Enumerator {
 			GLOBAL_OUTGOING, LOCAL_OUTGOING, EXPECTED, };
 
 	/**
-	 * A public read-only list of all the '<em><b>Constraint Type</b></em>' enumerators.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * A public read-only list of all the '<em><b>Constraint Type</b></em>'
+	 * enumerators. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static final List<ConstraintType> VALUES = Collections
 			.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Constraint Type</b></em>' literal with the specified literal value.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the '<em><b>Constraint Type</b></em>' literal with the specified
+	 * literal value. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static ConstraintType get(String literal) {
@@ -258,8 +262,9 @@ public enum ConstraintType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Constraint Type</b></em>' literal with the specified name.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the '<em><b>Constraint Type</b></em>' literal with the specified
+	 * name. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static ConstraintType getByName(String name) {
@@ -273,8 +278,9 @@ public enum ConstraintType implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Constraint Type</b></em>' literal with the specified integer value.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the '<em><b>Constraint Type</b></em>' literal with the specified
+	 * integer value. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static ConstraintType get(int value) {
@@ -299,26 +305,29 @@ public enum ConstraintType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final int value;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String name;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private final String literal;
 
 	/**
-	 * Only this class can construct instances.
-	 * <!-- begin-user-doc --> <!--
+	 * Only this class can construct instances. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private ConstraintType(int value, String name, String literal) {
@@ -329,6 +338,7 @@ public enum ConstraintType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getValue() {
@@ -337,6 +347,7 @@ public enum ConstraintType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -345,6 +356,7 @@ public enum ConstraintType implements Enumerator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getLiteral() {
@@ -352,8 +364,9 @@ public enum ConstraintType implements Enumerator {
 	}
 
 	/**
-	 * Returns the literal value of the enumerator, which is its string representation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the literal value of the enumerator, which is its string
+	 * representation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

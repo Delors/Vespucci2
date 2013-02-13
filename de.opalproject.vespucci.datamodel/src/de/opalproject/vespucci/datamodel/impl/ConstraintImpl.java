@@ -52,20 +52,27 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.opalproject.vespucci.datamodel.impl.ConstraintImpl#getConstraintType <em>Constraint Type</em>}</li>
- *   <li>{@link de.opalproject.vespucci.datamodel.impl.ConstraintImpl#getDependencyKind <em>Dependency Kind</em>}</li>
- *   <li>{@link de.opalproject.vespucci.datamodel.impl.ConstraintImpl#getSource <em>Source</em>}</li>
- *   <li>{@link de.opalproject.vespucci.datamodel.impl.ConstraintImpl#getTarget <em>Target</em>}</li>
+ * <li>
+ * {@link de.opalproject.vespucci.datamodel.impl.ConstraintImpl#getConstraintType
+ * <em>Constraint Type</em>}</li>
+ * <li>
+ * {@link de.opalproject.vespucci.datamodel.impl.ConstraintImpl#getDependencyKind
+ * <em>Dependency Kind</em>}</li>
+ * <li>{@link de.opalproject.vespucci.datamodel.impl.ConstraintImpl#getSource
+ * <em>Source</em>}</li>
+ * <li>{@link de.opalproject.vespucci.datamodel.impl.ConstraintImpl#getTarget
+ * <em>Target</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ConstraintImpl extends EObjectImpl implements Constraint {
 	/**
-	 * The default value of the '{@link #getConstraintType() <em>Constraint Type</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getConstraintType()
+	 * <em>Constraint Type</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getConstraintType()
 	 * @generated
 	 * @ordered
@@ -73,9 +80,10 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 	protected static final ConstraintType CONSTRAINT_TYPE_EDEFAULT = ConstraintType.UNDEFINED;
 
 	/**
-	 * The cached value of the '{@link #getConstraintType() <em>Constraint Type</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getConstraintType()
+	 * <em>Constraint Type</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getConstraintType()
 	 * @generated
 	 * @ordered
@@ -83,9 +91,10 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 	protected ConstraintType constraintType = CONSTRAINT_TYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDependencyKind() <em>Dependency Kind</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getDependencyKind()
+	 * <em>Dependency Kind</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getDependencyKind()
 	 * @generated
 	 * @ordered
@@ -93,9 +102,10 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 	protected static final String DEPENDENCY_KIND_EDEFAULT = "ALL";
 
 	/**
-	 * The cached value of the '{@link #getDependencyKind() <em>Dependency Kind</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getDependencyKind()
+	 * <em>Dependency Kind</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getDependencyKind()
 	 * @generated
 	 * @ordered
@@ -105,6 +115,7 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
@@ -114,6 +125,7 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -122,6 +134,7 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ConstraintImpl() {
@@ -130,6 +143,7 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -139,6 +153,7 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ConstraintType getConstraintType() {
@@ -147,6 +162,7 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setConstraintType(ConstraintType newConstraintType) {
@@ -161,6 +177,7 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getDependencyKind() {
@@ -169,6 +186,7 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDependencyKind(String newDependencyKind) {
@@ -182,6 +200,7 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Ensemble getSource() {
@@ -200,6 +219,7 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Ensemble basicGetSource() {
@@ -208,6 +228,7 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSource(Ensemble newSource) {
@@ -220,6 +241,7 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Ensemble getTarget() {
@@ -238,6 +260,7 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Ensemble basicGetTarget() {
@@ -246,6 +269,7 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTarget(Ensemble newTarget) {
@@ -258,6 +282,7 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -281,6 +306,7 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -304,6 +330,7 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -327,6 +354,7 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -347,6 +375,7 @@ public class ConstraintImpl extends EObjectImpl implements Constraint {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

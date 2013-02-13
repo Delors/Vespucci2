@@ -46,21 +46,22 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
  * an adapter <code>createXXX</code> method for each class of the model. <!--
  * end-user-doc -->
+ * 
  * @see de.opalproject.vespucci.datamodel.DatamodelPackage
  * @generated
  */
 public class DatamodelAdapterFactory extends AdapterFactoryImpl {
 	/**
-	 * The cached model package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached model package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected static DatamodelPackage modelPackage;
 
 	/**
-	 * Creates an instance of the adapter factory.
-	 * <!-- begin-user-doc --> <!--
+	 * Creates an instance of the adapter factory. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public DatamodelAdapterFactory() {
@@ -74,6 +75,7 @@ public class DatamodelAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- begin-user-doc --> This implementation returns <code>true</code> if
 	 * the object is either the model's package or is an instance object of the
 	 * model. <!-- end-user-doc -->
+	 * 
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
@@ -142,10 +144,11 @@ public class DatamodelAdapterFactory extends AdapterFactoryImpl {
 	};
 
 	/**
-	 * Creates an adapter for the <code>target</code>.
-	 * <!-- begin-user-doc -->
+	 * Creates an adapter for the <code>target</code>. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param target the object to adapt.
+	 * 
+	 * @param target
+	 *            the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
@@ -155,10 +158,12 @@ public class DatamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.opalproject.vespucci.datamodel.Ensemble <em>Ensemble</em>}'.
+	 * Creates a new adapter for an object of class '
+	 * {@link de.opalproject.vespucci.datamodel.Ensemble <em>Ensemble</em>}'.
 	 * <!-- begin-user-doc --> This default implementation returns null so that
 	 * we can easily ignore cases; it's useful to ignore a case when inheritance
 	 * will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see de.opalproject.vespucci.datamodel.Ensemble
 	 * @generated
@@ -168,10 +173,12 @@ public class DatamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.opalproject.vespucci.datamodel.Constraint <em>Constraint</em>}'.
-	 * <!-- begin-user-doc --> This default implementation returns null so
+	 * Creates a new adapter for an object of class '
+	 * {@link de.opalproject.vespucci.datamodel.Constraint <em>Constraint</em>}
+	 * '. <!-- begin-user-doc --> This default implementation returns null so
 	 * that we can easily ignore cases; it's useful to ignore a case when
 	 * inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see de.opalproject.vespucci.datamodel.Constraint
 	 * @generated
@@ -181,11 +188,13 @@ public class DatamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.opalproject.vespucci.datamodel.SliceRepository <em>Slice Repository</em>}'.
-	 * <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '
+	 * {@link de.opalproject.vespucci.datamodel.SliceRepository
+	 * <em>Slice Repository</em>}'. <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see de.opalproject.vespucci.datamodel.SliceRepository
 	 * @generated
@@ -210,11 +219,13 @@ public class DatamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.opalproject.vespucci.datamodel.EnsembleRepository <em>Ensemble Repository</em>}'.
-	 * <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '
+	 * {@link de.opalproject.vespucci.datamodel.EnsembleRepository
+	 * <em>Ensemble Repository</em>}'. <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see de.opalproject.vespucci.datamodel.EnsembleRepository
 	 * @generated
@@ -224,10 +235,12 @@ public class DatamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.opalproject.vespucci.datamodel.TreeNode <em>Tree Node</em>}'.
+	 * Creates a new adapter for an object of class '
+	 * {@link de.opalproject.vespucci.datamodel.TreeNode <em>Tree Node</em>}'.
 	 * <!-- begin-user-doc --> This default implementation returns null so that
 	 * we can easily ignore cases; it's useful to ignore a case when inheritance
 	 * will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see de.opalproject.vespucci.datamodel.TreeNode
 	 * @generated
@@ -237,11 +250,13 @@ public class DatamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.opalproject.vespucci.datamodel.EmptyEnsemble <em>Empty Ensemble</em>}'.
-	 * <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '
+	 * {@link de.opalproject.vespucci.datamodel.EmptyEnsemble
+	 * <em>Empty Ensemble</em>}'. <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see de.opalproject.vespucci.datamodel.EmptyEnsemble
 	 * @generated
@@ -251,11 +266,13 @@ public class DatamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.opalproject.vespucci.datamodel.ConcreteEnsemble <em>Concrete Ensemble</em>}'.
-	 * <!-- begin-user-doc --> This default
+	 * Creates a new adapter for an object of class '
+	 * {@link de.opalproject.vespucci.datamodel.ConcreteEnsemble
+	 * <em>Concrete Ensemble</em>}'. <!-- begin-user-doc --> This default
 	 * implementation returns null so that we can easily ignore cases; it's
 	 * useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @see de.opalproject.vespucci.datamodel.ConcreteEnsemble
 	 * @generated
@@ -265,9 +282,9 @@ public class DatamodelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for the default case.
-	 * <!-- begin-user-doc --> This
+	 * Creates a new adapter for the default case. <!-- begin-user-doc --> This
 	 * default implementation returns null. <!-- end-user-doc -->
+	 * 
 	 * @return the new adapter.
 	 * @generated
 	 */

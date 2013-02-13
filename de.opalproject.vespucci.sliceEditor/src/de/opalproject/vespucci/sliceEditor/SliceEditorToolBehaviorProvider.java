@@ -102,7 +102,7 @@ public class SliceEditorToolBehaviorProvider extends
 			}
 
 			// check validator
-			DatamodelValidator.validateObject(slice);
+//			DatamodelValidator.validateObject(slice);
 			
 			
 			// retrieve possible graphical infringements

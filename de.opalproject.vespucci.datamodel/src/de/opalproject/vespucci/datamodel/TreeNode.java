@@ -40,29 +40,33 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Tree Node</b></em>'. <!-- end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.opalproject.vespucci.datamodel.TreeNode#getParent <em>Parent</em>}</li>
- *   <li>{@link de.opalproject.vespucci.datamodel.TreeNode#getChildren <em>Children</em>}</li>
+ * <li>{@link de.opalproject.vespucci.datamodel.TreeNode#getParent <em>Parent
+ * </em>}</li>
+ * <li>{@link de.opalproject.vespucci.datamodel.TreeNode#getChildren <em>
+ * Children</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getTreeNode()
  * @model interface="true" abstract="true"
  * @generated
  */
 public interface TreeNode extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Parent</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link de.opalproject.vespucci.datamodel.TreeNode#getChildren <em>Children</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Parent</b></em>' container reference. It
+	 * is bidirectional and its opposite is '
+	 * {@link de.opalproject.vespucci.datamodel.TreeNode#getChildren
+	 * <em>Children</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parent</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Parent</em>' container reference.
 	 * @see #setParent(TreeNode)
 	 * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getTreeNode_Parent()
@@ -73,25 +77,31 @@ public interface TreeNode extends EObject {
 	TreeNode getParent();
 
 	/**
-	 * Sets the value of the '{@link de.opalproject.vespucci.datamodel.TreeNode#getParent <em>Parent</em>}' container reference.
-	 * <!-- begin-user-doc --> <!--
+	 * Sets the value of the '
+	 * {@link de.opalproject.vespucci.datamodel.TreeNode#getParent
+	 * <em>Parent</em>}' container reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * @param value the new value of the '<em>Parent</em>' container reference.
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Parent</em>' container reference.
 	 * @see #getParent()
 	 * @generated
 	 */
 	void setParent(TreeNode value);
 
 	/**
-	 * Returns the value of the '<em><b>Children</b></em>' containment reference list.
-	 * The list contents are of type {@link de.opalproject.vespucci.datamodel.TreeNode}.
-	 * It is bidirectional and its opposite is '{@link de.opalproject.vespucci.datamodel.TreeNode#getParent <em>Parent</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Children</b></em>' containment reference
+	 * list. The list contents are of type
+	 * {@link de.opalproject.vespucci.datamodel.TreeNode}. It is bidirectional
+	 * and its opposite is '
+	 * {@link de.opalproject.vespucci.datamodel.TreeNode#getParent
+	 * <em>Parent</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Children</em>' containment reference list
 	 * isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Children</em>' containment reference list.
 	 * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getTreeNode_Children()
 	 * @see de.opalproject.vespucci.datamodel.TreeNode#getParent

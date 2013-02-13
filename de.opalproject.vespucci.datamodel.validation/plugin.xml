@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.emf.validation.constraintProviders">
+      <category
+            name="%VespucciConstraintsCategory"
+            id="de.opalproject.vespucci.validation.constraints"/>
+      <constraintProvider
+            cache="true"
+            >
+         <package namespaceUri="http://de/opalproject/vespucci/datamodel/1.0"/>
+         <constraints categories="de.opalproject.vespucci.validation.constraints">
+            <constraint
+                  lang="Java"
+                  class="de.opalproject.vespucci.datamodel.validation.constraints.NonEmptyNamesConstraint"
+                  severity="WARNING"
+                  mode="Live"
+                  name="NonEmptyNameConstraint"
+                  id="de.opalproject.vespucci.validation.constraints.NameNotEmpty"
+                  statusCode="1">
+               <description>
+                  NonEmptyNameConstraint.description
+               </description>
+               <message>
+                  NonEmptyNameConstraint.message
+               </message>
+               <target class="Ensemble">
+                  <event name="Set">
+                     <feature name="name"/>
+                  </event>
+                  <event name="Unset">
+                     <feature name="name"/>
+                  </event>
+               </target>
+               <target class="Slice">
+                  <event name="Set">
+                     <feature name="name"/>
+                  </event>
+                  <event name="Unset">
+                     <feature name="name"/>
+                  </event>
+               </target>
+            </constraint>
+         </constraints>
+      </constraintProvider>
+   </extension>
+
+   <extension
+         point="org.eclipse.emf.validation.constraintBindings">
+      <clientContext
+            default="false"
+            id="de.opalproject.vespucci.datamodel.validation.context">
+         <selector class="de.opalproject.vespucci.datamodel.validation.constraints.ValidationDelegateClientSelector"/>
+      </clientContext>
+      <binding
+            context="de.opalproject.vespucci.datamodel.validation.context"
+            category="de.opalproject.vespucci.validation.constraints"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.emf.validation.validationListeners">
+      <listener class="de.opalproject.vespucci.datamodel.validation.listeners.ValidationListener">
+         <clientContext id="de.opalproject.vespucci.datamodel.validation.context"/>
+      </listener>
+      <listener
+            class="de.opalproject.vespucci.datamodel.validation.listeners.ProblemsReporter">
+         <clientContext
+               id="de.opalproject.vespucci.datamodel.validation.context"></clientContext>
+      </listener>
+   </extension>
+
+   <extension
+         point="org.eclipse.emf.validation.ui.UIRegisteredClientContext">
+      <clientContext id="de.opalproject.vespucci.datamodel.validation.context"/>
+   </extension> 
+</plugin>
