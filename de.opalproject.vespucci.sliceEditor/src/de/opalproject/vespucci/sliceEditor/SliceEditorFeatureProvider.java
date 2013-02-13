@@ -69,7 +69,7 @@ import de.opalproject.vespucci.sliceEditor.features.ConstraintKindDirectEditFeat
 import de.opalproject.vespucci.sliceEditor.features.CreateEmptyEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.DependencyKindCollapseFeature;
 import de.opalproject.vespucci.sliceEditor.features.LayoutEnsembleFeature;
-import de.opalproject.vespucci.sliceEditor.features.RemoveEnsembleFeature;
+import de.opalproject.vespucci.sliceEditor.features.RemoveFeature;
 import de.opalproject.vespucci.sliceEditor.features.ResizeEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.UpdateConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.UpdateEnsembleFeature;
@@ -107,7 +107,7 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 	}
 	
 	public IRemoveFeature getRemoveFeature(IRemoveContext context) {
-		return new RemoveEnsembleFeature(this);
+		return new RemoveFeature(this);
 	}
 
 	/* (non-Javadoc)

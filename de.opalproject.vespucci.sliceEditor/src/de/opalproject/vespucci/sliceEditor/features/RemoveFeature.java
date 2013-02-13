@@ -1,6 +1,7 @@
 package de.opalproject.vespucci.sliceEditor.features;
 
 import org.eclipse.emf.common.command.Command;
+
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -11,12 +12,16 @@ import org.eclipse.graphiti.mm.pictograms.Connection;
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.Slice;
 
-public class RemoveEnsembleFeature extends DefaultRemoveFeature {
+/**
+ * @author Lars
+ *
+ */
+public class RemoveFeature extends DefaultRemoveFeature {
 
 	/**
 	 * @param fp
 	 */
-	public RemoveEnsembleFeature(IFeatureProvider fp) {
+	public RemoveFeature(IFeatureProvider fp) {
 		super(fp);
 	}
 
