@@ -74,6 +74,7 @@
    <editor
          class="de.opalproject.vespucci.sliceEditor.SliceDiagramEditor"
          default="false"
+         icon="res/Slice.gif"
          id="de.opalproject.vespucci.sliceEditor"
          name="Slice Editor">
    </editor>

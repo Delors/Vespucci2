@@ -11,5 +11,5 @@ public class SliceDiagramEditor extends DiagramEditor {
 	protected DefaultUpdateBehavior createUpdateBehavior() {
 		return new SliceUpdateBehavior(this);
 	}
-	
+
 }

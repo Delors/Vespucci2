@@ -41,7 +41,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 
-import de.opalproject.vespucci.datamodel.provider.DatamodelItemProviderAdapterFactory;
+import de.opalproject.vespucci.datamodel.provider.extension.DatamodelItemProviderAdapterFactoryExtension;
 
 /**
  * Creates a composed Factory of emf AdapterFactoryProvider including the
@@ -57,7 +57,7 @@ public final class ProjectAdapterFactoryProvider {
 	public final static List<AdapterFactory> createFactoryList() {
 		List<AdapterFactory> factories = new ArrayList<AdapterFactory>();
 		// Vespucci Datamodel Factory
-		factories.add(new DatamodelItemProviderAdapterFactory());
+		factories.add(new DatamodelItemProviderAdapterFactoryExtension());
 		// EMF default factories
 		factories.add(new ResourceItemProviderAdapterFactory());
 		factories.add(new ReflectiveItemProviderAdapterFactory());

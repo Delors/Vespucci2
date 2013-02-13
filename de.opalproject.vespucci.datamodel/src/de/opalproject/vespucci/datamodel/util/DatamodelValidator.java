@@ -29,18 +29,15 @@ import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
  */
 public class DatamodelValidator extends EObjectValidator {
 	/**
-	 * The cached model package <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached model package
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static final DatamodelValidator INSTANCE = new DatamodelValidator();
 
 	/**
-	 * A constant for the
-	 * {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of
-	 * diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes}
-	 * from this package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.emf.common.util.Diagnostic#getSource()
 	 * @see org.eclipse.emf.common.util.Diagnostic#getCode()
 	 * @generated
@@ -48,27 +45,25 @@ public class DatamodelValidator extends EObjectValidator {
 	public static final String DIAGNOSTIC_SOURCE = "de.opalproject.vespucci.datamodel";
 
 	/**
-	 * A constant with a fixed name that can be used as the base value for
-	 * additional hand written constants. <!-- begin-user-doc --> <!--
+	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
 
 	/**
-	 * A constant with a fixed name that can be used as the base value for
-	 * additional hand written constants in a derived class. <!-- begin-user-doc
+	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
 
 	/**
-	 * Creates an instance of the switch. <!-- begin-user-doc --> <!--
+	 * Creates an instance of the switch.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DatamodelValidator() {
@@ -76,9 +71,9 @@ public class DatamodelValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Returns the package of this validator switch. <!-- begin-user-doc -->
+	 * Returns the package of this validator switch.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -87,9 +82,8 @@ public class DatamodelValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Calls <code>validateXXX</code> for the corresponding classifier of the
-	 * model. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Calls <code>validateXXX</code> for the corresponding classifier of the model.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -128,7 +122,6 @@ public class DatamodelValidator extends EObjectValidator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean validateEnsemble(Ensemble ensemble,
@@ -138,7 +131,6 @@ public class DatamodelValidator extends EObjectValidator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean validateConstraint(Constraint constraint,
@@ -148,7 +140,6 @@ public class DatamodelValidator extends EObjectValidator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean validateSliceRepository(SliceRepository sliceRepository,
@@ -159,7 +150,6 @@ public class DatamodelValidator extends EObjectValidator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean validateSlice(Slice slice, DiagnosticChain diagnostics,
@@ -245,7 +235,6 @@ public class DatamodelValidator extends EObjectValidator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean validateEnsembleRepository(
@@ -257,7 +246,6 @@ public class DatamodelValidator extends EObjectValidator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean validateTreeNode(TreeNode treeNode,
@@ -267,7 +255,6 @@ public class DatamodelValidator extends EObjectValidator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean validateEmptyEnsemble(EmptyEnsemble emptyEnsemble,
@@ -278,7 +265,6 @@ public class DatamodelValidator extends EObjectValidator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean validateConcreteEnsemble(ConcreteEnsemble concreteEnsemble,
@@ -289,7 +275,6 @@ public class DatamodelValidator extends EObjectValidator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean validateConstraintType(ConstraintType constraintType,
@@ -299,7 +284,6 @@ public class DatamodelValidator extends EObjectValidator {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean validateEEnsemble(Object eEnsemble,
@@ -308,16 +292,14 @@ public class DatamodelValidator extends EObjectValidator {
 	}
 
 	/**
-	 * Returns the resource locator that will be used to fetch messages for this
-	 * validator's diagnostics. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
 		// TODO
-		// Specialize this to return a resource locator for messages specific to
-		// this validator.
+		// Specialize this to return a resource locator for messages specific to this validator.
 		// Ensure that you remove @generated or mark it @generated NOT
 		return super.getResourceLocator();
 	}
@@ -354,7 +336,7 @@ public class DatamodelValidator extends EObjectValidator {
 			return false;
 		}
 		// marker deletion if not needed anymore.
-		if(h.hasMarkers(eObject)){
+		if (h.hasMarkers(eObject)) {
 			System.out.println("Marker deletion triggerd");
 			h.deleteMarkers(eObject);
 		}
