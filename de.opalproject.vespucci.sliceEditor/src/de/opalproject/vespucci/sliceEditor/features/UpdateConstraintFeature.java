@@ -132,7 +132,7 @@ public class UpdateConstraintFeature extends AbstractUpdateFeature {
 		if (cd.getGraphicsAlgorithm() instanceof Text) {
 			Text text = (Text) cd.getGraphicsAlgorithm();
 			text.setValue(businessValue);
-			if (!cd.isVisible()) {
+			if (!cd.isVisible() && !(text.equals("ALL"))) {
 				cd.setVisible(true);
 			}
 			return true;
@@ -143,7 +143,7 @@ public class UpdateConstraintFeature extends AbstractUpdateFeature {
 				if (condec.getGraphicsAlgorithm() instanceof Text) {
 					Text text = (Text) condec.getGraphicsAlgorithm();
 					text.setValue(businessValue);
-					if (!condec.isVisible()) {
+					if (!condec.isVisible() && !(text.equals("ALL"))) {
 						condec.setVisible(true);
 					}
 					return true;
