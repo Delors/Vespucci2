@@ -59,15 +59,18 @@ public class NewEnsembleHandler extends AbstractEnsembleCommandHandler {
 	public Command getCommand(IStructuredSelection selection,
 			ExecutionEvent event) {
 		NewEnsembleWizard wizard = createAndOpenWizard(event);
-		Ensemble ensemble = createEnsemble(wizard);
+		if (wizard.getName() != null) {
+			Ensemble ensemble = createEnsemble(wizard);
 
-		EObject owner = getOwner(selection);
-		Object feature = DatamodelPackage.Literals.TREE_NODE__CHILDREN;
+			EObject owner = getOwner(selection);
+			Object feature = DatamodelPackage.Literals.TREE_NODE__CHILDREN;
 
-		Command add = AddCommand.create(getEditingDomain(), owner, feature,
-				ensemble);
+			Command add = AddCommand.create(getEditingDomain(), owner, feature,
+					ensemble);
 
-		return add;
+			return add;
+		}
+		return null;
 	}
 
 	/**
