@@ -33,11 +33,8 @@
  */
 package de.opalproject.vespucci.ui.editor;
 
-import java.io.IOException;
-import java.util.Collections;
-
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.SWT;
@@ -62,6 +59,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.ui.utils.EmfService;
 
 /**
  * Edits the properties of single Ensembles from the Ensemble Explorer
@@ -241,25 +239,20 @@ public class EnsembleEditor extends EditorPart {
 		final TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
 
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		Command saveCommand = new RecordingCommand(domain) {
 			protected void doExecute() {
-
-				final Resource r = ensemble.eResource();
-
 				// saving in our case means writing the data back into the
 				// original model
 				ensemble.setName(nameTextField.getText());
 				ensemble.setDerived(derivedCheckBox.getSelection());
 				ensemble.setDescription(descriptionTextField.getText());
 				ensemble.setQuery(queryTextField.getText());
-
-				try {
-					r.save(Collections.EMPTY_MAP);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
 			}
-		});
+		};
+
+		domain.getCommandStack().execute(saveCommand);
+
+		EmfService.save(domain);
 
 		// set the editor name, as the ensemble name may have changed
 		setPartName(ensemble.getName());
