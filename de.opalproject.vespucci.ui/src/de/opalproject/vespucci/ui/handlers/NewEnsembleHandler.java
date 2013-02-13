@@ -36,16 +36,10 @@ package de.opalproject.vespucci.ui.handlers;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
 
-import de.opalproject.vespucci.datamodel.DatamodelFactory;
-import de.opalproject.vespucci.datamodel.DatamodelPackage;
-import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.ui.wizards.NewEnsembleWizard;
 
 /**

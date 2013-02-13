@@ -33,13 +33,9 @@
  */
 package de.opalproject.vespucci.ui.dnd;
 
-import java.io.IOException;
-import java.util.Collections;
-
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.TreeSelection;
@@ -49,6 +45,7 @@ import org.eclipse.ui.navigator.CommonDropAdapter;
 import org.eclipse.ui.navigator.CommonDropAdapterAssistant;
 
 import de.opalproject.vespucci.datamodel.TreeNode;
+import de.opalproject.vespucci.ui.utils.EmfService;
 
 public class EnsembleDropAdapter extends CommonDropAdapterAssistant {
 
@@ -74,9 +71,6 @@ public class EnsembleDropAdapter extends CommonDropAdapterAssistant {
 		TreeSelection sourceTree = (TreeSelection) (aDropTargetEvent.data);
 		final TreeNode source = (TreeNode) sourceTree.getFirstElement();
 
-		final Resource r = target.eResource();
-		final Resource r2 = source.eResource();
-
 		Command command = new RecordingCommand(domain) {
 
 			@Override
@@ -84,17 +78,12 @@ public class EnsembleDropAdapter extends CommonDropAdapterAssistant {
 				source.getParent().getChildren().remove(source);
 				source.setParent(target);
 
-				try {
-					r.save(Collections.EMPTY_MAP);
-					r2.save(Collections.EMPTY_MAP);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-
+				// TODO Add validation call over all existing slices
 			}
 		};
 
 		domain.getCommandStack().execute(command);
+		EmfService.save(domain);
 
 		return new Status(IStatus.OK, "de.opalproject.vespucci.ui", "test");
 	}

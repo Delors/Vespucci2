@@ -119,11 +119,11 @@
                style="push" >
             <visibleWhen
                   checkEnabled="false">
-               <or>
+              
                   <reference
                         definitionId="de.opalproject.vespucci.ui.definitions.sliceRepository">
                   </reference>
-               </or>
+              
             </visibleWhen>
          </command>
          <command
@@ -247,11 +247,9 @@
             class="de.opalproject.vespucci.ui.handlers.NewSliceHandler"
             commandId="de.opalproject.vespucci.ui.edit.newSlice">
        <enabledWhen>
-            <or>
                <reference
                      definitionId="de.opalproject.vespucci.ui.definitions.sliceRepository">
                </reference>
-            </or>
          </enabledWhen>
       </handler>
       <handler
@@ -313,12 +311,18 @@
             id="de.opalproject.vespucci.ui.definitions.ensembleRepository">
          <with
                variable="selection">
+               <and>
+               <count
+                     value="1">
+               </count>
             <iterate
-                  operator="and">
+                     ifEmpty="false"
+                     operator="and">
                <instanceof
                      value="de.opalproject.vespucci.datamodel.EnsembleRepository">
                </instanceof>
             </iterate>
+            </and>
          </with>
       </definition>
       <definition id="de.opalproject.vespucci.ui.definitions.slices">
@@ -351,6 +355,7 @@
          <with
                variable="selection">
             <iterate
+           		 ifEmpty="false"
                   operator="and">
                <instanceof
                      value="de.opalproject.vespucci.datamodel.SliceRepository">

@@ -40,20 +40,28 @@ import org.eclipse.graphiti.ui.editor.DefaultMarkerBehavior;
 public class SliceEditorDiagramTypeProvider extends AbstractDiagramTypeProvider {
 
 	private IToolBehaviorProvider[] toolBehaviorProviders;
-	
+
 	public SliceEditorDiagramTypeProvider() {
 		super();
 		setFeatureProvider(new SliceEditorFeatureProvider(this));
-	}	 
-	
-	@Override
-    public IToolBehaviorProvider[] getAvailableToolBehaviorProviders() {
-        if (toolBehaviorProviders == null) {
-            toolBehaviorProviders =
-                new IToolBehaviorProvider[] { new SliceEditorToolBehaviorProvider(
-                    this) };
-        }
-        DefaultMarkerBehavior adf = null;
-        return toolBehaviorProviders;
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.graphiti.dt.AbstractDiagramTypeProvider#
+	 * getAvailableToolBehaviorProviders()
+	 */
+	@Override
+	public IToolBehaviorProvider[] getAvailableToolBehaviorProviders() {
+		if (toolBehaviorProviders == null) {
+			toolBehaviorProviders = new IToolBehaviorProvider[] { new SliceEditorToolBehaviorProvider(
+					this) };
+		}
+
+		// TODO possible problem source regarding markers.
+		DefaultMarkerBehavior adf = null;
+		return toolBehaviorProviders;
+	}
+
 }

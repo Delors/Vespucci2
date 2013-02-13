@@ -14,24 +14,44 @@ import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.datamodel.Slice;
 
+/**
+ * @author Lars
+ * @author Marius
+ *
+ */
 public class CreateEmptyEnsembleFeature extends AbstractCreateFeature {
 
+	/**
+	 * 
+	 */
 	private static final String TITLE = "Empty Ensemble";
 
+	/**
+	 * @param fp
+	 */
 	public CreateEmptyEnsembleFeature(IFeatureProvider fp) {
 		// set name and description of the creation feature
 		super(fp, "Empty Ensemble", "Create Empty Ensemble");
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.features.impl.AbstractCreateFeature#getCreateImageId()
+	 */
 	@Override
 	public String getCreateImageId() {
 		return "de.opalproject.vespucci.sliceEditor.emptyEnsemble";
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.func.ICreate#canCreate(org.eclipse.graphiti.features.context.ICreateContext)
+	 */
 	public boolean canCreate(ICreateContext context) {
 		return context.getTargetContainer() instanceof Diagram;
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.func.ICreate#create(org.eclipse.graphiti.features.context.ICreateContext)
+	 */
 	public Object[] create(ICreateContext context) {
 		EList<EObject> businessObjects = getDiagram().getLink()
 				.getBusinessObjects();

@@ -13,12 +13,25 @@ import org.eclipse.graphiti.mm.pictograms.Shape;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
 
+/**
+ * Feature to handle graphical updates of ensemble elements upon detected changes.
+ * 
+ * @author Lars
+ * @author Marius
+ *
+ */
 public class UpdateEnsembleFeature extends AbstractUpdateFeature {
  
+    /**
+     * @param fp
+     */
     public UpdateEnsembleFeature(IFeatureProvider fp) {
         super(fp);
     }
  
+    /* (non-Javadoc)
+     * @see org.eclipse.graphiti.func.IUpdate#canUpdate(org.eclipse.graphiti.features.context.IUpdateContext)
+     */
     public boolean canUpdate(IUpdateContext context) {
         // return true, if linked business object is a Ensemble
         Object bo =
@@ -26,6 +39,9 @@ public class UpdateEnsembleFeature extends AbstractUpdateFeature {
         return (bo instanceof Ensemble);
     }
  
+    /* (non-Javadoc)
+     * @see org.eclipse.graphiti.func.IUpdate#updateNeeded(org.eclipse.graphiti.features.context.IUpdateContext)
+     */
     public IReason updateNeeded(IUpdateContext context) {
         // retrieve name from pictogram model
         String pictogramName = null;
@@ -74,6 +90,9 @@ public class UpdateEnsembleFeature extends AbstractUpdateFeature {
         }
     }
  
+    /* (non-Javadoc)
+     * @see org.eclipse.graphiti.func.IUpdate#update(org.eclipse.graphiti.features.context.IUpdateContext)
+     */
     public boolean update(IUpdateContext context) {
         // retrieve name and description from business model
         String businessName = null;
