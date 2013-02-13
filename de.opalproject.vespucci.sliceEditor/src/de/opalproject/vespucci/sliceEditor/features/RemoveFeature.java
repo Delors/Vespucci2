@@ -13,9 +13,9 @@ import org.eclipse.graphiti.mm.pictograms.Connection;
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.Slice;
 
-public class RemoveEnsembleFeature extends DefaultRemoveFeature {
+public class RemoveFeature extends DefaultRemoveFeature {
 
-	public RemoveEnsembleFeature(IFeatureProvider fp) {
+	public RemoveFeature(IFeatureProvider fp) {
 		super(fp);
 		// TODO Auto-generated constructor stub
 	}
