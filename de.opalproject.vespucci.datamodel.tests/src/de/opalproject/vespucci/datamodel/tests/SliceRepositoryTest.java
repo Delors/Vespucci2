@@ -36,7 +36,6 @@ package de.opalproject.vespucci.datamodel.tests;
 import org.junit.Assert;
 import org.junit.Test;
 
-import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.DatamodelFactory;
 import de.opalproject.vespucci.datamodel.SliceRepository;
 

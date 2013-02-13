@@ -38,8 +38,6 @@ import org.junit.Test;
 
 import de.opalproject.vespucci.datamodel.DatamodelFactory;
 import de.opalproject.vespucci.datamodel.EmptyEnsemble;
-import de.opalproject.vespucci.datamodel.Ensemble;
-
 import junit.framework.TestCase;
 
 import junit.textui.TestRunner;

@@ -40,6 +40,7 @@ import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IDeleteFeature;
 import org.eclipse.graphiti.features.IDirectEditingFeature;
 import org.eclipse.graphiti.features.ILayoutFeature;
+import org.eclipse.graphiti.features.IRemoveFeature;
 import org.eclipse.graphiti.features.IResizeShapeFeature;
 import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.IAddContext;
@@ -47,6 +48,7 @@ import org.eclipse.graphiti.features.context.ICustomContext;
 import org.eclipse.graphiti.features.context.IDeleteContext;
 import org.eclipse.graphiti.features.context.IDirectEditingContext;
 import org.eclipse.graphiti.features.context.ILayoutContext;
+import org.eclipse.graphiti.features.context.IRemoveContext;
 import org.eclipse.graphiti.features.context.IResizeShapeContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.features.custom.ICustomFeature;
@@ -67,6 +69,7 @@ import de.opalproject.vespucci.sliceEditor.features.ConstraintKindDirectEditFeat
 import de.opalproject.vespucci.sliceEditor.features.CreateEmptyEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.DependencyKindCollapseFeature;
 import de.opalproject.vespucci.sliceEditor.features.LayoutEnsembleFeature;
+import de.opalproject.vespucci.sliceEditor.features.RemoveFeature;
 import de.opalproject.vespucci.sliceEditor.features.ResizeEnsembleFeature;
 import de.opalproject.vespucci.sliceEditor.features.UpdateConstraintFeature;
 import de.opalproject.vespucci.sliceEditor.features.UpdateEnsembleFeature;
@@ -101,6 +104,10 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 	 */
 	public IDeleteFeature getDeleteFeature(IDeleteContext context) {
 		return null;
+	}
+	
+	public IRemoveFeature getRemoveFeature(IRemoveContext context) {
+		return new RemoveFeature(this);
 	}
 
 	/* (non-Javadoc)
@@ -171,6 +178,8 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 				new CreateExpectedConstraintFeature(this),
 				new CreateNotAllowedConstraintFeature(this) };
 	}
+	
+	
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.graphiti.ui.features.DefaultFeatureProvider#getUpdateFeature(org.eclipse.graphiti.features.context.IUpdateContext)
