@@ -1,8 +1,6 @@
 package de.opalproject.vespucci.sliceEditor.features;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -15,15 +13,18 @@ import de.opalproject.vespucci.datamodel.Slice;
 
 public class RemoveEnsembleFeature extends DefaultRemoveFeature {
 
+	/**
+	 * @param fp
+	 */
 	public RemoveEnsembleFeature(IFeatureProvider fp) {
 		super(fp);
-		// TODO Auto-generated constructor stub
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipse.graphiti.features.impl.DefaultRemoveFeature#remove(org.eclipse.graphiti.features.context.IRemoveContext)
+	 */
 	@Override
 	public void remove(IRemoveContext context) {
-		// TODO Auto-generated method stub
-
 		Object buisnessObject = getBusinessObjectForPictogramElement(getDiagram());
 		if (buisnessObject instanceof Slice) {
 

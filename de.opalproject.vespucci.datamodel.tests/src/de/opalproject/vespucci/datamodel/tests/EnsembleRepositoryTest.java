@@ -37,7 +37,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import de.opalproject.vespucci.datamodel.DatamodelFactory;
-import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.datamodel.EnsembleRepository;
 
 import junit.framework.TestCase;

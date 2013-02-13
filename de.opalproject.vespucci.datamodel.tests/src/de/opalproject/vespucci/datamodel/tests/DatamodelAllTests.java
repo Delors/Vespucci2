@@ -33,8 +33,6 @@
  */
 package de.opalproject.vespucci.datamodel.tests;
 
-import org.junit.runners.Suite.SuiteClasses;
-
 import junit.framework.Test;
 import junit.framework.TestSuite;
 

@@ -34,10 +34,7 @@
 package de.opalproject.vespucci.sliceEditor;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;

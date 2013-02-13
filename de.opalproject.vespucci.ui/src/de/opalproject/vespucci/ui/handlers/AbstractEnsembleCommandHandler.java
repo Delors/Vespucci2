@@ -34,7 +34,6 @@
 package de.opalproject.vespucci.ui.handlers;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.IStructuredSelection;
 
 import de.opalproject.vespucci.datamodel.Ensemble;

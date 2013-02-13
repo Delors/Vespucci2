@@ -45,9 +45,6 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
-import de.opalproject.vespucci.datamodel.ConcreteEnsemble;
-import de.opalproject.vespucci.datamodel.Constraint;
-import de.opalproject.vespucci.datamodel.ConstraintType;
 import de.opalproject.vespucci.datamodel.DatamodelFactory;
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.util.DatamodelValidator;
@@ -55,12 +52,6 @@ import java.io.IOException;
 import java.net.URL;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
-import de.opalproject.vespucci.datamodel.EmptyEnsemble;
-import de.opalproject.vespucci.datamodel.Ensemble;
-import de.opalproject.vespucci.datamodel.EnsembleRepository;
-import de.opalproject.vespucci.datamodel.Slice;
-import de.opalproject.vespucci.datamodel.SliceRepository;
-import de.opalproject.vespucci.datamodel.TreeNode;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--

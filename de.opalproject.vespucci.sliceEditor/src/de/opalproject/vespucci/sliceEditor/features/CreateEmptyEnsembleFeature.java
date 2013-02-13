@@ -24,6 +24,7 @@ public class CreateEmptyEnsembleFeature extends AbstractCreateFeature {
 	/**
 	 * 
 	 */
+	@SuppressWarnings("unused")
 	private static final String TITLE = "Empty Ensemble";
 
 	/**
