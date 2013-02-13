@@ -33,7 +33,25 @@
  */
 package de.opalproject.vespucci.ui.wizards;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.Collections;
+
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.graphiti.services.Graphiti;
+import org.eclipse.graphiti.ui.editor.DiagramEditor;
+import org.eclipse.graphiti.ui.internal.services.GraphitiUiInternal;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
+
+import de.opalproject.vespucci.datamodel.DatamodelFactory;
+import de.opalproject.vespucci.datamodel.DatamodelPackage;
+import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.ui.utils.EmfService;
 
 /**
  * Wizard for creating new ensembles
@@ -49,9 +67,11 @@ public class NewEnsembleWizard extends Wizard {
 	private String name;
 	private String description;
 	private String query;
+	private IStructuredSelection selection;
 
-	public NewEnsembleWizard() {
+	public NewEnsembleWizard(IStructuredSelection iStructuredSelection) {
 		super();
+		this.selection = iStructuredSelection;
 		setNeedsProgressMonitor(true);
 	}
 
@@ -68,6 +88,46 @@ public class NewEnsembleWizard extends Wizard {
 		name = page.getEnsembleName();
 		description = page.getEnsembleDescription();
 		query = page2.getEnsembleQuery();
+
+		WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
+			@Override
+			protected void execute(IProgressMonitor progressMonitor) {
+				try {
+					
+					final TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+							.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
+
+					DatamodelFactory factory = DatamodelFactory.eINSTANCE;
+					Ensemble ensemble = factory.createConcreteEnsemble();
+					ensemble.setName(getName());
+					ensemble.setDescription(getDescription());
+					ensemble.setDerived(false);
+					ensemble.setQuery(getQuery());
+
+					EObject owner = (EObject) selection.getFirstElement();
+					Object feature = DatamodelPackage.Literals.TREE_NODE__CHILDREN;
+
+					Command add = AddCommand.create(domain, owner, feature,
+							ensemble);
+					domain.getCommandStack().execute(add);
+					EmfService.save(domain);
+
+				} catch (Exception exception) {
+				} finally {
+					progressMonitor.done();
+				}
+			}
+		};
+
+		try {
+			getContainer().run(false, false, operation);
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		return true;
 	}

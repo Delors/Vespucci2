@@ -33,13 +33,7 @@
  */
 package de.opalproject.vespucci.sliceEditor.features.constraints;
 
-import java.io.IOException;
-import java.util.Collections;
-
-import org.eclipse.core.internal.localstore.IsSynchronizedVisitor;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -48,8 +42,6 @@ import org.eclipse.graphiti.features.context.impl.AddConnectionContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateConnectionFeature;
 import org.eclipse.graphiti.mm.pictograms.Anchor;
 import org.eclipse.graphiti.mm.pictograms.Connection;
-import org.eclipse.graphiti.services.IGaService;
-import org.eclipse.graphiti.services.IPeCreateService;
 
 import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.ConstraintType;
@@ -196,33 +188,24 @@ public abstract class CreateConstraintFeature extends
 	private Constraint createConstraint(Ensemble source, Ensemble target) {
 		// create Constraint
 		DatamodelFactory factory = DatamodelFactory.eINSTANCE;
-		Constraint constraints = factory.createConstraint();
+		final Constraint constraints = factory.createConstraint();
 		constraints.setConstraintType(constraintType);
 		constraints.setSource(source);
 		constraints.setTarget(target);
 
-		EList<EObject> businessObjects = getDiagram().getLink()
-				.getBusinessObjects();
-		for (EObject eObject : businessObjects) {
-			if (eObject instanceof Slice) {
+		Object businessObject = getBusinessObjectForPictogramElement(getDiagram());
+			if (businessObject instanceof Slice) {
 
 				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 						.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
 
-				Slice slice = (Slice) eObject;
+				Slice slice = (Slice) businessObject;
 
 				Command addCommand = AddCommand.create(domain, slice,
 						DatamodelPackage.Literals.SLICE__CONSTRAINTS,
 						constraints);
 
 				domain.getCommandStack().execute(addCommand);
-
-				try {
-					slice.eResource().save(Collections.EMPTY_MAP);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
 		}
 
 		return constraints;

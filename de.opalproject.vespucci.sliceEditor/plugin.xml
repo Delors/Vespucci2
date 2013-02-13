@@ -69,4 +69,13 @@
          name="IDE.EDITOR_ID_ATTR">
    </attribute>
 </extension>
+<extension
+      point="org.eclipse.ui.editors">
+   <editor
+         class="de.opalproject.vespucci.sliceEditor.SliceDiagramEditor"
+         default="false"
+         id="de.opalproject.vespucci.sliceEditor"
+         name="Slice Editor">
+   </editor>
+</extension>
  </plugin>

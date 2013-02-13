@@ -34,18 +34,17 @@
 
 package de.opalproject.vespucci.ui.handlers;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.common.command.StrictCompoundCommand;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramLink;
@@ -59,6 +58,7 @@ import de.opalproject.vespucci.datamodel.DatamodelFactory;
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.Slice;
 import de.opalproject.vespucci.datamodel.SliceRepository;
+import de.opalproject.vespucci.ui.utils.EmfService;
 import de.opalproject.vespucci.ui.wizards.NewSliceWizard;
 
 /**
@@ -91,19 +91,15 @@ public class NewSliceHandler extends AbstractHandler {
 
 			// create new slice
 			DatamodelFactory factory = DatamodelFactory.eINSTANCE;
-			Slice slice = factory.createSlice();
+			final Slice slice = factory.createSlice();
 
 			// create new diagrams
-			Diagram dia = Graphiti.getPeCreateService().createDiagram(
+			final Diagram dia = Graphiti.getPeCreateService().createDiagram(
 					"sliceEditor", wiz.getName(), true);
 
-			// link diagram with slice
-			PictogramLink pl = PictogramsFactory.eINSTANCE
-					.createPictogramLink();
-			pl.getBusinessObjects().add(slice);
-			dia.setLink(pl);
-
-			// Add Diagram to xmi file. Needs to be a single Command
+			// Add Diagram to xmi file.
+			// Needs to be a single Command otherwise id would not exist to link
+			// later.
 			Command addCommand = new AddCommand(domain, sr.eResource()
 					.getContents(), dia);
 			domain.getCommandStack().execute(addCommand);
@@ -124,17 +120,27 @@ public class NewSliceHandler extends AbstractHandler {
 					DatamodelPackage.Literals.SLICE_REPOSITORY__SLICES, slice));
 
 			// Merge all commands into a single one
-			Command commmand = new CompoundCommand(commandList);
+			Command commmand = new StrictCompoundCommand(commandList);
 
 			// execute the command
 			domain.getCommandStack().execute(commmand);
 
+			// link diagram with slice
+			// needs to be a seperate command otherwise it would be throw an
+			// exception, because the slice is not contained inside a resource
+			Command a = new RecordingCommand(domain) {
+				@Override
+				protected void doExecute() {
+					PictogramLink pl = PictogramsFactory.eINSTANCE
+							.createPictogramLink();
+					pl.getBusinessObjects().add(slice);
+					dia.setLink(pl);
+				}
+			};
+			domain.getCommandStack().execute(a);
+
 			// save xmi
-			try {
-				sr.eResource().save(Collections.emptyMap());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			EmfService.save(domain);
 		}
 
 		return null;

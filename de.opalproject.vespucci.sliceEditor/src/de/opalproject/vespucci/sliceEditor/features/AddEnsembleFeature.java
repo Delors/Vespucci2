@@ -33,12 +33,7 @@
  */
 package de.opalproject.vespucci.sliceEditor.features;
 
-import java.io.IOException;
-import java.util.Collections;
-
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -96,11 +91,13 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 			// check if user wants to add to a diagram
 			if (context.getTargetContainer() instanceof Diagram) {
 				// check if the pictogram element is already existing
-if ((Ensemble) context.getNewObject() instanceof EmptyEnsemble || Graphiti
-						.getLinkService()
-						.getPictogramElements(
-								(Diagram) context.getTargetContainer(),
-								(Ensemble) context.getNewObject()).size() == 0) {
+				if ((Ensemble) context.getNewObject() instanceof EmptyEnsemble
+						|| Graphiti
+								.getLinkService()
+								.getPictogramElements(
+										(Diagram) context.getTargetContainer(),
+										(Ensemble) context.getNewObject())
+								.size() == 0) {
 					return true;
 				}
 			}
@@ -167,9 +164,9 @@ if ((Ensemble) context.getNewObject() instanceof EmptyEnsemble || Graphiti
 
 			// if added Ensemble has no resource we add it to the resource
 			// of the diagram
-			if (addedEnsemble.eResource() == null) {
-				getDiagram().eResource().getContents().add(addedEnsemble);
-			}
+			// if (addedEnsemble.eResource() == null) {
+			// getDiagram().eResource().getContents().add(addedEnsemble);
+			// }
 			// create link and wire it
 			link(containerShape, addedEnsemble);
 		}
@@ -200,27 +197,25 @@ if ((Ensemble) context.getNewObject() instanceof EmptyEnsemble || Graphiti
 			name.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
 
 			// vertical alignment has as default value "center"
-			name.setFont(gaService.manageFont(targetDiagram, "Arial", 10, false, true));
+			name.setFont(gaService.manageFont(targetDiagram, "Arial", 10,
+					false, true));
 			// width is dependent on the intial x coordinate
 			gaService.setLocationAndSize(name, 23, 2, (width - 23), 20);
 
 			// create shape for the description
 			Shape descriptionShape = peCreateService.createShape(
 					containerShape, false);
-			
+
 			// sets the description of the ensemble
-			
-			
+
 			MultiText description = gaService.createMultiText(descriptionShape,
 					addedEnsemble.getDescription());
 
-			
 			description.setLineWidth(width);
 			description.setVerticalAlignment(Orientation.ALIGNMENT_TOP);
 			description.setFont(gaService.manageDefaultFont(getDiagram(),
 					false, true));
-			gaService
-					.setLocationAndSize(description, 2, 20, width, height);
+			gaService.setLocationAndSize(description, 2, 20, width, height);
 			// create link and wire it
 			link(nameShape, addedEnsemble);
 			link(descriptionShape, addedEnsemble);
@@ -239,33 +234,24 @@ if ((Ensemble) context.getNewObject() instanceof EmptyEnsemble || Graphiti
 		peCreateService.createChopboxAnchor(containerShape);
 
 		layoutPictogramElement(containerShape);
-		
-		//setting needed for the collapse feature
-		Graphiti.getPeService().setPropertyValue(containerShape, "iscollapsed", "false");
 
-		EList<EObject> businessObjects = targetDiagram.getLink()
-				.getBusinessObjects();
+		// setting needed for the collapse feature
+		Graphiti.getPeService().setPropertyValue(containerShape, "iscollapsed",
+				"false");
 
-		for (EObject eObject : businessObjects) {
-			if (eObject instanceof Slice) {
+		// Get business object (slice) for diagram and add ensemble to it.
+		Object businessObject = getBusinessObjectForPictogramElement(getDiagram());
+		if (businessObject instanceof Slice) {
 
-				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-						.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
+			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+					.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
 
-				Slice slice = (Slice) eObject;
+			Slice slice = (Slice) businessObject;
 
-				Command addCommand = AddCommand.create(domain, slice,
-						DatamodelPackage.Literals.SLICE__ENSEMBLES,
-						addedEnsemble);
+			Command addCommand = AddCommand.create(domain, slice,
+					DatamodelPackage.Literals.SLICE__ENSEMBLES, addedEnsemble);
 
-				domain.getCommandStack().execute(addCommand);
-
-				try {
-					slice.eResource().save(Collections.EMPTY_MAP);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
+			domain.getCommandStack().execute(addCommand);
 		}
 
 		return containerShape;

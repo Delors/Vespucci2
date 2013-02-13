@@ -33,7 +33,9 @@
  */
 package de.opalproject.vespucci.ui.handlers;
 
+import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.AddCommand;
@@ -53,54 +55,17 @@ import de.opalproject.vespucci.ui.wizards.NewEnsembleWizard;
  * @author Marco Jacobasch
  * 
  */
-public class NewEnsembleHandler extends AbstractEnsembleCommandHandler {
+public class NewEnsembleHandler extends AbstractHandler {
 
 	@Override
-	public Command getCommand(IStructuredSelection selection,
-			ExecutionEvent event) {
-		NewEnsembleWizard wizard = createAndOpenWizard(event);
-		Ensemble ensemble = createEnsemble(wizard);
-
-		EObject owner = getOwner(selection);
-		Object feature = DatamodelPackage.Literals.TREE_NODE__CHILDREN;
-
-		Command add = AddCommand.create(getEditingDomain(), owner, feature,
-				ensemble);
-
-		return add;
-	}
-
-	/**
-	 * Opens a new ensemble wizard
-	 * 
-	 * @param event
-	 * @return
-	 */
-	private NewEnsembleWizard createAndOpenWizard(ExecutionEvent event) {
-		final NewEnsembleWizard wizard = new NewEnsembleWizard();
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+		final NewEnsembleWizard wizard = new NewEnsembleWizard(
+				(IStructuredSelection) HandlerUtil.getCurrentSelection(event));
 
 		WizardDialog dialog = new WizardDialog(
 				HandlerUtil.getActiveShell(event), wizard);
 		dialog.open();
-
-		return wizard;
-	}
-
-	/**
-	 * Creates a new ensemble with data provided by the wizard
-	 * 
-	 * @param wizard
-	 * @return
-	 */
-	private Ensemble createEnsemble(NewEnsembleWizard wizard) {
-		DatamodelFactory factory = DatamodelFactory.eINSTANCE;
-		Ensemble ensemble = factory.createConcreteEnsemble();
-		ensemble.setName(wizard.getName());
-		ensemble.setDescription(wizard.getDescription());
-		ensemble.setDerived(false);
-		ensemble.setQuery(wizard.getQuery());
-
-		return ensemble;
+		return null;
 	}
 
 }

@@ -33,17 +33,15 @@
  */
 package de.opalproject.vespucci.ui.handlers;
 
-import java.io.IOException;
-import java.util.Collections;
-
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
+
+import de.opalproject.vespucci.ui.utils.EmfService;
 
 /**
  * Abstract command handler for every emf transaction
@@ -63,15 +61,10 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IStructuredSelection selection = getSelection(event);
 		Command command = getCommand(selection, event);
-		Resource resource = getResource(selection);
 
 		getEditingDomain().getCommandStack().execute(command);
 
-		try {
-			resource.save(Collections.EMPTY_MAP);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		EmfService.save(getEditingDomain());
 		return null;
 	}
 
@@ -105,15 +98,5 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 	 */
 	public abstract Command getCommand(IStructuredSelection selection,
 			ExecutionEvent event);
-
-	/**
-	 * Returns the resource which will be saved.
-	 * 
-	 * Must be implemented by subclasses
-	 * 
-	 * @param selection
-	 * @return
-	 */
-	public abstract Resource getResource(IStructuredSelection selection);
 
 }

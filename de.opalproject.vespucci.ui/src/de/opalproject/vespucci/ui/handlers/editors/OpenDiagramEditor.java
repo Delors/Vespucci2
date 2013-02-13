@@ -37,7 +37,6 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
-import org.eclipse.graphiti.ui.editor.DiagramEditor;
 import org.eclipse.graphiti.ui.editor.DiagramEditorInput;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
@@ -63,22 +62,28 @@ public class OpenDiagramEditor extends AbstractHandler {
 
 		// Get the selected ensemble and create an editorinput
 		Slice slice = (Slice) currentTreeSelection.getFirstElement();
-		Diagram diagram = (Diagram) slice.eResource().getEObject(slice.getDiagram());
-		DiagramEditorInput editorInput = DiagramEditorInput.createEditorInput(diagram, "de.opalproject.vespucci.sliceEditor.sliceEditorDiagramTypeProvider");
+		Diagram diagram = (Diagram) slice.eResource().getEObject(
+				slice.getDiagram());
+
+		DiagramEditorInput editorInput = DiagramEditorInput
+				.createEditorInput(diagram,
+						"de.opalproject.vespucci.sliceEditor.sliceEditorDiagramTypeProvider");
+//		DiagramEditorInput editorInput = new DiagramEditorInput(
+//				URI.createPlatformResourceURI(slice.getDiagram(), true),
+//				"de.opalproject.vespucci.sliceEditor.sliceEditorDiagramTypeProvider");
 
 		// Get the view
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
 		IWorkbenchPage page = window.getActivePage();
 
 		// Try to open the editor
-		
+
 		try {
-			page.openEditor(editorInput, DiagramEditor.DIAGRAM_EDITOR_ID);
+			page.openEditor(editorInput, "de.opalproject.vespucci.sliceEditor");
 		} catch (PartInitException e) {
 			throw new RuntimeException(e);
 		}
 
 		return null;
 	}
-
 }

@@ -61,12 +61,4 @@ public abstract class AbstractEnsembleCommandHandler extends
 		return (EObject) selection.getFirstElement();
 	}
 
-	/**
-	 * Returns the resource of the first elemet of a selection
-	 */
-	@Override
-	public Resource getResource(IStructuredSelection selection) {
-		return getOwner(selection).eResource();
-	}
-
 }
