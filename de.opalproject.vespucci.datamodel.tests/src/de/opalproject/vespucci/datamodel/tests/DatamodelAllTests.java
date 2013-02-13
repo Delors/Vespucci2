@@ -35,7 +35,6 @@ package de.opalproject.vespucci.datamodel.tests;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
-
 import junit.textui.TestRunner;
 
 /**
@@ -68,6 +67,7 @@ public class DatamodelAllTests extends TestSuite {
 		suite.addTestSuite(EnsembleRepositoryTest.class);
 		suite.addTestSuite(SliceRepositoryTest.class);
 		suite.addTestSuite(SliceTest.class);
+		suite.addTestSuite(DatamodelResourceTest.class);
 		return suite;
 	}
 
