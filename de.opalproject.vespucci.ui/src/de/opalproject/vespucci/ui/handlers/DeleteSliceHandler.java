@@ -69,7 +69,7 @@ public class DeleteSliceHandler extends AbstractCommandHandler {
 
 				@Override
 				protected void doExecute() {
-					// Resolv diagram string to diagram object
+					// Resolve diagram string to diagram object
 					Diagram diagram = (Diagram) slice.eResource().getEObject(
 							slice.getDiagram());
 
@@ -83,7 +83,7 @@ public class DeleteSliceHandler extends AbstractCommandHandler {
 			commandList.add(c);
 		}
 
-		// Combine command list to a single compund command
+		// Combine command list to a single compound command
 		Command deleteCommand = new CompoundCommand(commandList);
 		return deleteCommand;
 	}
