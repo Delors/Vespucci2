@@ -119,11 +119,9 @@
                style="push" >
             <visibleWhen
                   checkEnabled="false">
-              
                   <reference
                         definitionId="de.opalproject.vespucci.ui.definitions.sliceRepository">
                   </reference>
-              
             </visibleWhen>
          </command>
          <command
@@ -135,6 +133,18 @@
                   checkEnabled="false">
                <reference
                      definitionId="de.opalproject.vespucci.ui.definitions.ensembles">
+               </reference>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="de.opalproject.vespucci.ui.editor.openDiagramEditor"
+               id="de.opalproject.vespucci.ui.popupmenu.openDiagram"
+               label="Open Diagram"
+               style="push" >
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="de.opalproject.vespucci.ui.definitions.singleSlice">
                </reference>
             </visibleWhen>
          </command>
@@ -173,9 +183,14 @@
                id="de.opalproject.vespucci.ui.popupmenu.delete" >
             <visibleWhen
                   checkEnabled="false">
-               <reference
-                     definitionId="de.opalproject.vespucci.ui.definitions.ensembles">
-               </reference>
+               <or>
+                   <reference
+                         definitionId="de.opalproject.vespucci.ui.definitions.ensembles">
+                   </reference>
+                   <reference
+                         definitionId="de.opalproject.vespucci.ui.definitions.slices">
+                   </reference>
+               </or>
             </visibleWhen>
          </command>
          <command
@@ -185,18 +200,6 @@
                   checkEnabled="false">
                <reference
                      definitionId="de.opalproject.vespucci.ui.definitions.ensembles">
-               </reference>
-            </visibleWhen>
-         </command>
-         <command
-               commandId="de.opalproject.vespucci.ui.editor.openDiagramEditor"
-               id="de.opalproject.vespucci.ui.popupmenu.openDiagram"
-               label="Open Diagram"
-               style="push" >
-            <visibleWhen
-                  checkEnabled="false">
-               <reference
-                     definitionId="de.opalproject.vespucci.ui.definitions.singleSlice">
                </reference>
             </visibleWhen>
          </command>
@@ -228,6 +231,25 @@
                   definitionId="de.opalproject.vespucci.ui.definitions.ensembles">
             </reference>
          </enabledWhen>
+         <activeWhen>
+            <reference
+                  definitionId="de.opalproject.vespucci.ui.definitions.ensembles">
+            </reference>
+         </activeWhen>
+      </handler>
+      <handler
+            class="de.opalproject.vespucci.ui.handlers.DeleteSliceHandler"
+            commandId="org.eclipse.ui.edit.delete">
+         <enabledWhen>
+            <reference
+                  definitionId="de.opalproject.vespucci.ui.definitions.slices">
+            </reference>
+         </enabledWhen>
+         <activeWhen>
+            <reference
+                  definitionId="de.opalproject.vespucci.ui.definitions.slices">
+            </reference>
+         </activeWhen>
       </handler>
       <handler
             class="de.opalproject.vespucci.ui.handlers.NewEnsembleHandler"

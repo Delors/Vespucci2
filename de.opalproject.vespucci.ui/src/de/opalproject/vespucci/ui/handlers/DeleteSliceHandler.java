@@ -33,71 +33,58 @@
  */
 package de.opalproject.vespucci.ui.handlers;
 
-import org.eclipse.core.commands.AbstractHandler;
-import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ui.handlers.HandlerUtil;
+import java.util.ArrayList;
+import java.util.List;
 
-import de.opalproject.vespucci.ui.utils.EmfService;
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.graphiti.mm.pictograms.Diagram;
+import org.eclipse.jface.viewers.IStructuredSelection;
+
+import de.opalproject.vespucci.datamodel.Slice;
 
 /**
- * Abstract command handler for every emf transaction
+ * Handles delete requests for a selection of ensembles.
  * 
  * @author Marco Jacobasch
  * 
  */
-public abstract class AbstractCommandHandler extends AbstractHandler {
-
-	/**
-	 * Transactional editing domain which is used for every command.
-	 */
-	private final TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
+public class DeleteSliceHandler extends AbstractCommandHandler {
 
 	@Override
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		IStructuredSelection selection = getSelection(event);
-		Command command = getCommand(selection, event);
+	public Command getCommand(IStructuredSelection selection,
+			ExecutionEvent event) {
 
-		getEditingDomain().getCommandStack().execute(command);
+		// List to store the single commands for compound
+		List<Command> commandList = new ArrayList<Command>();
 
-		EmfService.save(getEditingDomain());
+		@SuppressWarnings("unchecked")
+		final List<Slice> sliceList = selection.toList();
 
-		return null;
+		for (final Slice slice : sliceList) {
+			Command c = new RecordingCommand(getEditingDomain()) {
+
+				@Override
+				protected void doExecute() {
+					// Resolv diagram string to diagram object
+					Diagram diagram = (Diagram) slice.eResource().getEObject(
+							slice.getDiagram());
+
+					// Delete Slice and Diagram
+					EcoreUtil.remove(diagram);
+					EcoreUtil.remove(slice);
+				}
+			};
+
+			// Add command to list
+			commandList.add(c);
+		}
+
+		// Combine command list to a single compund command
+		Command deleteCommand = new CompoundCommand(commandList);
+		return deleteCommand;
 	}
-
-	/**
-	 * Returns the current selection as {@link IStructuredSelection}
-	 * 
-	 * @param event
-	 * @return the current selection
-	 */
-	public IStructuredSelection getSelection(ExecutionEvent event) {
-		return (IStructuredSelection) HandlerUtil.getCurrentSelection(event);
-	}
-
-	/**
-	 * Returns the used editing domain
-	 * 
-	 * @return
-	 */
-	public TransactionalEditingDomain getEditingDomain() {
-		return domain;
-	}
-
-	/**
-	 * Returns the command which will be executed
-	 * 
-	 * Must be implemented by subclasses
-	 * 
-	 * @param selection
-	 * @param event
-	 * @return
-	 */
-	public abstract Command getCommand(IStructuredSelection selection,
-			ExecutionEvent event);
-
 }
