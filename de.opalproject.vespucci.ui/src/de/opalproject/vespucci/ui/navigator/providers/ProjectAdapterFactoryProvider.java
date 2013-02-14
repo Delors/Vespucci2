@@ -54,7 +54,14 @@ public final class ProjectAdapterFactoryProvider {
 
 	private static ComposedAdapterFactory adapterFactory;
 
-	public final static List<AdapterFactory> createFactoryList() {
+	/**
+	 * Creates a list containing the used item provider adapter factories.
+	 * 
+	 * In this case the ones for the vespucci datamodel and default emf ones
+	 * 
+	 * @return
+	 */
+	public static List<AdapterFactory> createFactoryList() {
 		List<AdapterFactory> factories = new ArrayList<AdapterFactory>();
 		// Vespucci Datamodel Factory
 		factories.add(new DatamodelItemProviderAdapterFactoryExtension());
@@ -64,7 +71,13 @@ public final class ProjectAdapterFactoryProvider {
 		return factories;
 	}
 
-	public final static ComposedAdapterFactory getAdapterFactory() {
+	/**
+	 * Returns the composed adapter factory containing the ones provided by
+	 * createFactoryList()
+	 * 
+	 * @return
+	 */
+	public static ComposedAdapterFactory getAdapterFactory() {
 		if (adapterFactory == null)
 			adapterFactory = new ComposedAdapterFactory(createFactoryList());
 		return adapterFactory;
