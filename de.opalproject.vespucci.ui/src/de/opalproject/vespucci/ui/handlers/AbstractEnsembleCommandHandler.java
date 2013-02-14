@@ -36,9 +36,6 @@ package de.opalproject.vespucci.ui.handlers;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IStructuredSelection;
 
-import de.opalproject.vespucci.datamodel.Ensemble;
-import de.opalproject.vespucci.datamodel.EnsembleRepository;
-
 /**
  * Abstract handler for operations on ensembles
  * 
@@ -51,7 +48,7 @@ public abstract class AbstractEnsembleCommandHandler extends
 	/**
 	 * Returns the first element of a selection as {@link EObject}
 	 * 
-	 * Could be {@link Ensemble} or {@link EnsembleRepository}
+	 * Could be Ensemble or EnsembleRepository
 	 * 
 	 * @param selection
 	 * @return

@@ -35,6 +35,7 @@ package de.opalproject.vespucci.sliceEditor;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.graphiti.dt.IDiagramTypeProvider;
@@ -52,10 +53,10 @@ import org.eclipse.graphiti.tb.IContextButtonEntry;
 import org.eclipse.graphiti.tb.IContextButtonPadData;
 import org.eclipse.graphiti.tb.IDecorator;
 import org.eclipse.graphiti.tb.ImageDecorator;
+
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.datamodel.EnsembleRepository;
 import de.opalproject.vespucci.datamodel.Slice;
-import de.opalproject.vespucci.datamodel.util.DatamodelValidator;
 import de.opalproject.vespucci.sliceEditor.features.CollapseFeature;
 
 /**
