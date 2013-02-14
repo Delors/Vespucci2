@@ -33,17 +33,15 @@
  */
 package de.opalproject.vespucci.ui.handlers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
 
+import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.Ensemble;
 
 /**
@@ -58,21 +56,28 @@ public class DeleteEnsembleHandler extends AbstractEnsembleCommandHandler {
 	@Override
 	public Command getCommand(IStructuredSelection selection,
 			ExecutionEvent event) {
-		List<Command> commandList = new ArrayList<Command>();
 
 		@SuppressWarnings("unchecked")
 		final List<Ensemble> ensembleList = selection.toList();
 
-		for (Ensemble ensemble : ensembleList) {
-			EStructuralFeature feature = ensemble.eContainingFeature();
-			EObject owner = ensemble.eContainer();
+		Command delete = new RecordingCommand(getEditingDomain()) {
 
-			Command delete = RemoveCommand.create(getEditingDomain(), owner,
-					feature, ensemble);
-			commandList.add(delete);
-		}
+			@Override
+			protected void doExecute() {
+				// Iterate over every ensemble which should be deleted
+				for (final Ensemble ensemble : ensembleList) {
+					EcoreUtil.delete(ensemble);
 
-		Command deleteCommand = new CompoundCommand(commandList);
-		return deleteCommand;
+					// Remove every constraint which used the deleted ensemble
+					// as source or target
+					for (Constraint constraint : ensemble.getConstraints()) {
+						EcoreUtil.delete(constraint);
+					}
+				}
+
+			}
+		};
+
+		return delete;
 	}
 }

@@ -34,7 +34,7 @@
 package de.opalproject.vespucci.sliceEditor.features.constraints;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.ICreateConnectionContext;
@@ -46,7 +46,6 @@ import org.eclipse.graphiti.mm.pictograms.Connection;
 import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.ConstraintType;
 import de.opalproject.vespucci.datamodel.DatamodelFactory;
-import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.datamodel.Slice;
 
@@ -185,29 +184,35 @@ public abstract class CreateConstraintFeature extends
 	/**
 	 * Creates a constraint between two ensembles.
 	 */
-	private Constraint createConstraint(Ensemble source, Ensemble target) {
+	private Constraint createConstraint(final Ensemble source,
+			final Ensemble target) {
 		// create Constraint
 		DatamodelFactory factory = DatamodelFactory.eINSTANCE;
-		final Constraint constraints = factory.createConstraint();
-		constraints.setConstraintType(constraintType);
-		constraints.setSource(source);
-		constraints.setTarget(target);
+		final Constraint constraint = factory.createConstraint();
+		constraint.setConstraintType(constraintType);
+		constraint.setSource(source);
+		constraint.setTarget(target);
 
-		Object businessObject = getBusinessObjectForPictogramElement(getDiagram());
-			if (businessObject instanceof Slice) {
+		final Object businessObject = getBusinessObjectForPictogramElement(getDiagram());
+		if (businessObject instanceof Slice) {
 
-				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-						.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
+			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+					.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
 
-				Slice slice = (Slice) businessObject;
+			Command addCommand = new RecordingCommand(domain) {
 
-				Command addCommand = AddCommand.create(domain, slice,
-						DatamodelPackage.Literals.SLICE__CONSTRAINTS,
-						constraints);
+				@Override
+				protected void doExecute() {
+					Slice slice = (Slice) businessObject;
+					slice.getConstraints().add(constraint);
+					source.getConstraints().add(constraint);
+					target.getConstraints().add(constraint);
+				}
+			};
 
-				domain.getCommandStack().execute(addCommand);
+			domain.getCommandStack().execute(addCommand);
 		}
 
-		return constraints;
+		return constraint;
 	}
 }

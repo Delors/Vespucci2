@@ -33,6 +33,7 @@
  */
 package de.opalproject.vespucci.datamodel.impl;
 
+import de.opalproject.vespucci.datamodel.*;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;

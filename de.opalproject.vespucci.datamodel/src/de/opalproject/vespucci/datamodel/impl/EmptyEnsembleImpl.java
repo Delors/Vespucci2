@@ -33,6 +33,7 @@
  */
 package de.opalproject.vespucci.datamodel.impl;
 
+import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.EmptyEnsemble;
 import de.opalproject.vespucci.datamodel.TreeNode;
@@ -51,6 +52,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -76,6 +78,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <em>Description</em>}</li>
  * <li>{@link de.opalproject.vespucci.datamodel.impl.EmptyEnsembleImpl#getQuery
  * <em>Query</em>}</li>
+ * <li>
+ * {@link de.opalproject.vespucci.datamodel.impl.EmptyEnsembleImpl#getConstraints
+ * <em>Constraints</em>}</li>
  * </ul>
  * </p>
  * 
@@ -171,6 +176,16 @@ public class EmptyEnsembleImpl extends EObjectImpl implements EmptyEnsemble {
 	 * @ordered
 	 */
 	protected String query = QUERY_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}'
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getConstraints()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Constraint> constraints;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -351,6 +366,20 @@ public class EmptyEnsembleImpl extends EObjectImpl implements EmptyEnsemble {
 	 * 
 	 * @generated
 	 */
+	public EList<Constraint> getConstraints() {
+		if (constraints == null) {
+			constraints = new EObjectResolvingEList<Constraint>(
+					Constraint.class, this,
+					DatamodelPackage.EMPTY_ENSEMBLE__CONSTRAINTS);
+		}
+		return constraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
@@ -421,6 +450,8 @@ public class EmptyEnsembleImpl extends EObjectImpl implements EmptyEnsemble {
 			return getDescription();
 		case DatamodelPackage.EMPTY_ENSEMBLE__QUERY:
 			return getQuery();
+		case DatamodelPackage.EMPTY_ENSEMBLE__CONSTRAINTS:
+			return getConstraints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -453,6 +484,11 @@ public class EmptyEnsembleImpl extends EObjectImpl implements EmptyEnsemble {
 		case DatamodelPackage.EMPTY_ENSEMBLE__QUERY:
 			setQuery((String) newValue);
 			return;
+		case DatamodelPackage.EMPTY_ENSEMBLE__CONSTRAINTS:
+			getConstraints().clear();
+			getConstraints()
+					.addAll((Collection<? extends Constraint>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -483,6 +519,9 @@ public class EmptyEnsembleImpl extends EObjectImpl implements EmptyEnsemble {
 		case DatamodelPackage.EMPTY_ENSEMBLE__QUERY:
 			setQuery(QUERY_EDEFAULT);
 			return;
+		case DatamodelPackage.EMPTY_ENSEMBLE__CONSTRAINTS:
+			getConstraints().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -510,6 +549,8 @@ public class EmptyEnsembleImpl extends EObjectImpl implements EmptyEnsemble {
 		case DatamodelPackage.EMPTY_ENSEMBLE__QUERY:
 			return QUERY_EDEFAULT == null ? query != null : !QUERY_EDEFAULT
 					.equals(query);
+		case DatamodelPackage.EMPTY_ENSEMBLE__CONSTRAINTS:
+			return constraints != null && !constraints.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

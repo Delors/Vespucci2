@@ -33,6 +33,8 @@
  */
 package de.opalproject.vespucci.datamodel;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Ensemble</b></em>'. <!-- end-user-doc -->
@@ -47,6 +49,8 @@ package de.opalproject.vespucci.datamodel;
  * Description</em>}</li>
  * <li>{@link de.opalproject.vespucci.datamodel.Ensemble#getQuery <em>Query
  * </em>}</li>
+ * <li>{@link de.opalproject.vespucci.datamodel.Ensemble#getConstraints <em>
+ * Constraints</em>}</li>
  * </ul>
  * </p>
  * 
@@ -172,5 +176,23 @@ public interface Ensemble extends TreeNode {
 	 * @generated
 	 */
 	void setQuery(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Constraints</b></em>' reference list.
+	 * The list contents are of type
+	 * {@link de.opalproject.vespucci.datamodel.Constraint}. <!-- begin-user-doc
+	 * -->
+	 * <p>
+	 * If the meaning of the '<em>Constraints</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Constraints</em>' reference list.
+	 * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getEnsemble_Constraints()
+	 * @model
+	 * @generated
+	 */
+	EList<Constraint> getConstraints();
 
 } // Ensemble

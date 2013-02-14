@@ -33,12 +33,10 @@
  */
 package de.opalproject.vespucci.ui.handlers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
@@ -58,33 +56,25 @@ public class DeleteSliceHandler extends AbstractCommandHandler {
 	public Command getCommand(IStructuredSelection selection,
 			ExecutionEvent event) {
 
-		// List to store the single commands for compound
-		List<Command> commandList = new ArrayList<Command>();
-
 		@SuppressWarnings("unchecked")
 		final List<Slice> sliceList = selection.toList();
 
-		for (final Slice slice : sliceList) {
-			Command c = new RecordingCommand(getEditingDomain()) {
+		Command deleteCommand = new RecordingCommand(getEditingDomain()) {
 
-				@Override
-				protected void doExecute() {
+			@Override
+			protected void doExecute() {
+				for (final Slice slice : sliceList) {
 					// Resolve diagram string to diagram object
 					Diagram diagram = (Diagram) slice.eResource().getEObject(
 							slice.getDiagram());
 
 					// Delete Slice and Diagram
-					EcoreUtil.remove(diagram);
-					EcoreUtil.remove(slice);
+					EcoreUtil.delete(diagram);
+					EcoreUtil.delete(slice);
 				}
-			};
+			}
+		};
 
-			// Add command to list
-			commandList.add(c);
-		}
-
-		// Combine command list to a single compound command
-		Command deleteCommand = new CompoundCommand(commandList);
 		return deleteCommand;
 	}
 }
