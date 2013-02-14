@@ -70,8 +70,8 @@
       </listener>
    </extension>
 
-   <extension
+   <!--<extension
          point="org.eclipse.emf.validation.ui.UIRegisteredClientContext">
       <clientContext id="de.opalproject.vespucci.datamodel.validation.context"/>
-   </extension> 
+   </extension>--> 
 </plugin>
