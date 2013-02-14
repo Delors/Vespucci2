@@ -36,6 +36,8 @@ package de.opalproject.vespucci.sliceEditor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
+import de.opalproject.vespucci.datamodel.DatamodelPackage;
+
 /**
  * The activator class controls the plug-in life cycle
  */
@@ -51,6 +53,11 @@ public class Activator extends AbstractUIPlugin {
 	 * The constructor
 	 */
 	public Activator() {
+		// In case of an open graphiti editor, this plugin is initialized before
+		// the vespucci datamodel. In this case it cannot access the xmi files
+		// containing the specific diagram. So we also initialized it here.
+		@SuppressWarnings("unused")
+		DatamodelPackage unneeded = DatamodelPackage.eINSTANCE;
 	}
 
 	/*
