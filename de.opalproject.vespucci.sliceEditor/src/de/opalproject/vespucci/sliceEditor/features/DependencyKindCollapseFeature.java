@@ -43,6 +43,7 @@ import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.platform.IPlatformImageConstants;
+import org.eclipse.graphiti.services.Graphiti;
 
 /**
  * Feature to toggle visibility of constraint-kind labels displaying "ALL". 
@@ -104,19 +105,24 @@ public class DependencyKindCollapseFeature extends AbstractCustomFeature {
 	public void execute(ICustomContext context) {
 		PictogramElement pictogramElements[] = context.getPictogramElements();
 		Diagram dia = (Diagram) pictogramElements[0];
+		String collapsed = "false";
+
 		EList<Connection> connections = dia.getConnections();
 		for (Connection connection : connections) {
 			for (ConnectionDecorator cd : connection.getConnectionDecorators()) {
 				if (cd.getGraphicsAlgorithm() instanceof Text
 						) {
-					if (cd.isVisible() && ((Text) cd.getGraphicsAlgorithm()).getValue()
+					if (Graphiti.getPeService().getPropertyValue(dia, "dependenciescollapsed").equals("false") && ((Text) cd.getGraphicsAlgorithm()).getValue()
 					.equals("ALL")) {
 						cd.setVisible(false);
+						collapsed = "true";
 					} else {
 						cd.setVisible(true);
+						collapsed = "false";
 					}
 				}
+		
 			}
-		}
+		} Graphiti.getPeService().setPropertyValue(dia, "dependenciescollapsed", collapsed);
 	}
 }
