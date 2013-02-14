@@ -65,7 +65,6 @@ public class NewSliceWizard extends Wizard {
 
 		name = page.getSliceName();
 
-
 		return true;
 	}
 

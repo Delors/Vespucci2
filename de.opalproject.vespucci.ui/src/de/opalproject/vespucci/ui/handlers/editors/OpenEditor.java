@@ -69,7 +69,7 @@ public class OpenEditor extends AbstractHandler {
 		IWorkbenchPage page = window.getActivePage();
 
 		// Try to open the editor
-		
+
 		try {
 			page.openEditor(editorInput, EnsembleEditor.ID);
 		} catch (PartInitException e) {

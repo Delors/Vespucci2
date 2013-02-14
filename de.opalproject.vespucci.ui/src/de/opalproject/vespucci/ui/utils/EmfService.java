@@ -25,7 +25,7 @@ import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 /**
  * Save all resources belonging to one editing domain.
  * 
- *  Based on graphitis internal/private EmfService class
+ * Based on graphitis internal/private EmfService class
  */
 public class EmfService {
 	@SuppressWarnings("unchecked")

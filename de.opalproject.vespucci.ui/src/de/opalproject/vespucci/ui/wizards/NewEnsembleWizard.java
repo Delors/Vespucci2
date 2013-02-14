@@ -88,7 +88,7 @@ public class NewEnsembleWizard extends Wizard {
 			@Override
 			protected void execute(IProgressMonitor progressMonitor) {
 				try {
-					
+
 					final TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 							.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
 
