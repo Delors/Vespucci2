@@ -43,6 +43,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -175,8 +176,9 @@ public class SliceImpl extends EObjectImpl implements Slice {
 	 */
 	public EList<Ensemble> getEnsembles() {
 		if (ensembles == null) {
-			ensembles = new EObjectResolvingEList<Ensemble>(Ensemble.class,
-					this, DatamodelPackage.SLICE__ENSEMBLES);
+			ensembles = new EObjectWithInverseResolvingEList.ManyInverse<Ensemble>(
+					Ensemble.class, this, DatamodelPackage.SLICE__ENSEMBLES,
+					DatamodelPackage.ENSEMBLE__SLICES);
 		}
 		return ensembles;
 	}
@@ -236,10 +238,14 @@ public class SliceImpl extends EObjectImpl implements Slice {
 	 * 
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
 			int featureID, NotificationChain msgs) {
 		switch (featureID) {
+		case DatamodelPackage.SLICE__ENSEMBLES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getEnsembles())
+					.basicAdd(otherEnd, msgs);
 		case DatamodelPackage.SLICE__SLICE_REPOSITORY:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
@@ -303,6 +309,9 @@ public class SliceImpl extends EObjectImpl implements Slice {
 		switch (featureID) {
 		case DatamodelPackage.SLICE__CONSTRAINTS:
 			return ((InternalEList<?>) getConstraints()).basicRemove(otherEnd,
+					msgs);
+		case DatamodelPackage.SLICE__ENSEMBLES:
+			return ((InternalEList<?>) getEnsembles()).basicRemove(otherEnd,
 					msgs);
 		case DatamodelPackage.SLICE__SLICE_REPOSITORY:
 			return basicSetSliceRepository(null, msgs);

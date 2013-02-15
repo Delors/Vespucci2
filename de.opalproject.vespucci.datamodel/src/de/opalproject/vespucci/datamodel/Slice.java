@@ -83,8 +83,10 @@ public interface Slice extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Ensembles</b></em>' reference list. The
 	 * list contents are of type
-	 * {@link de.opalproject.vespucci.datamodel.Ensemble}. <!-- begin-user-doc
-	 * -->
+	 * {@link de.opalproject.vespucci.datamodel.Ensemble}. It is bidirectional
+	 * and its opposite is '
+	 * {@link de.opalproject.vespucci.datamodel.Ensemble#getSlices
+	 * <em>Slices</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Ensembles</em>' reference list isn't clear,
 	 * there really should be more of a description here...
@@ -93,7 +95,8 @@ public interface Slice extends EObject {
 	 * 
 	 * @return the value of the '<em>Ensembles</em>' reference list.
 	 * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getSlice_Ensembles()
-	 * @model
+	 * @see de.opalproject.vespucci.datamodel.Ensemble#getSlices
+	 * @model opposite="slices"
 	 * @generated
 	 */
 	EList<Ensemble> getEnsembles();

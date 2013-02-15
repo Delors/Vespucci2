@@ -207,13 +207,22 @@ public interface DatamodelPackage extends EPackage {
 	int ENSEMBLE__CONSTRAINTS = TREE_NODE_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Slices</b></em>' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ENSEMBLE__SLICES = TREE_NODE_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Ensemble</em>' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ENSEMBLE_FEATURE_COUNT = TREE_NODE_FEATURE_COUNT + 5;
+	int ENSEMBLE_FEATURE_COUNT = TREE_NODE_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '
@@ -491,6 +500,15 @@ public interface DatamodelPackage extends EPackage {
 	int EMPTY_ENSEMBLE__CONSTRAINTS = ENSEMBLE__CONSTRAINTS;
 
 	/**
+	 * The feature id for the '<em><b>Slices</b></em>' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int EMPTY_ENSEMBLE__SLICES = ENSEMBLE__SLICES;
+
+	/**
 	 * The number of structural features of the '<em>Empty Ensemble</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -573,6 +591,15 @@ public interface DatamodelPackage extends EPackage {
 	 * @ordered
 	 */
 	int CONCRETE_ENSEMBLE__CONSTRAINTS = ENSEMBLE__CONSTRAINTS;
+
+	/**
+	 * The feature id for the '<em><b>Slices</b></em>' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_ENSEMBLE__SLICES = ENSEMBLE__SLICES;
 
 	/**
 	 * The number of structural features of the '<em>Concrete Ensemble</em>'
@@ -675,6 +702,18 @@ public interface DatamodelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getEnsemble_Constraints();
+
+	/**
+	 * Returns the meta object for the reference list '
+	 * {@link de.opalproject.vespucci.datamodel.Ensemble#getSlices
+	 * <em>Slices</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference list '<em>Slices</em>'.
+	 * @see de.opalproject.vespucci.datamodel.Ensemble#getSlices()
+	 * @see #getEnsemble()
+	 * @generated
+	 */
+	EReference getEnsemble_Slices();
 
 	/**
 	 * Returns the meta object for class '
@@ -1013,6 +1052,14 @@ public interface DatamodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ENSEMBLE__CONSTRAINTS = eINSTANCE.getEnsemble_Constraints();
+
+		/**
+		 * The meta object literal for the '<em><b>Slices</b></em>' reference
+		 * list feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference ENSEMBLE__SLICES = eINSTANCE.getEnsemble_Slices();
 
 		/**
 		 * The meta object literal for the '

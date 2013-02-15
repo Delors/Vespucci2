@@ -36,6 +36,7 @@ package de.opalproject.vespucci.datamodel.impl;
 import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.EmptyEnsemble;
+import de.opalproject.vespucci.datamodel.Slice;
 import de.opalproject.vespucci.datamodel.TreeNode;
 
 import java.util.Collection;
@@ -53,6 +54,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -81,6 +83,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <li>
  * {@link de.opalproject.vespucci.datamodel.impl.EmptyEnsembleImpl#getConstraints
  * <em>Constraints</em>}</li>
+ * <li>
+ * {@link de.opalproject.vespucci.datamodel.impl.EmptyEnsembleImpl#getSlices
+ * <em>Slices</em>}</li>
  * </ul>
  * </p>
  * 
@@ -186,6 +191,16 @@ public class EmptyEnsembleImpl extends EObjectImpl implements EmptyEnsemble {
 	 * @ordered
 	 */
 	protected EList<Constraint> constraints;
+
+	/**
+	 * The cached value of the '{@link #getSlices() <em>Slices</em>}' reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getSlices()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Slice> slices;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -380,6 +395,20 @@ public class EmptyEnsembleImpl extends EObjectImpl implements EmptyEnsemble {
 	 * 
 	 * @generated
 	 */
+	public EList<Slice> getSlices() {
+		if (slices == null) {
+			slices = new EObjectWithInverseResolvingEList.ManyInverse<Slice>(
+					Slice.class, this, DatamodelPackage.EMPTY_ENSEMBLE__SLICES,
+					DatamodelPackage.SLICE__ENSEMBLES);
+		}
+		return slices;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
@@ -391,6 +420,9 @@ public class EmptyEnsembleImpl extends EObjectImpl implements EmptyEnsemble {
 			return basicSetParent((TreeNode) otherEnd, msgs);
 		case DatamodelPackage.EMPTY_ENSEMBLE__CHILDREN:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getChildren())
+					.basicAdd(otherEnd, msgs);
+		case DatamodelPackage.EMPTY_ENSEMBLE__SLICES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSlices())
 					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -410,6 +442,8 @@ public class EmptyEnsembleImpl extends EObjectImpl implements EmptyEnsemble {
 		case DatamodelPackage.EMPTY_ENSEMBLE__CHILDREN:
 			return ((InternalEList<?>) getChildren()).basicRemove(otherEnd,
 					msgs);
+		case DatamodelPackage.EMPTY_ENSEMBLE__SLICES:
+			return ((InternalEList<?>) getSlices()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -452,6 +486,8 @@ public class EmptyEnsembleImpl extends EObjectImpl implements EmptyEnsemble {
 			return getQuery();
 		case DatamodelPackage.EMPTY_ENSEMBLE__CONSTRAINTS:
 			return getConstraints();
+		case DatamodelPackage.EMPTY_ENSEMBLE__SLICES:
+			return getSlices();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -489,6 +525,10 @@ public class EmptyEnsembleImpl extends EObjectImpl implements EmptyEnsemble {
 			getConstraints()
 					.addAll((Collection<? extends Constraint>) newValue);
 			return;
+		case DatamodelPackage.EMPTY_ENSEMBLE__SLICES:
+			getSlices().clear();
+			getSlices().addAll((Collection<? extends Slice>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -522,6 +562,9 @@ public class EmptyEnsembleImpl extends EObjectImpl implements EmptyEnsemble {
 		case DatamodelPackage.EMPTY_ENSEMBLE__CONSTRAINTS:
 			getConstraints().clear();
 			return;
+		case DatamodelPackage.EMPTY_ENSEMBLE__SLICES:
+			getSlices().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -551,6 +594,8 @@ public class EmptyEnsembleImpl extends EObjectImpl implements EmptyEnsemble {
 					.equals(query);
 		case DatamodelPackage.EMPTY_ENSEMBLE__CONSTRAINTS:
 			return constraints != null && !constraints.isEmpty();
+		case DatamodelPackage.EMPTY_ENSEMBLE__SLICES:
+			return slices != null && !slices.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

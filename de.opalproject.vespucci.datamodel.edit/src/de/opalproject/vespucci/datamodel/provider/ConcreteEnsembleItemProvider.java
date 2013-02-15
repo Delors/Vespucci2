@@ -94,6 +94,7 @@ public class ConcreteEnsembleItemProvider extends ItemProviderAdapter implements
 			addDescriptionPropertyDescriptor(object);
 			addQueryPropertyDescriptor(object);
 			addConstraintsPropertyDescriptor(object);
+			addSlicesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -191,6 +192,24 @@ public class ConcreteEnsembleItemProvider extends ItemProviderAdapter implements
 								"_UI_Ensemble_type"),
 						DatamodelPackage.Literals.ENSEMBLE__CONSTRAINTS, true,
 						false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Slices feature. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addSlicesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(
+				((ComposeableAdapterFactory) adapterFactory)
+						.getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Ensemble_slices_feature"),
+				getString("_UI_PropertyDescriptor_description",
+						"_UI_Ensemble_slices_feature", "_UI_Ensemble_type"),
+				DatamodelPackage.Literals.ENSEMBLE__SLICES, true, false, true,
+				null, null, null));
 	}
 
 	/**

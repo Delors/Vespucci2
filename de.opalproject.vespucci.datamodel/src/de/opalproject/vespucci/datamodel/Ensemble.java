@@ -51,6 +51,8 @@ import org.eclipse.emf.common.util.EList;
  * </em>}</li>
  * <li>{@link de.opalproject.vespucci.datamodel.Ensemble#getConstraints <em>
  * Constraints</em>}</li>
+ * <li>{@link de.opalproject.vespucci.datamodel.Ensemble#getSlices <em>Slices
+ * </em>}</li>
  * </ul>
  * </p>
  * 
@@ -194,5 +196,25 @@ public interface Ensemble extends TreeNode {
 	 * @generated
 	 */
 	EList<Constraint> getConstraints();
+
+	/**
+	 * Returns the value of the '<em><b>Slices</b></em>' reference list. The
+	 * list contents are of type {@link de.opalproject.vespucci.datamodel.Slice}
+	 * . It is bidirectional and its opposite is '
+	 * {@link de.opalproject.vespucci.datamodel.Slice#getEnsembles
+	 * <em>Ensembles</em>}'. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Slices</em>' reference list isn't clear, there
+	 * really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Slices</em>' reference list.
+	 * @see de.opalproject.vespucci.datamodel.DatamodelPackage#getEnsemble_Slices()
+	 * @see de.opalproject.vespucci.datamodel.Slice#getEnsembles
+	 * @model opposite="ensembles"
+	 * @generated
+	 */
+	EList<Slice> getSlices();
 
 } // Ensemble

@@ -36,6 +36,7 @@ package de.opalproject.vespucci.datamodel.impl;
 import de.opalproject.vespucci.datamodel.ConcreteEnsemble;
 import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
+import de.opalproject.vespucci.datamodel.Slice;
 import de.opalproject.vespucci.datamodel.TreeNode;
 
 import java.util.Collection;
@@ -53,6 +54,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -83,6 +85,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <li>
  * {@link de.opalproject.vespucci.datamodel.impl.ConcreteEnsembleImpl#getConstraints
  * <em>Constraints</em>}</li>
+ * <li>
+ * {@link de.opalproject.vespucci.datamodel.impl.ConcreteEnsembleImpl#getSlices
+ * <em>Slices</em>}</li>
  * </ul>
  * </p>
  * 
@@ -189,6 +194,16 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 	 * @ordered
 	 */
 	protected EList<Constraint> constraints;
+
+	/**
+	 * The cached value of the '{@link #getSlices() <em>Slices</em>}' reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getSlices()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Slice> slices;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -383,6 +398,21 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 	 * 
 	 * @generated
 	 */
+	public EList<Slice> getSlices() {
+		if (slices == null) {
+			slices = new EObjectWithInverseResolvingEList.ManyInverse<Slice>(
+					Slice.class, this,
+					DatamodelPackage.CONCRETE_ENSEMBLE__SLICES,
+					DatamodelPackage.SLICE__ENSEMBLES);
+		}
+		return slices;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd,
@@ -394,6 +424,9 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 			return basicSetParent((TreeNode) otherEnd, msgs);
 		case DatamodelPackage.CONCRETE_ENSEMBLE__CHILDREN:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getChildren())
+					.basicAdd(otherEnd, msgs);
+		case DatamodelPackage.CONCRETE_ENSEMBLE__SLICES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSlices())
 					.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -413,6 +446,8 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 		case DatamodelPackage.CONCRETE_ENSEMBLE__CHILDREN:
 			return ((InternalEList<?>) getChildren()).basicRemove(otherEnd,
 					msgs);
+		case DatamodelPackage.CONCRETE_ENSEMBLE__SLICES:
+			return ((InternalEList<?>) getSlices()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -455,6 +490,8 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 			return getQuery();
 		case DatamodelPackage.CONCRETE_ENSEMBLE__CONSTRAINTS:
 			return getConstraints();
+		case DatamodelPackage.CONCRETE_ENSEMBLE__SLICES:
+			return getSlices();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -492,6 +529,10 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 			getConstraints()
 					.addAll((Collection<? extends Constraint>) newValue);
 			return;
+		case DatamodelPackage.CONCRETE_ENSEMBLE__SLICES:
+			getSlices().clear();
+			getSlices().addAll((Collection<? extends Slice>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -525,6 +566,9 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 		case DatamodelPackage.CONCRETE_ENSEMBLE__CONSTRAINTS:
 			getConstraints().clear();
 			return;
+		case DatamodelPackage.CONCRETE_ENSEMBLE__SLICES:
+			getSlices().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -554,6 +598,8 @@ public class ConcreteEnsembleImpl extends EObjectImpl implements
 					.equals(query);
 		case DatamodelPackage.CONCRETE_ENSEMBLE__CONSTRAINTS:
 			return constraints != null && !constraints.isEmpty();
+		case DatamodelPackage.CONCRETE_ENSEMBLE__SLICES:
+			return slices != null && !slices.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

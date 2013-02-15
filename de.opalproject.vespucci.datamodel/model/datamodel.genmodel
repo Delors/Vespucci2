@@ -25,6 +25,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datamodel.ecore#//Ensemble/derived"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datamodel.ecore#//Ensemble/description"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datamodel.ecore#//Ensemble/query"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference datamodel.ecore#//Ensemble/constraints"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference datamodel.ecore#//Ensemble/slices"/>
     </genClasses>
     <genClasses ecoreClass="datamodel.ecore#//Constraint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute datamodel.ecore#//Constraint/constraintType"/>

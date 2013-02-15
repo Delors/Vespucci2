@@ -270,6 +270,15 @@ public class DatamodelPackageImpl extends EPackageImpl implements
 	 * 
 	 * @generated
 	 */
+	public EReference getEnsemble_Slices() {
+		return (EReference) getEnsemble().getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EClass getConstraint() {
 		if (constraintEClass == null) {
 			constraintEClass = (EClass) EPackage.Registry.INSTANCE
