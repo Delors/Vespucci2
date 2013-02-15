@@ -33,6 +33,9 @@
  */
 package de.opalproject.vespucci.datamodel.tests;
 
+import junit.framework.TestCase;
+import junit.textui.TestRunner;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -41,10 +44,6 @@ import de.opalproject.vespucci.datamodel.ConstraintType;
 import de.opalproject.vespucci.datamodel.DatamodelFactory;
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.impl.ConstraintImpl;
-
-import junit.framework.TestCase;
-
-import junit.textui.TestRunner;
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '

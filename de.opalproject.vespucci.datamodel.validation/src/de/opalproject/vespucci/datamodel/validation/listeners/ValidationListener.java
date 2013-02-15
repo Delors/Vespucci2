@@ -144,14 +144,15 @@ public class ValidationListener implements IValidationListener {
 	public void validationOccurred(ValidationEvent event) {
 		if (displayEvents) {
 			// Display in the console
-			//MessageConsole console = ConsoleUtil.registerConsole(consoleName);
+			// MessageConsole console =
+			// ConsoleUtil.registerConsole(consoleName);
 			String messages = getMessages(event);
 			if (messages.length() > 0) {
 				System.out.println(consoleName + VALIDATION_PROBLEMS);
 				System.out.println(consoleName + messages);
 			}
 
-			//ConsolePlugin.getDefault().getConsoleManager().refresh(console);
+			// ConsolePlugin.getDefault().getConsoleManager().refresh(console);
 		}
 	}
 

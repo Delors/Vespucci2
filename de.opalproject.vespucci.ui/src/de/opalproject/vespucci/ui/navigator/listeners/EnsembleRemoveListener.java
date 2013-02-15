@@ -29,8 +29,8 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
-import de.opalproject.vespucci.ui.editor.EnsembleEditorInput;
 import de.opalproject.vespucci.ui.editor.EnsembleEditor;
+import de.opalproject.vespucci.ui.editor.EnsembleEditorInput;
 
 /**
  * 

@@ -33,9 +33,8 @@
  */
 package de.opalproject.vespucci.datamodel.tests;
 
-import de.opalproject.vespucci.datamodel.TreeNode;
-
 import junit.framework.TestCase;
+import de.opalproject.vespucci.datamodel.TreeNode;
 
 /**
  * <!-- begin-user-doc --> A test case for the model object '
