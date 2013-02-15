@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.validation.marker.MarkerUtil;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.emf.validation.service.IValidationListener;
 import org.eclipse.emf.validation.service.ValidationEvent;
+
+import de.opalproject.vespucci.datamodel.validation.Activator;
 
 public class ProblemsReporter implements IValidationListener {
 	public void validationOccurred(ValidationEvent event) {
@@ -18,7 +21,11 @@ public class ProblemsReporter implements IValidationListener {
 				try {
 					MarkerUtil.updateMarkers(object);
 				} catch (CoreException e) {
-					e.printStackTrace();
+					Activator
+							.getDefault()
+							.getLog()
+							.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID,
+									e.getStackTrace().toString()));
 				}
 			}
 		}

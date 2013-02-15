@@ -5,6 +5,7 @@ Bundle-SymbolicName: de.opalproject.vespucci.datamodel.validation;singleton:=tru
 Bundle-Version: 2.0.0.qualifier
 Bundle-Activator: de.opalproject.vespucci.datamodel.validation.Activator
 Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui;bundle-version="3.8.0",
  org.eclipse.emf.validation;bundle-version="1.4.0",
  de.opalproject.vespucci.datamodel;bundle-version="2.0.0"
 Bundle-ActivationPolicy: lazy
