@@ -429,6 +429,10 @@
            name="de.opalproject.vespucci.ui.editor.openEditor">
      </command>
      <command
+           id="de.opalproject.vespucci.ui.editor.closeEditor"
+           name="de.opalproject.vespucci.ui.editor.closeEditor">
+     </command>
+     <command
            id="de.opalproject.vespucci.ui.editor.openDiagramEditor"
            name="de.opalproject.vespucci.ui.editor.openDiagramEditor">
      </command>
