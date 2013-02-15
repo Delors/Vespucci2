@@ -35,6 +35,8 @@ package de.opalproject.vespucci.ui.wizards;
 
 import java.lang.reflect.InvocationTargetException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.AddCommand;
@@ -46,6 +48,7 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import de.opalproject.vespucci.datamodel.DatamodelFactory;
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.ui.Activator;
 import de.opalproject.vespucci.ui.utils.EmfService;
 
 /**
@@ -108,6 +111,11 @@ public class NewEnsembleWizard extends Wizard {
 					EmfService.save(domain);
 
 				} catch (Exception exception) {
+					Activator
+							.getDefault()
+							.getLog()
+							.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID,
+									exception.getStackTrace().toString()));
 				} finally {
 					progressMonitor.done();
 				}
@@ -116,12 +124,12 @@ public class NewEnsembleWizard extends Wizard {
 
 		try {
 			getContainer().run(false, false, operation);
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (InvocationTargetException | InterruptedException exception) {
+			Activator
+					.getDefault()
+					.getLog()
+					.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID,
+							exception.getStackTrace().toString()));
 		}
 
 		return true;
