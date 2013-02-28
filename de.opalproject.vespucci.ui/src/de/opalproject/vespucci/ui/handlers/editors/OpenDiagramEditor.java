@@ -55,12 +55,12 @@ public class OpenDiagramEditor extends AbstractHandler {
 		ISelection currentSelection = HandlerUtil.getCurrentSelection(event);
 		TreeSelection currentTreeSelection = (TreeSelection) currentSelection;
 
-		// check if selection is really an ensemble
+		// check if selection is really a slice
 		if (!(currentTreeSelection.getFirstElement() instanceof Slice)) {
 			return null;
 		}
 
-		// Get the selected ensemble and create an editorinput
+		// Get the selected slice and create an editorinput
 		Slice slice = (Slice) currentTreeSelection.getFirstElement();
 		Diagram diagram = (Diagram) slice.eResource().getEObject(
 				slice.getDiagram());

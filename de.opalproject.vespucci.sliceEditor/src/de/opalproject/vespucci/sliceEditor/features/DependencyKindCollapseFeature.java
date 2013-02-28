@@ -53,6 +53,8 @@ import org.eclipse.graphiti.services.Graphiti;
  */
 public class DependencyKindCollapseFeature extends AbstractCustomFeature {
 
+	private String title = "Hide \"ALL\" Constraint-Labels";
+	
 	/**
 	 * @param fp
 	 */
@@ -65,7 +67,7 @@ public class DependencyKindCollapseFeature extends AbstractCustomFeature {
 	 */
 	@Override
 	public String getName() {
-		return "Hide \"ALL\" Constraint-Labels";
+		return title;
 	}
 
 	/* (non-Javadoc)
@@ -116,9 +118,11 @@ public class DependencyKindCollapseFeature extends AbstractCustomFeature {
 					.equals("ALL")) {
 						cd.setVisible(false);
 						collapsed = "true";
+						title = "Show \"ALL\" Constraint-Labels";
 					} else {
 						cd.setVisible(true);
 						collapsed = "false";
+						title = "Hide \"ALL\" Constraint-Labels";
 					}
 				}
 		

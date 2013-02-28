@@ -36,6 +36,8 @@ package de.opalproject.vespucci.ui.handlers.editors;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.graphiti.mm.pictograms.Diagram;
+import org.eclipse.graphiti.ui.editor.DiagramEditorInput;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
@@ -43,6 +45,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.datamodel.Slice;
 import de.opalproject.vespucci.ui.editor.EnsembleEditorInput;
 
 public class CloseEditor extends AbstractHandler {
@@ -57,6 +60,8 @@ public class CloseEditor extends AbstractHandler {
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
+		
+		System.out.println("Close called");
 
 		// Get the view
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
@@ -66,18 +71,38 @@ public class CloseEditor extends AbstractHandler {
 		IStructuredSelection currentSelection = (IStructuredSelection) HandlerUtil
 				.getCurrentSelection(event);
 
-		// Check if currentSelection is an Ensemble
-		if (!(currentSelection.getFirstElement() instanceof Ensemble)) {
+		boolean isSlice = false;
+		// Check if currentSelection is an Ensemble or Slice
+		if ((currentSelection.getFirstElement() instanceof Slice)) {
+			isSlice = true;
+		} else if (!(currentSelection.getFirstElement() instanceof Ensemble)) {
 			return null;
 		}
 
 		// check whether there is a corresponding open editor and close it.
-		Ensemble current = (Ensemble) currentSelection.getFirstElement();
-		if (current != null) {
-			IEditorPart openEditor = page.findEditor(new EnsembleEditorInput(
-					current));
-			if (openEditor != null) {
-				page.closeEditor(openEditor, false);
+		if (!isSlice) {
+			Ensemble current = (Ensemble) currentSelection.getFirstElement();
+			if (current != null) {
+				IEditorPart openEditor = page
+						.findEditor(new EnsembleEditorInput(current));
+				if (openEditor != null) {
+					page.closeEditor(openEditor, false);
+				}
+			}
+		}
+		else{
+			Slice current = (Slice) currentSelection.getFirstElement();
+			Diagram diagram = (Diagram) current.eResource().getEObject(
+					current.getDiagram());
+			DiagramEditorInput editorInput = DiagramEditorInput
+					.createEditorInput(diagram,
+							"de.opalproject.vespucci.sliceEditor.sliceEditorDiagramTypeProvider");
+			if (current != null) {
+				IEditorPart openEditor = page
+						.findEditor(editorInput);
+				if (openEditor != null) {
+					page.closeEditor(openEditor, false);
+				}
 			}
 		}
 

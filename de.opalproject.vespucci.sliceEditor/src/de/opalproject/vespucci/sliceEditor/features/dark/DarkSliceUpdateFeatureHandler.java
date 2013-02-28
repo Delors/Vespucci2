@@ -3,7 +3,7 @@
  * Copyright (c) 2012
  * Software Engineering
  * Department of Computer Science
- * Technische Universität Darmstadt
+ * Technische Universitiät Darmstadt
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -31,66 +31,52 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package de.opalproject.vespucci.ui.handlers;
+package de.opalproject.vespucci.sliceEditor.features.dark;
 
-import java.util.List;
-
+import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.graphiti.mm.pictograms.Diagram;
-import org.eclipse.graphiti.ui.editor.DiagramEditorInput;
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 
-import de.opalproject.vespucci.datamodel.Slice;
+import de.opalproject.vespucci.datamodel.Ensemble;
 
 /**
- * Handles delete requests for a selection of ensembles.
- * 
- * @author Marco Jacobasch
- * 
+ * @author marius
+ *
  */
-public class DeleteSliceHandler extends AbstractCommandHandler {
+public final class DarkSliceUpdateFeatureHandler extends AbstractHandler {
 
-	@Override
-	public Command getCommand(IStructuredSelection selection,
-			final ExecutionEvent event) {
+	/* (non-Javadoc)
+	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+	 */
+	public Object execute(final ExecutionEvent event) throws ExecutionException {
 
-		@SuppressWarnings("unchecked")
-		final List<Slice> sliceList = selection.toList();
+		// Get the current selection
+		ISelection selection = HandlerUtil.getCurrentSelection(event);
+		if (!(selection instanceof IStructuredSelection)) {
+			return null;
+		}
 
-		Command deleteCommand = new RecordingCommand(getEditingDomain()) {
-		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
-			@Override
-			protected void doExecute() {
-				for (final Slice slice : sliceList) {
-					// Resolve diagram string to diagram object
-					Diagram diagram = (Diagram) slice.eResource().getEObject(
-							slice.getDiagram());
+		// Operation must be started on an Ensemble -> cancel if not
+		Object first = ((IStructuredSelection) selection).getFirstElement();
+		if (!(first instanceof Ensemble)) {
+			return null;
+		}
 
-					IWorkbenchPage page = window.getActivePage();
-					DiagramEditorInput editorInput = DiagramEditorInput
-							.createEditorInput(diagram,
-									"de.opalproject.vespucci.sliceEditor.sliceEditorDiagramTypeProvider");
-					if (slice != null) {
-						IEditorPart openEditor = page.findEditor(editorInput);
-						if (openEditor != null) {
-							page.closeEditor(openEditor, false);
-						}
-					}
-					
-					// Delete Slice and Diagram
-					EcoreUtil.delete(diagram);
-					EcoreUtil.delete(slice);
-				}
-			}
-		};
+		// Get the editing Domain
+		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
 
-		return deleteCommand;
+		// Execute
+		DarkSliceUpdateFeature operation = new DarkSliceUpdateFeature(editingDomain, (Ensemble) first);
+		editingDomain.getCommandStack().execute(operation);
+
+		// Dispose the editing domain to eliminate memory leak
+		editingDomain.dispose();
+
+		return null;
 	}
 }
