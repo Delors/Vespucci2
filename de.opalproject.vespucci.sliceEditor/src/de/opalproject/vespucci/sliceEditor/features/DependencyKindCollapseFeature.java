@@ -52,8 +52,6 @@ import org.eclipse.graphiti.services.Graphiti;
  *
  */
 public class DependencyKindCollapseFeature extends AbstractCustomFeature {
-
-	private String title = "Hide \"ALL\" Constraint-Labels";
 	
 	/**
 	 * @param fp
@@ -67,7 +65,8 @@ public class DependencyKindCollapseFeature extends AbstractCustomFeature {
 	 */
 	@Override
 	public String getName() {
-		return title;
+		
+		return "Toggle \"ALL\" Constraint-Labels";
 	}
 
 	/* (non-Javadoc)
@@ -83,6 +82,7 @@ public class DependencyKindCollapseFeature extends AbstractCustomFeature {
 	 */
 	@Override
 	public boolean canExecute(ICustomContext context) {
+		// Check if clicking into a diagram
 		PictogramElement[] pes = context.getPictogramElements();
 		if (pes != null && pes.length == 1) {
 			if (pes[0] instanceof Diagram) {
@@ -109,24 +109,25 @@ public class DependencyKindCollapseFeature extends AbstractCustomFeature {
 		Diagram dia = (Diagram) pictogramElements[0];
 		String collapsed = "false";
 
+		// retrieve all connections
 		EList<Connection> connections = dia.getConnections();
 		for (Connection connection : connections) {
 			for (ConnectionDecorator cd : connection.getConnectionDecorators()) {
 				if (cd.getGraphicsAlgorithm() instanceof Text
 						) {
+					// check which state is currently active and if the connection decorator holds the string "ALL"
 					if (Graphiti.getPeService().getPropertyValue(dia, "dependenciescollapsed").equals("false") && ((Text) cd.getGraphicsAlgorithm()).getValue()
 					.equals("ALL")) {
 						cd.setVisible(false);
 						collapsed = "true";
-						title = "Show \"ALL\" Constraint-Labels";
 					} else {
 						cd.setVisible(true);
 						collapsed = "false";
-						title = "Hide \"ALL\" Constraint-Labels";
 					}
 				}
 		
 			}
+			// save the new state in the diagram.
 		} Graphiti.getPeService().setPropertyValue(dia, "dependenciescollapsed", collapsed);
 	}
 }
