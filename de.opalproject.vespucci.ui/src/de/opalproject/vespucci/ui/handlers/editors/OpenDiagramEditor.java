@@ -46,6 +46,8 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 import de.opalproject.vespucci.datamodel.Slice;
+import de.opalproject.vespucci.sliceEditor.SliceDiagramEditor;
+import de.opalproject.vespucci.sliceEditor.SliceEditorDiagramTypeProvider;
 
 public class OpenDiagramEditor extends AbstractHandler {
 
@@ -65,9 +67,9 @@ public class OpenDiagramEditor extends AbstractHandler {
 		Diagram diagram = (Diagram) slice.eResource().getEObject(
 				slice.getDiagram());
 
-		DiagramEditorInput editorInput = DiagramEditorInput
-				.createEditorInput(diagram,
-						"de.opalproject.vespucci.sliceEditor.sliceEditorDiagramTypeProvider");
+		DiagramEditorInput editorInput = DiagramEditorInput.createEditorInput(
+				diagram,
+				SliceEditorDiagramTypeProvider.DIAGRAM_TYPE_PROVIDER_ID);
 
 		// Get the view
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
@@ -76,7 +78,7 @@ public class OpenDiagramEditor extends AbstractHandler {
 		// Try to open the editor
 
 		try {
-			page.openEditor(editorInput, "de.opalproject.vespucci.sliceEditor");
+			page.openEditor(editorInput, SliceDiagramEditor.DIAGRAM_EDITOR_ID);
 		} catch (PartInitException e) {
 			throw new RuntimeException(e);
 		}
