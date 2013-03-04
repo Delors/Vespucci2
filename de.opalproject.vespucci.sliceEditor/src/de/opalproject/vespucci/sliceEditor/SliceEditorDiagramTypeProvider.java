@@ -44,7 +44,7 @@ import org.eclipse.graphiti.tb.IToolBehaviorProvider;
  */
 public class SliceEditorDiagramTypeProvider extends AbstractDiagramTypeProvider {
 
-	public final static String DIAGRAM_TYPE_PROVIDER_ID = "de.opalproject.vespucci.sliceEditor.sliceEditorDiagramTypeProvider";
+	public static final String DIAGRAM_TYPE_PROVIDER_ID = "de.opalproject.vespucci.sliceEditor.sliceEditorDiagramTypeProvider";
 
 	private IToolBehaviorProvider[] toolBehaviorProviders;
 
