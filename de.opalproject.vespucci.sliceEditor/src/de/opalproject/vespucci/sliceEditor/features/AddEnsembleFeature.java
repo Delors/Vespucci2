@@ -69,16 +69,19 @@ import de.opalproject.vespucci.datamodel.Slice;
  */
 public class AddEnsembleFeature extends AbstractAddShapeFeature {
 
-	private final static ColorConstant EMPTY_ENSEMBLE_FOREGROUND = new ColorConstant(48,
-			48, 48);
-	private final static ColorConstant EMPTY_ENSEMBLE_BACKGROUND = new ColorConstant(176,
-			176, 176);
+	private static final ColorConstant EMPTY_ENSEMBLE_FOREGROUND = new ColorConstant(
+			48, 48, 48);
+	private static final ColorConstant EMPTY_ENSEMBLE_BACKGROUND = new ColorConstant(
+			176, 176, 176);
 
-	private final static ColorConstant ENSEMBLE_TEXT_FOREGROUND = (ColorConstant) ColorConstant.BLACK;
-	private final static ColorConstant ENSEMBLE_FOREGROUND = new ColorConstant(
+	private static final ColorConstant ENSEMBLE_TEXT_FOREGROUND = (ColorConstant) ColorConstant.BLACK;
+	private static final ColorConstant ENSEMBLE_FOREGROUND = new ColorConstant(
 			98, 131, 167);
-	private final static ColorConstant ENSEMBLE_BACKGROUND = new ColorConstant(
+	private static final ColorConstant ENSEMBLE_BACKGROUND = new ColorConstant(
 			187, 218, 247);
+
+	private static final int DEFAULT_WIDTH = 100;
+	private static final int DEFAULT_HEIGHT = 50;
 
 	public AddEnsembleFeature(IFeatureProvider fp) {
 		super(fp);
@@ -131,11 +134,12 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 
 		// check whether the context has a size (e.g. from a create feature)
 		// otherwise define a default size for the shape
-		final int width = context.getWidth() <= 0 ? 100 : context.getWidth();
-		final int height = context.getHeight() <= 0 ? 50 : context.getHeight();
-		
-		
-		// some Graphiti Services 
+		final int width = context.getWidth() <= 0 ? DEFAULT_WIDTH : context
+				.getWidth();
+		final int height = context.getHeight() <= 0 ? DEFAULT_HEIGHT : context
+				.getHeight();
+
+		// some Graphiti Services
 		IPeCreateService peCreateService = Graphiti.getPeCreateService();
 		ContainerShape containerShape = peCreateService.createContainerShape(
 				targetDiagram, true);
@@ -158,7 +162,6 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 					gaService, peCreateService, width, height);
 		}
 
-		
 		// add a chopbox anchor to the shape
 		peCreateService.createChopboxAnchor(containerShape);
 
