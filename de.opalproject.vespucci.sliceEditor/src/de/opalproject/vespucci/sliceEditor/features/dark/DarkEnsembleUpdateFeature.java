@@ -37,44 +37,34 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.graphiti.features.IFeatureProvider;
-import org.eclipse.graphiti.features.IRemoveFeature;
-import org.eclipse.graphiti.features.context.impl.RemoveContext;
+import org.eclipse.graphiti.features.IUpdateFeature;
+import org.eclipse.graphiti.features.context.impl.UpdateContext;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.services.GraphitiUi;
 
-import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.datamodel.Slice;
 
 /**
- * This class is responsible for updating slices when ensembles are deleted and
- * thus the slices depicting the ensemble need to remove it.
+ * This class is responsible for updating ensembles withing diagrams when ensembles are edited outside of graphiti.
  * 
  * @author marius
  * 
  */
-public class DarkSliceUpdateFeature extends RecordingCommand {
-
-	/**
-	 * List of diagrams depicting the deleted ensemble.
-	 */
-	private List<Diagram> diagramList = new ArrayList<Diagram>();
+public class DarkEnsembleUpdateFeature extends RecordingCommand {
 
 	private final List<Ensemble> ensembleList;
 
 	/**
 	 * @param editingDomain
 	 *            - neccessary for the constructor.
-	 * @param ens
-	 *            - the deleted ensemble
 	 */
-	public DarkSliceUpdateFeature(TransactionalEditingDomain editingDomain, List<Ensemble> ensembleList) {
+	public DarkEnsembleUpdateFeature(TransactionalEditingDomain editingDomain, List<Ensemble> ensembleList) {
 		super(editingDomain);
 
 		// retrieving all slices featuring the deleted ensemble
@@ -105,11 +95,11 @@ public class DarkSliceUpdateFeature extends RecordingCommand {
 					// and eventually remove them.
 					for (PictogramElement pe : (Collection<? extends PictogramElement>) Graphiti
 							.getLinkService().getPictogramElements(dia, ens)) {
-						RemoveContext removeContext = new RemoveContext(pe);
-						IRemoveFeature removeFeature = ftp
-								.getRemoveFeature(removeContext);
-						if (removeFeature.canRemove(removeContext)) {
-							removeFeature.remove(removeContext);
+						UpdateContext updateContext = new UpdateContext(pe);
+						IUpdateFeature updateFeature = ftp
+								.getUpdateFeature(updateContext);
+						if (updateFeature.canUpdate(updateContext)) {
+							updateFeature.update(updateContext);
 						}
 					}
 				}

@@ -60,7 +60,7 @@ public class EnsembleRemoveListener extends DemultiplexingListener {
 	 * NotificationFilter to select only remove notifications and Ensembles or
 	 * EnsembleRepository
 	 */
-	private final static NotificationFilter REMOVE_FILTER = NotificationFilter
+	private static final NotificationFilter REMOVE_FILTER = NotificationFilter
 			.createEventTypeFilter(Notification.REMOVE)
 			.and(NotificationFilter
 					.createNotifierTypeFilter(
@@ -97,8 +97,7 @@ public class EnsembleRemoveListener extends DemultiplexingListener {
 					if (page != null) {
 						IEditorReference[] editors = page.findEditors(
 								new EnsembleEditorInput(ens),
-								EnsembleEditor.ID, //$NON-NLS-1$
-								IWorkbenchPage.MATCH_ID
+								EnsembleEditor.ID, IWorkbenchPage.MATCH_ID
 										| IWorkbenchPage.MATCH_INPUT);
 
 						page.closeEditors(editors, false);

@@ -12,7 +12,7 @@ import org.eclipse.swt.widgets.Text;
 
 public class NewEnsembleWizardQueryPage extends WizardPage {
 
-	private final static int QUERY_HEIGTH = 200;
+	private static final int QUERY_HEIGTH = 200;
 
 	private Text query;
 	private Composite container;

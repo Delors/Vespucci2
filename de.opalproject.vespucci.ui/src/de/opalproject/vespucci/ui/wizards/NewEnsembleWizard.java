@@ -34,6 +34,7 @@
 package de.opalproject.vespucci.ui.wizards;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Arrays;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -116,7 +117,8 @@ public class NewEnsembleWizard extends Wizard {
 							.getDefault()
 							.getLog()
 							.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID,
-									exception.getStackTrace().toString()));
+									Arrays.toString(exception.getStackTrace())));
+
 				} finally {
 					progressMonitor.done();
 				}
@@ -129,8 +131,8 @@ public class NewEnsembleWizard extends Wizard {
 			Activator
 					.getDefault()
 					.getLog()
-					.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID,
-							exception.getStackTrace().toString()));
+					.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, Arrays
+							.toString(exception.getStackTrace())));
 		}
 
 		return true;

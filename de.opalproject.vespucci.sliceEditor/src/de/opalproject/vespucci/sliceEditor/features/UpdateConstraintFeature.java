@@ -47,7 +47,7 @@ import de.opalproject.vespucci.datamodel.Constraint;
  * This feature updates constraint-kind labels if changes have been made.
  * 
  * @author Marius
- *
+ * 
  */
 public class UpdateConstraintFeature extends AbstractUpdateFeature {
 
@@ -58,29 +58,39 @@ public class UpdateConstraintFeature extends AbstractUpdateFeature {
 		super(fp);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.func.IUpdate#canUpdate(org.eclipse.graphiti.features.context.IUpdateContext)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.func.IUpdate#canUpdate(org.eclipse.graphiti.features
+	 * .context.IUpdateContext)
 	 */
 	public boolean canUpdate(IUpdateContext context) {
 		return (context.getPictogramElement() instanceof ConnectionDecorator);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.func.IUpdate#updateNeeded(org.eclipse.graphiti.features.context.IUpdateContext)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.func.IUpdate#updateNeeded(org.eclipse.graphiti.features
+	 * .context.IUpdateContext)
 	 */
 	public IReason updateNeeded(IUpdateContext context) {
 		// retrieve constraint kind
+		// and initializse relevant variables
 		String constraintKind = null;
 		Text text = null;
 		Connection connection = null;
+		// retrieve connection Decorator
 		ConnectionDecorator cd = (ConnectionDecorator) context
 				.getPictogramElement();
+		// find and retrieve text label
 		if (cd.getGraphicsAlgorithm() instanceof Text) {
 			connection = cd.getConnection();
 			text = (Text) cd.getGraphicsAlgorithm();
-		} else {
-
-		}
+		} // else look for the textlabel elsewhere by getting all connection
+			// decorators of the connection
 		for (ConnectionDecorator condec : connection.getConnectionDecorators()) {
 			if (condec.getGraphicsAlgorithm() instanceof Text)
 				text = (Text) condec.getGraphicsAlgorithm();
@@ -108,12 +118,16 @@ public class UpdateConstraintFeature extends AbstractUpdateFeature {
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.func.IUpdate#update(org.eclipse.graphiti.features.context.IUpdateContext)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.func.IUpdate#update(org.eclipse.graphiti.features
+	 * .context.IUpdateContext)
 	 */
 	public boolean update(IUpdateContext context) {
-		// retrieve constraint kind
 		ConnectionDecorator cd = null;
+		// retrieve connectiondecorator affected
 		if (context.getPictogramElement() instanceof ConnectionDecorator) {
 			cd = (ConnectionDecorator) context.getPictogramElement();
 		}
@@ -131,18 +145,24 @@ public class UpdateConstraintFeature extends AbstractUpdateFeature {
 		// case cd is the actual constraint-kind label
 		if (cd.getGraphicsAlgorithm() instanceof Text) {
 			Text text = (Text) cd.getGraphicsAlgorithm();
+			// set the new value retrieved from the businessobject
 			text.setValue(businessValue);
+			// check if it had been toggled invisible and thus if doesnt display
+			// "ALL" anymore needs to be visible again
 			if (!cd.isVisible() && !(text.equals("ALL"))) {
 				cd.setVisible(true);
 			}
 			return true;
 		} else {
-			// otherwise look for the constraint-kind label
+			// otherwise look for the constraint-kind label and retrieve it
 			for (ConnectionDecorator condec : connection
 					.getConnectionDecorators()) {
 				if (condec.getGraphicsAlgorithm() instanceof Text) {
 					Text text = (Text) condec.getGraphicsAlgorithm();
+					// set the new value retrieved from the businessobject
 					text.setValue(businessValue);
+					// check if it had been toggled invisible and thus if doesnt
+					// diplay "ALL" anymore needs to be visible again
 					if (!condec.isVisible() && !(text.equals("ALL"))) {
 						condec.setVisible(true);
 					}

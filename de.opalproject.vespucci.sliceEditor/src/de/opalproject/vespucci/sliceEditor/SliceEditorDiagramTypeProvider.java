@@ -35,7 +35,6 @@ package de.opalproject.vespucci.sliceEditor;
 
 import org.eclipse.graphiti.dt.AbstractDiagramTypeProvider;
 import org.eclipse.graphiti.tb.IToolBehaviorProvider;
-import org.eclipse.graphiti.ui.editor.DefaultMarkerBehavior;
 
 /**
  * Provides the diagram type. FeatureProvider and ToolBehaviorProvider have to
@@ -45,7 +44,7 @@ import org.eclipse.graphiti.ui.editor.DefaultMarkerBehavior;
  */
 public class SliceEditorDiagramTypeProvider extends AbstractDiagramTypeProvider {
 
-	public final static String DIAGRAM_TYPE_PROVIDER_ID = "de.opalproject.vespucci.sliceEditor.sliceEditorDiagramTypeProvider";
+	public static final String DIAGRAM_TYPE_PROVIDER_ID = "de.opalproject.vespucci.sliceEditor.sliceEditorDiagramTypeProvider";
 
 	private IToolBehaviorProvider[] toolBehaviorProviders;
 
@@ -66,8 +65,6 @@ public class SliceEditorDiagramTypeProvider extends AbstractDiagramTypeProvider 
 			toolBehaviorProviders = new IToolBehaviorProvider[] { new SliceEditorToolBehaviorProvider(
 					this) };
 		}
-
-		DefaultMarkerBehavior adf = null;
 		return toolBehaviorProviders;
 	}
 

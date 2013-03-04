@@ -33,6 +33,8 @@
  */
 package de.opalproject.vespucci.ui.handlers.editors;
 
+import java.util.Arrays;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -52,6 +54,9 @@ import de.opalproject.vespucci.ui.editor.EnsembleEditorInput;
 
 public class OpenEditor extends AbstractHandler {
 
+	/**
+	 * Open an ensemble editor
+	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		// Get the current selection
@@ -72,15 +77,14 @@ public class OpenEditor extends AbstractHandler {
 		IWorkbenchPage page = window.getActivePage();
 
 		// Try to open the editor
-
 		try {
 			page.openEditor(editorInput, EnsembleEditor.ID);
 		} catch (PartInitException e) {
 			Activator
 					.getDefault()
 					.getLog()
-					.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e
-							.getStackTrace().toString()));
+					.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, Arrays
+							.toString(e.getStackTrace())));
 		}
 
 		return null;

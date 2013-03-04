@@ -89,6 +89,13 @@ import de.opalproject.vespucci.datamodel.EnsembleRepository;
 import de.opalproject.vespucci.datamodel.SliceRepository;
 import de.opalproject.vespucci.datamodel.provider.DatamodelEditPlugin;
 
+/*
+ * The DatamodelModelWizard is almost completely generated. This is sufficient for our
+ *  purpose, as it is only needed to create the data model nearly no custom functionality
+ *  is needed. The only adjustment is the creation of the EnsembleRepository and
+ *  the SliceRepository in performFinish().
+ */
+
 /**
  * This is a simple wizard for creating a new model file. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
@@ -244,6 +251,9 @@ public class DatamodelModelWizard extends Wizard implements INewWizard {
 						// Create a resource for this file.
 						//
 						Resource resource = resourceSet.createResource(fileURI);
+
+						// initialize with empty data, including the
+						// EnsembleRepository and SliceRepository
 						EnsembleRepository ensembleRepository = datamodelFactory
 								.createEnsembleRepository();
 						SliceRepository sliceRepository = datamodelFactory

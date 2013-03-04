@@ -79,8 +79,8 @@ public class VespucciContentProvider extends
 		if (object instanceof IFile) {
 			String path = ((IFile) object).getFullPath().toString();
 			URI uri = URI.createPlatformResourceURI(path, true);
-			object = resourceSet.getResource(uri, true);
-			return stripDiagrams(super.getChildren(object));
+			return stripDiagrams(super.getChildren(resourceSet.getResource(uri,
+					true)));
 		}
 		return super.getChildren(object);
 	}

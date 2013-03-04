@@ -12,4 +12,5 @@ Require-Bundle: org.eclipse.emf.transaction;bundle-version="1.4.0",
  de.opalproject.vespucci.datamodel;bundle-version="2.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: de.opalproject.vespucci.sliceEditor
+Export-Package: de.opalproject.vespucci.sliceEditor,
+ de.opalproject.vespucci.sliceEditor.features.dark
