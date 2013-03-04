@@ -66,7 +66,7 @@ public class DeleteSliceHandler extends AbstractCommandHandler {
 		final List<Slice> sliceList = selection.toList();
 
 		Command deleteCommand = new RecordingCommand(getEditingDomain()) {
-			IWorkbenchWindow window = HandlerUtil
+			private IWorkbenchWindow window = HandlerUtil
 					.getActiveWorkbenchWindow(event);
 
 			@Override
