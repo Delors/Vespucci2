@@ -33,6 +33,8 @@
  */
 package de.opalproject.vespucci.ui.handlers.editors;
 
+import java.util.Arrays;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -79,8 +81,8 @@ public class OpenEditor extends AbstractHandler {
 			Activator
 					.getDefault()
 					.getLog()
-					.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e
-							.getStackTrace().toString()));
+					.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, Arrays
+							.toString(e.getStackTrace())));
 		}
 
 		return null;
