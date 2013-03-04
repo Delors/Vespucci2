@@ -34,8 +34,10 @@
 package de.opalproject.vespucci.sliceEditor.features.dark;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -46,69 +48,70 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.services.GraphitiUi;
 
+import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.datamodel.Slice;
 
 /**
- * This class is responsible for updating slices when ensembles are deleted and 
+ * This class is responsible for updating slices when ensembles are deleted and
  * thus the slices depicting the ensemble need to remove it.
  * 
  * @author marius
- *
+ * 
  */
 public class DarkSliceUpdateFeature extends RecordingCommand {
-
-
 
 	/**
 	 * List of diagrams depicting the deleted ensemble.
 	 */
 	private List<Diagram> diagramList = new ArrayList<Diagram>();
-	/**
-	 * The deleted Ensemble.
-	 */
-	private Ensemble ens;
+
+	private final List<Ensemble> ensembleList;
 
 	/**
-	 * @param editingDomain - neccessary for the constructor.
-	 * @param ens - the deleted ensemble
+	 * @param editingDomain
+	 *            - neccessary for the constructor.
+	 * @param ens
+	 *            - the deleted ensemble
 	 */
-	public DarkSliceUpdateFeature(TransactionalEditingDomain editingDomain,
-			Ensemble ens) {
+	public DarkSliceUpdateFeature(TransactionalEditingDomain editingDomain, List<Ensemble> ensembleList) {
 		super(editingDomain);
 
 		// retrieving all slices featuring the deleted ensemble
-		for (Slice slice : ens.getSlices()) {
-			diagramList.add((Diagram) slice.eResource().getEObject(
-					slice.getDiagram()));
-		}
-		this.ens = ens;
+		this.ensembleList = ensembleList;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
 	 */
 	@Override
 	protected void doExecute() {
-		// Get the feature provider.
-		IFeatureProvider ftp = GraphitiUi.getExtensionManager()
-				.createFeatureProvider(diagramList.get(0));
-		
-		// List holding all the graphical elements that have to be removed.
-		List<PictogramElement> removeList = new ArrayList<PictogramElement>();
+		for (Ensemble ens : ensembleList) {
+			List<Diagram> diagramList = new ArrayList<Diagram>();
+			for (Slice slice : ens.getSlices()) {
+				diagramList.add((Diagram) slice.eResource().getEObject(
+						slice.getDiagram()));
+			}
+			// Check if the ensemble is actually featured in any slice
+			if (!(diagramList.size() == 0)) {
+				// Get the feature provider.
+				IFeatureProvider ftp = GraphitiUi.getExtensionManager()
+						.createFeatureProvider(diagramList.get(0));
 
-		
-		for (Diagram dia : diagramList) {
-			// retrieve linked picture elements and add them.
-			removeList.add((PictogramElement) Graphiti.getLinkService()
-					.getPictogramElements(dia, ens));
-			// and eventually remove them.
-			for (PictogramElement pe : removeList) {
-				RemoveContext removeContext = new RemoveContext(pe);
-				IRemoveFeature removeFeature = ftp
-						.getRemoveFeature(removeContext);
-				if (removeFeature.canRemove(removeContext)) {
-					removeFeature.remove(removeContext);
+				for (Diagram dia : diagramList) {
+					// retrieve linked picture elements
+					// and eventually remove them.
+					for (PictogramElement pe : (Collection<? extends PictogramElement>) Graphiti
+							.getLinkService().getPictogramElements(dia, ens)) {
+						RemoveContext removeContext = new RemoveContext(pe);
+						IRemoveFeature removeFeature = ftp
+								.getRemoveFeature(removeContext);
+						if (removeFeature.canRemove(removeContext)) {
+							removeFeature.remove(removeContext);
+						}
+					}
 				}
 			}
 		}

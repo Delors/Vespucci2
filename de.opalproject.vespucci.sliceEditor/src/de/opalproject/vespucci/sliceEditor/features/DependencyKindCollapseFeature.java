@@ -48,7 +48,7 @@ import org.eclipse.graphiti.services.Graphiti;
 /**
  * Feature to toggle visibility of constraint-kind labels displaying "ALL". 
  * 
- * @author marius
+ * @author marius-d
  *
  */
 public class DependencyKindCollapseFeature extends AbstractCustomFeature {
