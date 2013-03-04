@@ -54,6 +54,9 @@ import de.opalproject.vespucci.ui.editor.EnsembleEditorInput;
 
 public class OpenEditor extends AbstractHandler {
 
+	/**
+	 * Open an ensemble editor
+	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		// Get the current selection
@@ -74,7 +77,6 @@ public class OpenEditor extends AbstractHandler {
 		IWorkbenchPage page = window.getActivePage();
 
 		// Try to open the editor
-
 		try {
 			page.openEditor(editorInput, EnsembleEditor.ID);
 		} catch (PartInitException e) {

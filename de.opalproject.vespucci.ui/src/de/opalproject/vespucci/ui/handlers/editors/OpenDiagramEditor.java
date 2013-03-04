@@ -56,6 +56,9 @@ import de.opalproject.vespucci.ui.Activator;
 
 public class OpenDiagramEditor extends AbstractHandler {
 
+	/**
+	 * Opens a slice as diagram
+	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		// Get the current selection
@@ -72,6 +75,7 @@ public class OpenDiagramEditor extends AbstractHandler {
 		Diagram diagram = (Diagram) slice.eResource().getEObject(
 				slice.getDiagram());
 
+		// Create an editorinput for the diagrammeditor
 		DiagramEditorInput editorInput = DiagramEditorInput.createEditorInput(
 				diagram,
 				SliceEditorDiagramTypeProvider.DIAGRAM_TYPE_PROVIDER_ID);
@@ -81,7 +85,6 @@ public class OpenDiagramEditor extends AbstractHandler {
 		IWorkbenchPage page = window.getActivePage();
 
 		// Try to open the editor
-
 		try {
 			page.openEditor(editorInput, SliceDiagramEditor.DIAGRAM_EDITOR_ID);
 		} catch (PartInitException e) {
