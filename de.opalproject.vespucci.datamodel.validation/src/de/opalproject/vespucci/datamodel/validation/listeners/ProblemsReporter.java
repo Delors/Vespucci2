@@ -1,5 +1,6 @@
 package de.opalproject.vespucci.datamodel.validation.listeners;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
@@ -25,7 +26,7 @@ public class ProblemsReporter implements IValidationListener {
 							.getDefault()
 							.getLog()
 							.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID,
-									e.getStackTrace().toString()));
+									Arrays.toString(e.getStackTrace())));
 				}
 			}
 		}
