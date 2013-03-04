@@ -66,7 +66,7 @@ public class ResizeEnsembleFeature extends DefaultResizeShapeFeature {
         if (canResize) {
             // don't allow resize if the ensemble is collapsed
             Shape shape = context.getShape();
-                if (Graphiti.getPeService().getPropertyValue(shape, "iscollapsed") == "true") {
+                if (Graphiti.getPeService().getPropertyValue(shape, "iscollapsed").equals("true")) {
                     canResize = false;
                 }
             }
