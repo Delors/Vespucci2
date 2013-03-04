@@ -53,7 +53,6 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.ColorConstant;
-import org.eclipse.graphiti.util.IColorConstant;
 
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.EmptyEnsemble;
@@ -70,15 +69,15 @@ import de.opalproject.vespucci.datamodel.Slice;
  */
 public class AddEnsembleFeature extends AbstractAddShapeFeature {
 
-	private static ColorConstant EMPTY_ENSEMBLE_FOREGROUND = new ColorConstant(48,
+	private final static ColorConstant EMPTY_ENSEMBLE_FOREGROUND = new ColorConstant(48,
 			48, 48);
-	private static ColorConstant EMPTY_ENSEMBLE_BACKGROUND = new ColorConstant(176,
+	private final static ColorConstant EMPTY_ENSEMBLE_BACKGROUND = new ColorConstant(176,
 			176, 176);
 
-	private static ColorConstant ENSEMBLE_TEXT_FOREGROUND = (ColorConstant) ColorConstant.BLACK;
-	private static ColorConstant ENSEMBLE_FOREGROUND = new ColorConstant(
+	private final static ColorConstant ENSEMBLE_TEXT_FOREGROUND = (ColorConstant) ColorConstant.BLACK;
+	private final static ColorConstant ENSEMBLE_FOREGROUND = new ColorConstant(
 			98, 131, 167);
-	private static ColorConstant ENSEMBLE_BACKGROUND = new ColorConstant(
+	private final static ColorConstant ENSEMBLE_BACKGROUND = new ColorConstant(
 			187, 218, 247);
 
 	public AddEnsembleFeature(IFeatureProvider fp) {
