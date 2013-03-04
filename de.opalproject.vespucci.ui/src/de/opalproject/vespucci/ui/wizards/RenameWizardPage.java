@@ -50,12 +50,14 @@ import org.eclipse.swt.widgets.Text;
  * 
  */
 public class RenameWizardPage extends WizardPage {
-	private Text text1;
+
+	private Text text;
 	private Composite container;
+
 	/**
 	 * The current name for the ensemble.
 	 */
-	private final String NAME;
+	private final String name;
 
 	/**
 	 * Creates a new page for the rename wizard.
@@ -67,7 +69,7 @@ public class RenameWizardPage extends WizardPage {
 		super("Super First Page");
 		setTitle("Rename Ensemble");
 		setDescription("Choose a name for the Ensemble");
-		NAME = eName;
+		name = eName;
 	}
 
 	@Override
@@ -79,9 +81,9 @@ public class RenameWizardPage extends WizardPage {
 		Label label1 = new Label(container, SWT.NULL);
 		label1.setText("Ensemble Name");
 
-		text1 = new Text(container, SWT.BORDER | SWT.SINGLE);
-		text1.setText(NAME + "");
-		text1.addKeyListener(new KeyListener() {
+		text = new Text(container, SWT.BORDER | SWT.SINGLE);
+		text.setText(name + "");
+		text.addKeyListener(new KeyListener() {
 
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -89,7 +91,7 @@ public class RenameWizardPage extends WizardPage {
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				if (!text1.getText().isEmpty()) {
+				if (!text.getText().isEmpty()) {
 					setPageComplete(true);
 
 				}
@@ -97,7 +99,7 @@ public class RenameWizardPage extends WizardPage {
 
 		});
 		GridData gd = new GridData(GridData.FILL_HORIZONTAL);
-		text1.setLayoutData(gd);
+		text.setLayoutData(gd);
 		// Required to avoid an error in the system
 		setControl(container);
 		setPageComplete(false);
@@ -108,6 +110,20 @@ public class RenameWizardPage extends WizardPage {
 	 * @return String - the new name for the object to be renamed.
 	 */
 	public String getText1() {
-		return text1.getText();
+		return text.getText();
+	}
+
+	/**
+	 * Disposes all allocated swt resources
+	 */
+	@Override
+	public void dispose() {
+		super.dispose();
+		if (text != null) {
+			text.dispose();
+		}
+		if (container != null) {
+			container.dispose();
+		}
 	}
 }

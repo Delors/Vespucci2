@@ -50,6 +50,7 @@ import org.eclipse.swt.widgets.Text;
  * 
  */
 public class NewSliceWizardPage extends WizardPage {
+
 	private Text name;
 	private Composite container;
 
@@ -96,6 +97,20 @@ public class NewSliceWizardPage extends WizardPage {
 
 	public String getSliceName() {
 		return name.getText();
+	}
+
+	/**
+	 * Disposes all allocated swt resources
+	 */
+	@Override
+	public void dispose() {
+		super.dispose();
+		if (name != null) {
+			name.dispose();
+		}
+		if (container != null) {
+			container.dispose();
+		}
 	}
 
 }

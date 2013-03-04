@@ -62,15 +62,11 @@ public class VespucciLabelProvider extends
 
 	@Override
 	public Image getImage(Object object) {
-		if (object instanceof IFile)
+		if (object instanceof IFile) {
 			return PlatformUI.getWorkbench().getSharedImages()
 					.getImage(ISharedImages.IMG_OBJ_FOLDER);
+		}
 		return super.getImage(object);
-	}
-
-	@Override
-	public String getText(Object object) {
-		return super.getText(object);
 	}
 
 	@Override

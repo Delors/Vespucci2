@@ -12,6 +12,8 @@ import org.eclipse.swt.widgets.Text;
 
 public class NewEnsembleWizardQueryPage extends WizardPage {
 
+	private static final int QUERY_HEIGTH = 200;
+
 	private Text query;
 	private Composite container;
 
@@ -51,7 +53,7 @@ public class NewEnsembleWizardQueryPage extends WizardPage {
 		});
 
 		GridData queryGD = new GridData(GridData.FILL_HORIZONTAL);
-		queryGD.heightHint = 200;
+		queryGD.heightHint = QUERY_HEIGTH;
 		query.setLayoutData(queryGD);
 		// Required to avoid an error in the system
 		setControl(container);
@@ -61,6 +63,20 @@ public class NewEnsembleWizardQueryPage extends WizardPage {
 
 	public String getEnsembleQuery() {
 		return query.getText();
+	}
+
+	/**
+	 * Disposes all allocated swt resources
+	 */
+	@Override
+	public void dispose() {
+		super.dispose();
+		if (container != null) {
+			container.dispose();
+		}
+		if (query != null) {
+			query.dispose();
+		}
 	}
 
 }

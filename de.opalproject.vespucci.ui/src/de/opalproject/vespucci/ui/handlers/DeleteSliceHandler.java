@@ -48,6 +48,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 import de.opalproject.vespucci.datamodel.Slice;
+import de.opalproject.vespucci.sliceEditor.SliceEditorDiagramTypeProvider;
 
 /**
  * Handles delete requests for a selection of ensembles.
@@ -65,7 +66,9 @@ public class DeleteSliceHandler extends AbstractCommandHandler {
 		final List<Slice> sliceList = selection.toList();
 
 		Command deleteCommand = new RecordingCommand(getEditingDomain()) {
-		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
+			private IWorkbenchWindow window = HandlerUtil
+					.getActiveWorkbenchWindow(event);
+
 			@Override
 			protected void doExecute() {
 				for (final Slice slice : sliceList) {
@@ -73,20 +76,23 @@ public class DeleteSliceHandler extends AbstractCommandHandler {
 					Diagram diagram = (Diagram) slice.eResource().getEObject(
 							slice.getDiagram());
 
-					IWorkbenchPage page = window.getActivePage();
-					DiagramEditorInput editorInput = DiagramEditorInput
-							.createEditorInput(diagram,
-									"de.opalproject.vespucci.sliceEditor.sliceEditorDiagramTypeProvider");
-					if (slice != null) {
-						IEditorPart openEditor = page.findEditor(editorInput);
-						if (openEditor != null) {
-							page.closeEditor(openEditor, false);
-						}
-					}
-					
+					closeEditor(diagram);
+
 					// Delete Slice and Diagram
 					EcoreUtil.delete(diagram);
 					EcoreUtil.delete(slice);
+				}
+			}
+
+			private void closeEditor(Diagram diagram) {
+				IWorkbenchPage page = window.getActivePage();
+				DiagramEditorInput editorInput = DiagramEditorInput
+						.createEditorInput(
+								diagram,
+								SliceEditorDiagramTypeProvider.DIAGRAM_TYPE_PROVIDER_ID);
+				IEditorPart openEditor = page.findEditor(editorInput);
+				if (openEditor != null) {
+					page.closeEditor(openEditor, false);
 				}
 			}
 		};

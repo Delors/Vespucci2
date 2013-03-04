@@ -70,6 +70,9 @@ import de.opalproject.vespucci.ui.utils.EmfService;
 public class EnsembleEditor extends EditorPart {
 
 	public static final String ID = "de.opalproject.vespucci.editor.editor";
+
+	private static final int DESCRIPTION_MIN_HEIGTH = 50;
+
 	private Ensemble ensemble;
 	private Text nameTextField;
 	private Text descriptionTextField;
@@ -125,7 +128,7 @@ public class EnsembleEditor extends EditorPart {
 		// layout data for the text fields, used to adjust their size
 		GridData textFieldLayoutData = new GridData(SWT.FILL, SWT.FILL, true,
 				true);
-		textFieldLayoutData.minimumHeight = 50;
+		textFieldLayoutData.minimumHeight = DESCRIPTION_MIN_HEIGTH;
 
 		descriptionTextField = new Text(parent, SWT.MULTI | SWT.BORDER
 				| SWT.WRAP | SWT.V_SCROLL);
@@ -265,7 +268,6 @@ public class EnsembleEditor extends EditorPart {
 	public void doSaveAs() {
 		// for debugging purposes
 		// SaveAs will probably not be available in final Version
-		System.out.println(ensemble);
 	}
 
 	@Override
@@ -285,4 +287,26 @@ public class EnsembleEditor extends EditorPart {
 		return false;
 	}
 
+	/**
+	 * Disposes all allocated swt resources
+	 */
+	@Override
+	public void dispose() {
+		super.dispose();
+		if (nameTextField != null) {
+			nameTextField.dispose();
+		}
+		if (descriptionTextField != null) {
+			descriptionTextField.dispose();
+		}
+		if (queryTextField != null) {
+			queryTextField.dispose();
+		}
+		if (derivedCheckBox != null) {
+			derivedCheckBox.dispose();
+		}
+		if (lastControlInFocus != null) {
+			lastControlInFocus.dispose();
+		}
+	}
 }

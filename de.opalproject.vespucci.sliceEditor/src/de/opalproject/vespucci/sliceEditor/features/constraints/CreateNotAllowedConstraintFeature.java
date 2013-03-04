@@ -55,19 +55,11 @@ public class CreateNotAllowedConstraintFeature extends CreateConstraintFeature {
 
 	@Override
 	protected boolean isAnchorSensibleSource(Ensemble ensemble) {
-		if (ensemble instanceof EmptyEnsemble) {
-			return false;
-		} else {
-			return true;
-		}
+		return ensemble instanceof EmptyEnsemble;
 	}
 
 	@Override
 	protected boolean isAnchorSensibleTarget(Ensemble ensemble) {
-		if (ensemble instanceof EmptyEnsemble) {
-			return false;
-		} else {
-			return true;
-		}
+		return ensemble instanceof EmptyEnsemble;
 	}
 }

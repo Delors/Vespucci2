@@ -27,7 +27,14 @@ import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
  * 
  * Based on graphitis internal/private EmfService class
  */
-public class EmfService {
+public final class EmfService {
+
+	/**
+	 * Prevent object creation of static classes
+	 */
+	private EmfService() {
+	}
+
 	@SuppressWarnings("unchecked")
 	public static Set<Resource> save(TransactionalEditingDomain editingDomain)
 			throws WrappedException {

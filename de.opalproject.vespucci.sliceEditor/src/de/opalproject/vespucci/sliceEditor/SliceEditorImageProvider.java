@@ -36,8 +36,9 @@ package de.opalproject.vespucci.sliceEditor;
 import org.eclipse.graphiti.ui.platform.AbstractImageProvider;
 
 /**
- * @author Lars
- * @author Marius
+ * Provides all the images stored in the res folder
+ *
+ * @author Lars, Marius
  *
  */
 public class SliceEditorImageProvider extends AbstractImageProvider {

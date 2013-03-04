@@ -88,7 +88,7 @@ public abstract class CreateConstraintFeature extends
 
 		Ensemble source = getEnsemble(context.getSourceAnchor());
 		Ensemble target = getEnsemble(context.getTargetAnchor());
-		if (source != null && target != null && source != target) {
+		if (source != null && target != null && source.equals(target)) {
 			if (isAnchorSensibleSource(source)
 					&& isAnchorSensibleTarget(target)) {
 				return true;

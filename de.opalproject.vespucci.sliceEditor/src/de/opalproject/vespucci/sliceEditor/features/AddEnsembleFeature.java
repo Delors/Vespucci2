@@ -53,7 +53,6 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 import org.eclipse.graphiti.util.ColorConstant;
-import org.eclipse.graphiti.util.IColorConstant;
 
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.EmptyEnsemble;
@@ -61,14 +60,28 @@ import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.datamodel.Slice;
 
 /**
- * This feature allows to drag an ensemble from the Navigator into the slice
- * editor
+ * This feature allows to drag an ensemble from the Ensemble Explorer into the
+ * slice editor
  * 
  * @author Lars
  * @author Marius
  * 
  */
 public class AddEnsembleFeature extends AbstractAddShapeFeature {
+
+	private static final ColorConstant EMPTY_ENSEMBLE_FOREGROUND = new ColorConstant(
+			48, 48, 48);
+	private static final ColorConstant EMPTY_ENSEMBLE_BACKGROUND = new ColorConstant(
+			176, 176, 176);
+
+	private static final ColorConstant ENSEMBLE_TEXT_FOREGROUND = (ColorConstant) ColorConstant.BLACK;
+	private static final ColorConstant ENSEMBLE_FOREGROUND = new ColorConstant(
+			98, 131, 167);
+	private static final ColorConstant ENSEMBLE_BACKGROUND = new ColorConstant(
+			187, 218, 247);
+
+	private static final int DEFAULT_WIDTH = 100;
+	private static final int DEFAULT_HEIGHT = 50;
 
 	public AddEnsembleFeature(IFeatureProvider fp) {
 		super(fp);
@@ -119,115 +132,34 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		Ensemble addedEnsemble = (Ensemble) context.getNewObject();
 		Diagram targetDiagram = (Diagram) context.getTargetContainer();
 
-		// sets the Layout - normal or empty ensemble
-		IColorConstant Ensemble_TEXT_FOREGROUND;
-		IColorConstant Ensemble_FOREGROUND;
-		IColorConstant Ensemble_BACKGROUND;
+		// check whether the context has a size (e.g. from a create feature)
+		// otherwise define a default size for the shape
+		final int width = context.getWidth() <= 0 ? DEFAULT_WIDTH : context
+				.getWidth();
+		final int height = context.getHeight() <= 0 ? DEFAULT_HEIGHT : context
+				.getHeight();
 
-		if (addedEnsemble instanceof EmptyEnsemble) {
-			Ensemble_TEXT_FOREGROUND = new ColorConstant(176, 176, 176);
-
-			Ensemble_FOREGROUND = new ColorConstant(48, 48, 48);
-
-			Ensemble_BACKGROUND = new ColorConstant(176, 176, 176);
-		} else {
-			Ensemble_TEXT_FOREGROUND = ColorConstant.BLACK;
-
-			Ensemble_FOREGROUND = new ColorConstant(98, 131, 167);
-
-			Ensemble_BACKGROUND = new ColorConstant(187, 218, 247);
-		}
-
-		// CONTAINER SHAPE WITH ROUNDED RECTANGLE
+		// some Graphiti Services
 		IPeCreateService peCreateService = Graphiti.getPeCreateService();
 		ContainerShape containerShape = peCreateService.createContainerShape(
 				targetDiagram, true);
-
-		// check whether the context has a size (e.g. from a create feature)
-		// otherwise define a default size for the shape
-		final int width = context.getWidth() <= 0 ? 100 : context.getWidth();
-		final int height = context.getHeight() <= 0 ? 50 : context.getHeight();
-
 		IGaService gaService = Graphiti.getGaService();
-		RoundedRectangle roundedRectangle; // need to access it later
 
-		{
-			// create and set graphics algorithm
-			roundedRectangle = gaService.createRoundedRectangle(containerShape,
-					5, 5);
-
-			roundedRectangle.setForeground(manageColor(Ensemble_FOREGROUND));
-			roundedRectangle.setBackground(manageColor(Ensemble_BACKGROUND));
-			roundedRectangle.setLineWidth(2);
-			gaService.setLocationAndSize(roundedRectangle, context.getX(),
-					context.getY(), width, height);
-
-			// if added Ensemble has no resource we add it to the resource
-			// of the diagram
-			// if (addedEnsemble.eResource() == null) {
-			// getDiagram().eResource().getContents().add(addedEnsemble);
-			// }
-			// create link and wire it
-			link(containerShape, addedEnsemble);
-		}
-
-		// SHAPE WITH LINE
-		if (!(addedEnsemble instanceof EmptyEnsemble)) {
-			// create shape for line
-			Shape lineShape = peCreateService
-					.createShape(containerShape, false);
-
-			// create and set graphics algorithm
-			Polyline polyline = gaService.createPolyline(lineShape, new int[] {
-					0, 20, width, 20 });
-			polyline.setForeground(manageColor(Ensemble_FOREGROUND));
-			polyline.setLineWidth(2);
-		}
-
-		// SHAPE WITH TEXT
-		{
-			// create shape for name
-			Shape nameShape = peCreateService
-					.createShape(containerShape, false);
-
-			// sets the name of the ensemble
-			Text name = gaService
-					.createText(nameShape, addedEnsemble.getName());
-			name.setForeground(manageColor(Ensemble_TEXT_FOREGROUND));
-			name.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
-
-			// vertical alignment has as default value "center"
-			name.setFont(gaService.manageFont(targetDiagram, "Arial", 10,
-					false, true));
-			// width is dependent on the intial x coordinate
-			gaService.setLocationAndSize(name, 23, 2, (width - 23), 20);
-
-			// create shape for the description
-			Shape descriptionShape = peCreateService.createShape(
-					containerShape, false);
-
-			// sets the description of the ensemble
-
-			MultiText description = gaService.createMultiText(descriptionShape,
-					addedEnsemble.getDescription());
-
-			description.setLineWidth(width);
-			description.setVerticalAlignment(Orientation.ALIGNMENT_TOP);
-			description.setFont(gaService.manageDefaultFont(getDiagram(),
-					false, true));
-			gaService.setLocationAndSize(description, 2, 20, width, height);
-			// create link and wire it
-			link(nameShape, addedEnsemble);
-			link(descriptionShape, addedEnsemble);
-
-			// create shape for icon
-			if (!(addedEnsemble instanceof EmptyEnsemble)) {
-				Shape iconShape = peCreateService.createShape(containerShape,
-						false);
-				Image icon = gaService.createImage(iconShape,
-						"de.opalproject.vespucci.sliceEditor.ensembleIcon");
-				gaService.setLocationAndSize(icon, 4, 3, 16, 16);
-			}
+		// the graphical representation of an Ensemble is made of three parts:
+		// the basic rounded rectangle shape, a shape each for the name and the
+		// description, and a line separating this parts
+		//
+		// and emptyEnsemble only needs a basic shape
+		if (addedEnsemble instanceof EmptyEnsemble) {
+			createBasicEmptyEnsembleShape(addedEnsemble, context,
+					containerShape, gaService, width, height);
+		} else {
+			createBasicEnsembleShape(addedEnsemble, context, containerShape,
+					gaService, width, height);
+			createSeparationLine(addedEnsemble, peCreateService,
+					containerShape, gaService, width);
+			createTextShapes(addedEnsemble, targetDiagram, containerShape,
+					gaService, peCreateService, width, height);
 		}
 
 		// add a chopbox anchor to the shape
@@ -256,4 +188,105 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 
 		return containerShape;
 	}
+
+	private void createBasicEmptyEnsembleShape(Ensemble addedEnsemble,
+			IAddContext context, ContainerShape containerShape,
+			IGaService gaService, int width, int height) {
+		RoundedRectangle roundedRectangle;
+		// create and set graphics algorithm
+		roundedRectangle = gaService.createRoundedRectangle(containerShape, 5,
+				5);
+
+		roundedRectangle.setForeground(manageColor(EMPTY_ENSEMBLE_FOREGROUND));
+		roundedRectangle.setBackground(manageColor(EMPTY_ENSEMBLE_BACKGROUND));
+		roundedRectangle.setLineWidth(2);
+		gaService.setLocationAndSize(roundedRectangle, context.getX(),
+				context.getY(), width, height);
+
+		// create link and wire it
+		link(containerShape, addedEnsemble);
+	}
+
+	private void createBasicEnsembleShape(Ensemble addedEnsemble,
+			IAddContext context, ContainerShape containerShape,
+			IGaService gaService, int width, int height) {
+		RoundedRectangle roundedRectangle;
+		// create and set graphics algorithm
+		roundedRectangle = gaService.createRoundedRectangle(containerShape, 5,
+				5);
+
+		roundedRectangle.setForeground(manageColor(ENSEMBLE_FOREGROUND));
+		roundedRectangle.setBackground(manageColor(ENSEMBLE_BACKGROUND));
+		roundedRectangle.setLineWidth(2);
+		gaService.setLocationAndSize(roundedRectangle, context.getX(),
+				context.getY(), width, height);
+
+		// create link and wire it
+		link(containerShape, addedEnsemble);
+	}
+
+	private void createSeparationLine(Ensemble addedEnsemble,
+			IPeCreateService peCreateService, ContainerShape containerShape,
+			IGaService gaService, int width) {
+
+		// SHAPE WITH LINE
+		if (!(addedEnsemble instanceof EmptyEnsemble)) {
+			// create shape for line
+			Shape lineShape = peCreateService
+					.createShape(containerShape, false);
+
+			// create and set graphics algorithm
+			Polyline polyline = gaService.createPolyline(lineShape, new int[] {
+					0, 20, width, 20 });
+			polyline.setForeground(manageColor(ENSEMBLE_FOREGROUND));
+			polyline.setLineWidth(2);
+		}
+	}
+
+	private void createTextShapes(Ensemble addedEnsemble,
+			Diagram targetDiagram, ContainerShape containerShape,
+			IGaService gaService, IPeCreateService peCreateService, int width,
+			int height) {
+		// create shape for name
+		Shape nameShape = peCreateService.createShape(containerShape, false);
+
+		// sets the name of the ensemble
+		Text name = gaService.createText(nameShape, addedEnsemble.getName());
+		name.setForeground(manageColor(ENSEMBLE_TEXT_FOREGROUND));
+		name.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
+
+		// vertical alignment has as default value "center"
+		name.setFont(gaService.manageFont(targetDiagram, "Arial", 10, false,
+				true));
+		// width is dependent on the intial x coordinate
+		gaService.setLocationAndSize(name, 23, 2, (width - 23), 20);
+
+		// create shape for the description
+		Shape descriptionShape = peCreateService.createShape(containerShape,
+				false);
+
+		// sets the description of the ensemble
+
+		MultiText description = gaService.createMultiText(descriptionShape,
+				addedEnsemble.getDescription());
+
+		description.setLineWidth(width);
+		description.setVerticalAlignment(Orientation.ALIGNMENT_TOP);
+		description.setFont(gaService.manageDefaultFont(getDiagram(), false,
+				true));
+		gaService.setLocationAndSize(description, 2, 20, width, height);
+		// create link and wire it
+		link(nameShape, addedEnsemble);
+		link(descriptionShape, addedEnsemble);
+
+		// create shape for icon
+		if (!(addedEnsemble instanceof EmptyEnsemble)) {
+			Shape iconShape = peCreateService
+					.createShape(containerShape, false);
+			Image icon = gaService.createImage(iconShape,
+					"de.opalproject.vespucci.sliceEditor.ensembleIcon");
+			gaService.setLocationAndSize(icon, 4, 3, 16, 16);
+		}
+	}
+
 }
