@@ -227,8 +227,6 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 			IPeCreateService peCreateService, ContainerShape containerShape,
 			IGaService gaService, int width) {
 
-		// SHAPE WITH LINE
-		if (!(addedEnsemble instanceof EmptyEnsemble)) {
 			// create shape for line
 			Shape lineShape = peCreateService
 					.createShape(containerShape, false);
@@ -238,7 +236,6 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 					0, 20, width, 20 });
 			polyline.setForeground(manageColor(ENSEMBLE_FOREGROUND));
 			polyline.setLineWidth(2);
-		}
 	}
 
 	private void createTextShapes(Ensemble addedEnsemble,
@@ -278,13 +275,13 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		link(descriptionShape, addedEnsemble);
 
 		// create shape for icon
-		if (!(addedEnsemble instanceof EmptyEnsemble)) {
 			Shape iconShape = peCreateService
 					.createShape(containerShape, false);
 			Image icon = gaService.createImage(iconShape,
 					"de.opalproject.vespucci.sliceEditor.ensembleIcon");
 			gaService.setLocationAndSize(icon, 4, 3, 16, 16);
-		}
 	}
 
 }
+
+

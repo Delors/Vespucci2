@@ -44,38 +44,52 @@ import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
 
+import de.opalproject.vespucci.datamodel.ConcreteEnsemble;
+import de.opalproject.vespucci.datamodel.EmptyEnsemble;
 import de.opalproject.vespucci.datamodel.Ensemble;
 
 /**
- * Feature to handle graphical updates of ensemble elements upon detected changes.
+ * Feature to handle graphical updates of ensemble elements upon detected
+ * changes.
  * 
  * @author Lars
  * @author Marius
- *
+ * 
  */
 public class UpdateEnsembleFeature extends AbstractUpdateFeature {
- 
-    /**
-     * @param fp
-     */
-    public UpdateEnsembleFeature(IFeatureProvider fp) {
-        super(fp);
-    }
- 
-    /* (non-Javadoc)
-     * @see org.eclipse.graphiti.func.IUpdate#canUpdate(org.eclipse.graphiti.features.context.IUpdateContext)
-     */
-    public boolean canUpdate(IUpdateContext context) {
-        // return true, if linked business object is a Ensemble
-        Object bo =
-            getBusinessObjectForPictogramElement(context.getPictogramElement());
-        return (bo instanceof Ensemble);
-    }
- 
-    /* (non-Javadoc)
-     * @see org.eclipse.graphiti.func.IUpdate#updateNeeded(org.eclipse.graphiti.features.context.IUpdateContext)
-     */
-    public IReason updateNeeded(IUpdateContext context) {
+
+	/**
+	 * @param fp
+	 */
+	public UpdateEnsembleFeature(IFeatureProvider fp) {
+		super(fp);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.func.IUpdate#canUpdate(org.eclipse.graphiti.features
+	 * .context.IUpdateContext)
+	 */
+	public boolean canUpdate(IUpdateContext context) {
+		// return true, if linked business object is a Ensemble
+		Object bo = getBusinessObjectForPictogramElement(context
+				.getPictogramElement());
+		return (bo instanceof Ensemble);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.func.IUpdate#updateNeeded(org.eclipse.graphiti.features
+	 * .context.IUpdateContext)
+	 */
+	public IReason updateNeeded(IUpdateContext context) {
+    	 Object bo =
+    	            getBusinessObjectForPictogramElement(context.getPictogramElement());
+    	if (bo instanceof ConcreteEnsemble){
         // retrieve name from pictogram model
         String pictogramName = null;
         // and retrieve description from pictogram model
@@ -98,7 +112,6 @@ public class UpdateEnsembleFeature extends AbstractUpdateFeature {
         // retrieve name and description from business model
         String businessName = null;
         String businessDescription = null;
-        Object bo = getBusinessObjectForPictogramElement(pictogramElement);
         if (bo instanceof Ensemble) {
             Ensemble ensemble = (Ensemble) bo;
             businessName = ensemble.getName();
@@ -121,47 +134,52 @@ public class UpdateEnsembleFeature extends AbstractUpdateFeature {
         }else {
             return Reason.createFalseReason();
         }
+    	}
+    	return Reason.createFalseReason();
     }
- 
-    /* (non-Javadoc)
-     * @see org.eclipse.graphiti.func.IUpdate#update(org.eclipse.graphiti.features.context.IUpdateContext)
-     */
-    public boolean update(IUpdateContext context) {
-        // retrieve name and description from business model
-        String businessName = null;
-        String businessDescription = null;
-        PictogramElement pictogramElement = context.getPictogramElement();
-        Object bo = getBusinessObjectForPictogramElement(pictogramElement);
-        if (bo instanceof Ensemble) {
-        	Ensemble ensemble = (Ensemble) bo;
-            businessName = ensemble.getName();
-            businessDescription = ensemble.getDescription();
-        }
- 
-        
-        // Set name and description in pictogram model
-        boolean nameUpdated = false;
-        boolean descriptionUpdated = false;
-        if (pictogramElement instanceof ContainerShape) {
-            ContainerShape cs = (ContainerShape) pictogramElement;
-            for (Shape shape : cs.getChildren()) {
-                if (shape.getGraphicsAlgorithm() instanceof Text) {
-                    Text text = (Text) shape.getGraphicsAlgorithm();
-                    text.setValue(businessName);
-                    nameUpdated = true;
-                }
-                if (shape.getGraphicsAlgorithm() instanceof MultiText) {
-                	 MultiText multiText = (MultiText) shape.getGraphicsAlgorithm();
-                     multiText.setValue(businessDescription);
-                     descriptionUpdated = true;
-                }
-                if(nameUpdated && descriptionUpdated){
-                	return true;
-                }
-            }
-        }
- 
-        return false;
-    }
-} 
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.func.IUpdate#update(org.eclipse.graphiti.features
+	 * .context.IUpdateContext)
+	 */
+	public boolean update(IUpdateContext context) {
+		// retrieve name and description from business model
+		String businessName = null;
+		String businessDescription = null;
+		PictogramElement pictogramElement = context.getPictogramElement();
+		Object bo = getBusinessObjectForPictogramElement(pictogramElement);
+		if (bo instanceof Ensemble) {
+			Ensemble ensemble = (Ensemble) bo;
+			businessName = ensemble.getName();
+			businessDescription = ensemble.getDescription();
+		}
+
+		// Set name and description in pictogram model
+		boolean nameUpdated = false;
+		boolean descriptionUpdated = false;
+		if (pictogramElement instanceof ContainerShape) {
+			ContainerShape cs = (ContainerShape) pictogramElement;
+			for (Shape shape : cs.getChildren()) {
+				if (shape.getGraphicsAlgorithm() instanceof Text) {
+					Text text = (Text) shape.getGraphicsAlgorithm();
+					text.setValue(businessName);
+					nameUpdated = true;
+				}
+				if (shape.getGraphicsAlgorithm() instanceof MultiText) {
+					MultiText multiText = (MultiText) shape
+							.getGraphicsAlgorithm();
+					multiText.setValue(businessDescription);
+					descriptionUpdated = true;
+				}
+				if (nameUpdated && descriptionUpdated) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+}
