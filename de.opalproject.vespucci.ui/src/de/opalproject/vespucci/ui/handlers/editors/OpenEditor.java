@@ -36,6 +36,8 @@ package de.opalproject.vespucci.ui.handlers.editors;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.ui.IWorkbenchPage;
@@ -44,6 +46,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.ui.Activator;
 import de.opalproject.vespucci.ui.editor.EnsembleEditor;
 import de.opalproject.vespucci.ui.editor.EnsembleEditorInput;
 
@@ -73,10 +76,13 @@ public class OpenEditor extends AbstractHandler {
 		try {
 			page.openEditor(editorInput, EnsembleEditor.ID);
 		} catch (PartInitException e) {
-			throw new RuntimeException(e);
+			Activator
+					.getDefault()
+					.getLog()
+					.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, e
+							.getStackTrace().toString()));
 		}
 
 		return null;
 	}
-
 }

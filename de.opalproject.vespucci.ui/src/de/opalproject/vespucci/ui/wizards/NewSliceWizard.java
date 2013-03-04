@@ -43,7 +43,7 @@ import org.eclipse.jface.wizard.Wizard;
  */
 public class NewSliceWizard extends Wizard {
 
-	protected NewSliceWizardPage page;
+	private NewSliceWizardPage page;
 
 	private String name;
 
@@ -60,11 +60,7 @@ public class NewSliceWizard extends Wizard {
 
 	@Override
 	public boolean performFinish() {
-		// Print the result to the console
-		System.out.println(page.getSliceName());
-
 		name = page.getSliceName();
-
 		return true;
 	}
 
@@ -73,6 +69,17 @@ public class NewSliceWizard extends Wizard {
 	 */
 	public String getName() {
 		return name;
+	}
+
+	/**
+	 * Disposes all allocated swt resources
+	 */
+	@Override
+	public void dispose() {
+		super.dispose();
+		if (page != null) {
+			page.dispose();
+		}
 	}
 
 }

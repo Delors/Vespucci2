@@ -60,8 +60,8 @@ import de.opalproject.vespucci.ui.utils.EmfService;
  */
 public class NewEnsembleWizard extends Wizard {
 
-	protected NewEnsembleWizardPage page;
-	protected NewEnsembleWizardQueryPage page2;
+	private NewEnsembleWizardPage page;
+	private NewEnsembleWizardQueryPage page2;
 
 	private String name;
 	private String description;
@@ -155,5 +155,19 @@ public class NewEnsembleWizard extends Wizard {
 	 */
 	public String getQuery() {
 		return query;
+	}
+
+	/**
+	 * Disposes all allocated swt resources
+	 */
+	@Override
+	public void dispose() {
+		super.dispose();
+		if (page != null) {
+			page.dispose();
+		}
+		if (page2 != null) {
+			page2.dispose();
+		}
 	}
 }

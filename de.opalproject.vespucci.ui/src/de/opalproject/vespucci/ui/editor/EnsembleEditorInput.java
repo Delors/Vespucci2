@@ -92,18 +92,17 @@ public class EnsembleEditorInput implements IEditorInput {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		} else if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		} else if (getClass() != obj.getClass()) {
 			return false;
-
-		EnsembleEditorInput other = (EnsembleEditorInput) obj;
-		if (!ensemble.equals(other.ensemble))
-			return false;
-
-		return true;
+		} else if (obj instanceof EnsembleEditorInput) {
+			EnsembleEditorInput other = (EnsembleEditorInput) obj;
+			return ensemble.equals(other.ensemble);
+		}
+		return false;
 	}
 
 }

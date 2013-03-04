@@ -46,7 +46,7 @@ public class EnsembleWizardRename extends Wizard {
 	/**
 	 * Page belonging to this wizard.
 	 */
-	protected RenameWizardPage page;
+	private RenameWizardPage page;
 
 	/**
 	 * Name to be used for the selected ensemble.
@@ -70,7 +70,7 @@ public class EnsembleWizardRename extends Wizard {
 	 */
 	public EnsembleWizardRename(String eName) {
 		super();
-		setName(eName);
+		this.name = eName;
 		setNeedsProgressMonitor(true);
 	}
 
@@ -92,11 +92,7 @@ public class EnsembleWizardRename extends Wizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		// Print the result to the console
-		System.out.println(page.getText1());
-
 		name = page.getText1();
-
 		return true;
 	}
 
@@ -113,5 +109,16 @@ public class EnsembleWizardRename extends Wizard {
 	 */
 	public String getName() {
 		return name;
+	}
+
+	/**
+	 * Disposes all allocated swt resources
+	 */
+	@Override
+	public void dispose() {
+		super.dispose();
+		if (page != null) {
+			page.dispose();
+		}
 	}
 }

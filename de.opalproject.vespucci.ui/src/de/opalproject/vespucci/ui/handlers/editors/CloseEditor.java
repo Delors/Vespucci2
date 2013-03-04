@@ -60,8 +60,6 @@ public class CloseEditor extends AbstractHandler {
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		
-		System.out.println("Close called");
 
 		// Get the view
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
@@ -89,8 +87,7 @@ public class CloseEditor extends AbstractHandler {
 					page.closeEditor(openEditor, false);
 				}
 			}
-		}
-		else{
+		} else {
 			Slice current = (Slice) currentSelection.getFirstElement();
 			Diagram diagram = (Diagram) current.eResource().getEObject(
 					current.getDiagram());
@@ -98,8 +95,7 @@ public class CloseEditor extends AbstractHandler {
 					.createEditorInput(diagram,
 							"de.opalproject.vespucci.sliceEditor.sliceEditorDiagramTypeProvider");
 			if (current != null) {
-				IEditorPart openEditor = page
-						.findEditor(editorInput);
+				IEditorPart openEditor = page.findEditor(editorInput);
 				if (openEditor != null) {
 					page.closeEditor(openEditor, false);
 				}

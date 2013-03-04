@@ -68,9 +68,6 @@ public class OpenDiagramEditor extends AbstractHandler {
 		DiagramEditorInput editorInput = DiagramEditorInput
 				.createEditorInput(diagram,
 						"de.opalproject.vespucci.sliceEditor.sliceEditorDiagramTypeProvider");
-		// DiagramEditorInput editorInput = new DiagramEditorInput(
-		// URI.createPlatformResourceURI(slice.getDiagram(), true),
-		// "de.opalproject.vespucci.sliceEditor.sliceEditorDiagramTypeProvider");
 
 		// Get the view
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);

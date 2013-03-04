@@ -54,36 +54,43 @@ public class EnsembleRemoveListener extends DemultiplexingListener {
 		return instance;
 	}
 
+	/**
+	 * Checks if notification is a remove operation and object is an ensemble.
+	 * If true, closes all open Ensemble Editors
+	 */
 	@Override
 	protected void handleNotification(TransactionalEditingDomain domain,
 			Notification notification) {
 
-		if (notification instanceof ENotificationImpl) {
-			if (notification.getEventType() == ENotificationImpl.REMOVE
-					&& notification.getOldValue() instanceof Ensemble) {
-				final Ensemble ensemble = (Ensemble) notification.getOldValue();
+		if (notification instanceof ENotificationImpl
+				&& notification.getEventType() == ENotificationImpl.REMOVE
+				&& notification.getOldValue() instanceof Ensemble) {
+			final Ensemble ensemble = (Ensemble) notification.getOldValue();
 
-				Display.getDefault().asyncExec(new Runnable() {
-					public void run() {
-						IWorkbenchPage page = getActivePage();
-						Ensemble ens = ensemble;
+			Display.getDefault().asyncExec(new Runnable() {
+				public void run() {
+					IWorkbenchPage page = getActivePage();
+					Ensemble ens = ensemble;
 
-						if (page != null) {
-							IEditorReference[] editors = page.findEditors(
-									new EnsembleEditorInput(ens),
-									EnsembleEditor.ID, //$NON-NLS-1$
-									IWorkbenchPage.MATCH_ID
-											| IWorkbenchPage.MATCH_INPUT);
+					if (page != null) {
+						IEditorReference[] editors = page.findEditors(
+								new EnsembleEditorInput(ens),
+								EnsembleEditor.ID, //$NON-NLS-1$
+								IWorkbenchPage.MATCH_ID
+										| IWorkbenchPage.MATCH_INPUT);
 
-							page.closeEditors(editors, false);
-						}
+						page.closeEditors(editors, false);
 					}
-				});
-
-			}
+				}
+			});
 		}
 	}
 
+	/**
+	 * Get the current active page to close all editors
+	 * 
+	 * @return
+	 */
 	private IWorkbenchPage getActivePage() {
 		IWorkbenchPage result = null;
 
