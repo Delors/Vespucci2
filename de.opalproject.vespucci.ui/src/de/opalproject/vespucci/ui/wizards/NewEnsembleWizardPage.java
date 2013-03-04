@@ -51,7 +51,7 @@ import org.eclipse.swt.widgets.Text;
  */
 public class NewEnsembleWizardPage extends WizardPage {
 
-	private final static int DESCRIPTION_HEIGTH = 200;
+	private static final int DESCRIPTION_HEIGTH = 200;
 
 	private Text name;
 	private Composite container;

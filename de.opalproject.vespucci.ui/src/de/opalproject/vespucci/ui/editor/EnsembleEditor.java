@@ -71,7 +71,7 @@ public class EnsembleEditor extends EditorPart {
 
 	public static final String ID = "de.opalproject.vespucci.editor.editor";
 
-	private final static int DESCRIPTION_MIN_HEIGTH = 50;
+	private static final int DESCRIPTION_MIN_HEIGTH = 50;
 
 	private Ensemble ensemble;
 	private Text nameTextField;
