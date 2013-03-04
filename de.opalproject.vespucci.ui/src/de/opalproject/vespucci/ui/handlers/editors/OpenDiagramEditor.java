@@ -33,9 +33,13 @@
  */
 package de.opalproject.vespucci.ui.handlers.editors;
 
+import java.util.Arrays;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.ui.editor.DiagramEditorInput;
 import org.eclipse.jface.viewers.ISelection;
@@ -48,9 +52,13 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import de.opalproject.vespucci.datamodel.Slice;
 import de.opalproject.vespucci.sliceEditor.SliceDiagramEditor;
 import de.opalproject.vespucci.sliceEditor.SliceEditorDiagramTypeProvider;
+import de.opalproject.vespucci.ui.Activator;
 
 public class OpenDiagramEditor extends AbstractHandler {
 
+	/**
+	 * Opens a slice as diagram
+	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		// Get the current selection
@@ -67,6 +75,7 @@ public class OpenDiagramEditor extends AbstractHandler {
 		Diagram diagram = (Diagram) slice.eResource().getEObject(
 				slice.getDiagram());
 
+		// Create an editorinput for the diagrammeditor
 		DiagramEditorInput editorInput = DiagramEditorInput.createEditorInput(
 				diagram,
 				SliceEditorDiagramTypeProvider.DIAGRAM_TYPE_PROVIDER_ID);
@@ -76,11 +85,14 @@ public class OpenDiagramEditor extends AbstractHandler {
 		IWorkbenchPage page = window.getActivePage();
 
 		// Try to open the editor
-
 		try {
 			page.openEditor(editorInput, SliceDiagramEditor.DIAGRAM_EDITOR_ID);
 		} catch (PartInitException e) {
-			throw new RuntimeException(e);
+			Activator
+					.getDefault()
+					.getLog()
+					.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, Arrays
+							.toString(e.getStackTrace())));
 		}
 
 		return null;

@@ -47,13 +47,8 @@ import de.opalproject.vespucci.ui.editor.EnsembleEditorInput;
 
 public class CloseEditor extends AbstractHandler {
 
-	/*
-	 * (non-Javadoc) Closes the editor belonging to a selected element so it can
-	 * be deleted.
-	 * 
-	 * @see
-	 * org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands
-	 * .ExecutionEvent)
+	/**
+	 * Closes the editor belonging to a selected element so it can be deleted.
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {

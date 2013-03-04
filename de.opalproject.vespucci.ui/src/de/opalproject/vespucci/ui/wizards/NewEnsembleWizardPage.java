@@ -104,9 +104,7 @@ public class NewEnsembleWizardPage extends WizardPage {
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				// if (!description.getText().isEmpty()) {
 				setPageComplete(true);
-				// }
 			}
 
 		});
