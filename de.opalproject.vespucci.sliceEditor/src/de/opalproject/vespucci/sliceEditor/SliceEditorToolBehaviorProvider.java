@@ -60,15 +60,13 @@ import de.opalproject.vespucci.datamodel.Slice;
 import de.opalproject.vespucci.sliceEditor.features.CollapseFeature;
 
 /**
- * @author marius
+ * Provides custom tool behaviors
  * 
+ * @author Lars, marius
  */
 public class SliceEditorToolBehaviorProvider extends
 		DefaultToolBehaviorProvider {
 
-	/**
-	 * @param dtp
-	 */
 	public SliceEditorToolBehaviorProvider(IDiagramTypeProvider dtp) {
 		super(dtp);
 	}
@@ -90,7 +88,7 @@ public class SliceEditorToolBehaviorProvider extends
 			Ensemble ensemble = (Ensemble) bo;
 			Diagram dia = featureProvider.getDiagramTypeProvider().getDiagram();
 			Slice slice = null;
-			
+
 			// validator call, retrieve slice
 			for (EObject eObject : dia.getLink().getBusinessObjects()) {
 				if (eObject instanceof Slice) {
@@ -100,9 +98,8 @@ public class SliceEditorToolBehaviorProvider extends
 			}
 
 			// check validator
-//			DatamodelValidator.validateObject(slice);
-			
-			
+			// DatamodelValidator.validateObject(slice);
+
 			// retrieve possible graphical infringements
 			List<Ensemble> childrenOccurrence = checkChildrenOccurrence(dia,
 					ensemble);
@@ -132,19 +129,6 @@ public class SliceEditorToolBehaviorProvider extends
 
 		return super.getDecorators(pe);
 	}
-
-	// @Override
-	// public ICustomFeature getDoubleClickFeature(IDoubleClickContext context)
-	// {
-	// ICustomFeature customFeature =
-	// new ChangeConstraintDependencyKind(getFeatureProvider());
-	// // canExecute() tests especially if the context contains a EClass
-	// if (customFeature.canExecute(context)) {
-	// return customFeature;
-	// }
-	//
-	// return super.getDoubleClickFeature(context);
-	// }
 
 	/**
 	 * Detects if there are instances of children of the ensemble to be added.
@@ -194,8 +178,12 @@ public class SliceEditorToolBehaviorProvider extends
 		return infringingEnsembles;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.tb.DefaultToolBehaviorProvider#getContextButtonPad(org.eclipse.graphiti.features.context.IPictogramElementContext)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.tb.DefaultToolBehaviorProvider#getContextButtonPad
+	 * (org.eclipse.graphiti.features.context.IPictogramElementContext)
 	 */
 	@Override
 	public IContextButtonPadData getContextButtonPad(

@@ -55,7 +55,7 @@ import org.eclipse.graphiti.services.IGaService;
 import de.opalproject.vespucci.datamodel.Ensemble;
 
 /**
- * This feature take adjusts the layout while resizing
+ * This feature adjusts the layout while resizing
  * 
  * @author Lars
  * @author Marius
@@ -140,11 +140,12 @@ public class LayoutEnsembleFeature extends AbstractLayoutFeature {
 					name.setX(22);
 					name.setHorizontalAlignment(Orientation.ALIGNMENT_LEFT);
 					anythingChanged = true;
-				} else if (graphicsAlgorithm instanceof MultiText){
-					
-					 gaService.setLocationAndSize(graphicsAlgorithm, 2, 20, containerWidth, containerHeight);
+				} else if (graphicsAlgorithm instanceof MultiText) {
 
-					 anythingChanged = true;
+					gaService.setLocationAndSize(graphicsAlgorithm, 2, 20,
+							containerWidth, containerHeight);
+
+					anythingChanged = true;
 				} else {
 					gaService.setWidth(graphicsAlgorithm, containerWidth);
 					anythingChanged = true;

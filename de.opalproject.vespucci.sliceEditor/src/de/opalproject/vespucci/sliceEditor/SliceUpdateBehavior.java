@@ -4,8 +4,14 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.graphiti.ui.editor.DefaultUpdateBehavior;
 import org.eclipse.graphiti.ui.editor.DiagramEditor;
 
+/**
+ * Extension of the DefaultUpdateBehavior. We need this to make sure that every
+ * Slice Editor has the same EditingDomain
+ * 
+ * @author Marco
+ * 
+ */
 public class SliceUpdateBehavior extends DefaultUpdateBehavior {
-	
 
 	public SliceUpdateBehavior(DiagramEditor diagramEditor) {
 		super(diagramEditor);

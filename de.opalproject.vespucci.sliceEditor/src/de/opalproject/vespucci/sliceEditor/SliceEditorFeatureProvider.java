@@ -87,41 +87,57 @@ import de.opalproject.vespucci.sliceEditor.features.constraints.CreateLocalOutgo
 import de.opalproject.vespucci.sliceEditor.features.constraints.CreateNotAllowedConstraintFeature;
 
 /**
- * @author marius
- *
+ * Every feature of the Slice Editor has to be registered here
+ * 
+ * 
+ * @author Lars, marius
+ * 
  */
 public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 
-	/**
-	 * @param dtp
-	 */
 	public SliceEditorFeatureProvider(IDiagramTypeProvider dtp) {
 		super(dtp);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.ui.features.DefaultFeatureProvider#getDeleteFeature(org.eclipse.graphiti.features.context.IDeleteContext)
+	/**
+	 * The DeleteFeature is implemented by default. Since we don't want a
+	 * DeleteFeature we just return null here
 	 */
+	@Override
 	public IDeleteFeature getDeleteFeature(IDeleteContext context) {
 		return null;
 	}
-	
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.ui.features.DefaultFeatureProvider#getRemoveFeature
+	 * (org.eclipse.graphiti.features.context.IRemoveContext)
+	 */
+	@Override
 	public IRemoveFeature getRemoveFeature(IRemoveContext context) {
 		return new RemoveFeature(this);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.features.impl.AbstractFeatureProvider#getAddFeature(org.eclipse.graphiti.features.context.IAddContext)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.features.impl.AbstractFeatureProvider#getAddFeature
+	 * (org.eclipse.graphiti.features.context.IAddContext)
 	 */
 	@Override
 	public IAddFeature getAddFeature(IAddContext context) {
-		// is object for add request a EObject?
+		// checks if the object to add is an Ensemble?
 		if (context.getNewObject() instanceof Ensemble) {
 			return new AddEnsembleFeature(this);
+			// checks if the object to add is a Constraint
 		} else if (context.getNewObject() instanceof Constraint) {
 
 			Constraint constraint = (Constraint) context.getNewObject();
 
+			// checks what type of Constraint has to be added
 			switch (constraint.getConstraintType().getValue()) {
 			case ConstraintType.EXPECTED_VALUE:
 				return new AddExpectedConstraintFeature(this);
@@ -144,29 +160,41 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 		return super.getAddFeature(context);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.features.impl.AbstractFeatureProvider#getCreateFeatures()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.features.impl.AbstractFeatureProvider#getCreateFeatures
+	 * ()
 	 */
 	@Override
 	public ICreateFeature[] getCreateFeatures() {
 		return new ICreateFeature[] { new CreateEmptyEnsembleFeature(this) };
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.features.impl.AbstractFeatureProvider#getLayoutFeature(org.eclipse.graphiti.features.context.ILayoutContext)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.features.impl.AbstractFeatureProvider#getLayoutFeature
+	 * (org.eclipse.graphiti.features.context.ILayoutContext)
 	 */
 	@Override
 	public ILayoutFeature getLayoutFeature(ILayoutContext context) {
 		PictogramElement pictogramElement = context.getPictogramElement();
 		Object bo = getBusinessObjectForPictogramElement(pictogramElement);
+		// checks if the object requesting the LayoutFeature is an Ensemble
 		if (bo instanceof Ensemble) {
 			return new LayoutEnsembleFeature(this);
 		}
 		return super.getLayoutFeature(context);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.features.impl.AbstractFeatureProvider#getCreateConnectionFeatures()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.graphiti.features.impl.AbstractFeatureProvider#
+	 * getCreateConnectionFeatures()
 	 */
 	@Override
 	public ICreateConnectionFeature[] getCreateConnectionFeatures() {
@@ -178,24 +206,30 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 				new CreateExpectedConstraintFeature(this),
 				new CreateNotAllowedConstraintFeature(this) };
 	}
-	
-	
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.ui.features.DefaultFeatureProvider#getUpdateFeature(org.eclipse.graphiti.features.context.IUpdateContext)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.ui.features.DefaultFeatureProvider#getUpdateFeature
+	 * (org.eclipse.graphiti.features.context.IUpdateContext)
 	 */
 	@Override
 	public IUpdateFeature getUpdateFeature(IUpdateContext context) {
 		PictogramElement pictogramElement = context.getPictogramElement();
+		// checks if the pictorgramElement is an Ensemble
 		if (pictogramElement instanceof ContainerShape) {
 			Object bo = getBusinessObjectForPictogramElement(pictogramElement);
 			if (bo instanceof Ensemble) {
 				return new UpdateEnsembleFeature(this);
 			}
 		}
+		// checks if the pictorgramElement is a ConnectionDecorator
 		if (pictogramElement instanceof ConnectionDecorator) {
 			Object bo = getBusinessObjectForPictogramElement(((ConnectionDecorator) pictogramElement)
 					.getConnection());
+			// if the pictorgramElement is a ConnectionDecorator the linked
+			// BusinessOBject needs to be a Constraint
 			if (bo instanceof Constraint
 					&& ((ConnectionDecorator) pictogramElement)
 							.getGraphicsAlgorithm() instanceof Text) {
@@ -205,41 +239,48 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 		return super.getUpdateFeature(context);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.ui.features.DefaultFeatureProvider#getCustomFeatures(org.eclipse.graphiti.features.context.ICustomContext)
+	/**
+	 * CustomFeatures are Features that don't override a defaultFeature.
+	 * Implemented CustomFeatures: CollapseFeature, DependencyKindCollapsFeature
 	 */
 	@Override
 	public ICustomFeature[] getCustomFeatures(ICustomContext context) {
-		return new ICustomFeature[] 
-				{ new ChangeConstraintDependencyKind(this),
-					 new CollapseFeature(this), new DependencyKindCollapseFeature(this)};
+		return new ICustomFeature[] { new ChangeConstraintDependencyKind(this),
+				new CollapseFeature(this),
+				new DependencyKindCollapseFeature(this) };
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.features.impl.AbstractFeatureProvider#getDirectEditingFeature(org.eclipse.graphiti.features.context.IDirectEditingContext)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.graphiti.features.impl.AbstractFeatureProvider#
+	 * getDirectEditingFeature
+	 * (org.eclipse.graphiti.features.context.IDirectEditingContext)
 	 */
 	@Override
 	public IDirectEditingFeature getDirectEditingFeature(
 			IDirectEditingContext context) {
 		PictogramElement pe = context.getPictogramElement();
-		// Object bo = getBusinessObjectForPictogramElement(pe);
 		if (pe instanceof ConnectionDecorator) {
 			return new ConstraintKindDirectEditFeature(this);
 		}
 		return super.getDirectEditingFeature(context);
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.ui.features.DefaultFeatureProvider#getResizeShapeFeature(org.eclipse.graphiti.features.context.IResizeShapeContext)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.ui.features.DefaultFeatureProvider#getResizeShapeFeature
+	 * (org.eclipse.graphiti.features.context.IResizeShapeContext)
 	 */
 	@Override
-	public IResizeShapeFeature getResizeShapeFeature(
-	        IResizeShapeContext context) {
-	    Shape shape = context.getShape();
-	    Object bo = getBusinessObjectForPictogramElement(shape);
-	    if (bo instanceof Ensemble) {
-	        return new ResizeEnsembleFeature(this);
-	    }
-	    return super.getResizeShapeFeature(context);
-	 }
+	public IResizeShapeFeature getResizeShapeFeature(IResizeShapeContext context) {
+		Shape shape = context.getShape();
+		Object bo = getBusinessObjectForPictogramElement(shape);
+		if (bo instanceof Ensemble) {
+			return new ResizeEnsembleFeature(this);
+		}
+		return super.getResizeShapeFeature(context);
+	}
 }

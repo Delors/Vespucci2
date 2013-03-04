@@ -42,17 +42,25 @@ import org.eclipse.graphiti.platform.IPlatformImageConstants;
 import org.eclipse.graphiti.services.Graphiti;
 import de.opalproject.vespucci.datamodel.Ensemble;
 
+/**
+ * Collapse Ensembles
+ * 
+ * @author Lars
+ * 
+ */
 public class CollapseFeature extends AbstractCustomFeature {
 
 	public CollapseFeature(IFeatureProvider fp) {
 		super(fp);
 	}
-	
+
+	// used by tooltip
 	@Override
 	public String getName() {
 		return "Collapse Ensemble-Description";
 	}
 
+	// used by tooltip
 	@Override
 	public String getDescription() {
 		return "Collapses the description area of an ensemble";
@@ -78,34 +86,40 @@ public class CollapseFeature extends AbstractCustomFeature {
 
 	@Override
 	public void execute(ICustomContext context) {
-		
-		PictogramElement pictogramElements [] = context.getPictogramElements();
-		
-		for(PictogramElement pe : pictogramElements)
-		{
-			if (pe instanceof ContainerShape) {
 
-				if (Graphiti.getPeService().getPropertyValue(pe, "iscollapsed").equals("false")) {
+		PictogramElement pictogramElements[] = context.getPictogramElements();
+
+		for (PictogramElement pe : pictogramElements) {
+			if (pe instanceof ContainerShape) {
+				// graphiti provides some sort of datatable in the PEService
+				// we use this to store the state "iscollapsed" and the
+				// former width and height
+				if (Graphiti.getPeService().getPropertyValue(pe, "iscollapsed")
+						.equals("false")) {
 					int width = pe.getGraphicsAlgorithm().getWidth();
 					int height = pe.getGraphicsAlgorithm().getHeight();
-					Graphiti.getPeService().setPropertyValue(pe, "initial_width",
-							String.valueOf(width));
-					Graphiti.getPeService().setPropertyValue(pe, "initial_height",
-							String.valueOf(height));
-					Graphiti.getPeService().setPropertyValue(pe, "iscollapsed", "true");
-					
+					Graphiti.getPeService().setPropertyValue(pe,
+							"initial_width", String.valueOf(width));
+					Graphiti.getPeService().setPropertyValue(pe,
+							"initial_height", String.valueOf(height));
+					Graphiti.getPeService().setPropertyValue(pe, "iscollapsed",
+							"true");
+
 					pe.getGraphicsAlgorithm().setHeight(20);
 					pe.getGraphicsAlgorithm().setWidth(100);
 
 				} else {
 					pe.getGraphicsAlgorithm().setWidth(
-							Integer.parseInt(Graphiti.getPeService().getPropertyValue(pe, "initial_width")));
+							Integer.parseInt(Graphiti.getPeService()
+									.getPropertyValue(pe, "initial_width")));
 					pe.getGraphicsAlgorithm().setHeight(
-							Integer.parseInt(Graphiti.getPeService().getPropertyValue(pe, "initial_height")));
-					Graphiti.getPeService().setPropertyValue(pe, "iscollapsed", "false");
-					}
+							Integer.parseInt(Graphiti.getPeService()
+									.getPropertyValue(pe, "initial_height")));
+					Graphiti.getPeService().setPropertyValue(pe, "iscollapsed",
+							"false");
 				}
-			}	
+			}
+		}
 
 	}
 }
