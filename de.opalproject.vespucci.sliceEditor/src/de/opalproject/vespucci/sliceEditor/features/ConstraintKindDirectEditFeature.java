@@ -43,7 +43,7 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import de.opalproject.vespucci.datamodel.Constraint;
 
 /**
- * Feature to change constraint-kind value directly inline.
+ * Feature to change constraint-kind value directly in-line.
  * 
  * @author marius
  *
@@ -64,6 +64,7 @@ public class ConstraintKindDirectEditFeature extends
 	public int getEditingType() {
 		// there are several possible editor-types supported:
 		// text-field, checkbox, color-chooser, combobox, ...
+		// text field in this case.
 		return TYPE_TEXT;
 	}
 
@@ -72,11 +73,16 @@ public class ConstraintKindDirectEditFeature extends
 	 */
 	@Override
 	public boolean canDirectEdit(IDirectEditingContext context) {
+		// get selected pictogramelement
 		PictogramElement pe = context.getPictogramElement();
+		// is it a connection decorator?
 		if (pe instanceof ConnectionDecorator) {
 			ConnectionDecorator cd = (ConnectionDecorator) pe;
+			//  and a text label? 
 			if (cd.getGraphicsAlgorithm() instanceof Text) {
+				//  and represents a constraint? 
 				if (getBusinessObjectForPictogramElement(cd.getConnection()) instanceof Constraint) {
+					// then we have a candidate for direct editing! 
 					return true;
 				}
 			}
@@ -94,7 +100,9 @@ public class ConstraintKindDirectEditFeature extends
 		ConnectionDecorator cd = (ConnectionDecorator) context
 				.getPictogramElement();
 		Connection connection = cd.getConnection();
+		// retrieve business object
 		Constraint constraint = (Constraint) getBusinessObjectForPictogramElement(connection);
+		// return dependencyValue from constraint/businessobject
 		return constraint.getDependencyKind();
 	}
 
@@ -119,11 +127,15 @@ public class ConstraintKindDirectEditFeature extends
 	 */
 	public void setValue(String value, IDirectEditingContext context) {
 
+		// the selected pictogramelement
 		PictogramElement pe = context.getPictogramElement();
+		// the relevant connectiondecorator container
 		ConnectionDecorator cd = (ConnectionDecorator) context
 				.getPictogramElement();
 		Connection connection = cd.getConnection();
+		// retrieve businessobject (constraint)
 		Constraint constraint = (Constraint) getBusinessObjectForPictogramElement(connection);
+		// set new value 
 		constraint.setDependencyKind(value);
 
 		// Explicitly update the shape to display the new value in the diagram

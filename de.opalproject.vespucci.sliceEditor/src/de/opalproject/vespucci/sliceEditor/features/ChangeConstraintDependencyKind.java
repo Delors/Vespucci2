@@ -48,11 +48,11 @@ import org.eclipse.ui.PlatformUI;
 import de.opalproject.vespucci.datamodel.Constraint;
 
 /**
- * This features allows to change the value of a constraintkind.
- * Upon execution a popup-window opens to enter the new value as a string.
+ * This features allows to change the value of a constraintkind. Upon execution
+ * a popup-window opens to enter the new value as a string.
  * 
  * @author marius
- *
+ * 
  */
 public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 
@@ -65,7 +65,9 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 		super(fp);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.graphiti.features.impl.AbstractFeature#getName()
 	 */
 	@Override
@@ -73,22 +75,32 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 		return "Change Dependency Kind";
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.features.custom.AbstractCustomFeature#getDescription()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.features.custom.AbstractCustomFeature#getDescription
+	 * ()
 	 */
 	@Override
 	public String getDescription() {
 		return "Change the dependency kind of a constraint";
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.features.custom.AbstractCustomFeature#canExecute(org.eclipse.graphiti.features.context.ICustomContext)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.features.custom.AbstractCustomFeature#canExecute
+	 * (org.eclipse.graphiti.features.context.ICustomContext)
 	 */
 	@Override
 	public boolean canExecute(ICustomContext context) {
 		// allow rename if exactly one pictogram element
 		// representing a Constraint is selected
 		boolean ret = false;
+
+		// Checks wether the click had been on a constraint/connection element
 		PictogramElement[] pes = context.getPictogramElements();
 		if (pes != null && pes.length == 1) {
 			Object bo = getBusinessObjectForPictogramElement(pes[0]);
@@ -96,6 +108,8 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 				ret = true;
 			}
 		}
+		// checks if the click had been triggerd on a textlabel as a connection
+		// decorator
 		if (pes != null && pes.length == 1) {
 			if (pes[0] instanceof ConnectionDecorator) {
 				if (((ConnectionDecorator) pes[0]).getGraphicsAlgorithm() instanceof Text)
@@ -105,47 +119,75 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 		return ret;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.features.custom.ICustomFeature#execute(org.eclipse.graphiti.features.context.ICustomContext)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.features.custom.ICustomFeature#execute(org.eclipse
+	 * .graphiti.features.context.ICustomContext)
 	 */
 	@Override
 	public void execute(ICustomContext context) {
+		// get relevant pictogram elments out of the context
 		PictogramElement[] pes = context.getPictogramElements();
 
 		if (pes != null && pes.length == 1) {
+			// retrieve business object from current picture element (which
+			// should be a constraint)
 			Object bo = getBusinessObjectForPictogramElement(pes[0]);
+
+			// check against being a constraint
 			if (bo instanceof Constraint) {
+				// retrieve relevant parameters from the business object
 				Connection connection = (Connection) pes[0];
 				Constraint constraint = (Constraint) bo;
+				// retrieve the current constraintdependencykind directly from
+				// the businessmodel - not the graphical representation
 				String currentKind = constraint.getDependencyKind();
 				// ask user for a new dependency kind
 				String newKind = askString(getName(), getDescription(),
 						currentKind);
-				// TODO add check to see whether the newly entered is a valid
-				// one
+				// validation checks for the newly entered value for dependency
+				// kind, not allowed to be empty
+				// and registers changes
 				if (newKind != null && !newKind.equals(currentKind)) {
 					this.hasDoneChanges = true;
+					// set the new value in the business object
 					constraint.setDependencyKind(newKind);
 					// hand changes to the connection decorator - label
 					for (ConnectionDecorator condec : connection
 							.getConnectionDecorators()) {
 						if (condec.getGraphicsAlgorithm() instanceof Text) {
+							// call update method for the connectionDecorator to
+							// update the graphical representation
 							updatePictogramElement(condec);
 						}
 					}
 				}
 			}
-			if (pes[0] instanceof ConnectionDecorator) {
+			// if not a constraint directly check against being a connection
+			// decorator
+			else if (pes[0] instanceof ConnectionDecorator) {
 				ConnectionDecorator cd = (ConnectionDecorator) pes[0];
+				// retrieve the responsible connection of the connection
+				// decorator and thus the related business object(-> constraint)
 				Connection connection = cd.getConnection();
 				if (getBusinessObjectForPictogramElement(connection) instanceof Constraint) {
 					Constraint constraint = (Constraint) getBusinessObjectForPictogramElement(connection);
+					// retrieve current value directly from the business object
 					String currentKind = constraint.getDependencyKind();
 					// ask user for a new dependency kind
 					String newKind = askString(getName(), getDescription(),
 							currentKind);
+					// validation checks for the newly entered value for
+					// dependency
+					// kind, not allowed to be empty
+					// and registers changes
 					if (newKind != null && !newKind.equals(currentKind)) {
 						this.hasDoneChanges = true;
+						// set new value in the business value and eventually
+						// call update feature to update the graphical
+						// representation
 						constraint.setDependencyKind(newKind);
 						updatePictogramElement(cd);
 					}
@@ -154,7 +196,9 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.graphiti.features.impl.AbstractFeature#hasDoneChanges()
 	 */
 	@Override
@@ -177,9 +221,11 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 	 */
 	public static String askString(String dialogTitle, String dialogMessage,
 			String initialValue) {
+		// string to return the entered value
 		String ret = null;
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 				.getShell();
+		// create new input dialog
 		InputDialog inputDialog = new InputDialog(shell, dialogTitle,
 				dialogMessage, initialValue, null);
 		int retDialog = inputDialog.open();
