@@ -59,6 +59,7 @@ public class VespucciContentProvider extends
 
 	private static TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
+
 	private static ResourceSet resourceSet = domain.getResourceSet();
 
 	public VespucciContentProvider() {
@@ -67,10 +68,10 @@ public class VespucciContentProvider extends
 
 	@Override
 	public boolean hasChildren(Object object) {
-		if (object instanceof IFile)
+		if (object instanceof IFile) {
 			return true;
-		boolean r = super.hasChildren(object);
-		return r;
+		}
+		return super.hasChildren(object);
 	}
 
 	@Override
@@ -81,14 +82,14 @@ public class VespucciContentProvider extends
 			object = resourceSet.getResource(uri, true);
 			return stripDiagrams(super.getChildren(object));
 		}
-		Object[] r = super.getChildren(object);
-		return r;
+		return super.getChildren(object);
 	}
 
 	@Override
 	public Object getParent(Object object) {
-		if (object instanceof IFile)
+		if (object instanceof IFile) {
 			return ((IResource) object).getParent();
+		}
 		return super.getParent(object);
 	}
 
