@@ -50,6 +50,9 @@ import org.eclipse.swt.widgets.Text;
  * 
  */
 public class NewEnsembleWizardPage extends WizardPage {
+
+	private final static int DESCRIPTION_HEIGTH = 200;
+
 	private Text name;
 	private Composite container;
 	private Text description;
@@ -103,7 +106,6 @@ public class NewEnsembleWizardPage extends WizardPage {
 			public void keyReleased(KeyEvent e) {
 				// if (!description.getText().isEmpty()) {
 				setPageComplete(true);
-
 				// }
 			}
 
@@ -112,7 +114,7 @@ public class NewEnsembleWizardPage extends WizardPage {
 		GridData nameGD = new GridData(GridData.FILL_HORIZONTAL);
 		name.setLayoutData(nameGD);
 		GridData descriptionGD = new GridData(GridData.FILL_HORIZONTAL);
-		descriptionGD.heightHint = 200;
+		descriptionGD.heightHint = DESCRIPTION_HEIGTH;
 		description.setLayoutData(descriptionGD);
 		// Required to avoid an error in the system
 		setControl(container);
@@ -126,5 +128,22 @@ public class NewEnsembleWizardPage extends WizardPage {
 
 	public String getEnsembleDescription() {
 		return description.getText();
+	}
+
+	/**
+	 * Disposes all allocated swt resources
+	 */
+	@Override
+	public void dispose() {
+		super.dispose();
+		if (container != null) {
+			container.dispose();
+		}
+		if (name != null) {
+			name.dispose();
+		}
+		if (description != null) {
+			description.dispose();
+		}
 	}
 }

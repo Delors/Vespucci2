@@ -1,25 +1,41 @@
-/**
- * <copyright>
+/*
+ * License (BSD Style License):
+ * Copyright (c) 2012
+ * Software Engineering
+ * Department of Computer Science
+ * Technische Universitiät Darmstadt
+ * All rights reserved.
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
- * All rights reserved.   This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
  *
- * Contributors:
- *   IBM - Initial API and implementation
+ * - Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * - Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ * - Neither the name of the Software Engineering Group or Technische
+ * Universität Darmstadt nor the names of its contributors may be used to
+ * endorse or promote products derived from this software without specific
+ * prior written permission.
  *
- * </copyright>
- *
- * $Id: ResourceLoadedListener.java,v 1.4 2007/11/14 18:13:57 cdamus Exp $
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
  */
-
 package de.opalproject.vespucci.ui.navigator.listeners;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.transaction.DemultiplexingListener;
+import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorReference;
@@ -28,62 +44,75 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
+import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.ui.editor.EnsembleEditor;
 import de.opalproject.vespucci.ui.editor.EnsembleEditorInput;
 
 /**
+ * Listens for removed Ensembles and closes their editors
  * 
  * @author Marco Jacobasch
  */
 public class EnsembleRemoveListener extends DemultiplexingListener {
-	private static EnsembleRemoveListener instance;
 
+	/**
+	 * NotificationFilter to select only remove notifications and Ensembles or
+	 * EnsembleRepository
+	 */
+	private final static NotificationFilter REMOVE_FILTER = NotificationFilter
+			.createEventTypeFilter(Notification.REMOVE)
+			.and(NotificationFilter
+					.createNotifierTypeFilter(
+							DatamodelPackage.Literals.CONCRETE_ENSEMBLE)
+					.or(NotificationFilter
+							.createNotifierTypeFilter(DatamodelPackage.Literals.ENSEMBLE_REPOSITORY)));
+
+	/**
+	 * Creates Listener with a NotificationFilter
+	 */
 	public EnsembleRemoveListener() {
-		// TODO add NotificationFilter to recieve only remove events
-		instance = this;
+		super(REMOVE_FILTER);
 	}
 
 	/**
-	 * Returns the default listener instance.
+	 * Checks only if removed object was an Ensemble, if true, closes all open
+	 * Ensemble Editors.
 	 * 
-	 * @return the instance associated with the editing domain that manages the
-	 *         specified resource set, or <code>null</code> if none is found
+	 * Checking remove event and correct classes is done by the
+	 * NotificationFilter
 	 */
-	public static EnsembleRemoveListener getDefault() {
-		return instance;
-	}
-
 	@Override
 	protected void handleNotification(TransactionalEditingDomain domain,
 			Notification notification) {
 
-		if (notification instanceof ENotificationImpl) {
-			if (notification.getEventType() == ENotificationImpl.REMOVE
-					&& notification.getOldValue() instanceof Ensemble) {
-				final Ensemble ensemble = (Ensemble) notification.getOldValue();
+		if (notification.getOldValue() instanceof Ensemble) {
+			final Ensemble oldEnsemble = (Ensemble) notification.getOldValue();
 
-				Display.getDefault().asyncExec(new Runnable() {
-					public void run() {
-						IWorkbenchPage page = getActivePage();
-						Ensemble ens = ensemble;
+			Display.getDefault().asyncExec(new Runnable() {
+				public void run() {
+					IWorkbenchPage page = getActivePage();
+					Ensemble ens = oldEnsemble;
 
-						if (page != null) {
-							IEditorReference[] editors = page.findEditors(
-									new EnsembleEditorInput(ens),
-									EnsembleEditor.ID, //$NON-NLS-1$
-									IWorkbenchPage.MATCH_ID
-											| IWorkbenchPage.MATCH_INPUT);
+					if (page != null) {
+						IEditorReference[] editors = page.findEditors(
+								new EnsembleEditorInput(ens),
+								EnsembleEditor.ID, //$NON-NLS-1$
+								IWorkbenchPage.MATCH_ID
+										| IWorkbenchPage.MATCH_INPUT);
 
-							page.closeEditors(editors, false);
-						}
+						page.closeEditors(editors, false);
 					}
-				});
-
-			}
+				}
+			});
 		}
 	}
 
+	/**
+	 * Get the current active page to close all editors
+	 * 
+	 * @return
+	 */
 	private IWorkbenchPage getActivePage() {
 		IWorkbenchPage result = null;
 

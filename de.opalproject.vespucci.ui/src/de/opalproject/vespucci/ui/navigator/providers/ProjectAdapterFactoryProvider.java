@@ -55,6 +55,12 @@ public final class ProjectAdapterFactoryProvider {
 	private static ComposedAdapterFactory adapterFactory;
 
 	/**
+	 * Prevent object creation of static classes
+	 */
+	private ProjectAdapterFactoryProvider() {
+	}
+
+	/**
 	 * Creates a list containing the used item provider adapter factories.
 	 * 
 	 * In this case the ones for the vespucci datamodel and default emf ones
@@ -78,8 +84,9 @@ public final class ProjectAdapterFactoryProvider {
 	 * @return
 	 */
 	public static ComposedAdapterFactory getAdapterFactory() {
-		if (adapterFactory == null)
+		if (adapterFactory == null) {
 			adapterFactory = new ComposedAdapterFactory(createFactoryList());
+		}
 		return adapterFactory;
 	}
 }

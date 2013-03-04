@@ -45,6 +45,8 @@ import org.eclipse.graphiti.ui.editor.DefaultMarkerBehavior;
  */
 public class SliceEditorDiagramTypeProvider extends AbstractDiagramTypeProvider {
 
+	public final static String DIAGRAM_TYPE_PROVIDER_ID = "de.opalproject.vespucci.sliceEditor.sliceEditorDiagramTypeProvider";
+
 	private IToolBehaviorProvider[] toolBehaviorProviders;
 
 	public SliceEditorDiagramTypeProvider() {
