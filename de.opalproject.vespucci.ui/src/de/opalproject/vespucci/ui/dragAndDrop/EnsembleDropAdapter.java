@@ -31,7 +31,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package de.opalproject.vespucci.ui.dnd;
+package de.opalproject.vespucci.ui.dragAndDrop;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
