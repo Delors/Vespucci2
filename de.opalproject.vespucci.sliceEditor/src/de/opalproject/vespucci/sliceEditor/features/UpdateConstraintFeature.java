@@ -78,8 +78,6 @@ public class UpdateConstraintFeature extends AbstractUpdateFeature {
 		if (cd.getGraphicsAlgorithm() instanceof Text) {
 			connection = cd.getConnection();
 			text = (Text) cd.getGraphicsAlgorithm();
-		} else {
-
 		}
 		for (ConnectionDecorator condec : connection.getConnectionDecorators()) {
 			if (condec.getGraphicsAlgorithm() instanceof Text)
