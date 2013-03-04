@@ -37,12 +37,13 @@ import java.util.List;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.ui.handlers.HandlerUtil;
 
-import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.ui.wizards.RemoveEnsemblesFromSlicesChoiceWizard;
 
 /**
  * Handles delete requests for a selection of ensembles.
@@ -55,25 +56,21 @@ public class DeleteEnsembleHandler extends AbstractEnsembleCommandHandler {
 
 	@Override
 	public Command getCommand(IStructuredSelection selection,
-			ExecutionEvent event) {
+			final ExecutionEvent event) {
 
 		@SuppressWarnings("unchecked")
 		final List<Ensemble> ensembleList = selection.toList();
 
 		Command delete = new RecordingCommand(getEditingDomain()) {
-
 			@Override
 			protected void doExecute() {
-				// Iterate over every ensemble which should be deleted
-				for (final Ensemble ensemble : ensembleList) {
-					EcoreUtil.delete(ensemble);
+				
+				final RemoveEnsemblesFromSlicesChoiceWizard wizard = new RemoveEnsemblesFromSlicesChoiceWizard(ensembleList);
 
-					// Remove every constraint which used the deleted ensemble
-					// as source or target
-					for (Constraint constraint : ensemble.getConstraints()) {
-						EcoreUtil.delete(constraint);
-					}
-				}
+				// Launch delete wizard
+				WizardDialog dialog = new WizardDialog(
+						HandlerUtil.getActiveShell(event), wizard);
+				dialog.open();
 
 			}
 		};
