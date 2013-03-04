@@ -56,11 +56,7 @@ public class CreateLocalOutgoingConstraintFeature extends
 
 	@Override
 	protected boolean isAnchorSensibleSource(Ensemble ensemble) {
-		if (ensemble instanceof EmptyEnsemble) {
-			return false;
-		} else {
-			return true;
-		}
+		return ensemble instanceof EmptyEnsemble;
 	}
 
 	@Override

@@ -61,10 +61,6 @@ public class CreateGlobalIncomingConstraintFeature extends
 
 	@Override
 	protected boolean isAnchorSensibleTarget(Ensemble ensemble) {
-		if (ensemble instanceof EmptyEnsemble) {
-			return false;
-		} else {
-			return true;
-		}
+		return ensemble instanceof EmptyEnsemble;
 	}
 }
