@@ -33,6 +33,8 @@
  */
 package de.opalproject.vespucci.ui.dragAndDrop;
 
+import java.awt.dnd.DnDConstants;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.Command;
@@ -47,13 +49,23 @@ import org.eclipse.ui.navigator.CommonDropAdapterAssistant;
 import de.opalproject.vespucci.datamodel.TreeNode;
 import de.opalproject.vespucci.ui.utils.EmfService;
 
+/**
+ * Handles drop support for ensembles
+ * 
+ * @author Marco Jacobasch
+ * 
+ */
 public class EnsembleDropAdapter extends CommonDropAdapterAssistant {
 
+	/**
+	 * Validates if droptarget is a TreeNode (Ensemble or EnsembleRepositor) and
+	 * operation is a move.
+	 * 
+	 */
 	@Override
 	public IStatus validateDrop(Object target, int operation,
 			TransferData transferType) {
-		// TODO Auto-generated method stub
-		if (target instanceof TreeNode) {
+		if (target instanceof TreeNode && operation == DnDConstants.ACTION_MOVE) {
 			IStatus status = new Status(IStatus.OK,
 					"de.opalproject.vespucci.ui", "test");
 			return status;
@@ -61,6 +73,11 @@ public class EnsembleDropAdapter extends CommonDropAdapterAssistant {
 		return null;
 	}
 
+	/**
+	 * Handle drop event.
+	 * 
+	 * Only allows drag&drop if target and source are inside the same resource.
+	 */
 	@Override
 	public IStatus handleDrop(CommonDropAdapter aDropAdapter,
 			DropTargetEvent aDropTargetEvent, Object aTarget) {
@@ -71,14 +88,16 @@ public class EnsembleDropAdapter extends CommonDropAdapterAssistant {
 		TreeSelection sourceTree = (TreeSelection) (aDropTargetEvent.data);
 		final TreeNode source = (TreeNode) sourceTree.getFirstElement();
 
-		Command command = new RecordingCommand(domain) {
+		// Cancel if not inside the same resource
+		if (!target.eResource().equals(source.eResource())) {
+			return null;
+		}
 
+		Command command = new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
 				source.getParent().getChildren().remove(source);
 				source.setParent(target);
-
-				// TODO Add validation call over all existing slices
 			}
 		};
 
