@@ -37,6 +37,12 @@ import org.eclipse.graphiti.dt.AbstractDiagramTypeProvider;
 import org.eclipse.graphiti.tb.IToolBehaviorProvider;
 import org.eclipse.graphiti.ui.editor.DefaultMarkerBehavior;
 
+/**
+ * Provides the diagram type. FeatureProvider and ToolBehaviorProvider have to
+ * be registered here
+ * 
+ * @author Lars
+ */
 public class SliceEditorDiagramTypeProvider extends AbstractDiagramTypeProvider {
 
 	public final static String DIAGRAM_TYPE_PROVIDER_ID = "de.opalproject.vespucci.sliceEditor.sliceEditorDiagramTypeProvider";
@@ -61,7 +67,6 @@ public class SliceEditorDiagramTypeProvider extends AbstractDiagramTypeProvider 
 					this) };
 		}
 
-		// TODO possible problem source regarding markers.
 		DefaultMarkerBehavior adf = null;
 		return toolBehaviorProviders;
 	}
