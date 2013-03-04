@@ -60,7 +60,7 @@ public class EnsembleRemoveListener extends DemultiplexingListener {
 	 * NotificationFilter to select only remove notifications and Ensembles or
 	 * EnsembleRepository
 	 */
-	private final static NotificationFilter REMOVE_FILTER = NotificationFilter
+	private static final NotificationFilter REMOVE_FILTER = NotificationFilter
 			.createEventTypeFilter(Notification.REMOVE)
 			.and(NotificationFilter
 					.createNotifierTypeFilter(
