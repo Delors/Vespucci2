@@ -33,21 +33,28 @@
  */
 package de.opalproject.vespucci.ui.wizards;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.graphiti.ui.internal.services.ICommandService;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.handlers.IHandlerService;
-import org.eclipse.ui.services.IServiceLocator;
-import org.eclipse.core.commands.Command;
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.sliceEditor.features.dark.DarkSliceUpdateFeature;
+import de.opalproject.vespucci.ui.Activator;
+import de.opalproject.vespucci.ui.utils.EmfService;
 
 /**
  * Wizard for renaming existing ensembles
@@ -61,7 +68,6 @@ public class RemoveEnsemblesFromSlicesChoiceWizard extends Wizard {
 	 * Page belonging to this wizard.
 	 */
 	protected RemoveEnsemblesFromSlicesChoicePage page;
-
 
 	private final List<Ensemble> ensembleList;
 
@@ -79,8 +85,7 @@ public class RemoveEnsemblesFromSlicesChoiceWizard extends Wizard {
 		this.ensembleList = ensembleList;
 		setNeedsProgressMonitor(true);
 	}
-	
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -99,23 +104,79 @@ public class RemoveEnsemblesFromSlicesChoiceWizard extends Wizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
-		
-		DarkSliceUpdateFeature operation = new DarkSliceUpdateFeature(editingDomain, ensembleList);
-		editingDomain.getCommandStack().execute(operation);
-		
-		// Iterate over every ensemble which should be deleted
-		for (final Ensemble ensemble : ensembleList) {
-			EcoreUtil.delete(ensemble);
+		WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
+			@Override
+			protected void execute(IProgressMonitor progressMonitor) {
+				try {
+					TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE
+							.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
 
-			// Remove every constraint which used the deleted ensemble
-			// as source or target
-			for (Constraint constraint : ensemble.getConstraints()) {
-				EcoreUtil.delete(constraint);
+					List<Ensemble> ensembleListParam = new ArrayList<Ensemble>();
+					ensembleListParam.addAll(ensembleList);
+					
+					// retrieve all children for each ensemble since these are going to be removed aswell
+					for (Ensemble ens : ensembleList) {
+						TreeIterator<EObject> it = ens.eAllContents();
+						while (it.hasNext()) {
+							EObject next = it.next();
+							if (next instanceof Ensemble) {
+								ensembleListParam.add((Ensemble) next);
+							}
+						}
+					}
+					
+					DarkSliceUpdateFeature operation = new DarkSliceUpdateFeature(
+							editingDomain, ensembleListParam);
+					editingDomain.getCommandStack().execute(operation);
+
+					Command delete = new RecordingCommand(editingDomain) {
+
+						@Override
+						protected void doExecute() {
+							// Iterate over every ensemble which should be
+							// deleted
+							for (final Ensemble ensemble : ensembleList) {
+								// Remove every constraint which used the
+								// deleted
+								// ensemble
+								// as source or target
+								for (Constraint constraint : ensemble
+										.getConstraints()) {
+									EcoreUtil.delete(constraint);
+								}
+
+								EcoreUtil.delete(ensemble);
+							}
+						}
+					};
+
+					editingDomain.getCommandStack().execute(delete);
+					EmfService.save(editingDomain);
+
+				} catch (Exception exception) {
+					Activator
+							.getDefault()
+							.getLog()
+							.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID,
+									Arrays.toString(exception.getStackTrace())));
+
+				} finally {
+					progressMonitor.done();
+				}
 			}
+		};
+
+		try {
+			getContainer().run(false, false, operation);
+		} catch (InvocationTargetException | InterruptedException exception) {
+			Activator
+					.getDefault()
+					.getLog()
+					.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, Arrays
+							.toString(exception.getStackTrace())));
 		}
 
 		return true;
+
 	}
 }

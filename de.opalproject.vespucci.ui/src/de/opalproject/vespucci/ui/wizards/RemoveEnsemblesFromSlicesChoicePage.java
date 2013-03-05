@@ -39,8 +39,6 @@ import java.util.Set;
 
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -57,33 +55,37 @@ import de.opalproject.vespucci.datamodel.Slice;
  * 
  */
 public class RemoveEnsemblesFromSlicesChoicePage extends WizardPage {
-	private Text text1;
+
 	private Composite container;
-	private Text description;
+	/**
+	 * Lists the affected slices and presents to user.
+	 */
+	private Text affectedSlicesText;
+	/**
+	 * List of ensembles to be deleted.
+	 */
 	final List<Ensemble> ensembleList;
 
 	/**
-	 * Creates a new page for the rename wizard.
+	 * Constructor
 	 * 
-	 * @param eName
-	 *            the current name of the object.
+	 * @param ensembleList
+	 *            - List of Ensembles to be deleted.
 	 */
-	public RemoveEnsemblesFromSlicesChoicePage() {
-		super("Super First Page");
-		ensembleList = null;
-		setTitle("Are you sure you want to delete");
-		setDescription("Are you really sure you want to delete");
-
-	}
-
 	public RemoveEnsemblesFromSlicesChoicePage(List<Ensemble> ensembleList) {
 		super("Super First Page");
 		this.ensembleList = ensembleList;
-		setTitle("Are you sure you want to delete");
-		setDescription("Are you really sure you want to delete");
-
+		setTitle("Delete Ensembles");
+		setDescription("Are you sure you want to proceed?");
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets
+	 * .Composite)
+	 */
 	@Override
 	public void createControl(Composite parent) {
 		container = new Composite(parent, SWT.NULL);
@@ -91,11 +93,13 @@ public class RemoveEnsemblesFromSlicesChoicePage extends WizardPage {
 		container.setLayout(layout);
 		layout.numColumns = 1;
 		Label label1 = new Label(container, SWT.NULL);
-		label1.setText("List of Slices \n of Ensembles to be deleted");
+		label1.setText("List of Slices which are affected by commited changes");
 
-		description = new Text(container, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
+		affectedSlicesText = new Text(container, SWT.BORDER | SWT.MULTI
+				| SWT.V_SCROLL);
 		StringBuffer str = new StringBuffer();
-		Set sliceset = new HashSet();
+		Set<Slice> sliceset = new HashSet<Slice>();
+		// Retrieve list of affected Slices for each ensemble
 		for (Ensemble ens : ensembleList) {
 			for (Slice slice : ens.getSlices()) {
 				if (!sliceset.contains(slice)) {
@@ -104,13 +108,20 @@ public class RemoveEnsemblesFromSlicesChoicePage extends WizardPage {
 				}
 			}
 		}
-
-		description.setText(str.toString());
+		// If there are no slices affected by the commited changes, hide the
+		// information from user
+		if (str.length() == 0) {
+			label1.setVisible(false);
+			affectedSlicesText.setText("NONE FOUND");
+			affectedSlicesText.setVisible(false);
+		} else {
+			affectedSlicesText.setText(str.toString());
+		}
 		// description.setEnabled(false);
-		description.setEditable(false);
+		affectedSlicesText.setEditable(false);
 
 		GridData gd = new GridData(GridData.FILL_HORIZONTAL);
-		description.setLayoutData(gd);
+		affectedSlicesText.setLayoutData(gd);
 		// Required to avoid an error in the system
 		setControl(container);
 		setPageComplete(true);

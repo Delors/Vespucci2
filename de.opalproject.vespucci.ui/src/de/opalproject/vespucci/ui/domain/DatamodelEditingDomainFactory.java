@@ -38,24 +38,38 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 
 /**
+ * Factory for creating a new transactional editing domain.
+ * 
  * @author Marco Jacobasch
  */
 public class DatamodelEditingDomainFactory implements
 		TransactionalEditingDomain.Factory {
 
+	/**
+	 * Create a new transactional editing domain.
+	 * 
+	 * In this case a WorkspaceEditingDomainFactory which is a subtype of
+	 * TransactionalEditingDomain.
+	 */
 	public TransactionalEditingDomain createEditingDomain() {
 		TransactionalEditingDomain result = WorkspaceEditingDomainFactory.INSTANCE
 				.createEditingDomain();
 		return result;
 	}
 
+	/**
+	 * Not since we are using a static initialized editing domain from extension
+	 * point.
+	 */
 	public TransactionalEditingDomain createEditingDomain(ResourceSet rset) {
-		// not used when initializing editing domain from extension point
 		return null;
 	}
 
+	/**
+	 * Not since we are using a static initialized editing domain from extension
+	 * point.
+	 */
 	public TransactionalEditingDomain getEditingDomain(ResourceSet rset) {
-		// not used when initializing editing domain from extension point
 		return null;
 	}
 

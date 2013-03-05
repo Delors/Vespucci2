@@ -33,6 +33,8 @@
  */
 package de.opalproject.vespucci.ui.editor;
 
+import java.util.ArrayList;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -59,6 +61,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.sliceEditor.features.dark.DarkEnsembleUpdateFeature;
 import de.opalproject.vespucci.ui.utils.EmfService;
 
 /**
@@ -99,11 +102,9 @@ public class EnsembleEditor extends EditorPart {
 
 	@Override
 	public void createPartControl(Composite parent) {
-
 		createUIElements(parent);
 		createInputChangeListeners();
 		createFocusChangeListeners();
-
 	}
 
 	/*
@@ -206,30 +207,14 @@ public class EnsembleEditor extends EditorPart {
 	}
 
 	/**
-	 * Checks if any user input differs from the saved data.
+	 * Checks if input data has changed.
 	 * 
-	 * If it does, the Editor state is set to dirty and vice versa.
+	 * If it does, the Editor state is set to dirty.
 	 */
 	private void checkAndSetDirty() {
 
-		boolean isDirty = false;
-
-		// the editor state becomes dirty if any user input differs from the
-		// saved data
-		if (!ensemble.getName().equals(nameTextField.getText())) {
-			isDirty = true;
-		} else if (!ensemble.getDescription().equals(
-				descriptionTextField.getText())) {
-			isDirty = true;
-		} else if (!ensemble.getQuery().equals(queryTextField.getText())) {
-			isDirty = true;
-		} else if (!ensemble.isDerived() == derivedCheckBox.getSelection()) {
-			isDirty = true;
-		}
-
-		// set the new state and fire a property change if necessary
-		if (isDirty != dirty) {
-			dirty = isDirty;
+		if (!dirty) {
+			dirty = true;
 			firePropertyChange(PROP_DIRTY);
 		}
 
@@ -257,11 +242,32 @@ public class EnsembleEditor extends EditorPart {
 
 		EmfService.save(domain);
 
+		updateEnsembleRepresentationInSlice(domain);
+
 		// set the editor name, as the ensemble name may have changed
 		setPartName(ensemble.getName());
 
 		// tell Eclipse that the dirty state has changed
 		firePropertyChange(PROP_DIRTY);
+	}
+
+	/**
+	 * Updates the graphical representation of this editors ensemble in all
+	 * Slices that it is part of, whether they are closed or not.
+	 * 
+	 * @param domain
+	 */
+	private void updateEnsembleRepresentationInSlice(
+			TransactionalEditingDomain domain) {
+		// the ensemble has to be put in a list to be used for the dark feature
+		// update
+		ArrayList<Ensemble> toBeRenamed = new ArrayList<Ensemble>();
+
+		toBeRenamed.add(ensemble);
+		// Execute
+		DarkEnsembleUpdateFeature operation = new DarkEnsembleUpdateFeature(
+				domain, toBeRenamed);
+		domain.getCommandStack().execute(operation);
 	}
 
 	@Override

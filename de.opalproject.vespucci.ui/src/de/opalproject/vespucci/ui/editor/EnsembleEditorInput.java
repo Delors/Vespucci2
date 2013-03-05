@@ -33,12 +33,21 @@
  */
 package de.opalproject.vespucci.ui.editor;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
 
+/**
+ * Provides the editor input for an {@link EnsembleEditor}
+ * 
+ * Currently this is not persistable
+ * 
+ * @author Marco Jacobasch
+ *
+ */
 public class EnsembleEditorInput implements IEditorInput {
 
 	private final Ensemble ensemble;
@@ -63,7 +72,7 @@ public class EnsembleEditorInput implements IEditorInput {
 
 	@Override
 	public String getName() {
-		return String.valueOf(ensemble);
+		return ensemble.getName();
 	}
 
 	@Override
@@ -73,7 +82,7 @@ public class EnsembleEditorInput implements IEditorInput {
 
 	@Override
 	public String getToolTipText() {
-		return "Displays an ensemble";
+		return EcoreUtil.getURI(ensemble).toPlatformString(true);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -100,7 +109,7 @@ public class EnsembleEditorInput implements IEditorInput {
 			return false;
 		} else if (obj instanceof EnsembleEditorInput) {
 			EnsembleEditorInput other = (EnsembleEditorInput) obj;
-			return ensemble.equals(other.ensemble);
+			return EcoreUtil.equals(ensemble, other.ensemble);
 		}
 		return false;
 	}
