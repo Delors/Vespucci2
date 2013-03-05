@@ -35,6 +35,7 @@ package de.opalproject.vespucci.sliceEditor.features;
 
 import org.eclipse.emf.common.command.Command;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -80,11 +81,22 @@ public class RemoveFeature extends DefaultRemoveFeature {
 			Command removeCommand;
 			// checks if the element to remove is a connection or an ensemble
 			if (context.getPictogramElement() instanceof Connection) {
+				// constraint case
+
+				// delete the business object from any occurence within the data
+				// model
+				EcoreUtil.delete(context.getPictogramElement().getLink()
+						.getBusinessObjects().get(0));
+
+				// remove the graphical representation from its slice
 				removeCommand = RemoveCommand.create(domain, slice,
 						DatamodelPackage.Literals.SLICE__CONSTRAINTS,
 						getBusinessObjectForPictogramElement(context
 								.getPictogramElement()));
+
 			} else {
+				// ensemble case
+				// remove the graphical representation from its slice
 				removeCommand = RemoveCommand.create(domain, slice,
 						DatamodelPackage.Literals.SLICE__ENSEMBLES,
 						getBusinessObjectForPictogramElement(context

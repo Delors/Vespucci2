@@ -45,6 +45,8 @@ import org.eclipse.graphiti.mm.algorithms.Polyline;
 import org.eclipse.graphiti.mm.algorithms.RoundedRectangle;
 import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.algorithms.styles.Orientation;
+import org.eclipse.graphiti.mm.pictograms.BoxRelativeAnchor;
+import org.eclipse.graphiti.mm.pictograms.ChopboxAnchor;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -229,15 +231,14 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 			IPeCreateService peCreateService, ContainerShape containerShape,
 			IGaService gaService, int width) {
 
-			// create shape for line
-			Shape lineShape = peCreateService
-					.createShape(containerShape, false);
+		// create shape for line
+		Shape lineShape = peCreateService.createShape(containerShape, false);
 
-			// create and set graphics algorithm
-			Polyline polyline = gaService.createPolyline(lineShape, new int[] {
-					0, 20, width, 20 });
-			polyline.setForeground(manageColor(ENSEMBLE_FOREGROUND));
-			polyline.setLineWidth(2);
+		// create and set graphics algorithm
+		Polyline polyline = gaService.createPolyline(lineShape, new int[] { 0,
+				20, width, 20 });
+		polyline.setForeground(manageColor(ENSEMBLE_FOREGROUND));
+		polyline.setLineWidth(2);
 	}
 
 	private void createTextShapes(Ensemble addedEnsemble,
@@ -277,13 +278,10 @@ public class AddEnsembleFeature extends AbstractAddShapeFeature {
 		link(descriptionShape, addedEnsemble);
 
 		// create shape for icon
-			Shape iconShape = peCreateService
-					.createShape(containerShape, false);
-			Image icon = gaService.createImage(iconShape,
-					"de.opalproject.vespucci.sliceEditor.ensembleIcon");
-			gaService.setLocationAndSize(icon, 4, 3, 16, 16);
+		Shape iconShape = peCreateService.createShape(containerShape, false);
+		Image icon = gaService.createImage(iconShape,
+				"de.opalproject.vespucci.sliceEditor.ensembleIcon");
+		gaService.setLocationAndSize(icon, 4, 3, 16, 16);
 	}
 
 }
-
-
