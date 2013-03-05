@@ -87,56 +87,51 @@ public class UpdateEnsembleFeature extends AbstractUpdateFeature {
 	 * .context.IUpdateContext)
 	 */
 	public IReason updateNeeded(IUpdateContext context) {
-    	 Object bo =
-    	            getBusinessObjectForPictogramElement(context.getPictogramElement());
-    	if (bo instanceof ConcreteEnsemble){
-        // retrieve name from pictogram model
-        String pictogramName = null;
-        // and retrieve description from pictogram model
-        String pictogramDescription = null;
-        PictogramElement pictogramElement = context.getPictogramElement();
-        if (pictogramElement instanceof ContainerShape) {
-            ContainerShape cs = (ContainerShape) pictogramElement;
-            for (Shape shape : cs.getChildren()) {
-                if (shape.getGraphicsAlgorithm() instanceof Text) {
-                    Text text = (Text) shape.getGraphicsAlgorithm();
-                    pictogramName = text.getValue();
-                }
-                if (shape.getGraphicsAlgorithm() instanceof MultiText){
-                	MultiText multiText = (MultiText) shape.getGraphicsAlgorithm();
-                	pictogramDescription = multiText.getValue();
-                }
-            }
-        }
- 
-        // retrieve name and description from business model
-        String businessName = null;
-        String businessDescription = null;
-        if (bo instanceof Ensemble) {
-            Ensemble ensemble = (Ensemble) bo;
-            businessName = ensemble.getName();
-            businessDescription = ensemble.getDescription();
-        }
-        
+		Object bo = getBusinessObjectForPictogramElement(context
+				.getPictogramElement());
+		if (bo instanceof ConcreteEnsemble) {
+			// retrieve name from pictogram model
+			String pictogramName = null;
+			// and retrieve description from pictogram model
+			String pictogramDescription = null;
+			PictogramElement pictogramElement = context.getPictogramElement();
+			if (pictogramElement instanceof ContainerShape) {
+				ContainerShape cs = (ContainerShape) pictogramElement;
+				for (Shape shape : cs.getChildren()) {
+					if (shape.getGraphicsAlgorithm() instanceof Text) {
+						Text text = (Text) shape.getGraphicsAlgorithm();
+						pictogramName = text.getValue();
+					}
+					if (shape.getGraphicsAlgorithm() instanceof MultiText) {
+						MultiText multiText = (MultiText) shape
+								.getGraphicsAlgorithm();
+						pictogramDescription = multiText.getValue();
+					}
+				}
+			}
 
- 
-        // update needed, if names or description are different
-        boolean updateNameNeeded =
-            ((pictogramName == null && businessName != null) || 
-                (pictogramName != null && !pictogramName.equals(businessName)));
-        boolean updateDescriptionNeeded =  ((pictogramDescription == null && businessDescription != null) || 
-                (pictogramDescription != null && !pictogramDescription.equals(businessDescription)));
-        if (updateNameNeeded) {
-            return Reason.createTrueReason("Name is out of date");
-        }
-        else if(updateDescriptionNeeded){
-        	return Reason.createTrueReason("Description is out of date");
-        }else {
-            return Reason.createFalseReason();
-        }
-    	}
-    	return Reason.createFalseReason();
-    }
+			// retrieve name and description from business model
+			String businessName = null;
+			String businessDescription = null;
+			Ensemble ensemble = (Ensemble) bo;
+			businessName = ensemble.getName();
+			businessDescription = ensemble.getDescription();
+
+			// update needed, if names or description are different
+			boolean updateNameNeeded = ((pictogramName == null && businessName != null) || (pictogramName != null && !pictogramName
+					.equals(businessName)));
+			boolean updateDescriptionNeeded = ((pictogramDescription == null && businessDescription != null) || (pictogramDescription != null && !pictogramDescription
+					.equals(businessDescription)));
+			if (updateNameNeeded) {
+				return Reason.createTrueReason("Name is out of date");
+			} else if (updateDescriptionNeeded) {
+				return Reason.createTrueReason("Description is out of date");
+			} else {
+				return Reason.createFalseReason();
+			}
+		}
+		return Reason.createFalseReason();
+	}
 
 	/*
 	 * (non-Javadoc)
