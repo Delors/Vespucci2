@@ -67,7 +67,7 @@ public class RemoveEnsemblesFromSlicesChoiceWizard extends Wizard {
 	/**
 	 * Page belonging to this wizard.
 	 */
-	protected RemoveEnsemblesFromSlicesChoicePage page;
+	private RemoveEnsemblesFromSlicesChoicePage page;
 
 	private final List<Ensemble> ensembleList;
 	private final List<Ensemble> ensembleListParam;
