@@ -258,6 +258,23 @@ public class EnsembleEditor extends EditorPart {
 
 		EmfService.save(domain);
 
+		updateEnsembleRepresentationInSlice(domain);
+
+		// set the editor name, as the ensemble name may have changed
+		setPartName(ensemble.getName());
+
+		// tell Eclipse that the dirty state has changed
+		firePropertyChange(PROP_DIRTY);
+	}
+
+	/**
+	 * Updates the graphical representation of this editors ensemble in all
+	 * Slices that it is part of, whether they are closed or not.
+	 * 
+	 * @param domain
+	 */
+	private void updateEnsembleRepresentationInSlice(
+			TransactionalEditingDomain domain) {
 		// the ensemble has to be put in a list to be used for the dark feature
 		// update
 		ArrayList<Ensemble> toBeRenamed = new ArrayList<Ensemble>();
@@ -267,12 +284,6 @@ public class EnsembleEditor extends EditorPart {
 		DarkEnsembleUpdateFeature operation = new DarkEnsembleUpdateFeature(
 				domain, toBeRenamed);
 		domain.getCommandStack().execute(operation);
-
-		// set the editor name, as the ensemble name may have changed
-		setPartName(ensemble.getName());
-
-		// tell Eclipse that the dirty state has changed
-		firePropertyChange(PROP_DIRTY);
 	}
 
 	@Override
