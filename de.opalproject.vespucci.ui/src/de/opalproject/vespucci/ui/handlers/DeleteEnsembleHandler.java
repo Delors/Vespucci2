@@ -33,11 +33,15 @@
  */
 package de.opalproject.vespucci.ui.handlers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -61,6 +65,7 @@ public class DeleteEnsembleHandler extends AbstractHandler {
 
 		@SuppressWarnings("unchecked")
 		final List<Ensemble> ensembleList = selection.toList();
+
 		final RemoveEnsemblesFromSlicesChoiceWizard wizard = new RemoveEnsemblesFromSlicesChoiceWizard(
 				ensembleList);
 

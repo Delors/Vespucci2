@@ -34,6 +34,7 @@
 package de.opalproject.vespucci.ui.wizards;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,6 +42,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -108,8 +111,22 @@ public class RemoveEnsemblesFromSlicesChoiceWizard extends Wizard {
 					TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE
 							.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
 
+					List<Ensemble> ensembleListParam = new ArrayList<Ensemble>();
+					ensembleListParam.addAll(ensembleList);
+					
+					// retrieve all children for each ensemble since these are going to be removed aswell
+					for (Ensemble ens : ensembleList) {
+						TreeIterator<EObject> it = ens.eAllContents();
+						while (it.hasNext()) {
+							EObject next = it.next();
+							if (next instanceof Ensemble) {
+								ensembleListParam.add((Ensemble) next);
+							}
+						}
+					}
+					
 					DarkSliceUpdateFeature operation = new DarkSliceUpdateFeature(
-							editingDomain, ensembleList);
+							editingDomain, ensembleListParam);
 					editingDomain.getCommandStack().execute(operation);
 
 					Command delete = new RecordingCommand(editingDomain) {
