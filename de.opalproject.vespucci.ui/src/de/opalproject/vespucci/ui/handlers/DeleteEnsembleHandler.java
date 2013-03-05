@@ -35,9 +35,9 @@ package de.opalproject.vespucci.ui.handlers;
 
 import java.util.List;
 
+import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -52,29 +52,23 @@ import de.opalproject.vespucci.ui.wizards.RemoveEnsemblesFromSlicesChoiceWizard;
  * @author Marco Jacobasch
  * 
  */
-public class DeleteEnsembleHandler extends AbstractEnsembleCommandHandler {
+public class DeleteEnsembleHandler extends AbstractHandler {
 
 	@Override
-	public Command getCommand(IStructuredSelection selection,
-			final ExecutionEvent event) {
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+		IStructuredSelection selection = (IStructuredSelection) HandlerUtil
+				.getCurrentSelection(event);
 
 		@SuppressWarnings("unchecked")
 		final List<Ensemble> ensembleList = selection.toList();
+		final RemoveEnsemblesFromSlicesChoiceWizard wizard = new RemoveEnsemblesFromSlicesChoiceWizard(
+				ensembleList);
 
-		Command delete = new RecordingCommand(getEditingDomain()) {
-			@Override
-			protected void doExecute() {
-				
-				final RemoveEnsemblesFromSlicesChoiceWizard wizard = new RemoveEnsemblesFromSlicesChoiceWizard(ensembleList);
+		// Launch delete wizard
+		WizardDialog dialog = new WizardDialog(
+				HandlerUtil.getActiveShell(event), wizard);
+		dialog.open();
 
-				// Launch delete wizard
-				WizardDialog dialog = new WizardDialog(
-						HandlerUtil.getActiveShell(event), wizard);
-				dialog.open();
-
-			}
-		};
-
-		return delete;
+		return null;
 	}
 }

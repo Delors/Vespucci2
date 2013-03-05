@@ -193,21 +193,6 @@
                </or>
             </visibleWhen>
          </command>
-                  <command
-               commandId="org.eclipse.ui.edit.deleteFromSlice"
-               id="de.opalproject.vespucci.ui.popupmenu.delete" >
-            <visibleWhen
-                  checkEnabled="false">
-               <or>
-                   <reference
-                         definitionId="de.opalproject.vespucci.ui.definitions.ensembles">
-                   </reference>
-                   <reference
-                         definitionId="de.opalproject.vespucci.ui.definitions.slices">
-                   </reference>
-               </or>
-            </visibleWhen>
-         </command>
          <command
                commandId="org.eclipse.ui.edit.rename"
                id="de.opalproject.vespucci.ui.popupmenu.rename">
