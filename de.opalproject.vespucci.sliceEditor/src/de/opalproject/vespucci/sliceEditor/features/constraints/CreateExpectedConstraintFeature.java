@@ -35,8 +35,8 @@ package de.opalproject.vespucci.sliceEditor.features.constraints;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 
+import de.opalproject.vespucci.datamodel.ConcreteEnsemble;
 import de.opalproject.vespucci.datamodel.ConstraintType;
-import de.opalproject.vespucci.datamodel.EmptyEnsemble;
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.sliceEditor.SliceEditorImageProvider;
 
@@ -55,12 +55,12 @@ public class CreateExpectedConstraintFeature extends CreateConstraintFeature {
 
 	@Override
 	protected boolean isAnchorSensibleSource(Ensemble ensemble) {
-		return ensemble instanceof EmptyEnsemble;
+		return ensemble instanceof ConcreteEnsemble;
 	}
 
 	@Override
 	protected boolean isAnchorSensibleTarget(Ensemble ensemble) {
-		return ensemble instanceof EmptyEnsemble;
+		return ensemble instanceof ConcreteEnsemble;
 	}
 
 }

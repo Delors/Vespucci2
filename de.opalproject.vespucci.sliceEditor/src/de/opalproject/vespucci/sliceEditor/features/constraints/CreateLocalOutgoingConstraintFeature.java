@@ -35,8 +35,8 @@ package de.opalproject.vespucci.sliceEditor.features.constraints;
 
 import org.eclipse.graphiti.features.IFeatureProvider;
 
+import de.opalproject.vespucci.datamodel.ConcreteEnsemble;
 import de.opalproject.vespucci.datamodel.ConstraintType;
-import de.opalproject.vespucci.datamodel.EmptyEnsemble;
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.sliceEditor.SliceEditorImageProvider;
 
@@ -56,7 +56,7 @@ public class CreateLocalOutgoingConstraintFeature extends
 
 	@Override
 	protected boolean isAnchorSensibleSource(Ensemble ensemble) {
-		return ensemble instanceof EmptyEnsemble;
+		return ensemble instanceof ConcreteEnsemble;
 	}
 
 	@Override
