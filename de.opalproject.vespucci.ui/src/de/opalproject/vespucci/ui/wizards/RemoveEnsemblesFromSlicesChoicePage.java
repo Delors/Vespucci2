@@ -96,10 +96,10 @@ public class RemoveEnsemblesFromSlicesChoicePage extends WizardPage {
 		label1.setText("List of Slices which are affected by commited changes");
 
 		affectedSlicesText = new Text(container, SWT.BORDER | SWT.MULTI
-				| SWT.V_SCROLL);
+				| SWT.V_SCROLL | SWT.WRAP);
 		StringBuffer str = new StringBuffer();
 		Set<Slice> sliceset = new HashSet<Slice>();
-		
+
 		// Retrieve list of affected Slices for each ensemble
 		for (Ensemble ens : ensembleList) {
 			for (Slice slice : ens.getSlices()) {
