@@ -399,6 +399,9 @@
      <listener class="de.opalproject.vespucci.ui.listeners.EnsembleRemoveListener">
         <editingDomain id="de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain"/>
      </listener>
+     <listener class="de.opalproject.vespucci.ui.listeners.EnsembleRenameListener">
+        <editingDomain id="de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain"/>
+     </listener>
   </extension>
   
   <!-- editor -->
