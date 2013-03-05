@@ -64,7 +64,7 @@ public class RemoveEnsemblesFromSlicesChoicePage extends WizardPage {
 	/**
 	 * List of ensembles to be deleted.
 	 */
-	final List<Ensemble> ensembleList;
+	private final List<Ensemble> ensembleList;
 
 	/**
 	 * Constructor
