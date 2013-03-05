@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.emf.validation.constraintProviders">
       <category
-            name="%VespucciConstraintsCategory"
+            name="VespucciConstraintsCategory"
             id="de.opalproject.vespucci.validation.constraints"/>
       <constraintProvider
             cache="true"

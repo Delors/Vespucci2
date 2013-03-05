@@ -34,7 +34,6 @@
 package de.opalproject.vespucci.sliceEditor.features;
 
 import org.eclipse.emf.common.command.Command;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;

@@ -37,7 +37,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.graphiti.features.IFeatureProvider;
@@ -48,7 +47,6 @@ import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.ui.services.GraphitiUi;
 
-import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.datamodel.Slice;
 
@@ -60,11 +58,6 @@ import de.opalproject.vespucci.datamodel.Slice;
  * 
  */
 public class DarkSliceUpdateFeature extends RecordingCommand {
-
-	/**
-	 * List of diagrams depicting the deleted ensemble.
-	 */
-	private List<Diagram> diagramList = new ArrayList<Diagram>();
 
 	private final List<Ensemble> ensembleList;
 
