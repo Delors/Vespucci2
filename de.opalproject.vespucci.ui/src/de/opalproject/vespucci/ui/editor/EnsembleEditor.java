@@ -207,30 +207,14 @@ public class EnsembleEditor extends EditorPart {
 	}
 
 	/**
-	 * Checks if any user input differs from the saved data.
+	 * Checks if input data has changed.
 	 * 
-	 * If it does, the Editor state is set to dirty and vice versa.
+	 * If it does, the Editor state is set to dirty.
 	 */
 	private void checkAndSetDirty() {
 
-		boolean isDirty = false;
-
-		// the editor state becomes dirty if any user input differs from the
-		// saved data
-		if (!ensemble.getName().equals(nameTextField.getText())) {
-			isDirty = true;
-		} else if (!ensemble.getDescription().equals(
-				descriptionTextField.getText())) {
-			isDirty = true;
-		} else if (!ensemble.getQuery().equals(queryTextField.getText())) {
-			isDirty = true;
-		} else if (!ensemble.isDerived() == derivedCheckBox.getSelection()) {
-			isDirty = true;
-		}
-
-		// set the new state and fire a property change if necessary
-		if (isDirty != dirty) {
-			dirty = isDirty;
+		if (!dirty) {
+			dirty = true;
 			firePropertyChange(PROP_DIRTY);
 		}
 
