@@ -33,6 +33,8 @@
  */
 package de.opalproject.vespucci.ui.editor;
 
+import java.util.ArrayList;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -59,6 +61,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.EditorPart;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.sliceEditor.features.dark.DarkEnsembleUpdateFeature;
 import de.opalproject.vespucci.ui.utils.EmfService;
 
 /**
@@ -256,6 +259,16 @@ public class EnsembleEditor extends EditorPart {
 		domain.getCommandStack().execute(saveCommand);
 
 		EmfService.save(domain);
+
+		// the ensemble has to be put in a list to be used for the dark feature
+		// update
+		ArrayList<Ensemble> toBeRenamed = new ArrayList<Ensemble>();
+
+		toBeRenamed.add(ensemble);
+		// Execute
+		DarkEnsembleUpdateFeature operation = new DarkEnsembleUpdateFeature(
+				domain, toBeRenamed);
+		domain.getCommandStack().execute(operation);
 
 		// set the editor name, as the ensemble name may have changed
 		setPartName(ensemble.getName());

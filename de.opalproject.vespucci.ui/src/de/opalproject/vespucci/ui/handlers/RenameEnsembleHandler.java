@@ -75,7 +75,7 @@ public class RenameEnsembleHandler extends AbstractEnsembleCommandHandler {
 
 		return add;
 	}
-	
+
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IStructuredSelection selection = getSelection(event);
@@ -84,17 +84,21 @@ public class RenameEnsembleHandler extends AbstractEnsembleCommandHandler {
 		getEditingDomain().getCommandStack().execute(command);
 
 		EmfService.save(getEditingDomain());
-		
+
 		// Get the editing Domain
 		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE
 				.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
 
-		ArrayList toBeRenamed = new<Ensemble> ArrayList();
-		toBeRenamed.add(selection.getFirstElement());
-		// Execute
-		DarkEnsembleUpdateFeature operation = new DarkEnsembleUpdateFeature(editingDomain, toBeRenamed);
-		editingDomain.getCommandStack().execute(operation);
-
+		// the ensemble has to be put in a list to be used for the dark feature
+		// update
+		ArrayList<Ensemble> toBeRenamed = new ArrayList<Ensemble>();
+		if (selection.getFirstElement() instanceof Ensemble) {
+			toBeRenamed.add((Ensemble) selection.getFirstElement());
+			// Execute
+			DarkEnsembleUpdateFeature operation = new DarkEnsembleUpdateFeature(
+					editingDomain, toBeRenamed);
+			editingDomain.getCommandStack().execute(operation);
+		}
 		return null;
 	}
 
