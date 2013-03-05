@@ -48,37 +48,37 @@ import de.opalproject.vespucci.sliceEditor.features.dark.DarkEnsembleUpdateFeatu
 import de.opalproject.vespucci.ui.utils.EmfService;
 
 /**
- * Listens for removed Ensembles and closes their editors
+ * Listens for renamed Ensembles and triggers an update for graphiti diagrams
  * 
  * @author Marco Jacobasch
  */
 public class EnsembleRenameListener extends DemultiplexingListener {
 
 	/**
-	 * NotificationFilter to select only remove notifications and Ensembles or
-	 * EnsembleRepository
+	 * NotificationFilter to select only set notifications and Ensembles and
+	 * only name changes
 	 */
-	private static final NotificationFilter REMOVE_FILTER = NotificationFilter
+	private static final NotificationFilter SET_FILTER = NotificationFilter
 			.createEventTypeFilter(Notification.SET)
 			.and(NotificationFilter
 					.createNotifierTypeFilter(
 							DatamodelPackage.Literals.CONCRETE_ENSEMBLE)
 					.and(NotificationFilter
-							.createFeatureFilter(DatamodelPackage.Literals.ENSEMBLE__NAME)));
+							.createFeatureFilter(
+									DatamodelPackage.Literals.ENSEMBLE__NAME)
+							.or(NotificationFilter
+									.createFeatureFilter(DatamodelPackage.Literals.ENSEMBLE__DESCRIPTION))));
 
 	/**
 	 * Creates Listener with a NotificationFilter
 	 */
 	public EnsembleRenameListener() {
-		super(REMOVE_FILTER);
+		super(SET_FILTER);
 	}
 
 	/**
-	 * Checks only if removed object was an Ensemble, if true, closes all open
-	 * Ensemble Editors.
-	 * 
-	 * Checking remove event and correct classes is done by the
-	 * NotificationFilter
+	 * Checks if the event is not a touch (not changed) and then triggers an
+	 * graphiti dark feature to update the changed ensemble
 	 */
 	@Override
 	protected void handleNotification(TransactionalEditingDomain domain,
