@@ -99,6 +99,7 @@ public class RemoveEnsemblesFromSlicesChoicePage extends WizardPage {
 				| SWT.V_SCROLL);
 		StringBuffer str = new StringBuffer();
 		Set<Slice> sliceset = new HashSet<Slice>();
+		
 		// Retrieve list of affected Slices for each ensemble
 		for (Ensemble ens : ensembleList) {
 			for (Slice slice : ens.getSlices()) {
@@ -108,7 +109,7 @@ public class RemoveEnsemblesFromSlicesChoicePage extends WizardPage {
 				}
 			}
 		}
-		// If there are no slices affected by the commited changes, hide the
+		// If there are no slices affected by the committed changes, hide the
 		// information from user
 		if (str.length() == 0) {
 			label1.setVisible(false);
