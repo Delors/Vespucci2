@@ -396,7 +396,7 @@
   </extension>
   <extension
         point="org.eclipse.emf.transaction.listeners">
-     <listener class="de.opalproject.vespucci.ui.navigator.listeners.EnsembleRemoveListener">
+     <listener class="de.opalproject.vespucci.ui.listeners.EnsembleRemoveListener">
         <editingDomain id="de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain"/>
      </listener>
   </extension>
