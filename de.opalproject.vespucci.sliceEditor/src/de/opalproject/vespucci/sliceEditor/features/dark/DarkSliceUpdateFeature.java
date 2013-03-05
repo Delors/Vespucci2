@@ -74,7 +74,8 @@ public class DarkSliceUpdateFeature extends RecordingCommand {
 	 * @param ens
 	 *            - the deleted ensemble
 	 */
-	public DarkSliceUpdateFeature(TransactionalEditingDomain editingDomain, List<Ensemble> ensembleList) {
+	public DarkSliceUpdateFeature(TransactionalEditingDomain editingDomain,
+			List<Ensemble> ensembleList) {
 		super(editingDomain);
 
 		// retrieving all slices featuring the deleted ensemble
@@ -108,8 +109,10 @@ public class DarkSliceUpdateFeature extends RecordingCommand {
 						RemoveContext removeContext = new RemoveContext(pe);
 						IRemoveFeature removeFeature = ftp
 								.getRemoveFeature(removeContext);
-						if (removeFeature.canRemove(removeContext)) {
-							removeFeature.remove(removeContext);
+						if (!(removeFeature == null || removeContext == null)) {
+							if (removeFeature.canRemove(removeContext)) {
+								removeFeature.remove(removeContext);
+							}
 						}
 					}
 				}
