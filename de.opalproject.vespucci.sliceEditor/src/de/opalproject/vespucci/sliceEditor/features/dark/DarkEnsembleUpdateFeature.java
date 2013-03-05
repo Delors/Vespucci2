@@ -51,7 +51,8 @@ import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.datamodel.Slice;
 
 /**
- * This class is responsible for updating ensembles withing diagrams when ensembles are edited outside of graphiti.
+ * This class is responsible for updating ensembles withing diagrams when
+ * ensembles are edited outside of graphiti.
  * 
  * @author marius
  * 
@@ -64,7 +65,8 @@ public class DarkEnsembleUpdateFeature extends RecordingCommand {
 	 * @param editingDomain
 	 *            - neccessary for the constructor.
 	 */
-	public DarkEnsembleUpdateFeature(TransactionalEditingDomain editingDomain, List<Ensemble> ensembleList) {
+	public DarkEnsembleUpdateFeature(TransactionalEditingDomain editingDomain,
+			List<Ensemble> ensembleList) {
 		super(editingDomain);
 
 		// retrieving all slices featuring the deleted ensemble
@@ -92,14 +94,16 @@ public class DarkEnsembleUpdateFeature extends RecordingCommand {
 
 				for (Diagram dia : diagramList) {
 					// retrieve linked picture elements
-					// and eventually remove them.
+					// and eventually update them.
 					for (PictogramElement pe : (Collection<? extends PictogramElement>) Graphiti
 							.getLinkService().getPictogramElements(dia, ens)) {
 						UpdateContext updateContext = new UpdateContext(pe);
 						IUpdateFeature updateFeature = ftp
 								.getUpdateFeature(updateContext);
-						if (updateFeature.canUpdate(updateContext)) {
-							updateFeature.update(updateContext);
+						if (!(updateFeature == null || updateContext == null)) {
+							if (updateFeature.canUpdate(updateContext)) {
+								updateFeature.update(updateContext);
+							}
 						}
 					}
 				}

@@ -33,16 +33,24 @@
  */
 package de.opalproject.vespucci.ui.handlers;
 
+import java.awt.List;
+import java.util.ArrayList;
+
 import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 import de.opalproject.vespucci.datamodel.DatamodelPackage;
 import de.opalproject.vespucci.datamodel.Ensemble;
+import de.opalproject.vespucci.sliceEditor.features.dark.DarkEnsembleUpdateFeature;
+import de.opalproject.vespucci.sliceEditor.features.dark.DarkSliceUpdateFeature;
+import de.opalproject.vespucci.ui.utils.EmfService;
 import de.opalproject.vespucci.ui.wizards.EnsembleWizardRename;
 
 /**
@@ -66,6 +74,28 @@ public class RenameEnsembleHandler extends AbstractEnsembleCommandHandler {
 				wizard.getName());
 
 		return add;
+	}
+	
+	@Override
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+		IStructuredSelection selection = getSelection(event);
+		Command command = getCommand(selection, event);
+
+		getEditingDomain().getCommandStack().execute(command);
+
+		EmfService.save(getEditingDomain());
+		
+		// Get the editing Domain
+		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
+
+		ArrayList toBeRenamed = new<Ensemble> ArrayList();
+		toBeRenamed.add(selection.getFirstElement());
+		// Execute
+		DarkEnsembleUpdateFeature operation = new DarkEnsembleUpdateFeature(editingDomain, toBeRenamed);
+		editingDomain.getCommandStack().execute(operation);
+
+		return null;
 	}
 
 	/**
