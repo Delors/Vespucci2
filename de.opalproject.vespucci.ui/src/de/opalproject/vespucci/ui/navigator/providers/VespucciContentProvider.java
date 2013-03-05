@@ -98,10 +98,6 @@ public class VespucciContentProvider extends
 		return getChildren(inputElement);
 	}
 
-	@Override
-	public void dispose() {
-	}
-
 	/**
 	 * Used to strips Diagrams from emf resources.
 	 * 

@@ -39,8 +39,6 @@ import java.util.Set;
 
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -57,7 +55,6 @@ import de.opalproject.vespucci.datamodel.Slice;
  * 
  */
 public class RemoveEnsemblesFromSlicesChoicePage extends WizardPage {
-	private Text text1;
 	private Composite container;
 	private Text description;
 	final List<Ensemble> ensembleList;
@@ -95,7 +92,7 @@ public class RemoveEnsemblesFromSlicesChoicePage extends WizardPage {
 
 		description = new Text(container, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
 		StringBuffer str = new StringBuffer();
-		Set sliceset = new HashSet();
+		Set<Slice> sliceset = new HashSet<Slice>();
 		for (Ensemble ens : ensembleList) {
 			for (Slice slice : ens.getSlices()) {
 				if (!sliceset.contains(slice)) {
