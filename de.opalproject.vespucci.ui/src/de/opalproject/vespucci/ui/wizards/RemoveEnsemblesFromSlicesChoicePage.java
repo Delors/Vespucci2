@@ -69,7 +69,8 @@ public class RemoveEnsemblesFromSlicesChoicePage extends WizardPage {
 	/**
 	 * Constructor
 	 * 
-	 * @param ensembleList - List of Ensembles to be deleted.
+	 * @param ensembleList
+	 *            - List of Ensembles to be deleted.
 	 */
 	public RemoveEnsemblesFromSlicesChoicePage(List<Ensemble> ensembleList) {
 		super("Super First Page");
@@ -78,8 +79,12 @@ public class RemoveEnsemblesFromSlicesChoicePage extends WizardPage {
 		setDescription("Are you sure you want to proceed?");
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets
+	 * .Composite)
 	 */
 	@Override
 	public void createControl(Composite parent) {
@@ -90,9 +95,10 @@ public class RemoveEnsemblesFromSlicesChoicePage extends WizardPage {
 		Label label1 = new Label(container, SWT.NULL);
 		label1.setText("List of Slices which are affected by commited changes");
 
-		affectedSlicesText = new Text(container, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
+		affectedSlicesText = new Text(container, SWT.BORDER | SWT.MULTI
+				| SWT.V_SCROLL);
 		StringBuffer str = new StringBuffer();
-		Set sliceset = new HashSet();
+		Set<Slice> sliceset = new HashSet<Slice>();
 		// Retrieve list of affected Slices for each ensemble
 		for (Ensemble ens : ensembleList) {
 			for (Slice slice : ens.getSlices()) {
@@ -102,13 +108,13 @@ public class RemoveEnsemblesFromSlicesChoicePage extends WizardPage {
 				}
 			}
 		}
-		// If there are no slices affected by the commited changes, hide the information from user
-		if(str.length() == 0){
+		// If there are no slices affected by the commited changes, hide the
+		// information from user
+		if (str.length() == 0) {
 			label1.setVisible(false);
 			affectedSlicesText.setText("NONE FOUND");
 			affectedSlicesText.setVisible(false);
-		}
-		else{
+		} else {
 			affectedSlicesText.setText(str.toString());
 		}
 		// description.setEnabled(false);

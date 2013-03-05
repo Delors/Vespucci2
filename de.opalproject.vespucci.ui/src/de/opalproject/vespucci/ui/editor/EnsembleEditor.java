@@ -102,11 +102,9 @@ public class EnsembleEditor extends EditorPart {
 
 	@Override
 	public void createPartControl(Composite parent) {
-
 		createUIElements(parent);
 		createInputChangeListeners();
 		createFocusChangeListeners();
-
 	}
 
 	/*

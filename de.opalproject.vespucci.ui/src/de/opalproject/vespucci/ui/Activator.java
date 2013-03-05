@@ -41,10 +41,16 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends AbstractUIPlugin {
 
-	// The plug-in ID
+	/**
+	 * The plug-in ID
+	 */
 	public static final String PLUGIN_ID = "de.opalproject.vespucci.navigator"; //$NON-NLS-1$
 
-	// The shared instance
+	/**
+	 * The shared instance
+	 * 
+	 * As example to get the logger for this plugin
+	 */
 	private static Activator plugin;
 
 	/**
