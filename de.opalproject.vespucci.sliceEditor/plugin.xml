@@ -33,42 +33,8 @@
          class="de.opalproject.vespucci.sliceEditor.SliceEditorImageProvider"
          id="de.opalproject.vespucci.sliceEditor.ImageProvider">
    </imageProvider>
-    
+</extension>
 
-  </extension>
-<extension
-      id="de.opalproject.vespucci.sliceEditor.childMarker"
-      name="VespucciChildMarker"
-      point="org.eclipse.core.resources.markers">
-   <persistent
-         value="true">
-   </persistent>
-   <super
-         type="de.opalproject.vespucci.sliceEditor.sliceMarker">
-   </super>
-</extension>
-<extension
-      id="de.opalproject.vespucci.sliceEditor.parentMarker"
-      name="VespucciParentMarker"
-      point="org.eclipse.core.resources.markers">
-   <persistent
-         value="true">
-   </persistent>
-   <super
-         type="de.opalproject.vespucci.sliceEditor.sliceMarker">
-   </super>
-</extension>
-<extension
-      id="de.opalproject.vespucci.sliceEditor.sliceMarker"
-      name="sliceMarker"
-      point="org.eclipse.core.resources.markers">
-   <super
-         type="org.eclipse.core.resources.problemmarker">
-   </super>
-   <attribute
-         name="IDE.EDITOR_ID_ATTR">
-   </attribute>
-</extension>
 <extension
       point="org.eclipse.ui.editors">
    <editor
