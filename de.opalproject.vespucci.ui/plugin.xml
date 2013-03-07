@@ -203,6 +203,16 @@
                </reference>
             </visibleWhen>
          </command>
+         <command
+               commandId="org.eclipse.ui.edit.rename"
+               id="de.opalproject.vespucci.ui.popupmenu.rename">
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="de.opalproject.vespucci.ui.definitions.singleSlice">
+               </reference>
+            </visibleWhen>
+         </command>
       </menuContribution>
     </extension>
    
@@ -220,6 +230,20 @@
          <enabledWhen>
             <reference
                   definitionId="de.opalproject.vespucci.ui.definitions.singleEnsemble">
+            </reference>
+         </enabledWhen>
+      </handler>
+      <handler
+            class="de.opalproject.vespucci.ui.handlers.RenameSliceHandler"
+            commandId="org.eclipse.ui.edit.rename">
+         <activeWhen>
+            <reference
+                  definitionId="de.opalproject.vespucci.ui.definitions.singleSlice">
+            </reference>
+         </activeWhen>
+         <enabledWhen>
+            <reference
+                  definitionId="de.opalproject.vespucci.ui.definitions.singleSlice">
             </reference>
          </enabledWhen>
       </handler>
