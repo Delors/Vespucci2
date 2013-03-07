@@ -1,40 +1,30 @@
 package de.opalproject.vespucci.datamodel.validation.constraints;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.model.IClientSelector;
 
 /**
- * Selects constraints for the constraint binding when the
- * {@link org.eclipse.emf.validation.examples.general.actions.BatchValidationDelegate}
- * or the {@link LiveValidationContentAdapter} was the entry point into
- * validation.
+ * Selects all {@link EObject} belonging to the vespucci datamodell.
  * 
- * @author Chris McGee
+ * @author Marco Jacobasch
  */
-public class ValidationDelegateClientSelector
+public class ValidationDelegateClientSelector implements IClientSelector {
 
-// NOTE: This is _NOT_ a recommended approach to writing a client selector.
-// Suggested approaches:
-// -Check the resource of the EObject either by identity or by URI
-// as long as this resource is somehow unique to this application
-// -Check the identity of the resource set to ensure that it is some
-// private object
-// -Check the identity of the EObject itself to see if it belongs to
-// some private collection
-// -Check the EClass of the EObject but only if the metamodel is private
-// to this application and will not be used by other contexts
+	/**
+	 * namespace prefix to select if an object belongs to vespucci datamodell
+	 */
+	public static final String DATAMODEL_PACKAGE = "de.opalproject.vespucci.datamodel";
 
-		implements IClientSelector {
-
-	public static boolean running = true;
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.emf.validation.model.IClientSelector#selects(java.lang.Object
-	 * )
+	/**
+	 * Selects all objects which are an instance of {@link EObject} and matching
+	 * the datamodell
 	 */
 	public boolean selects(Object object) {
-		return running;
+		if (object instanceof EObject) {
+			EObject eobject = (EObject) object;
+			return eobject.eClass().getEPackage().getNsPrefix()
+					.equals(DATAMODEL_PACKAGE);
+		}
+		return false;
 	}
 }

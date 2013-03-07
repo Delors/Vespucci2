@@ -79,8 +79,8 @@ public class DeleteSliceHandler extends AbstractCommandHandler {
 					closeEditor(diagram);
 
 					// Delete Slice and Diagram
+					EcoreUtil.delete(slice, true);
 					EcoreUtil.delete(diagram);
-					EcoreUtil.delete(slice);
 				}
 			}
 
