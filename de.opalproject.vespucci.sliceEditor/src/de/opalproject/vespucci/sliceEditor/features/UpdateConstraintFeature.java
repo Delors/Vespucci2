@@ -78,8 +78,6 @@ public class UpdateConstraintFeature extends AbstractUpdateFeature {
 	 * .context.IUpdateContext)
 	 */
 	public IReason updateNeeded(IUpdateContext context) {
-		// retrieve constraint kind
-		// and initializse relevant variables
 		String constraintKind = null;
 		Text text = null;
 		Connection connection = null;
@@ -160,7 +158,6 @@ public class UpdateConstraintFeature extends AbstractUpdateFeature {
 					.getConnectionDecorators()) {
 				if (condec.getGraphicsAlgorithm() instanceof Text) {
 					Text text = (Text) condec.getGraphicsAlgorithm();
-					// set the new value retrieved from the businessobject
 					text.setValue(businessValue);
 					// check if it had been toggled invisible and thus if doesnt
 					// diplay "ALL" anymore needs to be visible again

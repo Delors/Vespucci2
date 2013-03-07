@@ -56,11 +56,10 @@ import org.eclipse.graphiti.tb.ImageDecorator;
 
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.datamodel.EnsembleRepository;
-import de.opalproject.vespucci.datamodel.Slice;
 import de.opalproject.vespucci.sliceEditor.features.CollapseFeature;
 
 /**
- * Provides custom tool behaviors
+ * Provides custom tool behaviors.
  * 
  * @author Lars, marius
  */
@@ -87,18 +86,6 @@ public class SliceEditorToolBehaviorProvider extends
 		if (bo instanceof Ensemble) {
 			Ensemble ensemble = (Ensemble) bo;
 			Diagram dia = featureProvider.getDiagramTypeProvider().getDiagram();
-			Slice slice = null;
-
-			// validator call, retrieve slice
-			for (EObject eObject : dia.getLink().getBusinessObjects()) {
-				if (eObject instanceof Slice) {
-					slice = (Slice) eObject;
-					break;
-				}
-			}
-
-			// check validator
-			// DatamodelValidator.validateObject(slice);
 
 			// retrieve possible graphical infringements
 			List<Ensemble> childrenOccurrence = checkChildrenOccurrence(dia,

@@ -52,7 +52,7 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.Ensemble;
-import de.opalproject.vespucci.sliceEditor.features.dark.DarkSliceUpdateFeature;
+import de.opalproject.vespucci.sliceEditor.features.dark.DarkRemoveEnsemblesFeature;
 import de.opalproject.vespucci.ui.Activator;
 import de.opalproject.vespucci.ui.utils.EmfService;
 
@@ -129,7 +129,7 @@ public class RemoveEnsemblesFromSlicesChoiceWizard extends Wizard {
 					TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE
 							.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
 					
-					DarkSliceUpdateFeature operation = new DarkSliceUpdateFeature(
+					DarkRemoveEnsemblesFeature operation = new DarkRemoveEnsemblesFeature(
 							editingDomain, ensembleListParam);
 					editingDomain.getCommandStack().execute(operation);
 

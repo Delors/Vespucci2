@@ -57,21 +57,21 @@ import de.opalproject.vespucci.datamodel.Slice;
  * @author marius
  * 
  */
-public class DarkSliceUpdateFeature extends RecordingCommand {
+public class DarkRemoveEnsemblesFeature extends RecordingCommand {
 
 	private final List<Ensemble> ensembleList;
 
 	/**
 	 * @param editingDomain
-	 *            - neccessary for the constructor.
-	 * @param ens
-	 *            - the deleted ensemble
+	 *            - necessary for the constructor.
+	 * @param ensembleList
+	 *            - the deleted ensembles
 	 */
-	public DarkSliceUpdateFeature(TransactionalEditingDomain editingDomain,
+	public DarkRemoveEnsemblesFeature(TransactionalEditingDomain editingDomain,
 			List<Ensemble> ensembleList) {
 		super(editingDomain);
 
-		// retrieving all slices featuring the deleted ensemble
+		// retrieving all slices featuring the ensembles to be deleted
 		this.ensembleList = ensembleList;
 	}
 
@@ -82,6 +82,7 @@ public class DarkSliceUpdateFeature extends RecordingCommand {
 	 */
 	@Override
 	protected void doExecute() {
+		// retrieve all diagrams in which the ensemble appear
 		for (Ensemble ens : ensembleList) {
 			List<Diagram> diagramList = new ArrayList<Diagram>();
 			for (Slice slice : ens.getSlices()) {
@@ -93,7 +94,7 @@ public class DarkSliceUpdateFeature extends RecordingCommand {
 				// Get the feature provider.
 				IFeatureProvider ftp = GraphitiUi.getExtensionManager()
 						.createFeatureProvider(diagramList.get(0));
-
+				// delete them in every diagram in which they appear
 				for (Diagram dia : diagramList) {
 					// retrieve linked picture elements
 					// and eventually remove them.

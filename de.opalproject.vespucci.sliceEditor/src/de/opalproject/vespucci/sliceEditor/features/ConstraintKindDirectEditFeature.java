@@ -97,13 +97,11 @@ public class ConstraintKindDirectEditFeature extends
 	 * @see org.eclipse.graphiti.func.IDirectEditing#getInitialValue(org.eclipse.graphiti.features.context.IDirectEditingContext)
 	 */
 	public String getInitialValue(IDirectEditingContext context) {
-		// return the current dependencyKind of the Constraint
 		ConnectionDecorator cd = (ConnectionDecorator) context
 				.getPictogramElement();
 		Connection connection = cd.getConnection();
-		// retrieve business object
 		Constraint constraint = (Constraint) getBusinessObjectForPictogramElement(connection);
-		// return dependencyValue from constraint/businessobject
+		// return the current dependency-value from constraint/businessobject
 		return constraint.getDependencyKind();
 	}
 
@@ -127,21 +125,17 @@ public class ConstraintKindDirectEditFeature extends
 	 * @see org.eclipse.graphiti.features.impl.AbstractDirectEditingFeature#setValue(java.lang.String, org.eclipse.graphiti.features.context.IDirectEditingContext)
 	 */
 	public void setValue(String value, IDirectEditingContext context) {
-
-		// the selected pictogramelement
 		PictogramElement pe = context.getPictogramElement();
 		// the relevant connectiondecorator container
 		ConnectionDecorator cd = (ConnectionDecorator) context
 				.getPictogramElement();
 		Connection connection = cd.getConnection();
-		// retrieve businessobject (constraint)
 		Constraint constraint = (Constraint) getBusinessObjectForPictogramElement(connection);
 		// set new value 
 		constraint.setDependencyKind(value);
 
 		// Explicitly update the shape to display the new value in the diagram
 		// Note, that this might not be necessary in future versions of Graphiti
-		// (currently in discussion)
 		
 		updatePictogramElement(pe);
 	}

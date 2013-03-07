@@ -105,9 +105,7 @@ public class DependencyKindCollapseFeature extends AbstractCustomFeature {
 	 */
 	@Override
 	public void execute(ICustomContext context) {
-		// get pictogram elements from current context
 		PictogramElement pictogramElements[] = context.getPictogramElements();
-		// get the related diagram
 		Diagram dia = (Diagram) pictogramElements[0];
 		// default value as property reference saved in diagram to remember the current toggle state
 		String collapsed = "false";
@@ -122,7 +120,7 @@ public class DependencyKindCollapseFeature extends AbstractCustomFeature {
 					// check which state is currently active and if the connection decorator holds the string "ALL"
 					if (Graphiti.getPeService().getPropertyValue(dia, "dependenciescollapsed").equals("false") && ((Text) cd.getGraphicsAlgorithm()).getValue()
 					.equals("ALL")) {
-						// set visibility of those affected and set collapsed value to be stored in diagram to remember the state
+						// set visibility of those affected
 						cd.setVisible(false);
 						collapsed = "true";
 					} else {
