@@ -69,27 +69,29 @@ public class RemoveEnsemblesFromSlicesChoiceWizard extends Wizard {
 	 */
 	private RemoveEnsemblesFromSlicesChoicePage page;
 
+	/**
+	 * List of selected Ensembles to be deleted.
+	 */
 	private final List<Ensemble> ensembleList;
+	/**
+	 * List of Ensembles to be deleted, including all their derived children.
+	 */
 	private final List<Ensemble> ensembleListParam;
 
 	/**
-	 * Default Constructor. Create a new EnsembleWizardRename.
+	 * Default Constructor.
+	 * 
+	 * @param ensembleList
 	 */
-	public RemoveEnsemblesFromSlicesChoiceWizard() {
-		super();
-		ensembleList = null;
-		ensembleListParam = null;
-		setNeedsProgressMonitor(true);
-	}
-
 	public RemoveEnsemblesFromSlicesChoiceWizard(List<Ensemble> ensembleList) {
 		super();
 		this.ensembleList = ensembleList;
-		
+
 		List<Ensemble> ensembleListParam = new ArrayList<Ensemble>();
 		ensembleListParam.addAll(ensembleList);
-		
-		// retrieve all children for each ensemble since these are going to be removed aswell
+
+		// retrieve all children for each ensemble since these are going to be
+		// removed as well
 		for (Ensemble ens : ensembleList) {
 			TreeIterator<EObject> it = ens.eAllContents();
 			while (it.hasNext()) {
@@ -100,7 +102,7 @@ public class RemoveEnsemblesFromSlicesChoiceWizard extends Wizard {
 			}
 		}
 		this.ensembleListParam = ensembleListParam;
-		
+
 		setNeedsProgressMonitor(true);
 	}
 
@@ -128,7 +130,10 @@ public class RemoveEnsemblesFromSlicesChoiceWizard extends Wizard {
 				try {
 					TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE
 							.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
-					
+
+					// call darkremovefeature to remove the graphical
+					// representations prior to the removal from the
+					// businessmodel
 					DarkRemoveEnsemblesFeature operation = new DarkRemoveEnsemblesFeature(
 							editingDomain, ensembleListParam);
 					editingDomain.getCommandStack().execute(operation);
