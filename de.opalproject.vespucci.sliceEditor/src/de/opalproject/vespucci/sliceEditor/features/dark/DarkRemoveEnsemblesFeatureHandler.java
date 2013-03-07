@@ -44,10 +44,12 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import de.opalproject.vespucci.datamodel.Ensemble;
 
 /**
+ * Handler to provide command access for the DarkRemoveEnsembleFeature.
+ * 
  * @author marius
  *
  */
-public final class DarkSliceUpdateFeatureHandler extends AbstractHandler {
+public final class DarkRemoveEnsemblesFeatureHandler extends AbstractHandler {
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
@@ -71,12 +73,10 @@ public final class DarkSliceUpdateFeatureHandler extends AbstractHandler {
 				.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
 
 		// Execute
-		DarkSliceUpdateFeature operation = new DarkSliceUpdateFeature(editingDomain, ((IStructuredSelection) selection).toList());
+		@SuppressWarnings("unchecked")
+		DarkRemoveEnsemblesFeature operation = new DarkRemoveEnsemblesFeature(editingDomain, ((IStructuredSelection) selection).toList());
 		editingDomain.getCommandStack().execute(operation);
 
-		// Dispose the editing domain to eliminate memory leak
-		//editingDomain.dispose();
-		
 		return null;
 	}
 }

@@ -48,7 +48,7 @@ import org.eclipse.ui.PlatformUI;
 import de.opalproject.vespucci.datamodel.Constraint;
 
 /**
- * This features allows to change the value of a constraintkind. Upon execution
+ * This features allows to change the value of a constraint-kind. Upon execution
  * a popup-window opens to enter the new value as a string.
  * 
  * @author marius
@@ -100,7 +100,7 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 		// representing a Constraint is selected
 		boolean ret = false;
 
-		// Checks wether the click had been on a constraint/connection element
+		// Checks whether the click had been on a constraint/connection element
 		PictogramElement[] pes = context.getPictogramElements();
 		if (pes != null && pes.length == 1) {
 			Object bo = getBusinessObjectForPictogramElement(pes[0]);
@@ -108,7 +108,7 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 				ret = true;
 			}
 		}
-		// checks if the click had been triggerd on a textlabel as a connection
+		// checks if the click had been triggered on a textlabel as a connection
 		// decorator
 		if (pes != null && pes.length == 1) {
 			if (pes[0] instanceof ConnectionDecorator) {
@@ -128,20 +128,17 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 	 */
 	@Override
 	public void execute(ICustomContext context) {
-		// get relevant pictogram elments out of the context
+		// retrieve relevant pictogram-elements out of the context
 		PictogramElement[] pes = context.getPictogramElements();
 
 		if (pes != null && pes.length == 1) {
-			// retrieve business object from current picture element (which
-			// should be a constraint)
 			Object bo = getBusinessObjectForPictogramElement(pes[0]);
 
 			// check against being a constraint
 			if (bo instanceof Constraint) {
-				// retrieve relevant parameters from the business object
 				Connection connection = (Connection) pes[0];
 				Constraint constraint = (Constraint) bo;
-				// retrieve the current constraintdependencykind directly from
+				// retrieve the current constraint-dependency-kind directly from
 				// the businessmodel - not the graphical representation
 				String currentKind = constraint.getDependencyKind();
 				// ask user for a new dependency kind
@@ -149,10 +146,8 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 						currentKind);
 				// validation checks for the newly entered value for dependency
 				// kind, not allowed to be empty
-				// and registers changes
 				if (newKind != null && !newKind.equals(currentKind)) {
 					this.hasDoneChanges = true;
-					// set the new value in the business object
 					constraint.setDependencyKind(newKind);
 					// hand changes to the connection decorator - label
 					for (ConnectionDecorator condec : connection
@@ -166,28 +161,22 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 				}
 			}
 			// if not a constraint directly check against being a connection
-			// decorator
+			// decorator (eg click triggered on an arrowhead)
 			else if (pes[0] instanceof ConnectionDecorator) {
 				ConnectionDecorator cd = (ConnectionDecorator) pes[0];
-				// retrieve the responsible connection of the connection
-				// decorator and thus the related business object(-> constraint)
 				Connection connection = cd.getConnection();
 				if (getBusinessObjectForPictogramElement(connection) instanceof Constraint) {
 					Constraint constraint = (Constraint) getBusinessObjectForPictogramElement(connection);
-					// retrieve current value directly from the business object
+					// retrieve current value from the business object
 					String currentKind = constraint.getDependencyKind();
 					// ask user for a new dependency kind
 					String newKind = askString(getName(), getDescription(),
 							currentKind);
-					// validation checks for the newly entered value for
-					// dependency
+					// validation checks for the newly entered value for dependency
 					// kind, not allowed to be empty
-					// and registers changes
 					if (newKind != null && !newKind.equals(currentKind)) {
 						this.hasDoneChanges = true;
-						// set new value in the business value and eventually
-						// call update feature to update the graphical
-						// representation
+						// set new value and call update for the graphical representation
 						constraint.setDependencyKind(newKind);
 						updatePictogramElement(cd);
 					}
