@@ -47,7 +47,7 @@ import de.opalproject.vespucci.datamodel.Constraint;
  * Feature to change constraint-kind value directly in-line.
  * 
  * @author marius
- *
+ * 
  */
 public class ConstraintKindDirectEditFeature extends
 		AbstractDirectEditingFeature {
@@ -59,7 +59,9 @@ public class ConstraintKindDirectEditFeature extends
 		super(fp);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.graphiti.func.IDirectEditing#getEditingType()
 	 */
 	public int getEditingType() {
@@ -69,8 +71,12 @@ public class ConstraintKindDirectEditFeature extends
 		return TYPE_TEXT;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.features.impl.AbstractDirectEditingFeature#canDirectEdit(org.eclipse.graphiti.features.context.IDirectEditingContext)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.features.impl.AbstractDirectEditingFeature#canDirectEdit
+	 * (org.eclipse.graphiti.features.context.IDirectEditingContext)
 	 */
 	@Override
 	public boolean canDirectEdit(IDirectEditingContext context) {
@@ -79,11 +85,11 @@ public class ConstraintKindDirectEditFeature extends
 		// is it a connection decorator?
 		if (pe instanceof ConnectionDecorator) {
 			ConnectionDecorator cd = (ConnectionDecorator) pe;
-			//  and a text label? 
+			// and a text label?
 			if (cd.getGraphicsAlgorithm() instanceof Text) {
-				//  and represents a constraint? 
+				// and represents a constraint?
 				if (getBusinessObjectForPictogramElement(cd.getConnection()) instanceof Constraint) {
-					// then we have a candidate for direct editing! 
+					// then we have a candidate for direct editing!
 					return true;
 				}
 			}
@@ -93,8 +99,12 @@ public class ConstraintKindDirectEditFeature extends
 		return false;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.func.IDirectEditing#getInitialValue(org.eclipse.graphiti.features.context.IDirectEditingContext)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.func.IDirectEditing#getInitialValue(org.eclipse.
+	 * graphiti.features.context.IDirectEditingContext)
 	 */
 	public String getInitialValue(IDirectEditingContext context) {
 		ConnectionDecorator cd = (ConnectionDecorator) context
@@ -105,8 +115,12 @@ public class ConstraintKindDirectEditFeature extends
 		return constraint.getDependencyKind();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.features.impl.AbstractDirectEditingFeature#checkValueValid(java.lang.String, org.eclipse.graphiti.features.context.IDirectEditingContext)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.eclipse.graphiti.features.impl.AbstractDirectEditingFeature#
+	 * checkValueValid(java.lang.String,
+	 * org.eclipse.graphiti.features.context.IDirectEditingContext)
 	 */
 	@Override
 	public String checkValueValid(String value, IDirectEditingContext context) {
@@ -121,8 +135,13 @@ public class ConstraintKindDirectEditFeature extends
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.features.impl.AbstractDirectEditingFeature#setValue(java.lang.String, org.eclipse.graphiti.features.context.IDirectEditingContext)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.features.impl.AbstractDirectEditingFeature#setValue
+	 * (java.lang.String,
+	 * org.eclipse.graphiti.features.context.IDirectEditingContext)
 	 */
 	public void setValue(String value, IDirectEditingContext context) {
 		PictogramElement pe = context.getPictogramElement();
@@ -131,12 +150,12 @@ public class ConstraintKindDirectEditFeature extends
 				.getPictogramElement();
 		Connection connection = cd.getConnection();
 		Constraint constraint = (Constraint) getBusinessObjectForPictogramElement(connection);
-		// set new value 
+		// set new value
 		constraint.setDependencyKind(value);
 
 		// Explicitly update the shape to display the new value in the diagram
 		// Note, that this might not be necessary in future versions of Graphiti
-		
+
 		updatePictogramElement(pe);
 	}
 }

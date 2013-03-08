@@ -46,7 +46,7 @@ import de.opalproject.vespucci.datamodel.Ensemble;
  * Currently this is not persistable
  * 
  * @author Marco Jacobasch
- *
+ * 
  */
 public class EnsembleEditorInput implements IEditorInput {
 

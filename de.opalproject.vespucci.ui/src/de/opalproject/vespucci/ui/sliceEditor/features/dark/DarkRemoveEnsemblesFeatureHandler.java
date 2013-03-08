@@ -47,12 +47,16 @@ import de.opalproject.vespucci.datamodel.Ensemble;
  * Handler to provide command access for the DarkRemoveEnsembleFeature.
  * 
  * @author marius
- *
+ * 
  */
 public final class DarkRemoveEnsemblesFeatureHandler extends AbstractHandler {
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands
+	 * .ExecutionEvent)
 	 */
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 
@@ -74,7 +78,8 @@ public final class DarkRemoveEnsemblesFeatureHandler extends AbstractHandler {
 
 		// Execute
 		@SuppressWarnings("unchecked")
-		DarkRemoveEnsemblesFeature operation = new DarkRemoveEnsemblesFeature(editingDomain, ((IStructuredSelection) selection).toList());
+		DarkRemoveEnsemblesFeature operation = new DarkRemoveEnsemblesFeature(
+				editingDomain, ((IStructuredSelection) selection).toList());
 		editingDomain.getCommandStack().execute(operation);
 
 		return null;

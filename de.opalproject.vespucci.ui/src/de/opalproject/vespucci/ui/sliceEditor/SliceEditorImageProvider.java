@@ -37,9 +37,9 @@ import org.eclipse.graphiti.ui.platform.AbstractImageProvider;
 
 /**
  * Provides all the images stored in the res folder
- *
+ * 
  * @author Lars, Marius
- *
+ * 
  */
 public class SliceEditorImageProvider extends AbstractImageProvider {
 
@@ -67,8 +67,12 @@ public class SliceEditorImageProvider extends AbstractImageProvider {
 	// The image identifier for a generic ensemble
 	public static final String IMG_ENSEMBLEICON = PREFIX + "ensembleIcon";
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.ui.platform.AbstractImageProvider#addAvailableImages()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.ui.platform.AbstractImageProvider#addAvailableImages
+	 * ()
 	 */
 	@Override
 	protected void addAvailableImages() {
@@ -78,16 +82,11 @@ public class SliceEditorImageProvider extends AbstractImageProvider {
 				"res/ConstraintIcons/GlobalIncoming.gif");
 		addImageFilePath(IMG_GLOBALOUTGOING,
 				"res/ConstraintIcons/GlobalOutgoing.gif");
-		addImageFilePath(IMG_LOCALINCOMING,
-				"res/ConstraintIcons/Incoming.gif");
-		addImageFilePath(IMG_LOCALOUTGOING,
-				"res/ConstraintIcons/Outgoing.gif");
+		addImageFilePath(IMG_LOCALINCOMING, "res/ConstraintIcons/Incoming.gif");
+		addImageFilePath(IMG_LOCALOUTGOING, "res/ConstraintIcons/Outgoing.gif");
 		addImageFilePath(IMG_EXPECTED, "res/ConstraintIcons/Expected.gif");
-		addImageFilePath(IMG_NOTALLOWED,
-				"res/ConstraintIcons/NotAllowed.gif");
-		addImageFilePath(IMG_EMPTYENSEMBLE,
-				"res/EmptyEnsemble4.gif");
-		addImageFilePath(IMG_ENSEMBLEICON,
-				"res/Ensemble.gif");
+		addImageFilePath(IMG_NOTALLOWED, "res/ConstraintIcons/NotAllowed.gif");
+		addImageFilePath(IMG_EMPTYENSEMBLE, "res/EmptyEnsemble4.gif");
+		addImageFilePath(IMG_ENSEMBLEICON, "res/Ensemble.gif");
 	}
 }

@@ -41,14 +41,14 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 
-public class AddLocalIncomingConstraintFeature extends AddConstraintFeature{
+public class AddLocalIncomingConstraintFeature extends AddConstraintFeature {
 	public AddLocalIncomingConstraintFeature(IFeatureProvider fp) {
 		super(fp);
 	}
 
 	@Override
-	protected void createArrow(Connection connection,
-			IGaService igaService, IPeCreateService peCreateService) {
+	protected void createArrow(Connection connection, IGaService igaService,
+			IPeCreateService peCreateService) {
 
 		// draw connection
 		IGaService gaService = Graphiti.getGaService();
@@ -60,8 +60,8 @@ public class AddLocalIncomingConstraintFeature extends AddConstraintFeature{
 		ConnectionDecorator cd;
 		cd = peCreateService.createConnectionDecorator(connection, false, 1.0,
 				true);
-		Polyline polylineArrow = gaService.createPolyline(cd,
-				new int[] { -15, 10, 1, 0, -15, -10 });
+		Polyline polylineArrow = gaService.createPolyline(cd, new int[] { -15,
+				10, 1, 0, -15, -10 });
 		polylineArrow.setForeground(manageColor(CONSTRAINT_FOREGROUND));
 		polylineArrow.setLineWidth(2);
 	}

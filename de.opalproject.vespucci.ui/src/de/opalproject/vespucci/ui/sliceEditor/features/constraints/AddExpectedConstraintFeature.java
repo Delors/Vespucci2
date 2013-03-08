@@ -57,7 +57,6 @@ public class AddExpectedConstraintFeature extends AddConstraintFeature {
 		polyline.setForeground(manageColor(CONSTRAINT_FOREGROUND));
 		polyline.setLineStyle(LineStyle.DASH);
 
-		
 		// draw arrowhead
 		ConnectionDecorator cd;
 		cd = peCreateService.createConnectionDecorator(connection, false, 0,

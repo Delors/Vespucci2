@@ -46,39 +46,49 @@ import org.eclipse.graphiti.platform.IPlatformImageConstants;
 import org.eclipse.graphiti.services.Graphiti;
 
 /**
- * Feature to toggle visibility of constraint-kind labels displaying "ALL". 
+ * Feature to toggle visibility of constraint-kind labels displaying "ALL".
  * 
  * @author marius-d
- *
+ * 
  */
 public class DependencyKindCollapseFeature extends AbstractCustomFeature {
-	
+
 	/**
 	 * @param fp
 	 */
 	public DependencyKindCollapseFeature(IFeatureProvider fp) {
 		super(fp);
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.graphiti.features.impl.AbstractFeature#getName()
 	 */
 	@Override
 	public String getName() {
-		
+
 		return "Toggle \"ALL\" Constraint-Labels";
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.features.custom.AbstractCustomFeature#getDescription()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.features.custom.AbstractCustomFeature#getDescription
+	 * ()
 	 */
 	@Override
 	public String getDescription() {
 		return "Hides all constraint-kind text labels displaying \"ALL\"";
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.features.custom.AbstractCustomFeature#canExecute(org.eclipse.graphiti.features.context.ICustomContext)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.features.custom.AbstractCustomFeature#canExecute
+	 * (org.eclipse.graphiti.features.context.ICustomContext)
 	 */
 	@Override
 	public boolean canExecute(ICustomContext context) {
@@ -92,34 +102,46 @@ public class DependencyKindCollapseFeature extends AbstractCustomFeature {
 		return false;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.features.custom.AbstractCustomFeature#getImageId()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.features.custom.AbstractCustomFeature#getImageId()
 	 */
 	@Override
 	public String getImageId() {
 		return IPlatformImageConstants.IMG_EDIT_COLLAPSE;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.features.custom.ICustomFeature#execute(org.eclipse.graphiti.features.context.ICustomContext)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.features.custom.ICustomFeature#execute(org.eclipse
+	 * .graphiti.features.context.ICustomContext)
 	 */
 	@Override
 	public void execute(ICustomContext context) {
 		PictogramElement pictogramElements[] = context.getPictogramElements();
 		Diagram dia = (Diagram) pictogramElements[0];
-		// default value as property reference saved in diagram to remember the current toggle state
+		// default value as property reference saved in diagram to remember the
+		// current toggle state
 		String collapsed = "false";
 
 		// retrieve all connections
 		EList<Connection> connections = dia.getConnections();
 		for (Connection connection : connections) {
-			// get all relevant connection decorators(text labels) out of the connections
+			// get all relevant connection decorators(text labels) out of the
+			// connections
 			for (ConnectionDecorator cd : connection.getConnectionDecorators()) {
-				if (cd.getGraphicsAlgorithm() instanceof Text
-						) {
-					// check which state is currently active and if the connection decorator holds the string "ALL"
-					if (Graphiti.getPeService().getPropertyValue(dia, "dependenciescollapsed").equals("false") && ((Text) cd.getGraphicsAlgorithm()).getValue()
-					.equals("ALL")) {
+				if (cd.getGraphicsAlgorithm() instanceof Text) {
+					// check which state is currently active and if the
+					// connection decorator holds the string "ALL"
+					if (Graphiti.getPeService()
+							.getPropertyValue(dia, "dependenciescollapsed")
+							.equals("false")
+							&& ((Text) cd.getGraphicsAlgorithm()).getValue()
+									.equals("ALL")) {
 						// set visibility of those affected
 						cd.setVisible(false);
 						collapsed = "true";
@@ -128,9 +150,11 @@ public class DependencyKindCollapseFeature extends AbstractCustomFeature {
 						collapsed = "false";
 					}
 				}
-		
+
 			}
 			// save the new state in the diagram -> string collapsed
-		} Graphiti.getPeService().setPropertyValue(dia, "dependenciescollapsed", collapsed);
+		}
+		Graphiti.getPeService().setPropertyValue(dia, "dependenciescollapsed",
+				collapsed);
 	}
 }

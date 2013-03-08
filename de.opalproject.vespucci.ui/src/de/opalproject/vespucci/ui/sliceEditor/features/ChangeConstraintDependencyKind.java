@@ -172,11 +172,13 @@ public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
 					// ask user for a new dependency kind
 					String newKind = askString(getName(), getDescription(),
 							currentKind);
-					// validation checks for the newly entered value for dependency
+					// validation checks for the newly entered value for
+					// dependency
 					// kind, not allowed to be empty
 					if (newKind != null && !newKind.equals(currentKind)) {
 						this.hasDoneChanges = true;
-						// set new value and call update for the graphical representation
+						// set new value and call update for the graphical
+						// representation
 						constraint.setDependencyKind(newKind);
 						updatePictogramElement(cd);
 					}

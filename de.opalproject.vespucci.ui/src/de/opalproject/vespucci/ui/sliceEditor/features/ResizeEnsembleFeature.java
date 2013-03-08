@@ -40,37 +40,41 @@ import org.eclipse.graphiti.mm.pictograms.Shape;
 import org.eclipse.graphiti.services.Graphiti;
 
 /**
- * This class extends the DefaultResizeShape Feature.
- * We need this class to specify that collapsed Ensemble may not be resized  
+ * This class extends the DefaultResizeShape Feature. We need this class to
+ * specify that collapsed Ensemble may not be resized
  * 
  * @author Lars
- *
+ * 
  */
 public class ResizeEnsembleFeature extends DefaultResizeShapeFeature {
-    
-    /**
-     * @param fp
-     */
-    public ResizeEnsembleFeature(IFeatureProvider fp) {
-        super(fp);
-    }
- 
-    /* (non-Javadoc)
-     * @see org.eclipse.graphiti.features.impl.DefaultResizeShapeFeature#canResizeShape(org.eclipse.graphiti.features.context.IResizeShapeContext)
-     */
-    @Override
-    public boolean canResizeShape(IResizeShapeContext context) {
-        boolean canResize = super.canResizeShape(context);
- 
-        // perform further check only if move allowed by default feature
-        if (canResize) {
-            // don't allow resize if the ensemble is collapsed
-            Shape shape = context.getShape();
-                if (Graphiti.getPeService().getPropertyValue(shape, "iscollapsed").equals("true")) {
-                    canResize = false;
-                }
-            }
-        return canResize;
-    }
- }
 
+	/**
+	 * @param fp
+	 */
+	public ResizeEnsembleFeature(IFeatureProvider fp) {
+		super(fp);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.features.impl.DefaultResizeShapeFeature#canResizeShape
+	 * (org.eclipse.graphiti.features.context.IResizeShapeContext)
+	 */
+	@Override
+	public boolean canResizeShape(IResizeShapeContext context) {
+		boolean canResize = super.canResizeShape(context);
+
+		// perform further check only if move allowed by default feature
+		if (canResize) {
+			// don't allow resize if the ensemble is collapsed
+			Shape shape = context.getShape();
+			if (Graphiti.getPeService().getPropertyValue(shape, "iscollapsed")
+					.equals("true")) {
+				canResize = false;
+			}
+		}
+		return canResize;
+	}
+}

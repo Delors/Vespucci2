@@ -105,14 +105,18 @@ public abstract class AddConstraintFeature extends AbstractAddFeature {
 
 		// set dependency kind
 		text.setValue(addedConstraint.getDependencyKind());
-		
+
 		// check toggle state for dependency kinds
-		if (Graphiti.getPeService().getPropertyValue(getDiagram(), "dependenciescollapsed") == null){
-			Graphiti.getPeService().setPropertyValue(getDiagram(), "dependenciescollapsed", "false");
-		}else if (Graphiti.getPeService().getPropertyValue(getDiagram(), "dependenciescollapsed").equals("true")){
+		if (Graphiti.getPeService().getPropertyValue(getDiagram(),
+				"dependenciescollapsed") == null) {
+			Graphiti.getPeService().setPropertyValue(getDiagram(),
+					"dependenciescollapsed", "false");
+		} else if (Graphiti.getPeService()
+				.getPropertyValue(getDiagram(), "dependenciescollapsed")
+				.equals("true")) {
 			textDecorator.setVisible(false);
 		}
-		
+
 		// create any optical arrow representation
 		createArrow(connection, gaService, peCreateService);
 

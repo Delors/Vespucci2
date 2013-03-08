@@ -17,7 +17,7 @@ import de.opalproject.vespucci.datamodel.Slice;
 /**
  * @author Lars
  * @author Marius
- *
+ * 
  */
 public class CreateEmptyEnsembleFeature extends AbstractCreateFeature {
 
@@ -35,23 +35,35 @@ public class CreateEmptyEnsembleFeature extends AbstractCreateFeature {
 		super(fp, "Empty Ensemble", "Create Empty Ensemble");
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.features.impl.AbstractCreateFeature#getCreateImageId()
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.features.impl.AbstractCreateFeature#getCreateImageId
+	 * ()
 	 */
 	@Override
 	public String getCreateImageId() {
 		return "de.opalproject.vespucci.ui.sliceEditor.emptyEnsemble";
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.func.ICreate#canCreate(org.eclipse.graphiti.features.context.ICreateContext)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.func.ICreate#canCreate(org.eclipse.graphiti.features
+	 * .context.ICreateContext)
 	 */
 	public boolean canCreate(ICreateContext context) {
 		return context.getTargetContainer() instanceof Diagram;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.graphiti.func.ICreate#create(org.eclipse.graphiti.features.context.ICreateContext)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.eclipse.graphiti.func.ICreate#create(org.eclipse.graphiti.features
+	 * .context.ICreateContext)
 	 */
 	public Object[] create(ICreateContext context) {
 		EList<EObject> businessObjects = getDiagram().getLink()
@@ -73,7 +85,6 @@ public class CreateEmptyEnsembleFeature extends AbstractCreateFeature {
 				// Save will be performed by graphiti
 				domain.getCommandStack().execute(addCommand);
 
-				
 				// do the add
 				addGraphicalRepresentation(context, ens);
 			}
