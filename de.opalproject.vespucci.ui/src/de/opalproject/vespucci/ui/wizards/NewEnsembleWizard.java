@@ -110,6 +110,10 @@ public class NewEnsembleWizard extends Wizard {
 					Command add = AddCommand.create(domain, owner, feature,
 							ensemble);
 					domain.getCommandStack().execute(add);
+					
+					// Flush commandstack do prevent undo
+					domain.getCommandStack().flush();
+					
 					EmfService.save(domain);
 
 				} catch (Exception exception) {

@@ -138,6 +138,9 @@ public class NewSliceHandler extends AbstractHandler {
 				}
 			};
 			domain.getCommandStack().execute(a);
+			
+			// Flush commandstack do prevent undo
+			domain.getCommandStack().flush();
 
 			// save xmi
 			EmfService.save(domain);
