@@ -48,10 +48,12 @@ public final class EmfService {
 		final Map<URI, Throwable> failedSaves = new HashMap<URI, Throwable>();
 		final Set<Resource> savedResources = new HashSet<Resource>();
 		final IWorkspaceRunnable wsRunnable = new IWorkspaceRunnable() {
+			@Override
 			public void run(final IProgressMonitor monitor)
 					throws CoreException {
 
 				final Runnable runnable = new Runnable() {
+					@Override
 					public void run() {
 						Transaction parentTx;
 						if (editingDomain != null

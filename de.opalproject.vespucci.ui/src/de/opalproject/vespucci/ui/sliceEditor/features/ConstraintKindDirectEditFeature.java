@@ -64,6 +64,7 @@ public class ConstraintKindDirectEditFeature extends
 	 * 
 	 * @see org.eclipse.graphiti.func.IDirectEditing#getEditingType()
 	 */
+	@Override
 	public int getEditingType() {
 		// there are several possible editor-types supported:
 		// text-field, checkbox, color-chooser, combobox, ...
@@ -106,6 +107,7 @@ public class ConstraintKindDirectEditFeature extends
 	 * org.eclipse.graphiti.func.IDirectEditing#getInitialValue(org.eclipse.
 	 * graphiti.features.context.IDirectEditingContext)
 	 */
+	@Override
 	public String getInitialValue(IDirectEditingContext context) {
 		ConnectionDecorator cd = (ConnectionDecorator) context
 				.getPictogramElement();
@@ -143,6 +145,7 @@ public class ConstraintKindDirectEditFeature extends
 	 * (java.lang.String,
 	 * org.eclipse.graphiti.features.context.IDirectEditingContext)
 	 */
+	@Override
 	public void setValue(String value, IDirectEditingContext context) {
 		PictogramElement pe = context.getPictogramElement();
 		// the relevant connectiondecorator container

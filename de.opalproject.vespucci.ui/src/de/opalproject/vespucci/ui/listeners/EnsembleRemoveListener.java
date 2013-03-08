@@ -90,6 +90,7 @@ public class EnsembleRemoveListener extends DemultiplexingListener {
 			final Ensemble oldEnsemble = (Ensemble) notification.getOldValue();
 
 			Display.getDefault().asyncExec(new Runnable() {
+				@Override
 				public void run() {
 					IWorkbenchPage page = getActivePage();
 					Ensemble ens = oldEnsemble;

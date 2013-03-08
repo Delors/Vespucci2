@@ -58,6 +58,7 @@ public final class DarkRemoveEnsemblesFeatureHandler extends AbstractHandler {
 	 * org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands
 	 * .ExecutionEvent)
 	 */
+	@Override
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 
 		// Get the current selection

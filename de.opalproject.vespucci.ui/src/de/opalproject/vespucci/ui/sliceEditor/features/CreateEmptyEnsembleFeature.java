@@ -54,6 +54,7 @@ public class CreateEmptyEnsembleFeature extends AbstractCreateFeature {
 	 * org.eclipse.graphiti.func.ICreate#canCreate(org.eclipse.graphiti.features
 	 * .context.ICreateContext)
 	 */
+	@Override
 	public boolean canCreate(ICreateContext context) {
 		return context.getTargetContainer() instanceof Diagram;
 	}
@@ -65,6 +66,7 @@ public class CreateEmptyEnsembleFeature extends AbstractCreateFeature {
 	 * org.eclipse.graphiti.func.ICreate#create(org.eclipse.graphiti.features
 	 * .context.ICreateContext)
 	 */
+	@Override
 	public Object[] create(ICreateContext context) {
 		EList<EObject> businessObjects = getDiagram().getLink()
 				.getBusinessObjects();

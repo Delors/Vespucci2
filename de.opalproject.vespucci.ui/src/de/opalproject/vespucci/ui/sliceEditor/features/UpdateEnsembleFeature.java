@@ -71,6 +71,7 @@ public class UpdateEnsembleFeature extends AbstractUpdateFeature {
 	 * org.eclipse.graphiti.func.IUpdate#canUpdate(org.eclipse.graphiti.features
 	 * .context.IUpdateContext)
 	 */
+	@Override
 	public boolean canUpdate(IUpdateContext context) {
 		// return true, if linked business object is a Ensemble
 		Object bo = getBusinessObjectForPictogramElement(context
@@ -85,6 +86,7 @@ public class UpdateEnsembleFeature extends AbstractUpdateFeature {
 	 * org.eclipse.graphiti.func.IUpdate#updateNeeded(org.eclipse.graphiti.features
 	 * .context.IUpdateContext)
 	 */
+	@Override
 	public IReason updateNeeded(IUpdateContext context) {
 		Object bo = getBusinessObjectForPictogramElement(context
 				.getPictogramElement());
@@ -139,6 +141,7 @@ public class UpdateEnsembleFeature extends AbstractUpdateFeature {
 	 * org.eclipse.graphiti.func.IUpdate#update(org.eclipse.graphiti.features
 	 * .context.IUpdateContext)
 	 */
+	@Override
 	public boolean update(IUpdateContext context) {
 		// retrieve name and description from business model
 		String businessName = null;

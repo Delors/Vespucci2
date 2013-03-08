@@ -51,6 +51,7 @@ public class DatamodelEditingDomainFactory implements
 	 * In this case a WorkspaceEditingDomainFactory which is a subtype of
 	 * TransactionalEditingDomain.
 	 */
+	@Override
 	public TransactionalEditingDomain createEditingDomain() {
 		TransactionalEditingDomain result = WorkspaceEditingDomainFactory.INSTANCE
 				.createEditingDomain();
@@ -61,6 +62,7 @@ public class DatamodelEditingDomainFactory implements
 	 * Not since we are using a static initialized editing domain from extension
 	 * point.
 	 */
+	@Override
 	public TransactionalEditingDomain createEditingDomain(ResourceSet rset) {
 		return null;
 	}
@@ -69,6 +71,7 @@ public class DatamodelEditingDomainFactory implements
 	 * Not since we are using a static initialized editing domain from extension
 	 * point.
 	 */
+	@Override
 	public TransactionalEditingDomain getEditingDomain(ResourceSet rset) {
 		return null;
 	}

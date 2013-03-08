@@ -225,6 +225,7 @@ public class EnsembleEditor extends EditorPart {
 				.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
 
 		Command saveCommand = new RecordingCommand(domain) {
+			@Override
 			protected void doExecute() {
 				// saving in our case means writing the data back into the
 				// original model

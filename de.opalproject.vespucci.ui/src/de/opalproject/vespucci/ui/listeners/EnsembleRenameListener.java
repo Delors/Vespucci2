@@ -87,6 +87,7 @@ public class EnsembleRenameListener extends DemultiplexingListener {
 			final Ensemble ensemble = (Ensemble) notification.getNotifier();
 
 			Display.getDefault().asyncExec(new Runnable() {
+				@Override
 				public void run() {
 					TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE
 							.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
