@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Navigator
 Bundle-SymbolicName: de.opalproject.vespucci.ui;singleton:=true
 Bundle-Version: 2.0.0.qualifier
-Bundle-Activator: de.opalproject.vespucci.globalRepository.Activator
+Bundle-Activator: de.opalproject.vespucci.ui.Activator
 Require-Bundle: org.eclipse.ui.ide;bundle-version="3.8.0",
  org.eclipse.ui.navigator;bundle-version="3.5.200",
  org.eclipse.emf.transaction.ui;bundle-version="1.4.0",
@@ -15,6 +15,6 @@ Require-Bundle: org.eclipse.ui.ide;bundle-version="3.8.0",
  org.eclipse.ui.views.properties.tabbed;bundle-version="3.5.300"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: de.opalproject.vespucci.globalRepository.utils,
- de.opalproject.vespucci.sliceEditor,
- de.opalproject.vespucci.sliceEditor.features.dark
+Export-Package: de.opalproject.vespucci.ui.sliceEditor,
+ de.opalproject.vespucci.ui.sliceEditor.features.dark,
+ de.opalproject.vespucci.ui.utils
