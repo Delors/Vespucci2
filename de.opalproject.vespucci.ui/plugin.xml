@@ -50,9 +50,9 @@
          point="org.eclipse.ui.navigator.navigatorContent">
       <navigatorContent
             activeByDefault="true"
-            contentProvider="de.opalproject.vespucci.ui.navigator.providers.VespucciContentProvider"
+            contentProvider="de.opalproject.vespucci.globalRepository.navigator.providers.VespucciContentProvider"
             id="de.opalproject.vespucci.ui.navigator.VirtualContent"
-            labelProvider="de.opalproject.vespucci.ui.navigator.providers.VespucciLabelProvider"
+            labelProvider="de.opalproject.vespucci.globalRepository.navigator.providers.VespucciLabelProvider"
             name="Virtual content"
             priority="normal">
          <triggerPoints>
@@ -75,7 +75,7 @@
                </or>
          </possibleChildren>
          <dropAssistant
-               class="de.opalproject.vespucci.ui.dragAndDrop.EnsembleDropAdapter"
+               class="de.opalproject.vespucci.globalRepository.dragAndDrop.EnsembleDropAdapter"
                id="de.opalproject.vespucci.ui.dnd.EnsembleDropAdapter">
             <possibleDropTargets>
                <instanceof
@@ -220,7 +220,7 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="de.opalproject.vespucci.ui.handlers.RenameEnsembleHandler"
+            class="de.opalproject.vespucci.globalRepository.handlers.RenameEnsembleHandler"
             commandId="org.eclipse.ui.edit.rename">
          <activeWhen>
             <reference
@@ -234,7 +234,7 @@
          </enabledWhen>
       </handler>
       <handler
-            class="de.opalproject.vespucci.ui.handlers.RenameSliceHandler"
+            class="de.opalproject.vespucci.globalRepository.handlers.RenameSliceHandler"
             commandId="org.eclipse.ui.edit.rename">
          <activeWhen>
             <reference
@@ -248,7 +248,7 @@
          </enabledWhen>
       </handler>
       <handler
-            class="de.opalproject.vespucci.ui.handlers.DeleteEnsembleHandler"
+            class="de.opalproject.vespucci.globalRepository.handlers.DeleteEnsembleHandler"
             commandId="org.eclipse.ui.edit.delete">
          <enabledWhen>
             <reference
@@ -262,7 +262,7 @@
          </activeWhen>
       </handler>
       <handler
-            class="de.opalproject.vespucci.ui.handlers.DeleteSliceHandler"
+            class="de.opalproject.vespucci.globalRepository.handlers.DeleteSliceHandler"
             commandId="org.eclipse.ui.edit.delete">
          <enabledWhen>
             <reference
@@ -276,7 +276,7 @@
          </activeWhen>
       </handler>
       <handler
-            class="de.opalproject.vespucci.ui.handlers.NewEnsembleHandler"
+            class="de.opalproject.vespucci.globalRepository.handlers.NewEnsembleHandler"
             commandId="de.opalproject.vespucci.ui.edit.new">
          <enabledWhen>
             <or>
@@ -290,7 +290,7 @@
          </enabledWhen>
       </handler>
       <handler
-            class="de.opalproject.vespucci.ui.handlers.NewSliceHandler"
+            class="de.opalproject.vespucci.globalRepository.handlers.NewSliceHandler"
             commandId="de.opalproject.vespucci.ui.edit.newSlice">
        <enabledWhen>
                <reference
@@ -299,7 +299,7 @@
          </enabledWhen>
       </handler>
       <handler
-            class="de.opalproject.vespucci.ui.handlers.editors.OpenEditor"
+            class="de.opalproject.vespucci.globalRepository.handlers.editors.OpenEditor"
             commandId="de.opalproject.vespucci.ui.editor.openEditor">
          <enabledWhen>
             <reference
@@ -308,11 +308,11 @@
          </enabledWhen>
       </handler>
       <handler
-            class="de.opalproject.vespucci.ui.handlers.editors.CloseEditor"
+            class="de.opalproject.vespucci.globalRepository.handlers.editors.CloseEditor"
             commandId="de.opalproject.vespucci.ui.editor.closeEditor">
       </handler>
       <handler
-            class="de.opalproject.vespucci.ui.handlers.editors.OpenDiagramEditor"
+            class="de.opalproject.vespucci.globalRepository.handlers.editors.OpenDiagramEditor"
             commandId="de.opalproject.vespucci.ui.editor.openDiagramEditor">
          <enabledWhen>
             <or>
@@ -415,15 +415,15 @@
   <extension
         point="org.eclipse.emf.transaction.editingDomains">
      <editingDomain
-           factory="de.opalproject.vespucci.ui.domain.DatamodelEditingDomainFactory"
+           factory="de.opalproject.vespucci.globalRepository.domain.DatamodelEditingDomainFactory"
            id="de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain"/>
   </extension>
   <extension
         point="org.eclipse.emf.transaction.listeners">
-     <listener class="de.opalproject.vespucci.ui.listeners.EnsembleRemoveListener">
+     <listener class="de.opalproject.vespucci.globalRepository.listeners.EnsembleRemoveListener">
         <editingDomain id="de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain"/>
      </listener>
-     <listener class="de.opalproject.vespucci.ui.listeners.EnsembleRenameListener">
+     <listener class="de.opalproject.vespucci.globalRepository.listeners.EnsembleRenameListener">
         <editingDomain id="de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain"/>
      </listener>
   </extension>
@@ -432,7 +432,7 @@
   <extension
         point="org.eclipse.ui.editors">
      <editor
-           class="de.opalproject.vespucci.ui.editor.EnsembleEditor"
+           class="de.opalproject.vespucci.globalRepository.editor.EnsembleEditor"
            default="false"
            icon="res/Ensemble.gif"
            id="de.opalproject.vespucci.editor.editor"
@@ -464,5 +464,78 @@
            name="de.opalproject.vespucci.ui.editor.openDiagramEditor">
      </command>
   </extension>
+  
+  <!-- extensions from old, now integrated sliceEditor plugin -->
+  
+    <extension
+      point="org.eclipse.graphiti.ui.diagramTypes">
+    <diagramType
+      description="This is the diagram type for the Slice Editor"
+      id="de.opalproject.vespucci.sliceEditor.sliceEditorDiagramType"
+      name="sliceEditor Diagram Type"
+      type="sliceEditor">
+    </diagramType>
+  </extension>
+
+  <extension
+      point="org.eclipse.graphiti.ui.diagramTypeProviders">
+    <diagramTypeProvider
+      class="de.opalproject.vespucci.sliceEditor.SliceEditorDiagramTypeProvider"
+      description="This the editor for the sliceEditor"
+      id="de.opalproject.vespucci.sliceEditor.sliceEditorDiagramTypeProvider"
+      name="sliceEditor">
+      <diagramType
+        id="de.opalproject.vespucci.sliceEditor.sliceEditorDiagramType">
+      </diagramType>
+      <imageProvider
+            id="de.opalproject.vespucci.sliceEditor.ImageProvider">
+      </imageProvider>
+   </diagramTypeProvider>
+ </extension>
+
+<extension
+      point="org.eclipse.graphiti.ui.imageProviders">
+   <imageProvider
+         class="de.opalproject.vespucci.sliceEditor.SliceEditorImageProvider"
+         id="de.opalproject.vespucci.sliceEditor.ImageProvider">
+   </imageProvider>
+</extension>
+
+<extension
+      point="org.eclipse.ui.editors">
+   <editor
+         class="de.opalproject.vespucci.sliceEditor.SliceDiagramEditor"
+         contributorClass="de.opalproject.vespucci.sliceEditor.SliceEditorActionBarContributor"
+         default="false"
+         icon="res/Slice.gif"
+         id="de.opalproject.vespucci.sliceEditor"
+         name="Slice Editor">
+   </editor>
+</extension>
+
+<extension point="org.eclipse.ui.commands">
+	<command id="de.opalproject.vespucci.sliceEditor.commands.darkRemoveEnsembles" name="Update Slices in response to deleted Ensembles" /> 
+</extension>
+
+<extension point="org.eclipse.ui.handlers">
+	<handler commandId="de.opalproject.vespucci.sliceEditor.commands.darkRemoveEnsembles" class="de.opalproject.vespucci.sliceEditor.features.dark.DarkRemoveEnsemblesFeatureHandler">
+	<enabledWhen>
+				<reference definitionId="de.opalproject.vespucci.sliceEditor.definitions.ensembles" /> 
+			</enabledWhen>
+			<activeWhen>
+				<reference definitionId="de.opalproject.vespucci.sliceEditor.definitions.ensembles" /> 
+			</activeWhen>
+	</handler>
+</extension>
+ <extension
+         point="org.eclipse.core.expressions.definitions">
+      <definition id="de.opalproject.vespucci.sliceEditor.definitions.ensembles">
+         <with variable="selection">
+            <iterate ifEmpty="false" operator="and">
+               <instanceof value="de.opalproject.vespucci.datamodel.Ensemble" />
+            </iterate>
+         </with>
+      </definition>
+</extension> 
 
 </plugin>
