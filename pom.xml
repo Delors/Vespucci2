@@ -11,6 +11,7 @@
 		<module>de.opalproject.vespucci.feature</module>
 		<module>de.opalproject.vespucci.datamodel</module>
 		<module>de.opalproject.vespucci.datamodel.edit</module>
+		<module>de.opalproject.vespucci.datamodel.editor</module>
 		<module>de.opalproject.vespucci.datamodel.tests</module>
 		<module>de.opalproject.vespucci.datamodel.validation</module>
 		<module>de.opalproject.vespucci.ui</module>
