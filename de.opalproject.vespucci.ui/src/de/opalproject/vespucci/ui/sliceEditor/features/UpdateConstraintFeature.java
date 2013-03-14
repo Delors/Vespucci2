@@ -68,7 +68,7 @@ public class UpdateConstraintFeature extends AbstractUpdateFeature {
 	 */
 	@Override
 	public boolean canUpdate(IUpdateContext context) {
-		return (context.getPictogramElement() instanceof ConnectionDecorator);
+		return (context.getPictogramElement() instanceof ConnectionDecorator && context.getPictogramElement().getGraphicsAlgorithm() instanceof Text);
 	}
 
 	/*
@@ -87,16 +87,9 @@ public class UpdateConstraintFeature extends AbstractUpdateFeature {
 		ConnectionDecorator cd = (ConnectionDecorator) context
 				.getPictogramElement();
 		// find and retrieve text label
-		if (cd.getGraphicsAlgorithm() instanceof Text) {
 			connection = cd.getConnection();
 			text = (Text) cd.getGraphicsAlgorithm();
-		} // else look for the textlabel elsewhere by getting all connection
-			// decorators of the connection
-		for (ConnectionDecorator condec : connection.getConnectionDecorators()) {
-			if (condec.getGraphicsAlgorithm() instanceof Text)
-				text = (Text) condec.getGraphicsAlgorithm();
-		}
-
+		
 		// Retrieve current value from pictogramElement
 		constraintKind = text.getValue();
 
@@ -130,9 +123,9 @@ public class UpdateConstraintFeature extends AbstractUpdateFeature {
 	public boolean update(IUpdateContext context) {
 		ConnectionDecorator cd = null;
 		// retrieve connectiondecorator affected
-		if (context.getPictogramElement() instanceof ConnectionDecorator) {
-			cd = (ConnectionDecorator) context.getPictogramElement();
-		}
+		
+		cd = (ConnectionDecorator) context.getPictogramElement();
+			
 		Connection connection = cd.getConnection();
 
 		// retrieve currentValue from businessModel
@@ -155,21 +148,6 @@ public class UpdateConstraintFeature extends AbstractUpdateFeature {
 				cd.setVisible(true);
 			}
 			return true;
-		} else {
-			// otherwise look for the constraint-kind label and retrieve it
-			for (ConnectionDecorator condec : connection
-					.getConnectionDecorators()) {
-				if (condec.getGraphicsAlgorithm() instanceof Text) {
-					Text text = (Text) condec.getGraphicsAlgorithm();
-					text.setValue(businessValue);
-					// check if it had been toggled invisible and thus if doesnt
-					// diplay "ALL" anymore needs to be visible again
-					if (!condec.isVisible() && !(text.equals("ALL"))) {
-						condec.setVisible(true);
-					}
-					return true;
-				}
-			}
 		}
 
 		return false;

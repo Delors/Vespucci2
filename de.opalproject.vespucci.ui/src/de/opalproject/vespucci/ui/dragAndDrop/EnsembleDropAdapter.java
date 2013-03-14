@@ -34,6 +34,9 @@
 package de.opalproject.vespucci.ui.dragAndDrop;
 
 import java.awt.dnd.DnDConstants;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -46,7 +49,9 @@ import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.ui.navigator.CommonDropAdapter;
 import org.eclipse.ui.navigator.CommonDropAdapterAssistant;
 
+import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.datamodel.TreeNode;
+import de.opalproject.vespucci.ui.sliceEditor.features.dark.DarkEnsembleUpdateFeature;
 import de.opalproject.vespucci.ui.utils.EmfService;
 
 /**
@@ -103,6 +108,28 @@ public class EnsembleDropAdapter extends CommonDropAdapterAssistant {
 
 		domain.getCommandStack().execute(command);
 		EmfService.save(domain);
+
+		
+		// Dark Feature update call
+		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("de.opalproject.vespucci.navigator.domain.DatamodelEditingDomain");
+
+		List<Ensemble> ensembles = new ArrayList<Ensemble>();
+		// Gather relevant ensembles 
+		if (source instanceof Ensemble) {
+			ensembles.add((Ensemble) source);
+		}
+		if (target instanceof Ensemble) {
+			ensembles.add((Ensemble) target);
+		} else {
+			ensembles.addAll((Collection<? extends Ensemble>) target
+					.getChildren());
+		}
+
+		DarkEnsembleUpdateFeature operation = new DarkEnsembleUpdateFeature(
+				editingDomain, ensembles, true);
+		editingDomain.getCommandStack().execute(operation);
+		EmfService.save(editingDomain);
 
 		return new Status(IStatus.OK, "de.opalproject.vespucci.ui", "test");
 	}

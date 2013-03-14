@@ -42,6 +42,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.impl.UpdateContext;
+import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.services.Graphiti;
@@ -63,6 +64,8 @@ public class DarkEnsembleUpdateFeature extends RecordingCommand {
 	 */
 	private final List<Ensemble> ensembleList;
 
+	private final boolean forceDecoratorUpdate;
+
 	/**
 	 * Standard constructor for this feature.
 	 * 
@@ -73,6 +76,23 @@ public class DarkEnsembleUpdateFeature extends RecordingCommand {
 			List<Ensemble> ensembleList) {
 		super(editingDomain);
 
+		this.forceDecoratorUpdate = false;
+		this.ensembleList = ensembleList;
+	}
+
+	/**
+	 * Standard constructor for this feature.
+	 * 
+	 * @param editingDomain
+	 *            - necessary for the constructor.
+	 * @param forceUpdate
+	 *            - flag for decorators.
+	 */
+	public DarkEnsembleUpdateFeature(TransactionalEditingDomain editingDomain,
+			List<Ensemble> ensembleList, boolean forceUpdate) {
+		super(editingDomain);
+
+		this.forceDecoratorUpdate = forceUpdate;
 		this.ensembleList = ensembleList;
 	}
 
@@ -101,14 +121,27 @@ public class DarkEnsembleUpdateFeature extends RecordingCommand {
 					// and eventually update them.
 					for (PictogramElement pe : (Collection<? extends PictogramElement>) Graphiti
 							.getLinkService().getPictogramElements(dia, ens)) {
+						IUpdateFeature updateFeature = null;
+						// check if we have to force updates in order to display the decorators
+						if (forceDecoratorUpdate) {
+							if (pe instanceof ContainerShape) {
+								Graphiti.getPeService().setPropertyValue(pe,
+										"updateNeeded", "true");
+							}
+						// Otherwise just set up the normal updateContext	
+						} 
 						UpdateContext updateContext = new UpdateContext(pe);
-						IUpdateFeature updateFeature = ftp
-								.getUpdateFeature(updateContext);
-						if (!(updateFeature == null || updateContext == null)) {
+						if (updateContext != null) {
+							updateFeature = ftp
+									.getUpdateFeature(updateContext);
+						}
+						// Trigger updates
+						if (!(updateFeature == null)) {
 							if (updateFeature.canUpdate(updateContext)) {
 								updateFeature.update(updateContext);
 							}
 						}
+
 					}
 				}
 			}

@@ -43,6 +43,7 @@ import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
+import org.eclipse.graphiti.services.Graphiti;
 
 import de.opalproject.vespucci.datamodel.ConcreteEnsemble;
 import de.opalproject.vespucci.datamodel.Ensemble;
@@ -96,8 +97,9 @@ public class UpdateEnsembleFeature extends AbstractUpdateFeature {
 			// and retrieve description from pictogram model
 			String pictogramDescription = null;
 			PictogramElement pictogramElement = context.getPictogramElement();
+			ContainerShape cs = null;
 			if (pictogramElement instanceof ContainerShape) {
-				ContainerShape cs = (ContainerShape) pictogramElement;
+				cs = (ContainerShape) pictogramElement;
 				for (Shape shape : cs.getChildren()) {
 					if (shape.getGraphicsAlgorithm() instanceof Text) {
 						Text text = (Text) shape.getGraphicsAlgorithm();
@@ -123,10 +125,15 @@ public class UpdateEnsembleFeature extends AbstractUpdateFeature {
 					.equals(businessName)));
 			boolean updateDescriptionNeeded = ((pictogramDescription == null && businessDescription != null) || (pictogramDescription != null && !pictogramDescription
 					.equals(businessDescription)));
+			boolean updateDecoratorsNeeded = ((cs != null) && (Graphiti.getPeService().getPropertyValue(cs, "updateNeeded") != null) && (Graphiti
+					.getPeService().getPropertyValue(cs, "updateNeeded")
+					.equals("true")));
 			if (updateNameNeeded) {
 				return Reason.createTrueReason("Name is out of date");
 			} else if (updateDescriptionNeeded) {
 				return Reason.createTrueReason("Description is out of date");
+			} else if (updateDecoratorsNeeded) {
+				return Reason.createTrueReason("Decorators are out of date");
 			} else {
 				return Reason.createFalseReason();
 			}
@@ -159,6 +166,16 @@ public class UpdateEnsembleFeature extends AbstractUpdateFeature {
 		boolean descriptionUpdated = false;
 		if (pictogramElement instanceof ContainerShape) {
 			ContainerShape cs = (ContainerShape) pictogramElement;
+
+			// Reset property value
+			if (Graphiti.getPeService().getPropertyValue(cs, "updateNeeded") != null
+					&& Graphiti.getPeService()
+							.getPropertyValue(cs, "updateNeeded")
+							.equals("true")) {
+				Graphiti.getPeService().setPropertyValue(cs, "updateNeeded",
+						"false");
+			}
+
 			for (Shape shape : cs.getChildren()) {
 				if (shape.getGraphicsAlgorithm() instanceof Text) {
 					Text text = (Text) shape.getGraphicsAlgorithm();
