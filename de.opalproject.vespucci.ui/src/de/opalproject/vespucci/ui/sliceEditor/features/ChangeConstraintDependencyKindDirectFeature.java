@@ -49,13 +49,13 @@ import de.opalproject.vespucci.datamodel.Constraint;
  * @author marius
  * 
  */
-public class ConstraintKindDirectEditFeature extends
+public class ChangeConstraintDependencyKindDirectFeature extends
 		AbstractDirectEditingFeature {
 
 	/**
 	 * @param fp
 	 */
-	public ConstraintKindDirectEditFeature(IFeatureProvider fp) {
+	public ChangeConstraintDependencyKindDirectFeature(IFeatureProvider fp) {
 		super(fp);
 	}
 
@@ -147,7 +147,6 @@ public class ConstraintKindDirectEditFeature extends
 	 */
 	@Override
 	public void setValue(String value, IDirectEditingContext context) {
-		PictogramElement pe = context.getPictogramElement();
 		// the relevant connectiondecorator container
 		ConnectionDecorator cd = (ConnectionDecorator) context
 				.getPictogramElement();
@@ -159,6 +158,6 @@ public class ConstraintKindDirectEditFeature extends
 		// Explicitly update the shape to display the new value in the diagram
 		// Note, that this might not be necessary in future versions of Graphiti
 
-		updatePictogramElement(pe);
+		updatePictogramElement(cd);
 	}
 }

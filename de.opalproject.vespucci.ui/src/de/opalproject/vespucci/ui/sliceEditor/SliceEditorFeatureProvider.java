@@ -63,9 +63,9 @@ import de.opalproject.vespucci.datamodel.Constraint;
 import de.opalproject.vespucci.datamodel.ConstraintType;
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.ui.sliceEditor.features.AddEnsembleFeature;
-import de.opalproject.vespucci.ui.sliceEditor.features.ChangeConstraintDependencyKind;
+import de.opalproject.vespucci.ui.sliceEditor.features.ChangeConstraintDependencyKindFeature;
 import de.opalproject.vespucci.ui.sliceEditor.features.CollapseFeature;
-import de.opalproject.vespucci.ui.sliceEditor.features.ConstraintKindDirectEditFeature;
+import de.opalproject.vespucci.ui.sliceEditor.features.ChangeConstraintDependencyKindDirectFeature;
 import de.opalproject.vespucci.ui.sliceEditor.features.CreateEmptyEnsembleFeature;
 import de.opalproject.vespucci.ui.sliceEditor.features.DependencyKindCollapseFeature;
 import de.opalproject.vespucci.ui.sliceEditor.features.LayoutEnsembleFeature;
@@ -245,7 +245,7 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 	 */
 	@Override
 	public ICustomFeature[] getCustomFeatures(ICustomContext context) {
-		return new ICustomFeature[] { new ChangeConstraintDependencyKind(this),
+		return new ICustomFeature[] { new ChangeConstraintDependencyKindFeature(this),
 				new CollapseFeature(this),
 				new DependencyKindCollapseFeature(this) };
 	}
@@ -262,7 +262,7 @@ public class SliceEditorFeatureProvider extends DefaultFeatureProvider {
 			IDirectEditingContext context) {
 		PictogramElement pe = context.getPictogramElement();
 		if (pe instanceof ConnectionDecorator) {
-			return new ConstraintKindDirectEditFeature(this);
+			return new ChangeConstraintDependencyKindDirectFeature(this);
 		}
 		return super.getDirectEditingFeature(context);
 	}

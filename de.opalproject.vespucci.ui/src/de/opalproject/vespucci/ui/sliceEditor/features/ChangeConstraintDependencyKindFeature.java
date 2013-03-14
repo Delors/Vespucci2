@@ -54,14 +54,14 @@ import de.opalproject.vespucci.datamodel.Constraint;
  * @author marius
  * 
  */
-public class ChangeConstraintDependencyKind extends AbstractCustomFeature {
+public class ChangeConstraintDependencyKindFeature extends AbstractCustomFeature {
 
 	private boolean hasDoneChanges = false;
 
 	/**
 	 * @param fp
 	 */
-	public ChangeConstraintDependencyKind(IFeatureProvider fp) {
+	public ChangeConstraintDependencyKindFeature(IFeatureProvider fp) {
 		super(fp);
 	}
 
