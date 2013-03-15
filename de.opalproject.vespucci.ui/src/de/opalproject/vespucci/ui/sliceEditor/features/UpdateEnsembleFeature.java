@@ -125,7 +125,9 @@ public class UpdateEnsembleFeature extends AbstractUpdateFeature {
 					.equals(businessName)));
 			boolean updateDescriptionNeeded = ((pictogramDescription == null && businessDescription != null) || (pictogramDescription != null && !pictogramDescription
 					.equals(businessDescription)));
-			boolean updateDecoratorsNeeded = ((cs != null) && (Graphiti.getPeService().getPropertyValue(cs, "updateNeeded") != null) && (Graphiti
+			boolean updateDecoratorsNeeded = ((cs != null)
+					&& (Graphiti.getPeService().getPropertyValue(cs,
+							"updateNeeded") != null) && (Graphiti
 					.getPeService().getPropertyValue(cs, "updateNeeded")
 					.equals("true")));
 			if (updateNameNeeded) {
@@ -172,8 +174,7 @@ public class UpdateEnsembleFeature extends AbstractUpdateFeature {
 					&& Graphiti.getPeService()
 							.getPropertyValue(cs, "updateNeeded")
 							.equals("true")) {
-				Graphiti.getPeService().setPropertyValue(cs, "updateNeeded",
-						"false");
+				Graphiti.getPeService().removeProperty(cs, "updateNeeded");
 			}
 
 			for (Shape shape : cs.getChildren()) {
