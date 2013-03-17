@@ -154,7 +154,7 @@
      <editor
            class="de.opalproject.vespucci.ui.editor.EnsembleEditor"
            default="false"
-           icon="res/Ensemble.gif"
+           icon="icons/Ensemble.gif"
            id="de.opalproject.vespucci.editor.editor"
            name="Ensemble Editor">
       </editor>
@@ -162,7 +162,7 @@
            class="de.opalproject.vespucci.ui.sliceEditor.SliceDiagramEditor"
            contributorClass="de.opalproject.vespucci.ui.sliceEditor.SliceEditorActionBarContributor"
            default="false"
-           icon="res/Slice.gif"
+           icon="icons/Slice.gif"
            id="de.opalproject.vespucci.ui.sliceEditor"
            name="Slice Editor">
      </editor>

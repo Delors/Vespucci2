@@ -77,16 +77,18 @@ public class SliceEditorImageProvider extends AbstractImageProvider {
 	@Override
 	protected void addAvailableImages() {
 		// register the path for each image identifier
-		addImageFilePath(IMG_CONSTRAINT, "res/arrow2.gif");
+		addImageFilePath(IMG_CONSTRAINT, "icons/arrow2.gif");
 		addImageFilePath(IMG_GLOBALINCOMING,
-				"res/ConstraintIcons/GlobalIncoming.gif");
+				"icons/ConstraintIcons/GlobalIncoming.gif");
 		addImageFilePath(IMG_GLOBALOUTGOING,
-				"res/ConstraintIcons/GlobalOutgoing.gif");
-		addImageFilePath(IMG_LOCALINCOMING, "res/ConstraintIcons/Incoming.gif");
-		addImageFilePath(IMG_LOCALOUTGOING, "res/ConstraintIcons/Outgoing.gif");
-		addImageFilePath(IMG_EXPECTED, "res/ConstraintIcons/Expected.gif");
-		addImageFilePath(IMG_NOTALLOWED, "res/ConstraintIcons/NotAllowed.gif");
-		addImageFilePath(IMG_EMPTYENSEMBLE, "res/EmptyEnsemble4.gif");
-		addImageFilePath(IMG_ENSEMBLEICON, "res/Ensemble.gif");
+				"icons/ConstraintIcons/GlobalOutgoing.gif");
+		addImageFilePath(IMG_LOCALINCOMING,
+				"icons/ConstraintIcons/Incoming.gif");
+		addImageFilePath(IMG_LOCALOUTGOING,
+				"icons/ConstraintIcons/Outgoing.gif");
+		addImageFilePath(IMG_EXPECTED, "icons/ConstraintIcons/Expected.gif");
+		addImageFilePath(IMG_NOTALLOWED, "icons/ConstraintIcons/NotAllowed.gif");
+		addImageFilePath(IMG_EMPTYENSEMBLE, "icons/EmptyEnsemble4.gif");
+		addImageFilePath(IMG_ENSEMBLEICON, "icons/Ensemble.gif");
 	}
 }
