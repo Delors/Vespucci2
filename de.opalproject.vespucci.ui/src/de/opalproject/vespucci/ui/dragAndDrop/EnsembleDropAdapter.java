@@ -83,6 +83,7 @@ public class EnsembleDropAdapter extends CommonDropAdapterAssistant {
 	 * 
 	 * Only allows drag&drop if target and source are inside the same resource.
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public IStatus handleDrop(CommonDropAdapter aDropAdapter,
 			DropTargetEvent aDropTargetEvent, Object aTarget) {
@@ -126,6 +127,7 @@ public class EnsembleDropAdapter extends CommonDropAdapterAssistant {
 					.getChildren());
 		}
 
+		// Fire dark update to get (possible) error decorators in slices 
 		DarkEnsembleUpdateFeature operation = new DarkEnsembleUpdateFeature(
 				editingDomain, ensembles, true);
 		editingDomain.getCommandStack().execute(operation);

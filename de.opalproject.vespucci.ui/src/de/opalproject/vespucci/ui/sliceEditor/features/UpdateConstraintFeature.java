@@ -53,7 +53,9 @@ import de.opalproject.vespucci.datamodel.Constraint;
 public class UpdateConstraintFeature extends AbstractUpdateFeature {
 
 	/**
-	 * @param fp
+	 * Standard constructor to create the UpdateConstraintFeature.
+	 * 
+	 * @param fp - The Feature Provider.
 	 */
 	public UpdateConstraintFeature(IFeatureProvider fp) {
 		super(fp);

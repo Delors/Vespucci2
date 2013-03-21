@@ -81,7 +81,7 @@ public class DarkEnsembleUpdateFeature extends RecordingCommand {
 	}
 
 	/**
-	 * Standard constructor for this feature.
+	 * Constructor for this feature if decorators have to be refreshed as well
 	 * 
 	 * @param editingDomain
 	 *            - necessary for the constructor.
@@ -122,18 +122,17 @@ public class DarkEnsembleUpdateFeature extends RecordingCommand {
 					for (PictogramElement pe : (Collection<? extends PictogramElement>) Graphiti
 							.getLinkService().getPictogramElements(dia, ens)) {
 						IUpdateFeature updateFeature = null;
-						// check if we have to force updates in order to display the decorators
+						// check if we have to force updates in order to display
+						// the decorators
 						if (forceDecoratorUpdate) {
 							if (pe instanceof ContainerShape) {
 								Graphiti.getPeService().setPropertyValue(pe,
 										"updateNeeded", "true");
 							}
-						// Otherwise just set up the normal updateContext	
-						} 
+						}
 						UpdateContext updateContext = new UpdateContext(pe);
 						if (updateContext != null) {
-							updateFeature = ftp
-									.getUpdateFeature(updateContext);
+							updateFeature = ftp.getUpdateFeature(updateContext);
 						}
 						// Trigger updates
 						if (!(updateFeature == null)) {
