@@ -3,7 +3,7 @@
  * Copyright (c) 2012
  * Software Engineering
  * Department of Computer Science
- * Technische Universitiät Darmstadt
+ * Technische Universität Darmstadt
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -126,7 +126,14 @@ public class DependencyKindCollapseFeature extends AbstractCustomFeature {
 		Diagram dia = (Diagram) pictogramElements[0];
 		// default value as property reference saved in diagram to remember the
 		// current toggle state
-		String collapsed = "false";
+		String collapsed;
+		if(Graphiti.getPeService()
+							.getPropertyValue(dia, "dependenciescollapsed")
+							.equals("false")){
+			collapsed = "true";
+		} else{
+			collapsed = "false";
+		}
 
 		// retrieve all connections
 		EList<Connection> connections = dia.getConnections();
@@ -144,10 +151,8 @@ public class DependencyKindCollapseFeature extends AbstractCustomFeature {
 									.equals("ALL")) {
 						// set visibility of those affected
 						cd.setVisible(false);
-						collapsed = "true";
 					} else {
 						cd.setVisible(true);
-						collapsed = "false";
 					}
 				}
 

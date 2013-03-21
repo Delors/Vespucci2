@@ -3,7 +3,7 @@
  * Copyright (c) 2012
  * Software Engineering
  * Department of Computer Science
- * Technische Universitiät Darmstadt
+ * Technische Universität Darmstadt
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,9 @@ import de.opalproject.vespucci.datamodel.Constraint;
 public class UpdateConstraintFeature extends AbstractUpdateFeature {
 
 	/**
-	 * @param fp
+	 * Standard constructor to create the UpdateConstraintFeature.
+	 * 
+	 * @param fp - The Feature Provider.
 	 */
 	public UpdateConstraintFeature(IFeatureProvider fp) {
 		super(fp);

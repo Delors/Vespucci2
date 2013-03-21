@@ -3,7 +3,7 @@
  * Copyright (c) 2012
  * Software Engineering
  * Department of Computer Science
- * Technische Universitiät Darmstadt
+ * Technische Universität Darmstadt
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,7 +59,9 @@ import de.opalproject.vespucci.datamodel.Ensemble;
 public class UpdateEnsembleFeature extends AbstractUpdateFeature {
 
 	/**
-	 * @param fp
+	 * Standard constructor to create the UpdateEnsembleFeature.
+	 * 
+	 * @param fp - The Feature Provider.
 	 */
 	public UpdateEnsembleFeature(IFeatureProvider fp) {
 		super(fp);
