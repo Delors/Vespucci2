@@ -42,6 +42,12 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 
+/**
+ * Creates the graphical representation for an "Global Incoming" Constraint.
+ * Concrete Implementation of the AddConstraintFeature for the "Global Incoming" Constraint
+ * @author Roman Uhlig, Marius
+ *
+ */
 public class AddGlobalIncomingConstraintFeature extends AddConstraintFeature {
 
 	public AddGlobalIncomingConstraintFeature(IFeatureProvider fp) {

@@ -55,6 +55,7 @@ import de.opalproject.vespucci.datamodel.Constraint;
  * 
  * @author Lars
  * @author Marius
+ * @author Roman Uhlig
  * 
  */
 public abstract class AddConstraintFeature extends AbstractAddFeature {

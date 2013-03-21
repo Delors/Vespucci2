@@ -40,6 +40,12 @@ import de.opalproject.vespucci.datamodel.ConstraintType;
 import de.opalproject.vespucci.datamodel.Ensemble;
 import de.opalproject.vespucci.ui.sliceEditor.SliceEditorImageProvider;
 
+/**
+ * Checks if it is possible to add a "Global Outgoing" Constraint between two ensembles and does so.
+ * Concrete Implementation of the CreateConstraintFeature for the "Global Outgoing" Constraint
+ * @author Roman Uhlig, Marius
+ *
+ */
 public class CreateGlobalOutgoingConstraintFeature extends
 		CreateConstraintFeature {
 

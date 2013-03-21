@@ -42,6 +42,12 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 
+/**
+ * Creates the graphical representation for an "Global Outgoing" Constraint.
+ * Concrete Implementation of the AddConstraintFeature for the "Global Outgoing" Constraint
+ * @author Roman Uhlig, Marius
+ *
+ */
 public class AddGlobalOutgoingConstraintFeature extends AddConstraintFeature {
 	public AddGlobalOutgoingConstraintFeature(IFeatureProvider fp) {
 		super(fp);

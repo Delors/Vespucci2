@@ -40,6 +40,12 @@ import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 
+/**
+ * Creates the graphical representation for a "Not Allowed" Constraint.
+ * Concrete Implementation of the AddConstraintFeature for the "Not Allowed" Constraint
+ * @author Roman Uhlig, Marius
+ *
+ */
 public class AddNotAllowedConstraintFeature extends AddConstraintFeature {
 	public AddNotAllowedConstraintFeature(IFeatureProvider fp) {
 		super(fp);

@@ -40,6 +40,12 @@ import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 
+/**
+ * Creates the graphical representation for a "Local Outgoing" Constraint.
+ * Concrete Implementation of the AddConstraintFeature for the "Local Outgoing" Constraint
+ * @author Roman Uhlig, Marius
+ *
+ */
 public class AddLocalOutgoingConstraintFeature extends AddConstraintFeature {
 	public AddLocalOutgoingConstraintFeature(IFeatureProvider fp) {
 		super(fp);

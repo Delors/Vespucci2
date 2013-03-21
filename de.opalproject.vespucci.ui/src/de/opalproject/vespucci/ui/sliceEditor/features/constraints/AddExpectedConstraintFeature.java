@@ -41,6 +41,12 @@ import org.eclipse.graphiti.mm.pictograms.ConnectionDecorator;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 
+/**
+ * Creates the graphical representation for a "Expected" Constraint.
+ * Concrete Implementation of the AddConstraintFeature for the "Expected" Constraint
+ * @author Roman Uhlig, Marius
+ *
+ */
 public class AddExpectedConstraintFeature extends AddConstraintFeature {
 
 	public AddExpectedConstraintFeature(IFeatureProvider fp) {

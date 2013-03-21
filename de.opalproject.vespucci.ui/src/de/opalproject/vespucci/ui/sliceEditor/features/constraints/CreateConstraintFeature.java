@@ -54,6 +54,7 @@ import de.opalproject.vespucci.datamodel.Slice;
  * 
  * @author Lars
  * @author Marius
+ * @author Roman Uhlig
  * 
  */
 public abstract class CreateConstraintFeature extends

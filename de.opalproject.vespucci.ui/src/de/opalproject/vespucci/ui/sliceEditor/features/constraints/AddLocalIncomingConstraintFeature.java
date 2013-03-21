@@ -41,6 +41,12 @@ import org.eclipse.graphiti.services.Graphiti;
 import org.eclipse.graphiti.services.IGaService;
 import org.eclipse.graphiti.services.IPeCreateService;
 
+/**
+ * Creates the graphical representation for a "Local Incoming" Constraint.
+ * Concrete Implementation of the AddConstraintFeature for the "Local Incoming" Constraint
+ * @author Roman Uhlig, Marius
+ *
+ */
 public class AddLocalIncomingConstraintFeature extends AddConstraintFeature {
 	public AddLocalIncomingConstraintFeature(IFeatureProvider fp) {
 		super(fp);
