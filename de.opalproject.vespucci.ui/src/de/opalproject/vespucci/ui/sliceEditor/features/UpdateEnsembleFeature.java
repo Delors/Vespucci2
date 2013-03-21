@@ -59,7 +59,9 @@ import de.opalproject.vespucci.datamodel.Ensemble;
 public class UpdateEnsembleFeature extends AbstractUpdateFeature {
 
 	/**
-	 * @param fp
+	 * Standard constructor to create the UpdateEnsembleFeature.
+	 * 
+	 * @param fp - The Feature Provider.
 	 */
 	public UpdateEnsembleFeature(IFeatureProvider fp) {
 		super(fp);
