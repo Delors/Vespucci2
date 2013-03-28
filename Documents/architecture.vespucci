@@ -1,0 +1,1394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:al="http://eclipse.org/graphiti/mm/algorithms" xmlns:de.opalproject.vespucci.datamodel="http://de/opalproject/vespucci/datamodel/1.0" xmlns:pi="http://eclipse.org/graphiti/mm/pictograms">
+  <de.opalproject.vespucci.datamodel:EnsembleRepository xmi:id="_69SD4JIjEeKXh4FtODrTEA">
+    <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_I6080JIkEeKXh4FtODrTEA" name="emf" derived="true" description="" query="package('org.eclipse.emf')" constraints="_qR7nQJIrEeKXh4FtODrTEA _cqPQQJIwEeKXh4FtODrTEA _eeXNYJI9EeKXh4FtODrTEA _mxrgcJLXEeKLAZgDyC9a-w" slices="_QrqXsJIrEeKXh4FtODrTEA _Hr-YgJIuEeKXh4FtODrTEA _DaFFgJIuEeKXh4FtODrTEA _-pymUJItEeKXh4FtODrTEA">
+      <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_TSNx8JIlEeKXh4FtODrTEA" name="ecore" derived="true" description="" query="package('org.eclipse.emf.ecore')" constraints="_33NxMJIrEeKXh4FtODrTEA" slices="_Cxg_wJIlEeKXh4FtODrTEA">
+        <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_Z2eeQJInEeKXh4FtODrTEA" name="xmi" description="" query="package('org.eclipse.emf.ecore.xmi')"/>
+      </children>
+      <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_cUXu8JIlEeKXh4FtODrTEA" name="common" derived="true" description="" query="package('org.eclipse.emf.common')" constraints="_3lJJwJIrEeKXh4FtODrTEA" slices="_Cxg_wJIlEeKXh4FtODrTEA">
+        <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_iG2D4JIlEeKXh4FtODrTEA" name="util" description="" query="package('org.eclipse.emf.common.util')" constraints="_1DFcsJIrEeKXh4FtODrTEA" slices="_Ue1goJImEeKXh4FtODrTEA"/>
+        <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_fgVfMJImEeKXh4FtODrTEA" name="notify" description="" query="package('org.eclipse.emf.common.notify')" constraints="_0gaNcJIrEeKXh4FtODrTEA" slices="_Ue1goJImEeKXh4FtODrTEA"/>
+        <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_TVqnMJIoEeKXh4FtODrTEA" name="ui" description="" query="package('org.eclipse.emf.common.ui')" constraints="_YMz8UJIoEeKXh4FtODrTEA" slices="_Ue1goJImEeKXh4FtODrTEA"/>
+      </children>
+      <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_k1ODwJInEeKXh4FtODrTEA" name="edit" description="" query="package('org.eclipse.emf.edit')" constraints="_lmWjwJI9EeKXh4FtODrTEA" slices="_BO4ZQJIuEeKXh4FtODrTEA"/>
+      <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_oDVjkJI9EeKXh4FtODrTEA" name="transactions" description="" query="package('org.eclipse.emf.transactions')"/>
+    </children>
+    <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_J-MeUJIkEeKXh4FtODrTEA" name="vespucci" derived="true" description="" query="package('de.opalproject.vespucci')">
+      <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_KzJwYJIkEeKXh4FtODrTEA" name="datamodel" derived="true" description="" query="package('de.opalproject.vespucci.datamodel')" constraints="_nI_0QJLXEeKLAZgDyC9a-w" slices="_-pymUJItEeKXh4FtODrTEA">
+        <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_ODv-cJIkEeKXh4FtODrTEA" name="edit" description="" query="package('de.opalproject.vespucci.datamodel.edit')" constraints="_FSCbwJIlEeKXh4FtODrTEA _Fe1PsJInEeKXh4FtODrTEA _YMz8UJIoEeKXh4FtODrTEA _0gaNcJIrEeKXh4FtODrTEA _0yXgIJIrEeKXh4FtODrTEA _1DFcsJIrEeKXh4FtODrTEA" slices="_Cxg_wJIlEeKXh4FtODrTEA _Ue1goJImEeKXh4FtODrTEA"/>
+        <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_Ok3HcJIkEeKXh4FtODrTEA" name="editor" description="" query="package('de.opalproject.vespucci.datamodel.editor')" constraints="_FgGF4JIlEeKXh4FtODrTEA _qBv2MJIrEeKXh4FtODrTEA _qR7nQJIrEeKXh4FtODrTEA _bXLNQJItEeKXh4FtODrTEA _bmJdYJItEeKXh4FtODrTEA _cJJcwJItEeKXh4FtODrTEA _cZdwsJItEeKXh4FtODrTEA" slices="_Cxg_wJIlEeKXh4FtODrTEA _QrqXsJIrEeKXh4FtODrTEA"/>
+        <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_ZZwNYJIkEeKXh4FtODrTEA" name="model" description="" query="package('de.opalproject.vespucci.datamodel.model')" constraints="_FSCbwJIlEeKXh4FtODrTEA _FgGF4JIlEeKXh4FtODrTEA _IhioMJImEeKXh4FtODrTEA _qBv2MJIrEeKXh4FtODrTEA _0yXgIJIrEeKXh4FtODrTEA _3lJJwJIrEeKXh4FtODrTEA _33NxMJIrEeKXh4FtODrTEA _uw0QkJIvEeKXh4FtODrTEA" slices="_Cxg_wJIlEeKXh4FtODrTEA _Ue1goJImEeKXh4FtODrTEA _QrqXsJIrEeKXh4FtODrTEA _Hr-YgJIuEeKXh4FtODrTEA"/>
+      </children>
+      <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_MSbx0JIkEeKXh4FtODrTEA" name="ui" derived="true" description="" query="package('de.opalproject.vespucci.ui')" constraints="_IhioMJImEeKXh4FtODrTEA _Fe1PsJInEeKXh4FtODrTEA _mxrgcJLXEeKLAZgDyC9a-w _m8j6wJLXEeKLAZgDyC9a-w _nI_0QJLXEeKLAZgDyC9a-w _FQS_AJLYEeKLAZgDyC9a-w" slices="_Cxg_wJIlEeKXh4FtODrTEA _Ue1goJImEeKXh4FtODrTEA _-pymUJItEeKXh4FtODrTEA">
+        <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_cjygcJIkEeKXh4FtODrTEA" name="wizards" description="" query="package('de.opalproject.vespucci.ui.wizards)"/>
+        <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_dUrK0JIkEeKXh4FtODrTEA" name="sliceEditor" derived="true" description="" query="package('de.opalproject.vespucci.ui.sliceeditor')" constraints="_uw0QkJIvEeKXh4FtODrTEA _E-U0kJIwEeKXh4FtODrTEA _cqPQQJIwEeKXh4FtODrTEA" slices="_Hr-YgJIuEeKXh4FtODrTEA">
+          <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_nIvs8JIkEeKXh4FtODrTEA" name="features" derived="true" description="" query="package('de.opalproject.vespucci.ui.sliceeditor.features')">
+            <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_pg9hgJIkEeKXh4FtODrTEA" name="dark" description="" query="package('de.opalproject.vespucci.ui.sliceeditor.features.constraints')"/>
+            <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_qkdl4JIkEeKXh4FtODrTEA" name="constraints" description="" query="package('de.opalproject.vespucci.ui.sliceeditor.features.constraints')"/>
+          </children>
+        </children>
+        <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_eZIRcJIkEeKXh4FtODrTEA" name="navigator" derived="true" description="" query="package('de.opalproject.vespucci.ui.navigator')" constraints="_lmWjwJI9EeKXh4FtODrTEA" slices="_BO4ZQJIuEeKXh4FtODrTEA">
+          <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_mdnsUJIkEeKXh4FtODrTEA" name="providers" description="" query="package('de.opalproject.vespucci.ui.navigator.providers')"/>
+        </children>
+        <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_fVUM4JIkEeKXh4FtODrTEA" name="listeners" description="" query="package('de.opalproject.vespucci.ui.listeners')"/>
+        <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_f-OnAJIkEeKXh4FtODrTEA" name="handlers" derived="true" description="" query="package('de.opalproject.vespucci.ui.handlers')">
+          <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_lBvkMJIkEeKXh4FtODrTEA" name="editors" description="" query="package('de.opalproject.vespucci.ui.handlers.editors')"/>
+        </children>
+        <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_gmgvAJIkEeKXh4FtODrTEA" name="editor" description="" query="package('de.opalproject.vespucci.ui.editor')" constraints="_eMokMJI9EeKXh4FtODrTEA _eeXNYJI9EeKXh4FtODrTEA" slices="_DaFFgJIuEeKXh4FtODrTEA"/>
+        <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_hmV0UJIkEeKXh4FtODrTEA" name="dragAndDrop" description="" query="package('de.opalproject.vespucci.ui.draganddrop')"/>
+        <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_iLIjcJIkEeKXh4FtODrTEA" name="domain" description="" query="package('de.opalproject.vespucci.ui.domain')"/>
+        <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_o5pp4JIkEeKXh4FtODrTEA" name="utils" description="" query="package('de.opalproject.vespucci.ui.utils')"/>
+      </children>
+    </children>
+    <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_GxzhMJIsEeKXh4FtODrTEA" name="eclipse" derived="true" description="" query="package('org.eclipse')" constraints="_m8j6wJLXEeKLAZgDyC9a-w" slices="_-pymUJItEeKXh4FtODrTEA">
+      <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_IMjn8JIsEeKXh4FtODrTEA" name="core" description="" query="package('org.eclipse.core')" constraints="_cJJcwJItEeKXh4FtODrTEA" slices="_QrqXsJIrEeKXh4FtODrTEA"/>
+      <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_IywsUJIsEeKXh4FtODrTEA" name="jface" description="" query="package('org.eclipse.core')" constraints="_bXLNQJItEeKXh4FtODrTEA" slices="_QrqXsJIrEeKXh4FtODrTEA"/>
+      <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_JYSbQJIsEeKXh4FtODrTEA" name="swt" description="" query="package('org.eclipse.core')" constraints="_bmJdYJItEeKXh4FtODrTEA _eMokMJI9EeKXh4FtODrTEA" slices="_QrqXsJIrEeKXh4FtODrTEA _DaFFgJIuEeKXh4FtODrTEA"/>
+      <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_KFZY4JIsEeKXh4FtODrTEA" name="ui" description="" query="package('org.eclipse.core')" constraints="_cZdwsJItEeKXh4FtODrTEA" slices="_QrqXsJIrEeKXh4FtODrTEA"/>
+    </children>
+    <children xsi:type="de.opalproject.vespucci.datamodel:ConcreteEnsemble" xmi:id="_DeKpYJIwEeKXh4FtODrTEA" name="graphiti" description="" query="package('org.eclipse.graphiti')" constraints="_E-U0kJIwEeKXh4FtODrTEA _FQS_AJLYEeKLAZgDyC9a-w" slices="_Hr-YgJIuEeKXh4FtODrTEA _-pymUJItEeKXh4FtODrTEA"/>
+  </de.opalproject.vespucci.datamodel:EnsembleRepository>
+  <de.opalproject.vespucci.datamodel:SliceRepository xmi:id="_69Sq8JIjEeKXh4FtODrTEA">
+    <slices xmi:id="_Cxg_wJIlEeKXh4FtODrTEA" name="Model" diagram="_CxfxoJIlEeKXh4FtODrTEA" ensembles="_ZZwNYJIkEeKXh4FtODrTEA _ODv-cJIkEeKXh4FtODrTEA _Ok3HcJIkEeKXh4FtODrTEA _TSNx8JIlEeKXh4FtODrTEA _MSbx0JIkEeKXh4FtODrTEA _cUXu8JIlEeKXh4FtODrTEA">
+      <constraints xmi:id="_FSCbwJIlEeKXh4FtODrTEA" constraintType="NotAllowed" source="_ZZwNYJIkEeKXh4FtODrTEA" target="_ODv-cJIkEeKXh4FtODrTEA"/>
+      <constraints xmi:id="_FgGF4JIlEeKXh4FtODrTEA" constraintType="NotAllowed" source="_ZZwNYJIkEeKXh4FtODrTEA" target="_Ok3HcJIkEeKXh4FtODrTEA"/>
+      <constraints xmi:id="_IhioMJImEeKXh4FtODrTEA" constraintType="NotAllowed" source="_ZZwNYJIkEeKXh4FtODrTEA" target="_MSbx0JIkEeKXh4FtODrTEA"/>
+      <constraints xmi:id="_3lJJwJIrEeKXh4FtODrTEA" constraintType="LocalOutgoing" source="_ZZwNYJIkEeKXh4FtODrTEA" target="_cUXu8JIlEeKXh4FtODrTEA"/>
+      <constraints xmi:id="_33NxMJIrEeKXh4FtODrTEA" constraintType="LocalOutgoing" source="_ZZwNYJIkEeKXh4FtODrTEA" target="_TSNx8JIlEeKXh4FtODrTEA"/>
+    </slices>
+    <slices xmi:id="_Ue1goJImEeKXh4FtODrTEA" name="Datamodel.edit" diagram="_UezrcJImEeKXh4FtODrTEA" ensembles="_ODv-cJIkEeKXh4FtODrTEA _ZZwNYJIkEeKXh4FtODrTEA _MSbx0JIkEeKXh4FtODrTEA _fgVfMJImEeKXh4FtODrTEA _TVqnMJIoEeKXh4FtODrTEA _iG2D4JIlEeKXh4FtODrTEA">
+      <constraints xmi:id="_Fe1PsJInEeKXh4FtODrTEA" constraintType="NotAllowed" source="_ODv-cJIkEeKXh4FtODrTEA" target="_MSbx0JIkEeKXh4FtODrTEA"/>
+      <constraints xmi:id="_YMz8UJIoEeKXh4FtODrTEA" constraintType="NotAllowed" source="_ODv-cJIkEeKXh4FtODrTEA" target="_TVqnMJIoEeKXh4FtODrTEA"/>
+      <constraints xmi:id="_0gaNcJIrEeKXh4FtODrTEA" constraintType="LocalOutgoing" source="_ODv-cJIkEeKXh4FtODrTEA" target="_fgVfMJImEeKXh4FtODrTEA"/>
+      <constraints xmi:id="_0yXgIJIrEeKXh4FtODrTEA" constraintType="LocalOutgoing" source="_ODv-cJIkEeKXh4FtODrTEA" target="_ZZwNYJIkEeKXh4FtODrTEA"/>
+      <constraints xmi:id="_1DFcsJIrEeKXh4FtODrTEA" constraintType="LocalOutgoing" source="_ODv-cJIkEeKXh4FtODrTEA" target="_iG2D4JIlEeKXh4FtODrTEA"/>
+    </slices>
+    <slices xmi:id="_QrqXsJIrEeKXh4FtODrTEA" name="Datamodel.editor" diagram="_QroigJIrEeKXh4FtODrTEA" ensembles="_Ok3HcJIkEeKXh4FtODrTEA _ZZwNYJIkEeKXh4FtODrTEA _I6080JIkEeKXh4FtODrTEA _IMjn8JIsEeKXh4FtODrTEA _IywsUJIsEeKXh4FtODrTEA _JYSbQJIsEeKXh4FtODrTEA _KFZY4JIsEeKXh4FtODrTEA">
+      <constraints xmi:id="_qBv2MJIrEeKXh4FtODrTEA" constraintType="LocalOutgoing" source="_Ok3HcJIkEeKXh4FtODrTEA" target="_ZZwNYJIkEeKXh4FtODrTEA"/>
+      <constraints xmi:id="_qR7nQJIrEeKXh4FtODrTEA" constraintType="LocalOutgoing" source="_Ok3HcJIkEeKXh4FtODrTEA" target="_I6080JIkEeKXh4FtODrTEA"/>
+      <constraints xmi:id="_bXLNQJItEeKXh4FtODrTEA" constraintType="Expected" source="_Ok3HcJIkEeKXh4FtODrTEA" target="_IywsUJIsEeKXh4FtODrTEA"/>
+      <constraints xmi:id="_bmJdYJItEeKXh4FtODrTEA" constraintType="Expected" source="_Ok3HcJIkEeKXh4FtODrTEA" target="_JYSbQJIsEeKXh4FtODrTEA"/>
+      <constraints xmi:id="_cJJcwJItEeKXh4FtODrTEA" constraintType="LocalOutgoing" source="_Ok3HcJIkEeKXh4FtODrTEA" target="_IMjn8JIsEeKXh4FtODrTEA"/>
+      <constraints xmi:id="_cZdwsJItEeKXh4FtODrTEA" constraintType="LocalOutgoing" source="_Ok3HcJIkEeKXh4FtODrTEA" target="_KFZY4JIsEeKXh4FtODrTEA"/>
+    </slices>
+    <slices xmi:id="_-pymUJItEeKXh4FtODrTEA" name="UI" diagram="_-pwxIJItEeKXh4FtODrTEA" ensembles="_MSbx0JIkEeKXh4FtODrTEA _GxzhMJIsEeKXh4FtODrTEA _I6080JIkEeKXh4FtODrTEA _KzJwYJIkEeKXh4FtODrTEA _DeKpYJIwEeKXh4FtODrTEA">
+      <constraints xmi:id="_mxrgcJLXEeKLAZgDyC9a-w" constraintType="GlobalOutgoing" source="_MSbx0JIkEeKXh4FtODrTEA" target="_I6080JIkEeKXh4FtODrTEA"/>
+      <constraints xmi:id="_m8j6wJLXEeKLAZgDyC9a-w" constraintType="GlobalOutgoing" source="_MSbx0JIkEeKXh4FtODrTEA" target="_GxzhMJIsEeKXh4FtODrTEA"/>
+      <constraints xmi:id="_nI_0QJLXEeKLAZgDyC9a-w" constraintType="GlobalOutgoing" source="_MSbx0JIkEeKXh4FtODrTEA" target="_KzJwYJIkEeKXh4FtODrTEA"/>
+      <constraints xmi:id="_FQS_AJLYEeKLAZgDyC9a-w" constraintType="GlobalOutgoing" source="_MSbx0JIkEeKXh4FtODrTEA" target="_DeKpYJIwEeKXh4FtODrTEA"/>
+    </slices>
+    <slices xmi:id="_BO4ZQJIuEeKXh4FtODrTEA" name="UI.navigator" diagram="_BO2kEJIuEeKXh4FtODrTEA" ensembles="_eZIRcJIkEeKXh4FtODrTEA _k1ODwJInEeKXh4FtODrTEA">
+      <constraints xmi:id="_lmWjwJI9EeKXh4FtODrTEA" constraintType="Expected" source="_eZIRcJIkEeKXh4FtODrTEA" target="_k1ODwJInEeKXh4FtODrTEA"/>
+    </slices>
+    <slices xmi:id="_DaFFgJIuEeKXh4FtODrTEA" name="UI.editor" diagram="_DaDQUJIuEeKXh4FtODrTEA" ensembles="_JYSbQJIsEeKXh4FtODrTEA _I6080JIkEeKXh4FtODrTEA _gmgvAJIkEeKXh4FtODrTEA">
+      <constraints xmi:id="_eMokMJI9EeKXh4FtODrTEA" constraintType="LocalOutgoing" source="_gmgvAJIkEeKXh4FtODrTEA" target="_JYSbQJIsEeKXh4FtODrTEA"/>
+      <constraints xmi:id="_eeXNYJI9EeKXh4FtODrTEA" constraintType="LocalOutgoing" source="_gmgvAJIkEeKXh4FtODrTEA" target="_I6080JIkEeKXh4FtODrTEA"/>
+    </slices>
+    <slices xmi:id="_Hr-YgJIuEeKXh4FtODrTEA" name="UI.SliceEditor" diagram="_Hr8jUJIuEeKXh4FtODrTEA" ensembles="_ZZwNYJIkEeKXh4FtODrTEA _dUrK0JIkEeKXh4FtODrTEA _DeKpYJIwEeKXh4FtODrTEA _I6080JIkEeKXh4FtODrTEA">
+      <constraints xmi:id="_uw0QkJIvEeKXh4FtODrTEA" constraintType="LocalOutgoing" source="_dUrK0JIkEeKXh4FtODrTEA" target="_ZZwNYJIkEeKXh4FtODrTEA"/>
+      <constraints xmi:id="_E-U0kJIwEeKXh4FtODrTEA" constraintType="LocalOutgoing" source="_dUrK0JIkEeKXh4FtODrTEA" target="_DeKpYJIwEeKXh4FtODrTEA"/>
+      <constraints xmi:id="_cqPQQJIwEeKXh4FtODrTEA" constraintType="LocalOutgoing" source="_dUrK0JIkEeKXh4FtODrTEA" target="_I6080JIkEeKXh4FtODrTEA"/>
+    </slices>
+    <emptyEnsemble xsi:type="de.opalproject.vespucci.datamodel:EmptyEnsemble" xmi:id="_69Sq8ZIjEeKXh4FtODrTEA" name="Empty Ensemble" query="empty"/>
+  </de.opalproject.vespucci.datamodel:SliceRepository>
+  <pi:Diagram xmi:id="_CxfxoJIlEeKXh4FtODrTEA" visible="true" gridUnit="10" diagramTypeId="sliceEditor" name="Model" snapToGrid="true" pictogramLinks="_DviuQpIlEeKXh4FtODrTEA _Dvj8ZJIlEeKXh4FtODrTEA _DvkjcJIlEeKXh4FtODrTEA _EM9qEZIlEeKXh4FtODrTEA _EM-4MpIlEeKXh4FtODrTEA _EM-4M5IlEeKXh4FtODrTEA _ENEXwpIlEeKXh4FtODrTEA _ENFl4pIlEeKXh4FtODrTEA _ENFl45IlEeKXh4FtODrTEA _FSE4AJIlEeKXh4FtODrTEA _FgH7EJIlEeKXh4FtODrTEA _obWH0JIlEeKXh4FtODrTEA _obWu4pIlEeKXh4FtODrTEA _obWu45IlEeKXh4FtODrTEA _G_SLQJImEeKXh4FtODrTEA _G_TZYJImEeKXh4FtODrTEA _G_TZYZImEeKXh4FtODrTEA _IhkdYJImEeKXh4FtODrTEA _R5JbUpInEeKXh4FtODrTEA _R5KpcJInEeKXh4FtODrTEA _R5KpcZInEeKXh4FtODrTEA _3lLmAJIrEeKXh4FtODrTEA _33Q0gJIrEeKXh4FtODrTEA" version="0.9.2">
+    <properties xmi:id="_FSFfEJIlEeKXh4FtODrTEA" key="dependenciescollapsed" value="false"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" xmi:id="_CxfxoZIlEeKXh4FtODrTEA" background="_Cxfxo5IlEeKXh4FtODrTEA" foreground="_CxfxopIlEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="1000" height="1000"/>
+    <link xmi:id="_CxiN4JIlEeKXh4FtODrTEA" businessObjects="_Cxg_wJIlEeKXh4FtODrTEA"/>
+    <children xsi:type="pi:ContainerShape" xmi:id="_DviHMJIlEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_Dvm_sJIlEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_DviHMZIlEeKXh4FtODrTEA" background="_DviuQZIlEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="80" y="30" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_DviuQpIlEeKXh4FtODrTEA" businessObjects="_ZZwNYJIkEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_Dvkjc5IlEeKXh4FtODrTEA" outgoingConnections="_FSEQ8JIlEeKXh4FtODrTEA _FgHUAJIlEeKXh4FtODrTEA _Ihj2UJImEeKXh4FtODrTEA _3lK-8JIrEeKXh4FtODrTEA _33QNcJIrEeKXh4FtODrTEA"/>
+      <children xmi:id="_DvjVUJIlEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_DvjVUZIlEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_DvjVUpIlEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_DvlKgJIlEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_DvjVVJIlEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_DvjVVZIlEeKXh4FtODrTEA" foreground="_DvjVVpIlEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_Dvj8YJIlEeKXh4FtODrTEA" value="model"/>
+        <link xmi:id="_Dvj8ZJIlEeKXh4FtODrTEA" businessObjects="_ZZwNYJIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_Dvj8YZIlEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_Dvj8YpIlEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_Dvj8Y5IlEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_DvkjcJIlEeKXh4FtODrTEA" businessObjects="_ZZwNYJIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_DvkjcZIlEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_DvkjcpIlEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_EM9DAJIlEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_ENBUcJIlEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_EM9qEJIlEeKXh4FtODrTEA" background="_DviuQZIlEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="10" y="310" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_EM9qEZIlEeKXh4FtODrTEA" businessObjects="_ODv-cJIkEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_EM_fQpIlEeKXh4FtODrTEA" incomingConnections="_FSEQ8JIlEeKXh4FtODrTEA"/>
+      <children xmi:id="_EM-RIJIlEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_EM-RIZIlEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_EM-RIpIlEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_ENAGUJIlEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_EM-RJJIlEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_EM-RJZIlEeKXh4FtODrTEA" foreground="_DvjVVpIlEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_Dvj8YJIlEeKXh4FtODrTEA" value="edit"/>
+        <link xmi:id="_EM-4MpIlEeKXh4FtODrTEA" businessObjects="_ODv-cJIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_EM-4MJIlEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_EM-4MZIlEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_Dvj8Y5IlEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_EM-4M5IlEeKXh4FtODrTEA" businessObjects="_ODv-cJIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_EM_fQJIlEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_EM_fQZIlEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_ENEXwJIlEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_ENHbEJIlEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_ENEXwZIlEeKXh4FtODrTEA" background="_DviuQZIlEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="120" y="310" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_ENEXwpIlEeKXh4FtODrTEA" businessObjects="_Ok3HcJIkEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_ENGM8JIlEeKXh4FtODrTEA" incomingConnections="_FgHUAJIlEeKXh4FtODrTEA"/>
+      <children xmi:id="_ENE-0JIlEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_ENE-0ZIlEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_ENE-0pIlEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_ENGM8ZIlEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_ENE-1JIlEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_ENE-1ZIlEeKXh4FtODrTEA" foreground="_DvjVVpIlEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_Dvj8YJIlEeKXh4FtODrTEA" value="editor"/>
+        <link xmi:id="_ENFl4pIlEeKXh4FtODrTEA" businessObjects="_Ok3HcJIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_ENFl4JIlEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_ENFl4ZIlEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_Dvj8Y5IlEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_ENFl45IlEeKXh4FtODrTEA" businessObjects="_Ok3HcJIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_ENFl5JIlEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_ENFl5ZIlEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_obVgwJIlEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_obZLIJIlEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_obVgwZIlEeKXh4FtODrTEA" background="_DviuQZIlEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="439" y="100" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_obWH0JIlEeKXh4FtODrTEA" businessObjects="_TSNx8JIlEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_obXV8pIlEeKXh4FtODrTEA" incomingConnections="_33QNcJIrEeKXh4FtODrTEA"/>
+      <children xmi:id="_obWH0ZIlEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_obWH0pIlEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_obWH05IlEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_obXV85IlEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_obWH1ZIlEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_obWH1pIlEeKXh4FtODrTEA" foreground="_DvjVVpIlEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_Dvj8YJIlEeKXh4FtODrTEA" value="ecore"/>
+        <link xmi:id="_obWu4pIlEeKXh4FtODrTEA" businessObjects="_TSNx8JIlEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_obWu4JIlEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_obWu4ZIlEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_Dvj8Y5IlEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_obWu45IlEeKXh4FtODrTEA" businessObjects="_TSNx8JIlEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_obXV8JIlEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_obXV8ZIlEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_G_RkMJImEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_G_UngJImEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_G_RkMZImEeKXh4FtODrTEA" background="_DviuQZIlEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="241" y="310" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_G_SLQJImEeKXh4FtODrTEA" businessObjects="_MSbx0JIkEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_G_TZZJImEeKXh4FtODrTEA" incomingConnections="_Ihj2UJImEeKXh4FtODrTEA"/>
+      <children xmi:id="_G_SLQZImEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_G_SLQpImEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_G_SLQ5ImEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_G_UAcJImEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_G_SyUJImEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_G_SyUZImEeKXh4FtODrTEA" foreground="_DvjVVpIlEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_Dvj8YJIlEeKXh4FtODrTEA" value="ui"/>
+        <link xmi:id="_G_TZYJImEeKXh4FtODrTEA" businessObjects="_MSbx0JIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_G_SyUpImEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_G_SyU5ImEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_Dvj8Y5IlEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_G_TZYZImEeKXh4FtODrTEA" businessObjects="_MSbx0JIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_G_TZYpImEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_G_TZY5ImEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_R5JbUJInEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_R5MeoJInEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_R5JbUZInEeKXh4FtODrTEA" background="_DviuQZIlEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="439" y="30" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_R5JbUpInEeKXh4FtODrTEA" businessObjects="_cUXu8JIlEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_R5KpdJInEeKXh4FtODrTEA" incomingConnections="_3lK-8JIrEeKXh4FtODrTEA"/>
+      <children xmi:id="_R5KCYJInEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_R5KCYZInEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_R5KCYpInEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_R5LQgJInEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_R5KCZJInEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_R5KCZZInEeKXh4FtODrTEA" foreground="_DvjVVpIlEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_Dvj8YJIlEeKXh4FtODrTEA" value="common"/>
+        <link xmi:id="_R5KpcJInEeKXh4FtODrTEA" businessObjects="_cUXu8JIlEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_R5KCZpInEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_R5KCZ5InEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_Dvj8Y5IlEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_R5KpcZInEeKXh4FtODrTEA" businessObjects="_cUXu8JIlEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_R5KpcpInEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_R5Kpc5InEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_FSEQ8JIlEeKXh4FtODrTEA" visible="true" active="true" start="_Dvkjc5IlEeKXh4FtODrTEA" end="_EM_fQpIlEeKXh4FtODrTEA">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_FSFfEZIlEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_FSE4AJIlEeKXh4FtODrTEA" businessObjects="_FSCbwJIlEeKXh4FtODrTEA"/>
+      <connectionDecorators xmi:id="_FSE4AZIlEeKXh4FtODrTEA" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_FSE4ApIlEeKXh4FtODrTEA" foreground="_DvjVVpIlEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_FSE4A5IlEeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_FSFfEpIlEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_FSFfE5IlEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_FSFfFJIlEeKXh4FtODrTEA" x="2" y="10"/>
+          <points xmi:id="_FSFfFZIlEeKXh4FtODrTEA" x="-14"/>
+          <points xmi:id="_FSFfFpIlEeKXh4FtODrTEA" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_FSFfF5IlEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_FSGGIJIlEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_FSGGIZIlEeKXh4FtODrTEA" x="-20" y="10"/>
+          <points xmi:id="_FSGGIpIlEeKXh4FtODrTEA" x="-35"/>
+          <points xmi:id="_FSGGI5IlEeKXh4FtODrTEA" x="-20" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_FSGGJJIlEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_FSGGJZIlEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_FSGGJpIlEeKXh4FtODrTEA" x="-50" y="10"/>
+          <points xmi:id="_FSGGJ5IlEeKXh4FtODrTEA" x="-35"/>
+          <points xmi:id="_FSGGKJIlEeKXh4FtODrTEA" x="-50" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_FgHUAJIlEeKXh4FtODrTEA" visible="true" active="true" start="_Dvkjc5IlEeKXh4FtODrTEA" end="_ENGM8JIlEeKXh4FtODrTEA">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_FgH7E5IlEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_FgH7EJIlEeKXh4FtODrTEA" businessObjects="_FgGF4JIlEeKXh4FtODrTEA"/>
+      <connectionDecorators xmi:id="_FgH7EZIlEeKXh4FtODrTEA" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_FgH7EpIlEeKXh4FtODrTEA" foreground="_DvjVVpIlEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_FSE4A5IlEeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_FgH7FJIlEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_FgH7FZIlEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_FgIiIJIlEeKXh4FtODrTEA" x="2" y="10"/>
+          <points xmi:id="_FgIiIZIlEeKXh4FtODrTEA" x="-14"/>
+          <points xmi:id="_FgIiIpIlEeKXh4FtODrTEA" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_FgIiI5IlEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_FgIiJJIlEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_FgIiJZIlEeKXh4FtODrTEA" x="-20" y="10"/>
+          <points xmi:id="_FgIiJpIlEeKXh4FtODrTEA" x="-35"/>
+          <points xmi:id="_FgIiJ5IlEeKXh4FtODrTEA" x="-20" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_FgIiKJIlEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_FgIiKZIlEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_FgJJMJIlEeKXh4FtODrTEA" x="-50" y="10"/>
+          <points xmi:id="_FgJJMZIlEeKXh4FtODrTEA" x="-35"/>
+          <points xmi:id="_FgJJMpIlEeKXh4FtODrTEA" x="-50" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_Ihj2UJImEeKXh4FtODrTEA" visible="true" active="true" start="_Dvkjc5IlEeKXh4FtODrTEA" end="_G_TZZJImEeKXh4FtODrTEA">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_IhkdY5ImEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_IhkdYJImEeKXh4FtODrTEA" businessObjects="_IhioMJImEeKXh4FtODrTEA"/>
+      <connectionDecorators xmi:id="_IhkdYZImEeKXh4FtODrTEA" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_IhkdYpImEeKXh4FtODrTEA" foreground="_DvjVVpIlEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_FSE4A5IlEeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_IhlEcJImEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_IhlEcZImEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_IhlEcpImEeKXh4FtODrTEA" x="2" y="10"/>
+          <points xmi:id="_IhlEc5ImEeKXh4FtODrTEA" x="-14"/>
+          <points xmi:id="_IhlEdJImEeKXh4FtODrTEA" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_IhlEdZImEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_IhlEdpImEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_IhlEd5ImEeKXh4FtODrTEA" x="-20" y="10"/>
+          <points xmi:id="_IhlEeJImEeKXh4FtODrTEA" x="-35"/>
+          <points xmi:id="_IhlEeZImEeKXh4FtODrTEA" x="-20" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_IhlEepImEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_IhlEe5ImEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_IhlEfJImEeKXh4FtODrTEA" x="-50" y="10"/>
+          <points xmi:id="_IhlEfZImEeKXh4FtODrTEA" x="-35"/>
+          <points xmi:id="_IhlEfpImEeKXh4FtODrTEA" x="-50" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_3lK-8JIrEeKXh4FtODrTEA" visible="true" active="true" start="_Dvkjc5IlEeKXh4FtODrTEA" end="_R5KpdJInEeKXh4FtODrTEA">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_3lMNEJIrEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_3lLmAJIrEeKXh4FtODrTEA" businessObjects="_3lJJwJIrEeKXh4FtODrTEA"/>
+      <connectionDecorators xmi:id="_3lLmAZIrEeKXh4FtODrTEA" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_3lLmApIrEeKXh4FtODrTEA" foreground="_DvjVVpIlEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_FSE4A5IlEeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_3lMNEZIrEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_3lMNEpIrEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_3lMNE5IrEeKXh4FtODrTEA" x="2" y="10"/>
+          <points xmi:id="_3lMNFJIrEeKXh4FtODrTEA" x="-14"/>
+          <points xmi:id="_3lMNFZIrEeKXh4FtODrTEA" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_33QNcJIrEeKXh4FtODrTEA" visible="true" active="true" start="_Dvkjc5IlEeKXh4FtODrTEA" end="_obXV8pIlEeKXh4FtODrTEA">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_33RbkJIrEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_33Q0gJIrEeKXh4FtODrTEA" businessObjects="_33NxMJIrEeKXh4FtODrTEA"/>
+      <connectionDecorators xmi:id="_33Q0gZIrEeKXh4FtODrTEA" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_33Q0gpIrEeKXh4FtODrTEA" foreground="_DvjVVpIlEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_FSE4A5IlEeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_33RbkZIrEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_33RbkpIrEeKXh4FtODrTEA" foreground="_DviuQJIlEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_33Rbk5IrEeKXh4FtODrTEA" x="2" y="10"/>
+          <points xmi:id="_33RblJIrEeKXh4FtODrTEA" x="-14"/>
+          <points xmi:id="_33RblZIrEeKXh4FtODrTEA" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <colors xmi:id="_CxfxopIlEeKXh4FtODrTEA" red="227" green="238" blue="249"/>
+    <colors xmi:id="_Cxfxo5IlEeKXh4FtODrTEA" red="255" green="255" blue="255"/>
+    <colors xmi:id="_DviuQJIlEeKXh4FtODrTEA" red="98" green="131" blue="167"/>
+    <colors xmi:id="_DviuQZIlEeKXh4FtODrTEA" red="187" green="218" blue="247"/>
+    <colors xmi:id="_DvjVVpIlEeKXh4FtODrTEA"/>
+    <colors xmi:id="_LycIQJLWEeKLAZgDyC9a-w" red="48" green="48" blue="48"/>
+    <colors xmi:id="_LycIQZLWEeKLAZgDyC9a-w" red="176" green="176" blue="176"/>
+    <fonts xmi:id="_Dvj8YJIlEeKXh4FtODrTEA" name="Arial" size="10" bold="true"/>
+    <fonts xmi:id="_Dvj8Y5IlEeKXh4FtODrTEA" name="Arial" size="8" bold="true"/>
+    <fonts xmi:id="_FSE4A5IlEeKXh4FtODrTEA" name="Arial" size="10"/>
+  </pi:Diagram>
+  <pi:Diagram xmi:id="_UezrcJImEeKXh4FtODrTEA" visible="true" gridUnit="10" diagramTypeId="sliceEditor" name="Datamodel.edit" snapToGrid="true" pictogramLinks="_BIXlwZInEeKXh4FtODrTEA _BIYz4JInEeKXh4FtODrTEA _BIYz4ZInEeKXh4FtODrTEA _Bcn-gJInEeKXh4FtODrTEA _BcpMoJInEeKXh4FtODrTEA _BcpMoZInEeKXh4FtODrTEA _E0hHYZInEeKXh4FtODrTEA _E0iVgJInEeKXh4FtODrTEA _E0iVgZInEeKXh4FtODrTEA _Fe3E4JInEeKXh4FtODrTEA _U04XMZIoEeKXh4FtODrTEA _U05lUJIoEeKXh4FtODrTEA _U05lUZIoEeKXh4FtODrTEA _U08oopIoEeKXh4FtODrTEA _U092wZIoEeKXh4FtODrTEA _U092wpIoEeKXh4FtODrTEA _U1CIMZIoEeKXh4FtODrTEA _U1DWUpIoEeKXh4FtODrTEA _U1DWU5IoEeKXh4FtODrTEA _YM1KcZIoEeKXh4FtODrTEA _0gcpsJIrEeKXh4FtODrTEA _0yZ8YZIrEeKXh4FtODrTEA _1DH48JIrEeKXh4FtODrTEA" version="0.9.2">
+    <properties xmi:id="_1LFCcJIoEeKXh4FtODrTEA" key="dependenciescollapsed" value="false"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" xmi:id="_UezrcZImEeKXh4FtODrTEA" background="_Uezrc5ImEeKXh4FtODrTEA" foreground="_UezrcpImEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="1000" height="1000"/>
+    <link xmi:id="_Ue3V0JImEeKXh4FtODrTEA" businessObjects="_Ue1goJImEeKXh4FtODrTEA"/>
+    <children xsi:type="pi:ContainerShape" xmi:id="_BIW-sJInEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_BIapEJInEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_BIXlwJInEeKXh4FtODrTEA" background="_60a7cpImEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="140" y="300" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_BIXlwZInEeKXh4FtODrTEA" businessObjects="_ODv-cJIkEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_BIYz5JInEeKXh4FtODrTEA" outgoingConnections="_Fe2d0JInEeKXh4FtODrTEA _YM1KcJIoEeKXh4FtODrTEA _0gcCoJIrEeKXh4FtODrTEA _0yZ8YJIrEeKXh4FtODrTEA _1DHR4JIrEeKXh4FtODrTEA"/>
+      <children xmi:id="_BIXlwpInEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_BIXlw5InEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_BIYM0JInEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_BIZa8JInEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_BIYM0pInEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_BIYM05InEeKXh4FtODrTEA" foreground="_60bihZImEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_60bihpImEeKXh4FtODrTEA" value="edit"/>
+        <link xmi:id="_BIYz4JInEeKXh4FtODrTEA" businessObjects="_ODv-cJIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_BIYM1JInEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_BIYM1ZInEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_60cJkJImEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_BIYz4ZInEeKXh4FtODrTEA" businessObjects="_ODv-cJIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_BIYz4pInEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_BIYz45InEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_BcnXcJInEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_BcrB0JInEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_BcnXcZInEeKXh4FtODrTEA" background="_60a7cpImEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="210" y="80" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_Bcn-gJInEeKXh4FtODrTEA" businessObjects="_ZZwNYJIkEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_BcpzsJInEeKXh4FtODrTEA" incomingConnections="_0yZ8YJIrEeKXh4FtODrTEA"/>
+      <children xmi:id="_Bcn-gZInEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_Bcn-gpInEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_Bcn-g5InEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_BcpzsZInEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_BcolkJInEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_BcolkZInEeKXh4FtODrTEA" foreground="_60bihZImEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_60bihpImEeKXh4FtODrTEA" value="model"/>
+        <link xmi:id="_BcpMoJInEeKXh4FtODrTEA" businessObjects="_ZZwNYJIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_BcolkpInEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_Bcolk5InEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_60cJkJImEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_BcpMoZInEeKXh4FtODrTEA" businessObjects="_ZZwNYJIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_BcpMopInEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_BcpMo5InEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_E0ggUJInEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_E0kKsJInEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_E0hHYJInEeKXh4FtODrTEA" background="_60a7cpImEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="380" y="300" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_E0hHYZInEeKXh4FtODrTEA" businessObjects="_MSbx0JIkEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_E0i8kJInEeKXh4FtODrTEA" incomingConnections="_Fe2d0JInEeKXh4FtODrTEA"/>
+      <children xmi:id="_E0hHYpInEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_E0hucJInEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_E0hucZInEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_E0i8kZInEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_E0huc5InEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_E0hudJInEeKXh4FtODrTEA" foreground="_60bihZImEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_60bihpImEeKXh4FtODrTEA" value="ui"/>
+        <link xmi:id="_E0iVgJInEeKXh4FtODrTEA" businessObjects="_MSbx0JIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_E0hudZInEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_E0hudpInEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_60cJkJImEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_E0iVgZInEeKXh4FtODrTEA" businessObjects="_MSbx0JIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_E0iVgpInEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_E0iVg5InEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_U03wIJIoEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_U07agJIoEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_U04XMJIoEeKXh4FtODrTEA" background="_60a7cpImEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="90" y="80" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_U04XMZIoEeKXh4FtODrTEA" businessObjects="_fgVfMJImEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_U06MYJIoEeKXh4FtODrTEA" incomingConnections="_0gcCoJIrEeKXh4FtODrTEA"/>
+      <children xmi:id="_U04XMpIoEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_U04-QJIoEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_U04-QZIoEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_U06MYZIoEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_U04-Q5IoEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_U04-RJIoEeKXh4FtODrTEA" foreground="_60bihZImEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_60bihpImEeKXh4FtODrTEA" value="notify"/>
+        <link xmi:id="_U05lUJIoEeKXh4FtODrTEA" businessObjects="_fgVfMJImEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_U04-RZIoEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_U04-RpIoEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_60cJkJImEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_U05lUZIoEeKXh4FtODrTEA" businessObjects="_fgVfMJImEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_U05lUpIoEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_U05lU5IoEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_U08ooJIoEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_U0_r8JIoEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_U08ooZIoEeKXh4FtODrTEA" background="_60a7cpImEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="380" y="370" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_U08oopIoEeKXh4FtODrTEA" businessObjects="_TVqnMJIoEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_U0-d0JIoEeKXh4FtODrTEA" incomingConnections="_YM1KcJIoEeKXh4FtODrTEA"/>
+      <children xmi:id="_U09PsJIoEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_U09PsZIoEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_U09PspIoEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_U0-d0ZIoEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_U09PtJIoEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_U09PtZIoEeKXh4FtODrTEA" foreground="_60bihZImEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_60bihpImEeKXh4FtODrTEA" value="ui"/>
+        <link xmi:id="_U092wZIoEeKXh4FtODrTEA" businessObjects="_TVqnMJIoEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_U09PtpIoEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_U092wJIoEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_60cJkJImEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_U092wpIoEeKXh4FtODrTEA" businessObjects="_TVqnMJIoEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_U092w5IoEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_U092xJIoEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_U1BhIJIoEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_U1FykJIoEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_U1CIMJIoEeKXh4FtODrTEA" background="_60a7cpImEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="330" y="80" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_U1CIMZIoEeKXh4FtODrTEA" businessObjects="_iG2D4JIlEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_U1D9YpIoEeKXh4FtODrTEA" incomingConnections="_1DHR4JIrEeKXh4FtODrTEA"/>
+      <children xmi:id="_U1CvQJIoEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_U1CvQZIoEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_U1CvQpIoEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_U1EkcJIoEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_U1CvRJIoEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_U1CvRZIoEeKXh4FtODrTEA" foreground="_60bihZImEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_60bihpImEeKXh4FtODrTEA" value="util"/>
+        <link xmi:id="_U1DWUpIoEeKXh4FtODrTEA" businessObjects="_iG2D4JIlEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_U1DWUJIoEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_U1DWUZIoEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_60cJkJImEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_U1DWU5IoEeKXh4FtODrTEA" businessObjects="_iG2D4JIlEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_U1D9YJIoEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_U1D9YZIoEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_Fe2d0JInEeKXh4FtODrTEA" visible="true" active="true" start="_BIYz5JInEeKXh4FtODrTEA" end="_E0i8kJInEeKXh4FtODrTEA">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_Fe3E45InEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_Fe3E4JInEeKXh4FtODrTEA" businessObjects="_Fe1PsJInEeKXh4FtODrTEA"/>
+      <connectionDecorators xmi:id="_Fe3E4ZInEeKXh4FtODrTEA" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_Fe3E4pInEeKXh4FtODrTEA" foreground="_60bihZImEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_CvtXA5InEeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_Fe3E5JInEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_Fe3E5ZInEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_Fe3E5pInEeKXh4FtODrTEA" x="2" y="10"/>
+          <points xmi:id="_Fe3E55InEeKXh4FtODrTEA" x="-14"/>
+          <points xmi:id="_Fe3E6JInEeKXh4FtODrTEA" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_Fe3r8JInEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_Fe3r8ZInEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_Fe3r8pInEeKXh4FtODrTEA" x="-20" y="10"/>
+          <points xmi:id="_Fe3r85InEeKXh4FtODrTEA" x="-35"/>
+          <points xmi:id="_Fe3r9JInEeKXh4FtODrTEA" x="-20" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_Fe3r9ZInEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_Fe3r9pInEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_Fe3r95InEeKXh4FtODrTEA" x="-50" y="10"/>
+          <points xmi:id="_Fe3r-JInEeKXh4FtODrTEA" x="-35"/>
+          <points xmi:id="_Fe3r-ZInEeKXh4FtODrTEA" x="-50" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_YM1KcJIoEeKXh4FtODrTEA" visible="true" active="true" start="_BIYz5JInEeKXh4FtODrTEA" end="_U0-d0JIoEeKXh4FtODrTEA">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_YM1xgJIoEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_YM1KcZIoEeKXh4FtODrTEA" businessObjects="_YMz8UJIoEeKXh4FtODrTEA"/>
+      <connectionDecorators xmi:id="_YM1KcpIoEeKXh4FtODrTEA" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_YM1Kc5IoEeKXh4FtODrTEA" foreground="_60bihZImEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_CvtXA5InEeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_YM1xgZIoEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_YM1xgpIoEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_YM1xg5IoEeKXh4FtODrTEA" x="2" y="10"/>
+          <points xmi:id="_YM1xhJIoEeKXh4FtODrTEA" x="-14"/>
+          <points xmi:id="_YM1xhZIoEeKXh4FtODrTEA" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_YM1xhpIoEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_YM1xh5IoEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_YM1xiJIoEeKXh4FtODrTEA" x="-20" y="10"/>
+          <points xmi:id="_YM1xiZIoEeKXh4FtODrTEA" x="-35"/>
+          <points xmi:id="_YM1xipIoEeKXh4FtODrTEA" x="-20" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_YM2YkJIoEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_YM2YkZIoEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_YM2YkpIoEeKXh4FtODrTEA" x="-50" y="10"/>
+          <points xmi:id="_YM2Yk5IoEeKXh4FtODrTEA" x="-35"/>
+          <points xmi:id="_YM2YlJIoEeKXh4FtODrTEA" x="-50" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_0gcCoJIrEeKXh4FtODrTEA" visible="true" active="true" start="_BIYz5JInEeKXh4FtODrTEA" end="_U06MYJIoEeKXh4FtODrTEA">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_0gdQwJIrEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_0gcpsJIrEeKXh4FtODrTEA" businessObjects="_0gaNcJIrEeKXh4FtODrTEA"/>
+      <connectionDecorators xmi:id="_0gcpsZIrEeKXh4FtODrTEA" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_0gcpspIrEeKXh4FtODrTEA" foreground="_60bihZImEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_CvtXA5InEeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_0gdQwZIrEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_0gdQwpIrEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_0gdQw5IrEeKXh4FtODrTEA" x="2" y="10"/>
+          <points xmi:id="_0gdQxJIrEeKXh4FtODrTEA" x="-14"/>
+          <points xmi:id="_0gdQxZIrEeKXh4FtODrTEA" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_0yZ8YJIrEeKXh4FtODrTEA" visible="true" active="true" start="_BIYz5JInEeKXh4FtODrTEA" end="_BcpzsJInEeKXh4FtODrTEA">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_0yajcpIrEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_0yZ8YZIrEeKXh4FtODrTEA" businessObjects="_0yXgIJIrEeKXh4FtODrTEA"/>
+      <connectionDecorators xmi:id="_0yajcJIrEeKXh4FtODrTEA" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_0yajcZIrEeKXh4FtODrTEA" foreground="_60bihZImEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_CvtXA5InEeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_0yajc5IrEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_0yajdJIrEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_0yajdZIrEeKXh4FtODrTEA" x="2" y="10"/>
+          <points xmi:id="_0yajdpIrEeKXh4FtODrTEA" x="-14"/>
+          <points xmi:id="_0yajd5IrEeKXh4FtODrTEA" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_1DHR4JIrEeKXh4FtODrTEA" visible="true" active="true" start="_BIYz5JInEeKXh4FtODrTEA" end="_U1D9YpIoEeKXh4FtODrTEA">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_1DIgAJIrEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_1DH48JIrEeKXh4FtODrTEA" businessObjects="_1DFcsJIrEeKXh4FtODrTEA"/>
+      <connectionDecorators xmi:id="_1DH48ZIrEeKXh4FtODrTEA" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_1DH48pIrEeKXh4FtODrTEA" foreground="_60bihZImEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_CvtXA5InEeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_1DIgAZIrEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_1DIgApIrEeKXh4FtODrTEA" foreground="_60a7cZImEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_1DIgA5IrEeKXh4FtODrTEA" x="2" y="10"/>
+          <points xmi:id="_1DIgBJIrEeKXh4FtODrTEA" x="-14"/>
+          <points xmi:id="_1DIgBZIrEeKXh4FtODrTEA" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <colors xmi:id="_UezrcpImEeKXh4FtODrTEA" red="227" green="238" blue="249"/>
+    <colors xmi:id="_Uezrc5ImEeKXh4FtODrTEA" red="255" green="255" blue="255"/>
+    <colors xmi:id="_60a7cZImEeKXh4FtODrTEA" red="98" green="131" blue="167"/>
+    <colors xmi:id="_60a7cpImEeKXh4FtODrTEA" red="187" green="218" blue="247"/>
+    <colors xmi:id="_60bihZImEeKXh4FtODrTEA"/>
+    <fonts xmi:id="_60bihpImEeKXh4FtODrTEA" name="Arial" size="10" bold="true"/>
+    <fonts xmi:id="_60cJkJImEeKXh4FtODrTEA" name="Arial" size="8" bold="true"/>
+    <fonts xmi:id="_CvtXA5InEeKXh4FtODrTEA" name="Arial" size="10"/>
+  </pi:Diagram>
+  <pi:Diagram xmi:id="_QroigJIrEeKXh4FtODrTEA" visible="true" gridUnit="10" diagramTypeId="sliceEditor" name="Datamodel.editor" snapToGrid="true" pictogramLinks="_UWgRwZIrEeKXh4FtODrTEA _UWiG8ZIrEeKXh4FtODrTEA _UWiG8pIrEeKXh4FtODrTEA _Vo5twJIrEeKXh4FtODrTEA _Vo6U1JIrEeKXh4FtODrTEA _Vo674JIrEeKXh4FtODrTEA _XnorUpIrEeKXh4FtODrTEA _Xnp5cJIrEeKXh4FtODrTEA _Xnp5cZIrEeKXh4FtODrTEA _qBxrYZIrEeKXh4FtODrTEA _qR9ccJIrEeKXh4FtODrTEA _VwkxIZItEeKXh4FtODrTEA _VwmmUpItEeKXh4FtODrTEA _VwnNYJItEeKXh4FtODrTEA _XQ5UYZItEeKXh4FtODrTEA _XQ6igJItEeKXh4FtODrTEA _XQ6igZItEeKXh4FtODrTEA _XQ_bAJItEeKXh4FtODrTEA _XRACEpItEeKXh4FtODrTEA _XRACE5ItEeKXh4FtODrTEA _X8rcUJItEeKXh4FtODrTEA _X8sqcJItEeKXh4FtODrTEA _X8sqcZItEeKXh4FtODrTEA _bXOQkJItEeKXh4FtODrTEA _bmL5oJItEeKXh4FtODrTEA _cJLR8ZItEeKXh4FtODrTEA _cZfl4JItEeKXh4FtODrTEA" version="0.9.2">
+    <properties xmi:id="_aRXGoJIrEeKXh4FtODrTEA" key="dependenciescollapsed" value="false"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" xmi:id="_QroigZIrEeKXh4FtODrTEA" background="_Qroig5IrEeKXh4FtODrTEA" foreground="_QroigpIrEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="1000" height="1000"/>
+    <link xmi:id="_Qrrl0JIrEeKXh4FtODrTEA" businessObjects="_QrqXsJIrEeKXh4FtODrTEA"/>
+    <children xsi:type="pi:ContainerShape" xmi:id="_UWfqsJIrEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_UWlKQJIrEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_UWfqsZIrEeKXh4FtODrTEA" background="_UWgRwJIrEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="120" y="250" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_UWgRwZIrEeKXh4FtODrTEA" businessObjects="_Ok3HcJIkEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_UWiuApIrEeKXh4FtODrTEA" outgoingConnections="_qBxrYJIrEeKXh4FtODrTEA _qR81YJIrEeKXh4FtODrTEA _bXNpgJItEeKXh4FtODrTEA _bmLSkJItEeKXh4FtODrTEA _cJLR8JItEeKXh4FtODrTEA _cZe-0JItEeKXh4FtODrTEA"/>
+      <children xmi:id="_UWg40JIrEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_UWg40ZIrEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_UWg40pIrEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_UWjVEJIrEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_UWg41JIrEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_UWg41ZIrEeKXh4FtODrTEA" foreground="_UWhf4JIrEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_UWhf4ZIrEeKXh4FtODrTEA" value="editor"/>
+        <link xmi:id="_UWiG8ZIrEeKXh4FtODrTEA" businessObjects="_Ok3HcJIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_UWhf4pIrEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_UWhf45IrEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_UWiG8JIrEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_UWiG8pIrEeKXh4FtODrTEA" businessObjects="_Ok3HcJIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_UWiuAJIrEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_UWiuAZIrEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_Vo5GsJIrEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_Vo8KAJIrEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_Vo5GsZIrEeKXh4FtODrTEA" background="_UWgRwJIrEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="21" y="50" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_Vo5twJIrEeKXh4FtODrTEA" businessObjects="_ZZwNYJIkEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_Vo6745IrEeKXh4FtODrTEA" incomingConnections="_qBxrYJIrEeKXh4FtODrTEA"/>
+      <children xmi:id="_Vo5twZIrEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_Vo5twpIrEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_Vo5tw5IrEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_Vo7i8JIrEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_Vo6U0JIrEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_Vo6U0ZIrEeKXh4FtODrTEA" foreground="_UWhf4JIrEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_UWhf4ZIrEeKXh4FtODrTEA" value="model"/>
+        <link xmi:id="_Vo6U1JIrEeKXh4FtODrTEA" businessObjects="_ZZwNYJIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_Vo6U0pIrEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_Vo6U05IrEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_UWiG8JIrEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_Vo674JIrEeKXh4FtODrTEA" businessObjects="_ZZwNYJIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_Vo674ZIrEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_Vo674pIrEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_XnorUJIrEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_XnruoJIrEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_XnorUZIrEeKXh4FtODrTEA" background="_UWgRwJIrEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="130" y="50" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_XnorUpIrEeKXh4FtODrTEA" businessObjects="_I6080JIkEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_XnqggJIrEeKXh4FtODrTEA" incomingConnections="_qR81YJIrEeKXh4FtODrTEA"/>
+      <children xmi:id="_XnpSYJIrEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_XnpSYZIrEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_XnpSYpIrEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_XnrHkJIrEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_XnpSZJIrEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_XnpSZZIrEeKXh4FtODrTEA" foreground="_UWhf4JIrEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_UWhf4ZIrEeKXh4FtODrTEA" value="emf"/>
+        <link xmi:id="_Xnp5cJIrEeKXh4FtODrTEA" businessObjects="_I6080JIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_XnpSZpIrEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_XnpSZ5IrEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_UWiG8JIrEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_Xnp5cZIrEeKXh4FtODrTEA" businessObjects="_I6080JIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_Xnp5cpIrEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_Xnp5c5IrEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_VwkKEJItEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_Vwq3wJItEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_VwkxIJItEeKXh4FtODrTEA" background="_UWgRwJIrEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="240" y="50" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_VwkxIZItEeKXh4FtODrTEA" businessObjects="_IMjn8JIsEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_Vwn0cJItEeKXh4FtODrTEA" incomingConnections="_cJLR8JItEeKXh4FtODrTEA"/>
+      <children xmi:id="_VwlYMJItEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_VwlYMZItEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_VwlYMpItEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_VwobgJItEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_Vwl_QZItEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_Vwl_QpItEeKXh4FtODrTEA" foreground="_UWhf4JIrEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_UWhf4ZIrEeKXh4FtODrTEA" value="core"/>
+        <link xmi:id="_VwmmUpItEeKXh4FtODrTEA" businessObjects="_IMjn8JIsEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_VwmmUJItEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_VwmmUZItEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_UWiG8JIrEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_VwnNYJItEeKXh4FtODrTEA" businessObjects="_IMjn8JIsEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_VwnNYZItEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_VwnNYpItEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_XQ4tUJItEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_XQ8XsJItEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_XQ5UYJItEeKXh4FtODrTEA" background="_UWgRwJIrEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="430" y="305" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_XQ5UYZItEeKXh4FtODrTEA" businessObjects="_IywsUJIsEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_XQ6ihJItEeKXh4FtODrTEA" incomingConnections="_bXNpgJItEeKXh4FtODrTEA"/>
+      <children xmi:id="_XQ5UYpItEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_XQ5UY5ItEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_XQ57cJItEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_XQ7JkJItEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_XQ57cpItEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_XQ57c5ItEeKXh4FtODrTEA" foreground="_UWhf4JIrEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_UWhf4ZIrEeKXh4FtODrTEA" value="jface"/>
+        <link xmi:id="_XQ6igJItEeKXh4FtODrTEA" businessObjects="_IywsUJIsEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_XQ57dJItEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_XQ57dZItEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_UWiG8JIrEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_XQ6igZItEeKXh4FtODrTEA" businessObjects="_IywsUJIsEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_XQ6igpItEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_XQ6ig5ItEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_XQ-z8JItEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_XRCeUJItEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_XQ-z8ZItEeKXh4FtODrTEA" background="_UWgRwJIrEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="430" y="240" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_XQ_bAJItEeKXh4FtODrTEA" businessObjects="_JYSbQJIsEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_XRApIZItEeKXh4FtODrTEA" incomingConnections="_bmLSkJItEeKXh4FtODrTEA"/>
+      <children xmi:id="_XQ_bAZItEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_XQ_bApItEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_XQ_bA5ItEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_XRApIpItEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_XQ_bBZItEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_XQ_bBpItEeKXh4FtODrTEA" foreground="_UWhf4JIrEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_UWhf4ZIrEeKXh4FtODrTEA" value="swt"/>
+        <link xmi:id="_XRACEpItEeKXh4FtODrTEA" businessObjects="_JYSbQJIsEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_XRACEJItEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_XRACEZItEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_UWiG8JIrEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_XRACE5ItEeKXh4FtODrTEA" businessObjects="_JYSbQJIsEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_XRACFJItEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_XRApIJItEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_X8q1QJItEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_X8vtwJItEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_X8q1QZItEeKXh4FtODrTEA" background="_UWgRwJIrEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="350" y="50" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_X8rcUJItEeKXh4FtODrTEA" businessObjects="_KFZY4JIsEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_X8tRgJItEeKXh4FtODrTEA" incomingConnections="_cZe-0JItEeKXh4FtODrTEA"/>
+      <children xmi:id="_X8rcUZItEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_X8rcUpItEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_X8sDYJItEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_X8t4kJItEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_X8sDYpItEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_X8sDY5ItEeKXh4FtODrTEA" foreground="_UWhf4JIrEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_UWhf4ZIrEeKXh4FtODrTEA" value="ui"/>
+        <link xmi:id="_X8sqcJItEeKXh4FtODrTEA" businessObjects="_KFZY4JIsEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_X8sDZJItEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_X8sDZZItEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_UWiG8JIrEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_X8sqcZItEeKXh4FtODrTEA" businessObjects="_KFZY4JIsEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_X8sqcpItEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_X8sqc5ItEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_qBxrYJIrEeKXh4FtODrTEA" visible="true" active="true" start="_UWiuApIrEeKXh4FtODrTEA" end="_Vo6745IrEeKXh4FtODrTEA">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_qByScpIrEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_qBxrYZIrEeKXh4FtODrTEA" businessObjects="_qBv2MJIrEeKXh4FtODrTEA"/>
+      <connectionDecorators xmi:id="_qByScJIrEeKXh4FtODrTEA" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_qByScZIrEeKXh4FtODrTEA" foreground="_UWhf4JIrEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_aRWfk5IrEeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_qBy5gJIrEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_qBy5gZIrEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_qBy5gpIrEeKXh4FtODrTEA" x="2" y="10"/>
+          <points xmi:id="_qBy5g5IrEeKXh4FtODrTEA" x="-14"/>
+          <points xmi:id="_qBy5hJIrEeKXh4FtODrTEA" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_qR81YJIrEeKXh4FtODrTEA" visible="true" active="true" start="_UWiuApIrEeKXh4FtODrTEA" end="_XnqggJIrEeKXh4FtODrTEA">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_qR-DgpIrEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_qR9ccJIrEeKXh4FtODrTEA" businessObjects="_qR7nQJIrEeKXh4FtODrTEA"/>
+      <connectionDecorators xmi:id="_qR-DgJIrEeKXh4FtODrTEA" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_qR-DgZIrEeKXh4FtODrTEA" foreground="_UWhf4JIrEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_aRWfk5IrEeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_qR-qkJIrEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_qR-qkZIrEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_qR-qkpIrEeKXh4FtODrTEA" x="2" y="10"/>
+          <points xmi:id="_qR-qk5IrEeKXh4FtODrTEA" x="-14"/>
+          <points xmi:id="_qR-qlJIrEeKXh4FtODrTEA" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_bXNpgJItEeKXh4FtODrTEA" visible="true" active="true" start="_UWiuApIrEeKXh4FtODrTEA" end="_XQ6ihJItEeKXh4FtODrTEA">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_bXO3oJItEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" lineStyle="DASH" filled="false" transparency="0.0"/>
+      <link xmi:id="_bXOQkJItEeKXh4FtODrTEA" businessObjects="_bXLNQJItEeKXh4FtODrTEA"/>
+      <connectionDecorators xmi:id="_bXOQkZItEeKXh4FtODrTEA" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_bXOQkpItEeKXh4FtODrTEA" foreground="_UWhf4JIrEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_aRWfk5IrEeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_bXO3oZItEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_bXO3opItEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_bXO3o5ItEeKXh4FtODrTEA" x="-30" y="10"/>
+          <points xmi:id="_bXO3pJItEeKXh4FtODrTEA" x="-45"/>
+          <points xmi:id="_bXO3pZItEeKXh4FtODrTEA" x="-30" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_bmLSkJItEeKXh4FtODrTEA" visible="true" active="true" start="_UWiuApIrEeKXh4FtODrTEA" end="_XRApIZItEeKXh4FtODrTEA">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_bmL5o5ItEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" lineStyle="DASH" filled="false" transparency="0.0"/>
+      <link xmi:id="_bmL5oJItEeKXh4FtODrTEA" businessObjects="_bmJdYJItEeKXh4FtODrTEA"/>
+      <connectionDecorators xmi:id="_bmL5oZItEeKXh4FtODrTEA" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_bmL5opItEeKXh4FtODrTEA" foreground="_UWhf4JIrEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_aRWfk5IrEeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_bmMgsJItEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_bmMgsZItEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_bmMgspItEeKXh4FtODrTEA" x="-30" y="10"/>
+          <points xmi:id="_bmMgs5ItEeKXh4FtODrTEA" x="-45"/>
+          <points xmi:id="_bmMgtJItEeKXh4FtODrTEA" x="-30" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_cJLR8JItEeKXh4FtODrTEA" visible="true" active="true" start="_UWiuApIrEeKXh4FtODrTEA" end="_Vwn0cJItEeKXh4FtODrTEA">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_cJL5ApItEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_cJLR8ZItEeKXh4FtODrTEA" businessObjects="_cJJcwJItEeKXh4FtODrTEA"/>
+      <connectionDecorators xmi:id="_cJL5AJItEeKXh4FtODrTEA" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_cJL5AZItEeKXh4FtODrTEA" foreground="_UWhf4JIrEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_aRWfk5IrEeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_cJL5A5ItEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_cJMgEJItEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_cJMgEZItEeKXh4FtODrTEA" x="2" y="10"/>
+          <points xmi:id="_cJMgEpItEeKXh4FtODrTEA" x="-14"/>
+          <points xmi:id="_cJMgE5ItEeKXh4FtODrTEA" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_cZe-0JItEeKXh4FtODrTEA" visible="true" active="true" start="_UWiuApIrEeKXh4FtODrTEA" end="_X8tRgJItEeKXh4FtODrTEA">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_cZfl45ItEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_cZfl4JItEeKXh4FtODrTEA" businessObjects="_cZdwsJItEeKXh4FtODrTEA"/>
+      <connectionDecorators xmi:id="_cZfl4ZItEeKXh4FtODrTEA" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_cZfl4pItEeKXh4FtODrTEA" foreground="_UWhf4JIrEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_aRWfk5IrEeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_cZfl5JItEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_cZgM8JItEeKXh4FtODrTEA" foreground="_UWfqspIrEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_cZgM8ZItEeKXh4FtODrTEA" x="2" y="10"/>
+          <points xmi:id="_cZgM8pItEeKXh4FtODrTEA" x="-14"/>
+          <points xmi:id="_cZgM85ItEeKXh4FtODrTEA" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <colors xmi:id="_QroigpIrEeKXh4FtODrTEA" red="227" green="238" blue="249"/>
+    <colors xmi:id="_Qroig5IrEeKXh4FtODrTEA" red="255" green="255" blue="255"/>
+    <colors xmi:id="_UWfqspIrEeKXh4FtODrTEA" red="98" green="131" blue="167"/>
+    <colors xmi:id="_UWgRwJIrEeKXh4FtODrTEA" red="187" green="218" blue="247"/>
+    <colors xmi:id="_UWhf4JIrEeKXh4FtODrTEA"/>
+    <fonts xmi:id="_UWhf4ZIrEeKXh4FtODrTEA" name="Arial" size="10" bold="true"/>
+    <fonts xmi:id="_UWiG8JIrEeKXh4FtODrTEA" name="Arial" size="8" bold="true"/>
+    <fonts xmi:id="_aRWfk5IrEeKXh4FtODrTEA" name="Arial" size="10"/>
+  </pi:Diagram>
+  <pi:Diagram xmi:id="_-pwxIJItEeKXh4FtODrTEA" visible="true" gridUnit="10" diagramTypeId="sliceEditor" name="UI" snapToGrid="true" pictogramLinks="_QUilAJLXEeKLAZgDyC9a-w _QUjzIJLXEeKLAZgDyC9a-w _QUjzIZLXEeKLAZgDyC9a-w _aBYdwpLXEeKLAZgDyC9a-w _aBZE1pLXEeKLAZgDyC9a-w _aBZr4JLXEeKLAZgDyC9a-w _aaxOIZLXEeKLAZgDyC9a-w _aax1NJLXEeKLAZgDyC9a-w _aaycQJLXEeKLAZgDyC9a-w _awxTUJLXEeKLAZgDyC9a-w _awyhcZLXEeKLAZgDyC9a-w _awyhcpLXEeKLAZgDyC9a-w _mxt8sJLXEeKLAZgDyC9a-w _m8lI4ZLXEeKLAZgDyC9a-w _nJBCYZLXEeKLAZgDyC9a-w _EKcKMZLYEeKLAZgDyC9a-w _EKdYUZLYEeKLAZgDyC9a-w _EKdYUpLYEeKLAZgDyC9a-w _FQUNIZLYEeKLAZgDyC9a-w" version="0.9.2">
+    <properties xmi:id="_Ve5_EZI9EeKXh4FtODrTEA" key="dependenciescollapsed" value="false"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" xmi:id="_-pwxIZItEeKXh4FtODrTEA" background="_-pwxI5ItEeKXh4FtODrTEA" foreground="_-pwxIpItEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="1000" height="1000"/>
+    <link xmi:id="_-p0bgJItEeKXh4FtODrTEA" businessObjects="_-pymUJItEeKXh4FtODrTEA"/>
+    <children xsi:type="pi:ContainerShape" xmi:id="_QUh98JLXEeKLAZgDyC9a-w" visible="true" active="true">
+      <properties xmi:id="_QUloUJLXEeKLAZgDyC9a-w" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_QUh98ZLXEeKLAZgDyC9a-w" background="_LpkyU5I1EeKXh4FtODrTEA" foreground="_LpkyUpI1EeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="80" y="166" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_QUilAJLXEeKLAZgDyC9a-w" businessObjects="_MSbx0JIkEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_QUjzJJLXEeKLAZgDyC9a-w" outgoingConnections="_mxtVoJLXEeKLAZgDyC9a-w _m8lI4JLXEeKLAZgDyC9a-w _nJBCYJLXEeKLAZgDyC9a-w _FQUNIJLYEeKLAZgDyC9a-w"/>
+      <children xmi:id="_QUilAZLXEeKLAZgDyC9a-w" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_QUilApLXEeKLAZgDyC9a-w" foreground="_LpkyUpI1EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_QUilA5LXEeKLAZgDyC9a-w" y="20"/>
+          <points xmi:id="_QUkaMJLXEeKLAZgDyC9a-w" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_QUilBZLXEeKLAZgDyC9a-w" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_QUjMEJLXEeKLAZgDyC9a-w" foreground="_LplZZpI1EeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_LplZZ5I1EeKXh4FtODrTEA" value="ui"/>
+        <link xmi:id="_QUjzIJLXEeKLAZgDyC9a-w" businessObjects="_MSbx0JIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_QUjMEZLXEeKLAZgDyC9a-w" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_QUjMEpLXEeKLAZgDyC9a-w" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_LpmAcpI1EeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_QUjzIZLXEeKLAZgDyC9a-w" businessObjects="_MSbx0JIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_QUjzIpLXEeKLAZgDyC9a-w" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_QUjzI5LXEeKLAZgDyC9a-w" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_aBYdwJLXEeKLAZgDyC9a-w" visible="true" active="true">
+      <properties xmi:id="_aBa6AJLXEeKLAZgDyC9a-w" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_aBYdwZLXEeKLAZgDyC9a-w" background="_LpkyU5I1EeKXh4FtODrTEA" foreground="_LpkyUpI1EeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="338" y="153" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_aBYdwpLXEeKLAZgDyC9a-w" businessObjects="_GxzhMJIsEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_aBZr45LXEeKLAZgDyC9a-w" incomingConnections="_m8lI4JLXEeKLAZgDyC9a-w"/>
+      <children xmi:id="_aBYdw5LXEeKLAZgDyC9a-w" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_aBYdxJLXEeKLAZgDyC9a-w" foreground="_LpkyUpI1EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_aBZE0JLXEeKLAZgDyC9a-w" y="20"/>
+          <points xmi:id="_aBZr5JLXEeKLAZgDyC9a-w" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_aBZE0pLXEeKLAZgDyC9a-w" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_aBZE05LXEeKLAZgDyC9a-w" foreground="_LplZZpI1EeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_LplZZ5I1EeKXh4FtODrTEA" value="eclipse"/>
+        <link xmi:id="_aBZE1pLXEeKLAZgDyC9a-w" businessObjects="_GxzhMJIsEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_aBZE1JLXEeKLAZgDyC9a-w" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_aBZE1ZLXEeKLAZgDyC9a-w" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_LpmAcpI1EeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_aBZr4JLXEeKLAZgDyC9a-w" businessObjects="_GxzhMJIsEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_aBZr4ZLXEeKLAZgDyC9a-w" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_aBZr4pLXEeKLAZgDyC9a-w" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_aawnEJLXEeKLAZgDyC9a-w" visible="true" active="true">
+      <properties xmi:id="_aazqYJLXEeKLAZgDyC9a-w" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_aaxOIJLXEeKLAZgDyC9a-w" background="_LpkyU5I1EeKXh4FtODrTEA" foreground="_LpkyUpI1EeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="340" y="90" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_aaxOIZLXEeKLAZgDyC9a-w" businessObjects="_I6080JIkEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_aaycQ5LXEeKLAZgDyC9a-w" incomingConnections="_mxtVoJLXEeKLAZgDyC9a-w"/>
+      <children xmi:id="_aaxOIpLXEeKLAZgDyC9a-w" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_aaxOI5LXEeKLAZgDyC9a-w" foreground="_LpkyUpI1EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_aaxOJJLXEeKLAZgDyC9a-w" y="20"/>
+          <points xmi:id="_aazDUJLXEeKLAZgDyC9a-w" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_aax1MJLXEeKLAZgDyC9a-w" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_aax1MZLXEeKLAZgDyC9a-w" foreground="_LplZZpI1EeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_LplZZ5I1EeKXh4FtODrTEA" value="emf"/>
+        <link xmi:id="_aax1NJLXEeKLAZgDyC9a-w" businessObjects="_I6080JIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_aax1MpLXEeKLAZgDyC9a-w" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_aax1M5LXEeKLAZgDyC9a-w" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_LpmAcpI1EeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_aaycQJLXEeKLAZgDyC9a-w" businessObjects="_I6080JIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_aaycQZLXEeKLAZgDyC9a-w" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_aaycQpLXEeKLAZgDyC9a-w" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_awwsQJLXEeKLAZgDyC9a-w" visible="true" active="true">
+      <properties xmi:id="_aw0WoJLXEeKLAZgDyC9a-w" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_awwsQZLXEeKLAZgDyC9a-w" background="_LpkyU5I1EeKXh4FtODrTEA" foreground="_LpkyUpI1EeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="338" y="215" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_awxTUJLXEeKLAZgDyC9a-w" businessObjects="_KzJwYJIkEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_awzIgZLXEeKLAZgDyC9a-w" incomingConnections="_nJBCYJLXEeKLAZgDyC9a-w"/>
+      <children xmi:id="_awx6YJLXEeKLAZgDyC9a-w" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_awx6YZLXEeKLAZgDyC9a-w" foreground="_LpkyUpI1EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_awx6YpLXEeKLAZgDyC9a-w" y="20"/>
+          <points xmi:id="_awzIgpLXEeKLAZgDyC9a-w" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_awx6ZJLXEeKLAZgDyC9a-w" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_awx6ZZLXEeKLAZgDyC9a-w" foreground="_LplZZpI1EeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_LplZZ5I1EeKXh4FtODrTEA" value="datamodel"/>
+        <link xmi:id="_awyhcZLXEeKLAZgDyC9a-w" businessObjects="_KzJwYJIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_awx6ZpLXEeKLAZgDyC9a-w" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_awyhcJLXEeKLAZgDyC9a-w" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_LpmAcpI1EeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_awyhcpLXEeKLAZgDyC9a-w" businessObjects="_KzJwYJIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_awyhc5LXEeKLAZgDyC9a-w" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_awzIgJLXEeKLAZgDyC9a-w" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_EKbjIJLYEeKLAZgDyC9a-w" visible="true" active="true">
+      <properties xmi:id="_EKf0kJLYEeKLAZgDyC9a-w" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_EKcKMJLYEeKLAZgDyC9a-w" background="_LpkyU5I1EeKXh4FtODrTEA" foreground="_LpkyUpI1EeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="338" y="278" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_EKcKMZLYEeKLAZgDyC9a-w" businessObjects="_DeKpYJIwEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_EKd_YZLYEeKLAZgDyC9a-w" incomingConnections="_FQUNIJLYEeKLAZgDyC9a-w"/>
+      <children xmi:id="_EKcKMpLYEeKLAZgDyC9a-w" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_EKcxQJLYEeKLAZgDyC9a-w" foreground="_LpkyUpI1EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_EKcxQZLYEeKLAZgDyC9a-w" y="20"/>
+          <points xmi:id="_EKd_YpLYEeKLAZgDyC9a-w" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_EKcxQ5LYEeKLAZgDyC9a-w" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_EKcxRJLYEeKLAZgDyC9a-w" foreground="_LplZZpI1EeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_LplZZ5I1EeKXh4FtODrTEA" value="graphiti"/>
+        <link xmi:id="_EKdYUZLYEeKLAZgDyC9a-w" businessObjects="_DeKpYJIwEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_EKcxRZLYEeKLAZgDyC9a-w" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_EKdYUJLYEeKLAZgDyC9a-w" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_LpmAcpI1EeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_EKdYUpLYEeKLAZgDyC9a-w" businessObjects="_DeKpYJIwEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_EKdYU5LYEeKLAZgDyC9a-w" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_EKd_YJLYEeKLAZgDyC9a-w" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_mxtVoJLXEeKLAZgDyC9a-w" visible="true" active="true" start="_QUjzJJLXEeKLAZgDyC9a-w" end="_aaycQ5LXEeKLAZgDyC9a-w">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_mxt8s5LXEeKLAZgDyC9a-w" foreground="_LpkyUpI1EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_mxt8sJLXEeKLAZgDyC9a-w" businessObjects="_mxrgcJLXEeKLAZgDyC9a-w"/>
+      <connectionDecorators xmi:id="_mxt8sZLXEeKLAZgDyC9a-w" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_mxt8spLXEeKLAZgDyC9a-w" foreground="_LplZZpI1EeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_Ve5_EJI9EeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_mxujwJLXEeKLAZgDyC9a-w" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_mxujwZLXEeKLAZgDyC9a-w" foreground="_LpkyUpI1EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_mxujwpLXEeKLAZgDyC9a-w" x="2" y="10"/>
+          <points xmi:id="_mxujw5LXEeKLAZgDyC9a-w" x="-14"/>
+          <points xmi:id="_mxujxJLXEeKLAZgDyC9a-w" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_mxujxZLXEeKLAZgDyC9a-w" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Ellipse" xmi:id="_mxvK0JLXEeKLAZgDyC9a-w" background="_-pwxI5ItEeKXh4FtODrTEA" foreground="_LpkyUpI1EeKXh4FtODrTEA" lineWidth="2" filled="true" transparency="0.0" width="16" height="16" x="16"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_m8lI4JLXEeKLAZgDyC9a-w" visible="true" active="true" start="_QUjzJJLXEeKLAZgDyC9a-w" end="_aBZr45LXEeKLAZgDyC9a-w">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_m8mXAJLXEeKLAZgDyC9a-w" foreground="_LpkyUpI1EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_m8lI4ZLXEeKLAZgDyC9a-w" businessObjects="_m8j6wJLXEeKLAZgDyC9a-w"/>
+      <connectionDecorators xmi:id="_m8lv8JLXEeKLAZgDyC9a-w" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_m8lv8ZLXEeKLAZgDyC9a-w" foreground="_LplZZpI1EeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_Ve5_EJI9EeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_m8mXAZLXEeKLAZgDyC9a-w" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_m8mXApLXEeKLAZgDyC9a-w" foreground="_LpkyUpI1EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_m8mXA5LXEeKLAZgDyC9a-w" x="2" y="10"/>
+          <points xmi:id="_m8mXBJLXEeKLAZgDyC9a-w" x="-14"/>
+          <points xmi:id="_m8mXBZLXEeKLAZgDyC9a-w" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_m8mXBpLXEeKLAZgDyC9a-w" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Ellipse" xmi:id="_m8m-EJLXEeKLAZgDyC9a-w" background="_-pwxI5ItEeKXh4FtODrTEA" foreground="_LpkyUpI1EeKXh4FtODrTEA" lineWidth="2" filled="true" transparency="0.0" width="16" height="16" x="16"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_nJBCYJLXEeKLAZgDyC9a-w" visible="true" active="true" start="_QUjzJJLXEeKLAZgDyC9a-w" end="_awzIgZLXEeKLAZgDyC9a-w">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_nJBpcZLXEeKLAZgDyC9a-w" foreground="_LpkyUpI1EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_nJBCYZLXEeKLAZgDyC9a-w" businessObjects="_nI_0QJLXEeKLAZgDyC9a-w"/>
+      <connectionDecorators xmi:id="_nJBCYpLXEeKLAZgDyC9a-w" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_nJBpcJLXEeKLAZgDyC9a-w" foreground="_LplZZpI1EeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_Ve5_EJI9EeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_nJBpcpLXEeKLAZgDyC9a-w" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_nJBpc5LXEeKLAZgDyC9a-w" foreground="_LpkyUpI1EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_nJBpdJLXEeKLAZgDyC9a-w" x="2" y="10"/>
+          <points xmi:id="_nJBpdZLXEeKLAZgDyC9a-w" x="-14"/>
+          <points xmi:id="_nJBpdpLXEeKLAZgDyC9a-w" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_nJBpd5LXEeKLAZgDyC9a-w" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Ellipse" xmi:id="_nJBpeJLXEeKLAZgDyC9a-w" background="_-pwxI5ItEeKXh4FtODrTEA" foreground="_LpkyUpI1EeKXh4FtODrTEA" lineWidth="2" filled="true" transparency="0.0" width="16" height="16" x="16"/>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_FQUNIJLYEeKLAZgDyC9a-w" visible="true" active="true" start="_QUjzJJLXEeKLAZgDyC9a-w" end="_EKd_YZLYEeKLAZgDyC9a-w">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_FQUNJJLYEeKLAZgDyC9a-w" foreground="_LpkyUpI1EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_FQUNIZLYEeKLAZgDyC9a-w" businessObjects="_FQS_AJLYEeKLAZgDyC9a-w"/>
+      <connectionDecorators xmi:id="_FQUNIpLYEeKLAZgDyC9a-w" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_FQUNI5LYEeKLAZgDyC9a-w" foreground="_LplZZpI1EeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_Ve5_EJI9EeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_FQU0MJLYEeKLAZgDyC9a-w" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_FQU0MZLYEeKLAZgDyC9a-w" foreground="_LpkyUpI1EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_FQU0MpLYEeKLAZgDyC9a-w" x="2" y="10"/>
+          <points xmi:id="_FQU0M5LYEeKLAZgDyC9a-w" x="-14"/>
+          <points xmi:id="_FQU0NJLYEeKLAZgDyC9a-w" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_FQU0NZLYEeKLAZgDyC9a-w" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Ellipse" xmi:id="_FQU0NpLYEeKLAZgDyC9a-w" background="_-pwxI5ItEeKXh4FtODrTEA" foreground="_LpkyUpI1EeKXh4FtODrTEA" lineWidth="2" filled="true" transparency="0.0" width="16" height="16" x="16"/>
+      </connectionDecorators>
+    </connections>
+    <colors xmi:id="_-pwxIpItEeKXh4FtODrTEA" red="227" green="238" blue="249"/>
+    <colors xmi:id="_-pwxI5ItEeKXh4FtODrTEA" red="255" green="255" blue="255"/>
+    <colors xmi:id="_LpkyUpI1EeKXh4FtODrTEA" red="98" green="131" blue="167"/>
+    <colors xmi:id="_LpkyU5I1EeKXh4FtODrTEA" red="187" green="218" blue="247"/>
+    <colors xmi:id="_LplZZpI1EeKXh4FtODrTEA"/>
+    <colors xmi:id="_QFR5opLaEeKLAZgDyC9a-w" red="48" green="48" blue="48"/>
+    <colors xmi:id="_QFR5o5LaEeKLAZgDyC9a-w" red="176" green="176" blue="176"/>
+    <fonts xmi:id="_LplZZ5I1EeKXh4FtODrTEA" name="Arial" size="10" bold="true"/>
+    <fonts xmi:id="_LpmAcpI1EeKXh4FtODrTEA" name="Arial" size="8" bold="true"/>
+    <fonts xmi:id="_Ve5_EJI9EeKXh4FtODrTEA" name="Arial" size="10"/>
+  </pi:Diagram>
+  <pi:Diagram xmi:id="_BO2kEJIuEeKXh4FtODrTEA" visible="true" gridUnit="10" diagramTypeId="sliceEditor" name="UI.navigator" snapToGrid="true" pictogramLinks="_jyD7oJI9EeKXh4FtODrTEA _jyEis5I9EeKXh4FtODrTEA _jyEitJI9EeKXh4FtODrTEA _kxYDkJI9EeKXh4FtODrTEA _kxYqopI9EeKXh4FtODrTEA _kxZRsJI9EeKXh4FtODrTEA _lmYY8ZI9EeKXh4FtODrTEA" version="0.9.2">
+    <properties xmi:id="_lmZAA5I9EeKXh4FtODrTEA" key="dependenciescollapsed" value="false"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" xmi:id="_BO2kEZIuEeKXh4FtODrTEA" background="_BO2kE5IuEeKXh4FtODrTEA" foreground="_BO2kEpIuEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="1000" height="1000"/>
+    <link xmi:id="_BO6OcJIuEeKXh4FtODrTEA" businessObjects="_BO4ZQJIuEeKXh4FtODrTEA"/>
+    <children xsi:type="pi:ContainerShape" xmi:id="_jyDUkJI9EeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_jyG-8JI9EeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_jyDUkZI9EeKXh4FtODrTEA" background="_jyDUk5I9EeKXh4FtODrTEA" foreground="_jyDUkpI9EeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="158" y="358" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_jyD7oJI9EeKXh4FtODrTEA" businessObjects="_eZIRcJIkEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_jyFJwpI9EeKXh4FtODrTEA" outgoingConnections="_lmYY8JI9EeKXh4FtODrTEA"/>
+      <children xmi:id="_jyD7oZI9EeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_jyD7opI9EeKXh4FtODrTEA" foreground="_jyDUkpI9EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_jyD7o5I9EeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_jyFJw5I9EeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_jyD7pZI9EeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_jyD7ppI9EeKXh4FtODrTEA" foreground="_jyD7p5I9EeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_jyD7qJI9EeKXh4FtODrTEA" value="navigator"/>
+        <link xmi:id="_jyEis5I9EeKXh4FtODrTEA" businessObjects="_eZIRcJIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_jyEisJI9EeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_jyEisZI9EeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_jyEispI9EeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_jyEitJI9EeKXh4FtODrTEA" businessObjects="_eZIRcJIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_jyFJwJI9EeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_jyFJwZI9EeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_kxXcgJI9EeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_kxbG4JI9EeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_kxXcgZI9EeKXh4FtODrTEA" background="_jyDUk5I9EeKXh4FtODrTEA" foreground="_jyDUkpI9EeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="158" y="180" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_kxYDkJI9EeKXh4FtODrTEA" businessObjects="_k1ODwJInEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_kxZRs5I9EeKXh4FtODrTEA" incomingConnections="_lmYY8JI9EeKXh4FtODrTEA"/>
+      <children xmi:id="_kxYDkZI9EeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_kxYDkpI9EeKXh4FtODrTEA" foreground="_jyDUkpI9EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_kxYDk5I9EeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_kxZ4wJI9EeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_kxYDlZI9EeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_kxYDlpI9EeKXh4FtODrTEA" foreground="_jyD7p5I9EeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_jyD7qJI9EeKXh4FtODrTEA" value="edit"/>
+        <link xmi:id="_kxYqopI9EeKXh4FtODrTEA" businessObjects="_k1ODwJInEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_kxYqoJI9EeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_kxYqoZI9EeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_jyEispI9EeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_kxZRsJI9EeKXh4FtODrTEA" businessObjects="_k1ODwJInEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_kxZRsZI9EeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_kxZRspI9EeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_lmYY8JI9EeKXh4FtODrTEA" visible="true" active="true" start="_jyFJwpI9EeKXh4FtODrTEA" end="_kxZRs5I9EeKXh4FtODrTEA">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_lmZABJI9EeKXh4FtODrTEA" foreground="_jyDUkpI9EeKXh4FtODrTEA" lineWidth="2" lineStyle="DASH" filled="false" transparency="0.0"/>
+      <link xmi:id="_lmYY8ZI9EeKXh4FtODrTEA" businessObjects="_lmWjwJI9EeKXh4FtODrTEA"/>
+      <connectionDecorators xmi:id="_lmZAAJI9EeKXh4FtODrTEA" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_lmZAAZI9EeKXh4FtODrTEA" foreground="_jyD7p5I9EeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_lmZAApI9EeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_lmZnEJI9EeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_lmZnEZI9EeKXh4FtODrTEA" foreground="_jyDUkpI9EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_lmZnEpI9EeKXh4FtODrTEA" x="-30" y="10"/>
+          <points xmi:id="_lmZnE5I9EeKXh4FtODrTEA" x="-45"/>
+          <points xmi:id="_lmZnFJI9EeKXh4FtODrTEA" x="-30" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <colors xmi:id="_BO2kEpIuEeKXh4FtODrTEA" red="227" green="238" blue="249"/>
+    <colors xmi:id="_BO2kE5IuEeKXh4FtODrTEA" red="255" green="255" blue="255"/>
+    <colors xmi:id="_jyDUkpI9EeKXh4FtODrTEA" red="98" green="131" blue="167"/>
+    <colors xmi:id="_jyDUk5I9EeKXh4FtODrTEA" red="187" green="218" blue="247"/>
+    <colors xmi:id="_jyD7p5I9EeKXh4FtODrTEA"/>
+    <fonts xmi:id="_jyD7qJI9EeKXh4FtODrTEA" name="Arial" size="10" bold="true"/>
+    <fonts xmi:id="_jyEispI9EeKXh4FtODrTEA" name="Arial" size="8" bold="true"/>
+    <fonts xmi:id="_lmZAApI9EeKXh4FtODrTEA" name="Arial" size="10"/>
+  </pi:Diagram>
+  <pi:Diagram xmi:id="_DaDQUJIuEeKXh4FtODrTEA" visible="true" gridUnit="10" diagramTypeId="sliceEditor" name="UI.editor" snapToGrid="true" pictogramLinks="_cnlR8pI9EeKXh4FtODrTEA _cnmgEJI9EeKXh4FtODrTEA _cnmgEZI9EeKXh4FtODrTEA _cnqKcJI9EeKXh4FtODrTEA _cnqxgpI9EeKXh4FtODrTEA _cnqxg5I9EeKXh4FtODrTEA _cnvC8ZI9EeKXh4FtODrTEA _cnvqBJI9EeKXh4FtODrTEA _cnwREJI9EeKXh4FtODrTEA _eMqZYZI9EeKXh4FtODrTEA _eeYbgZI9EeKXh4FtODrTEA" version="0.9.2">
+    <properties xmi:id="_eMrAc5I9EeKXh4FtODrTEA" key="dependenciescollapsed" value="false"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" xmi:id="_DaDQUZIuEeKXh4FtODrTEA" background="_DaDQU5IuEeKXh4FtODrTEA" foreground="_DaDQUpIuEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="1000" height="1000"/>
+    <link xmi:id="_DaGToJIuEeKXh4FtODrTEA" businessObjects="_DaFFgJIuEeKXh4FtODrTEA"/>
+    <children xsi:type="pi:ContainerShape" xmi:id="_cnkq4JI9EeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_cnoVQJI9EeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_cnkq4ZI9EeKXh4FtODrTEA" background="_cnlR8ZI9EeKXh4FtODrTEA" foreground="_cnlR8JI9EeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="61" y="120" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_cnlR8pI9EeKXh4FtODrTEA" businessObjects="_JYSbQJIsEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_cnmgFJI9EeKXh4FtODrTEA" incomingConnections="_eMqZYJI9EeKXh4FtODrTEA"/>
+      <children xmi:id="_cnlR85I9EeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_cnlR9JI9EeKXh4FtODrTEA" foreground="_cnlR8JI9EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_cnlR9ZI9EeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_cnnHIJI9EeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_cnl5AJI9EeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_cnl5AZI9EeKXh4FtODrTEA" foreground="_cnl5ApI9EeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_cnl5A5I9EeKXh4FtODrTEA" value="swt"/>
+        <link xmi:id="_cnmgEJI9EeKXh4FtODrTEA" businessObjects="_JYSbQJIsEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_cnl5BJI9EeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_cnl5BZI9EeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_cnl5BpI9EeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_cnmgEZI9EeKXh4FtODrTEA" businessObjects="_JYSbQJIsEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_cnmgEpI9EeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_cnmgE5I9EeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_cnpjYJI9EeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_cnsmsJI9EeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_cnpjYZI9EeKXh4FtODrTEA" background="_cnlR8ZI9EeKXh4FtODrTEA" foreground="_cnlR8JI9EeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="230" y="120" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_cnqKcJI9EeKXh4FtODrTEA" businessObjects="_I6080JIkEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_cnrYkZI9EeKXh4FtODrTEA" incomingConnections="_eeYbgJI9EeKXh4FtODrTEA"/>
+      <children xmi:id="_cnqKcZI9EeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_cnqKcpI9EeKXh4FtODrTEA" foreground="_cnlR8JI9EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_cnqKc5I9EeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_cnrYkpI9EeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_cnqKdZI9EeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_cnqKdpI9EeKXh4FtODrTEA" foreground="_cnl5ApI9EeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_cnl5A5I9EeKXh4FtODrTEA" value="emf"/>
+        <link xmi:id="_cnqxgpI9EeKXh4FtODrTEA" businessObjects="_I6080JIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_cnqxgJI9EeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_cnqxgZI9EeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_cnl5BpI9EeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_cnqxg5I9EeKXh4FtODrTEA" businessObjects="_I6080JIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_cnqxhJI9EeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_cnrYkJI9EeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_cnub4JI9EeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_cnxfMJI9EeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_cnvC8JI9EeKXh4FtODrTEA" background="_cnlR8ZI9EeKXh4FtODrTEA" foreground="_cnlR8JI9EeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="145" y="270" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_cnvC8ZI9EeKXh4FtODrTEA" businessObjects="_gmgvAJIkEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_cnwRE5I9EeKXh4FtODrTEA" outgoingConnections="_eMqZYJI9EeKXh4FtODrTEA _eeYbgJI9EeKXh4FtODrTEA"/>
+      <children xmi:id="_cnvC8pI9EeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_cnvC85I9EeKXh4FtODrTEA" foreground="_cnlR8JI9EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_cnvC9JI9EeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_cnwRFJI9EeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_cnvqAJI9EeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_cnvqAZI9EeKXh4FtODrTEA" foreground="_cnl5ApI9EeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_cnl5A5I9EeKXh4FtODrTEA" value="editor"/>
+        <link xmi:id="_cnvqBJI9EeKXh4FtODrTEA" businessObjects="_gmgvAJIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_cnvqApI9EeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_cnvqA5I9EeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_cnl5BpI9EeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_cnwREJI9EeKXh4FtODrTEA" businessObjects="_gmgvAJIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_cnwREZI9EeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_cnwREpI9EeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_eMqZYJI9EeKXh4FtODrTEA" visible="true" active="true" start="_cnwRE5I9EeKXh4FtODrTEA" end="_cnmgFJI9EeKXh4FtODrTEA">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_eMrAdJI9EeKXh4FtODrTEA" foreground="_cnlR8JI9EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_eMqZYZI9EeKXh4FtODrTEA" businessObjects="_eMokMJI9EeKXh4FtODrTEA"/>
+      <connectionDecorators xmi:id="_eMrAcJI9EeKXh4FtODrTEA" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_eMrAcZI9EeKXh4FtODrTEA" foreground="_cnl5ApI9EeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_eMrAcpI9EeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_eMrngJI9EeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_eMrngZI9EeKXh4FtODrTEA" foreground="_cnlR8JI9EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_eMrngpI9EeKXh4FtODrTEA" x="2" y="10"/>
+          <points xmi:id="_eMrng5I9EeKXh4FtODrTEA" x="-14"/>
+          <points xmi:id="_eMrnhJI9EeKXh4FtODrTEA" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_eeYbgJI9EeKXh4FtODrTEA" visible="true" active="true" start="_cnwRE5I9EeKXh4FtODrTEA" end="_cnrYkZI9EeKXh4FtODrTEA">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_eeZCkpI9EeKXh4FtODrTEA" foreground="_cnlR8JI9EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_eeYbgZI9EeKXh4FtODrTEA" businessObjects="_eeXNYJI9EeKXh4FtODrTEA"/>
+      <connectionDecorators xmi:id="_eeZCkJI9EeKXh4FtODrTEA" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_eeZCkZI9EeKXh4FtODrTEA" foreground="_cnl5ApI9EeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_eMrAcpI9EeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_eeZCk5I9EeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_eeZClJI9EeKXh4FtODrTEA" foreground="_cnlR8JI9EeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_eeZClZI9EeKXh4FtODrTEA" x="2" y="10"/>
+          <points xmi:id="_eeZClpI9EeKXh4FtODrTEA" x="-14"/>
+          <points xmi:id="_eeZCl5I9EeKXh4FtODrTEA" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <colors xmi:id="_DaDQUpIuEeKXh4FtODrTEA" red="227" green="238" blue="249"/>
+    <colors xmi:id="_DaDQU5IuEeKXh4FtODrTEA" red="255" green="255" blue="255"/>
+    <colors xmi:id="_cnlR8JI9EeKXh4FtODrTEA" red="98" green="131" blue="167"/>
+    <colors xmi:id="_cnlR8ZI9EeKXh4FtODrTEA" red="187" green="218" blue="247"/>
+    <colors xmi:id="_cnl5ApI9EeKXh4FtODrTEA"/>
+    <fonts xmi:id="_cnl5A5I9EeKXh4FtODrTEA" name="Arial" size="10" bold="true"/>
+    <fonts xmi:id="_cnl5BpI9EeKXh4FtODrTEA" name="Arial" size="8" bold="true"/>
+    <fonts xmi:id="_eMrAcpI9EeKXh4FtODrTEA" name="Arial" size="10"/>
+  </pi:Diagram>
+  <pi:Diagram xmi:id="_Hr8jUJIuEeKXh4FtODrTEA" visible="true" gridUnit="10" diagramTypeId="sliceEditor" name="UI.SliceEditor" snapToGrid="true" pictogramLinks="_o_2XgJIvEeKXh4FtODrTEA _o_3lopIvEeKXh4FtODrTEA _o_3lo5IvEeKXh4FtODrTEA _rNViwJIvEeKXh4FtODrTEA _rNWw4pIvEeKXh4FtODrTEA _rNXX8JIvEeKXh4FtODrTEA _uw2s0JIvEeKXh4FtODrTEA _EA1RkpIwEeKXh4FtODrTEA _EA14ppIwEeKXh4FtODrTEA _EA2fsJIwEeKXh4FtODrTEA _E-XQ0ZIwEeKXh4FtODrTEA _b-XowpIwEeKXh4FtODrTEA _b-YP1pIwEeKXh4FtODrTEA _b-Y24JIwEeKXh4FtODrTEA _cqRFcJIwEeKXh4FtODrTEA" version="0.9.2">
+    <properties xmi:id="_uw3T4ZIvEeKXh4FtODrTEA" key="dependenciescollapsed" value="false"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" xmi:id="_Hr8jUZIuEeKXh4FtODrTEA" background="_Hr8jU5IuEeKXh4FtODrTEA" foreground="_Hr8jUpIuEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="1000" height="1000"/>
+    <link xmi:id="_HsANsJIuEeKXh4FtODrTEA" businessObjects="_Hr-YgJIuEeKXh4FtODrTEA"/>
+    <children xsi:type="pi:ContainerShape" xmi:id="_o_1wcJIvEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_o_6B4JIvEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_o_1wcZIvEeKXh4FtODrTEA" background="_o_1wc5IvEeKXh4FtODrTEA" foreground="_o_1wcpIvEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="150" y="80" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_o_2XgJIvEeKXh4FtODrTEA" businessObjects="_ZZwNYJIkEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_o_4MspIvEeKXh4FtODrTEA" incomingConnections="_uw2FwJIvEeKXh4FtODrTEA"/>
+      <children xmi:id="_o_2XgZIvEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_o_2XgpIvEeKXh4FtODrTEA" foreground="_o_1wcpIvEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_o_2Xg5IvEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_o_4zwJIvEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_o_2-kJIvEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_o_2-kZIvEeKXh4FtODrTEA" foreground="_o_2-kpIvEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_o_2-k5IvEeKXh4FtODrTEA" value="model"/>
+        <link xmi:id="_o_3lopIvEeKXh4FtODrTEA" businessObjects="_ZZwNYJIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_o_2-lJIvEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_o_3loJIvEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_o_3loZIvEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_o_3lo5IvEeKXh4FtODrTEA" businessObjects="_ZZwNYJIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_o_4MsJIvEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_o_4MsZIvEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_rNU7sJIvEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_rNZ0MJIvEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_rNU7sZIvEeKXh4FtODrTEA" background="_o_1wc5IvEeKXh4FtODrTEA" foreground="_o_1wcpIvEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="150" y="280" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_rNViwJIvEeKXh4FtODrTEA" businessObjects="_dUrK0JIkEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_rNX_AJIvEeKXh4FtODrTEA" outgoingConnections="_uw2FwJIvEeKXh4FtODrTEA _E-XQ0JIwEeKXh4FtODrTEA _cqQeYJIwEeKXh4FtODrTEA"/>
+      <children xmi:id="_rNWJ0JIvEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_rNWJ0ZIvEeKXh4FtODrTEA" foreground="_o_1wcpIvEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_rNWJ0pIvEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_rNX_AZIvEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_rNWJ1JIvEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_rNWJ1ZIvEeKXh4FtODrTEA" foreground="_o_2-kpIvEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_o_2-k5IvEeKXh4FtODrTEA" value="sliceEditor"/>
+        <link xmi:id="_rNWw4pIvEeKXh4FtODrTEA" businessObjects="_dUrK0JIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_rNWw4JIvEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_rNWw4ZIvEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_o_3loZIvEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_rNXX8JIvEeKXh4FtODrTEA" businessObjects="_dUrK0JIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_rNXX8ZIvEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_rNXX8pIvEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_EA1RkJIwEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_EA4U4JIwEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_EA1RkZIwEeKXh4FtODrTEA" background="_o_1wc5IvEeKXh4FtODrTEA" foreground="_o_1wcpIvEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="270" y="80" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_EA1RkpIwEeKXh4FtODrTEA" businessObjects="_DeKpYJIwEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_EA2fs5IwEeKXh4FtODrTEA" incomingConnections="_E-XQ0JIwEeKXh4FtODrTEA"/>
+      <children xmi:id="_EA1Rk5IwEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_EA1RlJIwEeKXh4FtODrTEA" foreground="_o_1wcpIvEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_EA14oJIwEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_EA3GwJIwEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_EA14opIwEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_EA14o5IwEeKXh4FtODrTEA" foreground="_o_2-kpIvEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_o_2-k5IvEeKXh4FtODrTEA" value="graphiti"/>
+        <link xmi:id="_EA14ppIwEeKXh4FtODrTEA" businessObjects="_DeKpYJIwEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_EA14pJIwEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_EA14pZIwEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_o_3loZIvEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_EA2fsJIwEeKXh4FtODrTEA" businessObjects="_DeKpYJIwEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_EA2fsZIwEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_EA2fspIwEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" xmi:id="_b-XowJIwEeKXh4FtODrTEA" visible="true" active="true">
+      <properties xmi:id="_b-asEJIwEeKXh4FtODrTEA" key="iscollapsed" value="false"/>
+      <graphicsAlgorithm xsi:type="al:RoundedRectangle" xmi:id="_b-XowZIwEeKXh4FtODrTEA" background="_o_1wc5IvEeKXh4FtODrTEA" foreground="_o_1wcpIvEeKXh4FtODrTEA" lineWidth="2" transparency="0.0" width="100" height="50" x="390" y="80" cornerHeight="5" cornerWidth="5"/>
+      <link xmi:id="_b-XowpIwEeKXh4FtODrTEA" businessObjects="_I6080JIkEeKXh4FtODrTEA"/>
+      <anchors xsi:type="pi:ChopboxAnchor" xmi:id="_b-Y245IwEeKXh4FtODrTEA" incomingConnections="_cqQeYJIwEeKXh4FtODrTEA"/>
+      <children xmi:id="_b-Xow5IwEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_b-XoxJIwEeKXh4FtODrTEA" foreground="_o_1wcpIvEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_b-YP0JIwEeKXh4FtODrTEA" y="20"/>
+          <points xmi:id="_b-Zd8JIwEeKXh4FtODrTEA" x="100" y="20"/>
+        </graphicsAlgorithm>
+      </children>
+      <children xmi:id="_b-YP0pIwEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_b-YP05IwEeKXh4FtODrTEA" foreground="_o_2-kpIvEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" width="78" height="20" x="22" y="2" font="_o_2-k5IvEeKXh4FtODrTEA" value="emf"/>
+        <link xmi:id="_b-YP1pIwEeKXh4FtODrTEA" businessObjects="_I6080JIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_b-YP1JIwEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:MultiText" xmi:id="_b-YP1ZIwEeKXh4FtODrTEA" lineWidth="100" filled="false" transparency="0.0" width="100" height="50" x="2" y="20" font="_o_3loZIvEeKXh4FtODrTEA" verticalAlignment="ALIGNMENT_TOP" value=""/>
+        <link xmi:id="_b-Y24JIwEeKXh4FtODrTEA" businessObjects="_I6080JIkEeKXh4FtODrTEA"/>
+      </children>
+      <children xmi:id="_b-Y24ZIwEeKXh4FtODrTEA" visible="true">
+        <graphicsAlgorithm xsi:type="al:Image" xmi:id="_b-Y24pIwEeKXh4FtODrTEA" lineWidth="1" transparency="0.0" width="16" height="16" x="3" y="3" id="de.opalproject.vespucci.ui.sliceEditor.ensembleIcon" stretchH="false" stretchV="false" proportional="false"/>
+      </children>
+    </children>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_uw2FwJIvEeKXh4FtODrTEA" visible="true" active="true" start="_rNX_AJIvEeKXh4FtODrTEA" end="_o_4MspIvEeKXh4FtODrTEA">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_uw3T4pIvEeKXh4FtODrTEA" foreground="_o_1wcpIvEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_uw2s0JIvEeKXh4FtODrTEA" businessObjects="_uw0QkJIvEeKXh4FtODrTEA"/>
+      <connectionDecorators xmi:id="_uw2s0ZIvEeKXh4FtODrTEA" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_uw2s0pIvEeKXh4FtODrTEA" foreground="_o_2-kpIvEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_uw3T4JIvEeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_uw3T45IvEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_uw3T5JIvEeKXh4FtODrTEA" foreground="_o_1wcpIvEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_uw3T5ZIvEeKXh4FtODrTEA" x="2" y="10"/>
+          <points xmi:id="_uw3T5pIvEeKXh4FtODrTEA" x="-14"/>
+          <points xmi:id="_uw3T55IvEeKXh4FtODrTEA" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_E-XQ0JIwEeKXh4FtODrTEA" visible="true" active="true" start="_rNX_AJIvEeKXh4FtODrTEA" end="_EA2fs5IwEeKXh4FtODrTEA">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_E-X34pIwEeKXh4FtODrTEA" foreground="_o_1wcpIvEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_E-XQ0ZIwEeKXh4FtODrTEA" businessObjects="_E-U0kJIwEeKXh4FtODrTEA"/>
+      <connectionDecorators xmi:id="_E-X34JIwEeKXh4FtODrTEA" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_E-X34ZIwEeKXh4FtODrTEA" foreground="_o_2-kpIvEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_uw3T4JIvEeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_E-X345IwEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_E-X35JIwEeKXh4FtODrTEA" foreground="_o_1wcpIvEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_E-Ye8JIwEeKXh4FtODrTEA" x="2" y="10"/>
+          <points xmi:id="_E-Ye8ZIwEeKXh4FtODrTEA" x="-14"/>
+          <points xmi:id="_E-Ye8pIwEeKXh4FtODrTEA" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <connections xsi:type="pi:FreeFormConnection" xmi:id="_cqQeYJIwEeKXh4FtODrTEA" visible="true" active="true" start="_rNX_AJIvEeKXh4FtODrTEA" end="_b-Y245IwEeKXh4FtODrTEA">
+      <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_cqRFc5IwEeKXh4FtODrTEA" foreground="_o_1wcpIvEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0"/>
+      <link xmi:id="_cqRFcJIwEeKXh4FtODrTEA" businessObjects="_cqPQQJIwEeKXh4FtODrTEA"/>
+      <connectionDecorators xmi:id="_cqRFcZIwEeKXh4FtODrTEA" visible="true" active="true" locationRelative="true" location="0.5">
+        <graphicsAlgorithm xsi:type="al:Text" xmi:id="_cqRFcpIwEeKXh4FtODrTEA" foreground="_o_2-kpIvEeKXh4FtODrTEA" lineWidth="1" filled="false" transparency="0.0" x="10" font="_uw3T4JIvEeKXh4FtODrTEA" value="ALL"/>
+      </connectionDecorators>
+      <connectionDecorators xmi:id="_cqRFdJIwEeKXh4FtODrTEA" visible="true" locationRelative="true">
+        <graphicsAlgorithm xsi:type="al:Polyline" xmi:id="_cqRFdZIwEeKXh4FtODrTEA" foreground="_o_1wcpIvEeKXh4FtODrTEA" lineWidth="2" filled="false" transparency="0.0">
+          <points xmi:id="_cqRFdpIwEeKXh4FtODrTEA" x="2" y="10"/>
+          <points xmi:id="_cqRFd5IwEeKXh4FtODrTEA" x="-14"/>
+          <points xmi:id="_cqRsgJIwEeKXh4FtODrTEA" x="2" y="-10"/>
+        </graphicsAlgorithm>
+      </connectionDecorators>
+    </connections>
+    <colors xmi:id="_Hr8jUpIuEeKXh4FtODrTEA" red="227" green="238" blue="249"/>
+    <colors xmi:id="_Hr8jU5IuEeKXh4FtODrTEA" red="255" green="255" blue="255"/>
+    <colors xmi:id="_o_1wcpIvEeKXh4FtODrTEA" red="98" green="131" blue="167"/>
+    <colors xmi:id="_o_1wc5IvEeKXh4FtODrTEA" red="187" green="218" blue="247"/>
+    <colors xmi:id="_o_2-kpIvEeKXh4FtODrTEA"/>
+    <fonts xmi:id="_o_2-k5IvEeKXh4FtODrTEA" name="Arial" size="10" bold="true"/>
+    <fonts xmi:id="_o_3loZIvEeKXh4FtODrTEA" name="Arial" size="8" bold="true"/>
+    <fonts xmi:id="_uw3T4JIvEeKXh4FtODrTEA" name="Arial" size="10"/>
+  </pi:Diagram>
+</xmi:XMI>
